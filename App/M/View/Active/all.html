@@ -1,0 +1,48 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/zqgym/css/active.css?a0">
+<section class="zqgy_active">
+    <div class="zqgy_search">
+        <form><input type="search" value="{:I('actname')}" name="actname" placeholder="可根据活动名称搜索"></form>
+        <div class="sear_btn">筛选<i></i></div>
+        <div class="sear_subnav">
+            <dl class="dl_categroy">
+                <dt>类别标签</dt>
+                <dd class="search" data-type="label">
+                    {~W('Layout/tag')}
+                </dd>
+            </dl>
+            <dl class="dl_city">
+                <dt>地域</dt>
+                <dd class="search" data-type="area">
+                    {~W('Layout/province')}
+                </dd>
+            </dl>
+            <dl class="dl_state">
+                <dt>活动状态</dt>
+                <dd class="search" data-type="status">
+                    <span data-val="0" class="cur">全部</span>
+                    <span data-val="1">进行中</span>
+                    <span data-val="2">已结束</span>
+                    <span data-val="3">即将开始</span>
+                </dd>
+            </dl>
+            <dl class="dl_type">
+                <dt>活动类型</dt>
+                <dd class="search" data-type="type">
+                    <span data-val="0" class="cur">全部</span>
+                    <span data-val="1">线上</span>
+                    <span data-val="2">线下</span>
+                </dd>
+            </dl>
+            <p><span class="ok_btn" >确定</span></p>
+        </div>
+    </div><!-- ]搜索区 -->
+    <div class="zqgy_main_cont">
+        <div id="mask"></div>
+        {~W('Active/item',array($data))}
+        <div class="zqgy_loading" style="display: none">
+            <img src="__STATIC_URL__/zqgym/images/loading.gif">
+        </div>
+    </div>
+</section>
+<input type="hidden" id="surl" value="/m/active/all"/>
+<script type="text/javascript" src="__STATIC_URL__/zqgym/js/search.js"></script>

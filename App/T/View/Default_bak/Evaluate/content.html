@@ -1,0 +1,25 @@
+<div class="Pro-Evalua">
+    <div class="Show-Evalua">
+        <p class="Show-Evalua-title">综合满意度<span style="color:red" id="fenshu">4.9分</span><span class="count" id="pcount">共5人评价</span></p>
+        <p class="Scores-num">
+            <em class="Detail-Scores">0</em>
+            <span class="sp1">1</span><span class="sp2">2</span><span class="sp3">3</span><span class="sp4">4</span><span class="sp5">5</span>
+        </p>
+        <p class="Scores-text">
+            <span class="st1">非常不满</span><span class="st2">不满意</span><span class="st3">一般</span>
+            <span class="st4">满意</span><span class="st5">非常满意</span>
+        </p>
+    </div>
+
+    <div class="Evalua-list">
+        <volist name="data" id="vo">
+        <div class="Elist-01" data-level="{$vo['level']}">
+            <span class="Elist-Picture"><img src="{$vo['photo']}" alt=""></span>
+            <span class="Elist-Title">{$vo['nickname']}</span>
+                <span class="Elist-Content">
+                    {$vo['content']}
+                </span>
+        </div>
+        </volist>
+    </div>
+</div>

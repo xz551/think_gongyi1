@@ -1,0 +1,137 @@
+<css:add href="{:STATIC_SERVER_URL}/usercenter/group/css/page6.css?0" />
+<js:add src="{:STATIC_SERVER_URL}/public/js/popWindow.js" />
+<js:w>
+    $(function () {
+		$(".class_label p a").hover(function(){
+			$(this).addClass("hover").siblings().removeClass("hover");
+		},function(){
+			$(this).removeClass("hover");
+		});
+    });
+</js:w>
+<div class="wraper_main">
+    <div class="wraper_main_left">
+        <div class="wraper_menus_tab">
+            <neq name='uid' value='0'>
+                <a href="{:U('T/Group/usergroup',array('id'=>$uid))}">我的公益小组</a>
+            </neq>
+            
+            <a class="bottom_border" href='javascript:void(0)'>发现公益小组</a>
+        </div>
+        <div class="wraper_group_cont">
+            <eq name='isOrgVip' value='1'>
+            <p class="create_gy_group"><a href="{:U('T/Group/addGroup')}" >创建小组</a></p>
+            <else />
+                <p class="create_gy_group"><a href="javascript:void(0)" >创建小组</a></p>
+                <script>                   
+                    $('.create_gy_group > a').click(function(){
+                        $(".promptHtmlText").text("只有认证的组织可以创建小组");
+                        var login = {$islogin};
+                            if(login == 1){
+                            $(this).popWindow({
+                                width: "400",
+                                height: "170",
+                                content: $(".promptHtml").html(),
+                                closePic: "{:STATIC_SERVER_URL}/usercenter/group/images/close_icon.png",
+                                id: "box1",
+                                autoshow:'true',
+                                callback: function (a, box) {
+                                },
+                                button: {                               
+                                    ok: function (t, box) {
+                                        box.hide();
+                                        $("#mask1").hide();
+                                    }
+                                }
+                            }); 
+                            $("#box1").find("#winTitle").css("border-bottom", "none");
+                        }else{
+                             showbox();
+                        }                        
+                     });                   
+                </script>
+            </eq>
+            <div class="class_label">
+                <label>类别标签：</label>
+                <p>
+                    <a href="#"  class="selected getPage"  data-label="0">全部</a>
+                    <volist name="attList" id="vo"> 
+                    <a href="#" class="getPage"  data-label="{$vo.id}">{$vo.name}</a>
+                    </volist>
+                    <img class='loader' src="{:STATIC_SERVER_URL}/yijuan/product/images/loader.gif">
+                   
+                </p>
+            </div>           
+            <div id='getAjaxPage' data-url="{:U('t/Group/ajaxGetGroup')}" data-condition=""></div>           
+        </div>
+    </div>
+
+    <!-- 右边 -->
+    <div class="wraper_main_right">
+        <!-- bottom -->
+        <div class="wpr_mr_bottom">
+            <h3 class="project_title">正在讨论<i></i></h3>
+            <volist name='nowSubject' id='vo'>
+            <!-- 一个小组 -->
+            <div  class="new_create_group">
+                <a href="{:U('t/group/selgroup',array('id'=>$vo['group']['id']))}" ><img src="{$vo['group'].image}" title="{$vo['group'].name}"></a>
+                <div class="new_cr_detail">
+                    <a href="{:U('T/subject/subInfo',array('id'=>$vo['sid']))}"  class='chat_title' title="{$vo.title}">{$vo.title}</a>
+                    <p class="chat_text"> 
+                        {$vo.content}
+                    </p>
+                    <p class="form_info"><span class="form_info_name"><a href="{:userUrl($vo['ruid'])}" title="{$vo.runame}">{$vo.runame}</a></span><span class="form_info_time">{$vo.mtime}</span></p>
+                </div>
+            </div>
+            </volist>
+
+          
+        </div>
+    </div>
+</div><!-- wraper_main[ -->
+
+<!--弹出层1[-->
+<div class="promptHtml">
+    <p class="promptHtmlText">只有认证的组织可以创建小组</p>
+</div> <!--]弹出层1-->
+{~W('Common/Login/showLogin')}
+<js:w>
+    //ajax动态加载小组页面
+    var url = $("#getAjaxPage").attr('data-url');
+    var condition = $("#getAjaxPage").attr("data-condition");
+    $.ajax({
+        type: "POST",
+        url: url,
+        data:condition,
+        success: function(msg){
+            $("#getAjaxPage").html(msg);
+            $(".wraper_paging a:contains(1):first").addClass('selected');
+            $(".loader").hide();
+        }
+    });
+    
+    var tag = 0; 
+    $(".getPage").click(function(){
+    if(tag==1){return;}
+        $(".loader").show();
+	var _this = $(this);
+        var url = $("#getAjaxPage").attr('data-url');
+        var label = "lid="+$(this).attr("data-label");
+        $("#getAjaxPage").attr("data-condition",label);
+        var condition = $("#getAjaxPage").attr("data-condition");
+
+            tag = 1;
+            $.ajax({
+                type: "POST",
+                url: url,
+                data:condition,
+                success: function(msg){
+                    $("#getAjaxPage").html(msg);
+                    //$(".wraper_paging a:contains(1):first").addClass('selected');
+                     _this.addClass('selected').siblings().removeClass('selected');
+                     tag = 0;
+                     $(".loader").hide();
+                }
+            });
+    });
+</js:w>

@@ -1,0 +1,36 @@
+<p class="upload_photo"><a id="upload-show-image">上传图片</a>建议上传宽高比为4:3的图片。支持jpg、jpeg和png格式，大小不超过1M</p>
+<p class="show_up_photo"><img src="<empty name='imgsrc'>{:STATIC_SERVER_URL}/concur/images/upload_photos.png<else />{$imgsrc}</empty>"></p>
+<input type="hidden" name="imgsrc" class="imgsrc" value='{$imgname}'>
+<script type="text/javascript">
+    function uploadPic() {
+        var img = $(".imgsrc"), emsg = img.parent().prev().find('.error_msg');
+        if (img.val() == "") {
+            emsg.show();
+            return false;
+        } else {
+            emsg.hide();
+            return true;
+        }
+    }
+    $(document).ready(function () {
+        var button = $('#upload-show-image'), interval;
+        new AjaxUpload(button, {
+            name: 'img_file',
+            action: '{:U("T/Img/upload/type/concur/w/100/h/100")}',
+            onSubmit: function (file, ext) {
+                if (!(ext && /^(jpg|JPG|png|PNG|jpeg|JPEG)$/.test(ext))) {
+                    alert("您上传的图片格式不对，请重新选择！");
+                    return false;
+                }
+            },
+            onComplete: function (file, response) {
+                var obj = eval("(" + response + ")");
+                if (obj.status === 0) {
+                    alert(obj.info);
+                }
+                $('.show_up_photo img').attr('src', obj.url);
+                $("input[name='imgsrc']").val(obj.imgName);
+            }
+        });
+    });
+</script>

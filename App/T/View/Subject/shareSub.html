@@ -1,0 +1,55 @@
+ <form id="oauthshareform" action="{:U('t/subject/share')}" 
+data-relationid="{$sid}" data-relationtype="{$relation_type}">
+    <div class="row">
+        <input type="checkbox" class="oauthbox <eq name='list.weibo' value='1'>bind<else />unbind</eq>" value="weibo" name="weibo" />新浪微博        
+        <input type="checkbox" class="oauthbox <eq name='list.qq' value='1'>bind<else />unbind</eq>" value="qq" name="qq" />腾讯微博        
+        <input type="checkbox" class="oauthbox <eq name='list.renren' value='1'>bind<else />unbind</eq>" value="renren" name="renren" />人人    
+    </div>    
+    <div class="row">
+        <textarea id="oauth_share" class="txtBox" maxlength="140" data-buttonselector="#oauth_share_submit">{$content}</textarea>
+    </div>
+    <div class="buttons">
+        你最多可以输入<strong class='font_length1'>{$num}</strong>个字符&nbsp;&nbsp;<a class="input-disable fr" id="oauth_share_submit">分 享</a>    
+    </div>
+</form>
+<script>
+    /*textarea分享实时监听事件*/
+    $('#oauth_share').live('valuechange', function (e, previous) {
+            var _this = $(this);
+            var _result=140-_this.val().length;
+            _result>0?$(".font_length1").text(_result):$(".font_length1").text(0);        		
+    })
+    $(function () {
+        var oauthshareform = $('#oauthshareform');
+        $('#oauth_share').focus();
+        $('.oauthbox.unbind').unbind('change').change(function () {
+            if ($(this).prop('checked')) {
+                window.open('{:UCENTER}/oauth/bind.html?returnurl=close&provider=' + $(this).val());
+                $('#oauth_share_submit').removeClass('input-disable').addClass('input-submit');
+            }
+        });
+        $('.oauthbox.bind').attr('checked', 'checked');
+        if ($('.oauthbox.bind').size() > 0) {
+            $('#oauth_share_submit').removeClass('input-disable').addClass('input-submit');
+        }
+	
+        $('#oauth_share_submit').unbind('click').live('click',function () {
+			var selectOauth = $('.oauthbox:checked');
+            var content = $.trim($('#oauth_share').val());
+            if (selectOauth.size() > 0 && content != "") {
+                selectOauth.each(function () {                  
+                    $.post(oauthshareform.attr('action'),{'provider':$(this).val(),'content':content,'relation_id':oauthshareform.data('relationid'),'relation_type':oauthshareform.data('relationtype')},function(data){
+                            if(data.status)
+                            {
+                                $("#winClose").click();
+                                    alert("分享成功");
+
+                            }else{
+                                    alert(data.message);
+                            }
+                    },'json')
+                });
+            }
+        });
+    });
+</script>

@@ -1,0 +1,19 @@
+<if condition="$user_list">
+    <volist name="user_list" id="vo">
+        <div class="col5_leader_info">
+            <a href="{$vo['uid']|ucUrl=###}" class="col5_leader_lt" title="{$vo['nickname']}" target="_blank"><img src="{$vo['photo']}"></a>
+            <div class="col5_leader_rt">
+                <h3 class="col5_lrt_title">
+                    <a href="{$vo['uid']|ucUrl=###}" class="helpren_name" title="{$vo['nickname']}" target="_blank">{$vo['nickname']|str_ellipsis_new=###,12}</a>
+                    <img src="{$vo['type']}"><a href="javascript:void(0)" class="pemail  pemail_btn" data-toid="{$vo['uid']}" title="私信"></a>
+                </h3>
+                <p class="col5_lrt_address">{$vo['address']}</p>
+                <volist name="vo['org_list']" id="org">
+                    <p class="col5_lrt_ogmname">{$org} 志愿者</p>
+                </volist>
+            </div>
+        </div>
+    </volist>
+    <else/>
+    <div class="none_msg">还没有人认证这个求助的真实性</div>
+</if>

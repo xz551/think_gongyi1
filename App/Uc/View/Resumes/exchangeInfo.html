@@ -1,0 +1,39 @@
+<css:add href="{:STATIC_SERVER_URL}/usercenter/tp/css/psl_resume_tl1.css" />
+<!-- 右边主体内容[ -->
+<div class="myhome_cmain_right">
+    <div class="wraper_menus_tab">
+        <a class="bottom_border" href="javascript:void(0)">时长记录</a>
+        <a href="{:U('Volres/index',array('uid'=>$uid))}">其他志愿履历</a>
+    </div>
+    <div class="this_tab_content">
+        <div class="resume_info">
+            <span>已累计的志愿服务时间：<i><a style="color:#2f9be7;" href="/Uc/Resumes/index/uid/{$uid}">{$num}</a></i>小时</span>
+            <span>可兑换的志愿服务时间：<i>{$cnum}</i>小时</span>
+            <span>已兑换的志愿服务时间：<i><a style="color:#2f9be7;" href="/Uc/Resumes/exchangeInfo/uid/{$uid}">{$alnum}</a></i>小时</span>
+        </div>
+        
+        <div id='getAjaxPage' data-url="{:U('ajaxGetUserChangeTime')}" data-uid="{$uid}"><img src="__STATIC_URL__/public/images/loading.gif"/></div>
+        </div>
+</div><!-- 右边主体内容[ -->
+<js:w>
+$(function(){
+		$(".resume_ways ul").hover(function(){
+			$(this).toggleClass("change");
+		});
+		$(".gettimeinfo").click(function(){
+			$(".resume_val").text($(this).text());
+                        window.location.href="/Uc/Resumes/index/uid/{$uid}";
+		});
+	   //ajax动态加载服务时长
+    var url = $("#getAjaxPage").attr('data-url');  
+    var uid =$("#getAjaxPage").attr('data-uid');
+    $.ajax({
+    url: url,
+    data:{uid:uid},
+    success: function(msg){
+    $("#getAjaxPage").html(msg);
+    $(".wraper_paging a:contains(1):first").addClass('selected');
+    }
+    });
+    });
+</js:w>			

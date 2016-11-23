@@ -1,0 +1,35 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/gongyi/css/pro.css">
+<!-- 承载所有内容的容器[ -->
+<div id="Container">
+	<section class="wraper_top">
+		<h3>{$event['name']}</h3>
+		<img src="{$event['show_image']}">
+		<p>{$event['summary']}</p>
+		<p><label>主办方：</label><span>{$event['host']}</span></p>
+		<p><label>报名时间：</label><span>{$event['event_begin_time']}至{$event['event_end_time']}</span></p>
+		<p><label>投票/评选时间：</label><span>{$event['vote_begin_time']}至{$event['vote_end_time']}</span></p>
+		<a href="__YI_JUAN_SITE__/project/alleventlist/id/{$event['id']}.html" class="submit_project">我要提交项目</a>
+	</section>
+	<section class="wraper_project_list">
+		<h3 class="active_title">全部报名项目({$count})<i></i></h3>
+		<if condition="$count neq 0">
+			<foreach name="pro" item="vo">
+			<a href="{:U('Pro/view',array('id'=>$vo['id']))}" class="project_details">
+				<img src="{$vo['show_image']}">
+				<aside>
+					<p>{$vo['name']|str_ellipsis=###,19}</p>
+					<p>{$vo['address']}</p>
+					<p>{$vo['summary']}</p>
+				</aside>
+			</a>
+			</foreach>
+		<else />
+		<div class="empty-message">暂无数据！</div>
+		</if>
+	</section>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $('.wraper_project_list img').css('max-width','100%');
+    });
+</script>

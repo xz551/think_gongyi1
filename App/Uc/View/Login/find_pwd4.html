@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$title}</title>
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/css/base.css">
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/css/find_pwd.css">
+	<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/jquery.js"></script>
+</head>
+<body>
+	{~W('Layout/header')}
+	<div class="zqgy_find_pwd">
+		{:W('Layout/findPasswordTop',array($tag))}
+		<div class="zqgy_fdpd_step4">
+			<p>密码重置成功！请牢记新密码！</p>
+			<a href="/Uc/Login/index">重新登录</a>
+		</div>
+	</div>
+	{~W('Layout/footer')}
+</body>
+</html>

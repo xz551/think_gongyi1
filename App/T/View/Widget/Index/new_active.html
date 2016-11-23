@@ -1,0 +1,15 @@
+<!-- 公益活动 -->
+<h3 class="gy_col_title"><i>公益活动</i><a href="{:WEB_SITE}/active/all.html">更多></a></h3>
+<ul class="gy_col_pro clearfix">
+    <volist name="active" id="active">
+        <li>
+            <a href="{$active.url}"><img class="lazy" data-original="{$active.image}" data-type="active"></a>
+            <div class="gy_detail_info">
+                <a href="{$active.url}" title="{$active.name}">{$active.name}</a>
+                <p class="ifo_form jump-user-page" data-url="{:userUrl($active['uid'])}">{$active.creator}</p>
+                <p class="ifo_addr">{$active.area}</p>
+                <p class="ifo_time">报名截止：<span><i data-width='{$active.percent}'></i></span><i>{$active.clos_date}</i></p>
+            </div>
+        </li>
+    </volist>
+</ul>

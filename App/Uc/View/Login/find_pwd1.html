@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$title}</title>
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/css/base.css">
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/css/find_pwd.css">
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/public/css/jquery.validator.css">
+	<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/jquery.js"></script>
+	<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/jquery.validator.js"></script>
+	<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/zh_CN.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("input").focus(function(){$(this).parent().css("border-color","#2f9be7");});
+			$("input").blur(function(){$(this).parent().css("border-color","#e0e0e0");});
+			/*验证*/
+			$("#form_step1").validator({
+				stopOnError:false,
+				fields:{
+					'ip_account':{rule:"帐户名:required;mobile|email|ID_card;remote[/Uc/Login/check, ip_account]",msg:{ID_card:"请输入正确的邮箱/手机号码/身份证号码"}},
+					'ip_yzcode':{rule:"required;remote[/Uc/Register/ckVerify, ip_yzcode]",msg:{required:"验证码不能为空"}}
+				},
+				valid:function(form){form.submit();},
+				beforeSubmit:function(){$("input").eq(0).focus();}
+			});
+			$(".yzm_pic,.yzm_hyz").click(function(){
+				  var num = Math.random()*50+1;
+				  $(".yzm_pic img").attr("src","/M/Code/index/"+num);
+		});
+	});
+	</script>
+</head>
+<body>
+	 {~W('Layout/header')}
+	<div class="zqgy_find_pwd">
+		{:W('Layout/findPasswordTop',array($tag))}
+		<div class="zqgy_fdpd_detail">
+			<form action="/Uc/Login/findPassword2" id="form_step1" method="post">
+				<p class="fdp_title">请输入您需要找回登录密码的账户名：</p>
+				<p class="fdp_uname">
+					<label>帐户名：</label>
+					<i><input type="text" name="ip_account" placeholder="邮箱/手机号/证件号码"></i>
+					<span class="msg-box n-right" for="ip_account"></span>
+				</p>
+				<p class="fdp_tips">通过证件号码，也能找回账户密码啦~比如：填写身份证号码、护照号码等。组织用户仅能通过注册邮箱找回密码。</p>
+				<p class="fdp_yzcode">
+					<label>验证码：</label>
+					<i><input type="text" name="ip_yzcode" placeholder="验证码"></i>
+					<a href="javascript:void(0)" class="yzm_pic"><img src="/M/Code/index" alt=""></a>
+					<a href="javascript:void(0)" class="yzm_hyz">看不清，换一张</a>
+					<span class="msg-box n-right" for="ip_yzcode"></span>
+				</p>
+				<p class="fdp_btns"><button>下一步</button></p>
+			</form>
+		</div>
+	</div>
+	{~W('Layout/footer')}
+</body>
+</html>

@@ -1,0 +1,27 @@
+<css:add href="{:STATIC_SERVER_URL}/usercenter/tp/css/psl_resume_tl1.css" />
+<!-- 右边主体内容[ -->
+	<div class="myhome_cmain_right">
+		<div class="wraper_menus_tab">
+			<a class="bottom_border" href="javascript:void(0)">时长记录</a>
+			<a href="{:U('Volres/index',array('uid'=>$uid))}">其他志愿履历</a>
+		</div>
+		<div class="this_tab_content">
+			<p class="this_con_title">志愿服务总时长：{$num}小时</p>
+			 <div id='getAjaxPage' data-url="{:U('ajaxGetUserTime')}" data-uid="{$uid}"><img src="__STATIC_URL__/public/images/loading.gif"/></div>
+		</div>
+	</div><!-- 右边主体内容[ -->
+<js:w>
+$(function(){
+	   //ajax动态加载服务时长
+    var url = $("#getAjaxPage").attr('data-url');  
+    var uid =$("#getAjaxPage").attr('data-uid');
+    $.ajax({
+        url: url,
+        data:{uid:uid},
+        success: function(msg){
+            $("#getAjaxPage").html(msg);
+            $(".wraper_paging a:contains(1):first").addClass('selected');
+        }
+    });
+});
+</js:w>			

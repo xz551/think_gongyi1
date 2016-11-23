@@ -1,0 +1,63 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/zqgym/css/login.css?0">
+<script type="text/javascript" src="__STATIC_URL__/zqgym/js/login.verfiy.js"></script>
+
+<section class="zqgy_login_cont">
+    <form action="#" method="" id="loginForm">
+        <div class="zqgy_emsg"></div>
+        <p class="zqgy_uname"><i></i><input type="text" id="username" name="unameOremail" class="require" data-error ="请输入邮箱或手机号" placeholder="邮箱或手机号"></p>
+        <p class="zqgy_upwd"><i></i><input type="password" id="password" name="password" class="require" data-error ="请输入密码" placeholder="密码"></p>
+        <button class="submit_btn">绑定</button>
+    </form>
+</section>
+<script>
+    function sub(){
+        is_sub=true;
+        var subBtn=$('.submit_btn');
+        subBtn.addClass('smting');
+        subBtn.prop('disabled',true);
+        subBtn.text('帐号验证……');
+        $.ajax({
+            url:"/m/user/logindo",
+            data:{"LoginForm[username]":$('#username').val(),"LoginForm[password]":$('#password').val(),'type':'bind'},
+            dataType:'json',
+            type:'post',
+            success:function(d){
+                var status= d.status;
+                if(status==true){
+                    subBtn.text("绑定中…");
+                    bind(d.data.uid);
+                }else if( is_sub){
+                    subBtn.removeClass('smting');
+                    subBtn.prop('disabled',false);
+                    subBtn.text("绑定");
+                    $('.zqgy_emsg').text(d.msg||'验证异常').show();
+                }
+            }
+        });
+    }
+    /**
+     * 绑定帐号
+     */
+    function bind(uid){
+        var subBtn=$('.submit_btn');
+        $.ajax({
+            url:'/m/auth/bind',
+            data:{'uid':uid},
+            dataType:'json',
+            success:function(d){
+                var status= d.status;
+                if(status==-1){
+                    subBtn.removeClass('smting');
+                    subBtn.prop('disabled',false);
+                    subBtn.text("绑定");
+                    $('.zqgy_emsg').text(d.msg||'验证异常').show();
+                }else{
+                    subBtn.text("绑定成功");
+                    //页面跳转
+                    window.location.href="{$url}";
+                }
+
+            }
+        });
+    }
+</script>

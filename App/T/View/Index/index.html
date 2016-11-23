@@ -1,0 +1,211 @@
+<div class="wrapper">
+    <div class="clearfix tops">
+        <div class="major">
+            <div class="home-slide2">
+                {~W('Slider/init')}
+            </div>
+            <div class="top2">
+                <img src="http://static.yiii.org/yijuan/product/images/top2.png">
+            </div>
+            <header class="home_header">
+                <span class="fl span1"></span>
+                <span class="title fl">
+                    热点招募
+                </span>
+                <span class="fr span2"><a class="more" href="/project/all.html">更多</a></span>
+            </header>
+            <div class="project">
+                <div class="projects" id="yw0">
+                    <ul class="list clearfix">
+                        <volist name='project' id='vo'>
+                            <li class="item">
+                                <div class="pic_size">
+                                    <a target="_blank" href="{$vo['url']}" title="{$vo['name']}">
+                                        <img alt="{$vo['name']}" src="{$vo['show_image']}">
+                                    </a>
+                                </div>
+
+                                <div class="project_title">
+                                    <a target="_blank" href="{$vo['url']}">
+                                        {$vo['name']}
+                                    </a>
+                                </div>
+                                <div class="info clearfix">
+                                    <div ><span class="publisher">{$vo['creator']} &nbsp;&nbsp;发布</span></div>
+                                    <div class="address margin-top5">
+                                        <span class="addr_icon" title="服务区域"></span>  {$vo['area']}
+                                    </div>
+                                    <div class="address margin-top5" title="">
+                                        <span class="post_icon" title="招募岗位"></span>
+                                        志愿者 记者团
+                                    </div>
+                                    <div class="sign_up margin-top10">
+                                        <span class="sign_info sign_info_num">{$vo['usercount']}</span>
+                                        <span class="sign_info sign_info_num">{$vo['needcount']}</span>
+                                    </div>
+                                    <div class="sign_up">
+                                        <span class="sign_info sign_info_text">已报名</span>
+                                        <span class="sign_info sign_info_text">招募人数</span>
+                                    </div >
+                                    <a class="fr zq_margin" href="{$vo['url']}" target="_blank"></a>
+                                </div>
+                            </li>
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+            <header class="home_header">
+                <span class="fl span1"></span>
+                <span class="title fl">
+                    热点活动
+                </span>
+                <span class="fr span2"><a href="/active/all.html">更多</a></span>
+            </header>
+            <div class="project">
+                <div class="projects">
+                    <ul class="list clearfix">
+                        <volist name='active' id='vo'>
+                            <li class="item">
+                                <div class="pic_size">
+                                    <a target="_blank" href="{$vo['url']}">
+                                        <img class="projectError" alt="{$vo['name']}"
+                                             src="{$vo['image']}">
+                                    </a>
+                                </div>
+                                <div class="project_title">
+                                    <a href="{$vo['url']}" target="_blank">
+                                        {$vo['name']}                  </a>
+                                </div>
+                                <div class="info clearfix">
+                                    <div ><span class="publisher">{$vo['creator']} &nbsp;&nbsp;发布</span></div>
+                                    <div class="address margin-top5">
+                                        <span class="addr_icon"></span> {$vo['area']}                               </div>
+                                    <div class="address margin-top5">
+                                        <span class="act_time_icon"></span> {$vo['time']}                           </div>
+                                    <div class="address margin-top5">
+                                        <span class="attention_icon"></span>
+                                        {$vo['tags']}
+                                    </div>
+                                    <div class="sign_up">
+                                        <span class="sign_info sign_info_text">已报名</span><span class="sign_info_num">{$vo['usercount']}</span>
+                                    </div >
+                                    <a class="fr signUp_icon" href="{$vo['url']}" target="_blank"></a>
+                                </div>
+                            </li>
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+            <header class="home_header">
+                <span class="fl span1"></span>
+                <span class="title fl">
+                    公益组织
+                </span>
+                <span class="fr span2"><a target="_blank" href="/authuser/all.html">更多</a></span>
+            </header>
+            <div class="zuzhi">
+                <div class="institution">
+                    <div class="summary " >
+                        <div class="zhuzhi_vip">
+                            <ul class="list">
+
+                                <volist name='vip' id='vo'>
+                                    <li class="fl item_vip">
+                                        <div class="fl vip_pic_size">
+                                            <a target="_blank" href="{$vo['url']}">
+                                                <img class="userError" src="{$vo['photo_l']}" alt="{$vo['nickname']}" title="{$vo['nickname']}" height="90" width="90" />
+                                            </a>
+                                        </div>
+                                        <div class="fl vip_mes">
+                                            <div class="mes_content">
+                                                <div class=" zhuzhi_name"><span>
+                                                        <a target="_blank" href="{$vo['url']}">
+                                                            {$vo['nickname']}</a></span>
+                                                </div>
+                                                <div class="linyu_margin ">
+                                                    <!--
+                                                    <span class="linyu ">人文关怀</span><span class="linyu">助学助教</span>
+                                                    -->
+                                                    <volist name="vo['tags']" id='tag' offset='1' length='3'>
+                                                        <span class="linyu ">{$tag['category_server']}</span>
+                                                    </volist>
+                                                </div>
+                                            </div>
+                                            <div class="mes_addr">
+                                                <span class="item_addr">
+                                                    <span class="address_icon11"></span>
+                                                    <span class="linyu_addr">
+                                                        {$vo['area']}
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </volist>
+                            </ul>
+                            <div class="clearfix"> </div>
+                        </div>
+
+                    </div>
+                    <div class="summary " id="organization_list" >
+                        <div class="summary" id="yw2">
+                            <ul class="list">
+                                <volist name='org' id='vo'>
+                                    <li class="item">
+                                        <a target="_blank" href="{$vo['url']}">
+                                            <img class="userError" src="{$vo['photo_l']}" alt="{$vo['org_name']}" title="{$vo['org_name']}" height="90" width="90" />
+                                        </a>
+                                    </li>
+                                </volist>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <header class="home_header">
+                <span class="fl span1"></span>
+                <span class="title fl">
+                    认证用户
+                </span>
+                <span class="fr span2"><a target="_blank" href="/authuser/all.html">更多</a></span>
+            </header>
+            <div class="volunteer" id="yw1">
+                <div >
+                    <ul class="list clearfix">
+                        {~W('Volunteer/vlist')}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="clearfix">
+            </div>
+
+            <header class="home_header">
+                <span class="fl span1"></span>
+                <span class="title fl">
+                    最新动态
+                </span>
+
+            </header>
+            <div class="news" >
+                <div id="newsfeedlist" class="list-view">
+                    <if condition='$feed'>
+                        <ul class="items" id="feed_list" >
+                            <volist name="feed" id='vo'>
+                                <li class="newsfeed_one fl">
+                                    {$vo['html']}
+                                </li>
+                            </volist>
+                            <div class="clearfix"></div>
+                        </ul>
+
+                        <else/>
+                        <div class="con_txt"><div class="empty-message"><p>暂时没有新动态</p></div></div>
+                    </if>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

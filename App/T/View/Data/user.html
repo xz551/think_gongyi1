@@ -1,0 +1,33 @@
+<span id="span">5</span>
+<div id="div"></div>
+<div id="div2"></div>
+<script src="http://static.zzg.link/public/js/jquery.js"></script>
+<script>
+var a=1;
+    function send(){
+	a++;
+	$("#div").html(a);
+	$('#span').html('begin');
+        $.ajax({
+            url:'/t/data/user',
+            success:function(a){
+			$('#div2').html(a);
+                i=3;
+                t();
+            }
+        });
+    }
+    var i=3;
+    function t(){  
+        i--; 
+        $('#span').html(i+"秒后开始");
+        if(i>1){
+            setTimeout(function(){
+                t();
+            },1000);
+        }else{
+            send();
+        }
+    }
+	t();
+</script>

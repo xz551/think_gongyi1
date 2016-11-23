@@ -1,0 +1,45 @@
+<!-- 公益资讯 -->
+<!--<h3 class="gy_col_title"><i>公益资讯</i><a href="{:CMS}/gong_yi_bao_dao.html">更多></a></h3>
+<ul class="gy_col_zixun clearfix">
+    <volist name="baodao" id="bd">
+        <li>
+            <a href="{:CMS}/news/{$bd.id}.html">{$bd.title}</a>
+            <div>{$bd.summary}</div>
+        </li>
+    </volist>
+</ul>-->
+
+<div class="clo3_gy_news">
+	<h3 class="gy_col_title"><i>公益资讯</i><a href="#">更多></a></h3>
+	<ul class="clo3_news_list">
+		<volist name="baodao" id="bd">
+
+			<li class="{$key==0?'top_one':''} ">
+				<a href="/news/{$bd.id}.html">{$bd.title}</a>
+				<if condition="$key eq 0">
+					<p>{$bd.summary}</p>
+				</if>
+
+			</li>
+		</volist>
+
+	</ul>
+</div>
+<div class="clo3_vo_news">
+	<h3 class="gy_col_title"><i>志愿者资讯</i><a href="#">更多></a></h3>
+	<ul class="clo3_news_list">
+		<li class="top_one">
+			<a href="#">雷洋涉嫖死亡事件，警方应回避和克制</a>
+			<p>
+				3月13日，十二届全国人大四次会议主席团通过慈善法草案修改稿。在修改稿中，慈善组织中具有公开募捐资格的基金会开展慈善活动的年度支出，修改为“不得低于上一年总收入的70%或者前三年收入平均数额的70%；年度管理费用不得超过当年总支出的10%。
+			</p>
+		</li>
+		<li>
+			<a href="#">楼市冰火两重天：去库存该区别化对待</a>
+		</li>
+		<li><a href="#">高考改革，当选考遭遇投机</a></li>
+		<li><a href="#">全虎门销烟时，发生了“官员中毒”事件</a></li>
+		<li><a href="#">医生为什么应该拿高工资？</a></li>
+		<li><a href="#">托尔斯泰信条：爱她，就别和她结婚</a></li>
+	</ul>
+</div>

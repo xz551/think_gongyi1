@@ -1,0 +1,33 @@
+<p class="text-info">总条数：{$page['count']};页数：{$page['p']}/{$page['pageCount']}</p>
+<table class="table table-bordered table-hover table-condensed">
+    <tr>
+        <th style="width: 50px">用户ID</th>
+        <th style="width: 100px">用户姓名</th>
+        <th style="width: 100px">用户手机</th>
+        <th style="width: 60px">地址</th>
+    </tr>
+    <volist name='data' id='vo'>
+        <tr>
+            <td>
+                {$vo['uid']}
+            </td>
+            <td>
+                {$vo['nickname']}
+            </td>
+            <td>
+                {$vo['phone']}
+            </td>
+
+            <td>
+                {$vo['address']}
+            </td>
+        </tr>
+    </volist>
+</table>
+{$pageHtml}
+<style>
+    td {
+        word-wrap: break-word;
+        word-break: break-all
+    }
+</style>

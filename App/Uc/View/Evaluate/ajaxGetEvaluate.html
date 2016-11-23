@@ -1,0 +1,135 @@
+{__NOLAYOUT__}	
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/ajaxpage.js"></script> 
+	<script type="text/javascript">
+		$(function(){
+			//表单提交
+			 $(".pj_submitbtn").live('click',function(){
+			 	var key = $(this).attr('data-key');
+                var uid = $(this).attr('data-user');
+                var pid = $(this).attr('data-pro');
+                var name = '#pjcontent'+key;
+                var _thisVal = $(name).val();
+				if(_thisVal.indexOf('<')>-1 || _thisVal.indexOf('>')>-1){
+					alert("您的输入不合法");
+					return;
+				}
+                if(_thisVal==''){
+                    return;
+                }
+                if (!confirm("是否提交")) {
+                    return;
+                }
+                var mydate = new Date();
+                var time=mydate.getFullYear()+'年'+(mydate.getMonth()+1)+'月'+mydate.getDate()+'日'+mydate.getHours()+':'+mydate.getMinutes();
+               var level = $("input[name='level"+key+"']:checked").val();
+               var pj
+               switch(level){
+                   case '5': pj="非常满意";
+                   break;
+                   case '4': pj="满意";
+                   break;
+                   case '3': pj="一般";
+                   break;
+                   case '2': pj="较差";
+                   break;
+                   case '1': pj="非常差";
+                   break;
+               default: pj="满意";
+               }
+               $.ajax({
+                    type: "POST",
+                    url: "__WEB_SITE__/Uc/Evaluate/doEvaluate",
+                    data: "uid="+uid+"&pid="+pid+"&content="+_thisVal+"&level="+level,
+                    success: function(msg){
+                            if(msg){ 				                                           
+                            	  var str = '<div class="show_pj_cont">';
+                                  str += '<label>我的评价:</label>';
+                                  str += '<div class="show_pj_text"><p><span class="radiobtn_val">'+pj+'</span><span class="wpr_time">'+time+'</span></p>';
+                                  str += '<p class="wpr_details_cont">'+_thisVal+'</p></div>';
+                            $("#wpr_pingjia"+key).replaceWith(str);
+                            $('#daipingjia'+key).replaceWith('<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/yipingjia.png" class="pjt_state">');
+							var d=window.document.body;                 																				
+							var num = $(d).find('#pjs').html();
+							num = num-1;											   
+							$(d).find('#pjs').html(num);
+                        }
+                    }
+                 });
+			 });
+			$(".daipingjia").click(function(){
+				$(this).parent().find(".wpr_pingjia").show();
+			});
+			$(".shouqi_btn").click(function(){
+				$(this).parents(".wpr_pingjia").slideUp();
+			});
+		});
+	</script>
+<!-- 右边主体内容[ -->
+<div class="myhome_cmain_right">
+<notempty name="list">
+	<foreach name="list" item="val">
+		<!-- 一个项目[ -->
+		<div class="wraper_about_pjt">
+			<figure><figcaption>发起人</figcaption><a href="{:userUrl($val['creator'])}" target="_blank"><img src="{$val['userPhoto']}" title="{$val['nickname']}"></a></figure>
+			<div class="about_pjt_right">
+				<notempty name="val.content">
+	            	<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/yipingjia.png" class="pjt_state">
+	            <else />
+	            	<span class="daipingjia" id="daipingjia{$key}" date="{$key}">评价</span>	
+	            </notempty>
+	            <div class="wpr_project">
+	               	<a href="{:YI_JUAN}/project/view/id/{$val['project_id']}.html" target="_blank"><img src="{$val['show_image']}" class="this_pjt_photo" title="{$val['name']}"></a>
+	               	<div class="this_pjt_details">
+	                       <p class="this_pjt_title"><a href="{:YI_JUAN}/project/view/id/{$val['project_id']}.html" target="_blank" title="{$val['name']}">{$val['name']}</a></p>
+	                       <p class="this_pjt_time">{$val['create_date']}</p>
+	                       <p class="this_pjt_text">{$val['summary']}</p>
+					</div>
+	            </div>
+	            <notempty name="val.content">
+		             <!--显示项目评价[-->
+		            <div class="show_pj_cont">
+		            	<label>我的评价：</label>
+		                <div class="show_pj_text">
+		                	<p><span class="radiobtn_val">
+		                			<eq name="val.level" value="5">非常满意</eq>
+		                            <eq name="val.level" value="4">满意</eq>
+		                            <eq name="val.level" value="3">一般</eq>
+		                            <eq name="val.level" value="2">较差</eq>
+		                            <eq name="val.level" value="1">非常差</eq>
+		                		</span>
+		                		<span class="wpr_time">{$val['create_time']}</span>
+		                	</p>
+		                    <p class="wpr_details_cont">{$val['content']}</p>
+		                </div>
+		            </div><!--]显示项目评价-->
+		        <else />
+		        	    <!---项目评价[-->
+		            <div class="wpr_pingjia" id="wpr_pingjia{$key}">
+		            <form action="#" method="get">
+		            	<p class="radio_btn">
+		                	<label>项目评级：</label>
+		                    <label><input type="radio" name="level{$key}" id="Radio1" value="5" checked="checked">非常满意</label>
+		                    <label><input type="radio" name="level{$key}" id="Radio2" value="4">满意</label>
+		                    <label><input type="radio" name="level{$key}" id="Radio3" value="3">一般</label>
+		                    <label><input type="radio" name="level{$key}" id="Radio4" value="2">较差</label>
+		                    <label><input type="radio" name="level{$key}" id="Radio5" value="1">非常差</label>
+		                    <span class="shouqi_btn" date="{$key}">收起↑</span>
+		                </p>
+		                <div class="wpr_pj_cont">
+		                	<label>项目评价：</label>
+		                    <textarea name="content" class="pjcontent" id="pjcontent{$key}"></textarea>
+		                </div>
+		                <span class="pj_submitbtn" style="cursor:pointer;" data-user="{$val['uid']}" data-pro="{$val['project_id']}" data-key="{$key}" >提交</span>
+		            </form>
+		            </div> <!---]项目评价-->
+	            </notempty>
+	          
+			</div>
+		</div><!-- ]一个项目 -->
+	</foreach>	
+	<div class="wraper_paging">{$page}</div>
+<else />
+	<h3 class="project_title">相关评价<i></i></h3>
+	<div class="prompt_states">暂无数据！</div>	
+</notempty>	
+</div><!-- 右边主体内容[ -->

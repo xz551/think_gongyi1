@@ -1,0 +1,27 @@
+ {__NOLAYOUT__} 
+ <h3 class="h3_title"><i></i>爱心动态</h3>
+ <notempty name="donName">
+	 <volist name="donName" id="v">
+	 <div class="col5_leader_info">
+	     <a href="<notempty name='v.anonymous'>javascript:void(0)<else />{:userUrl($v['uid'])}</notempty>" title="{$v['nickname']}" class="col5_leader_lt" target="_blank"><img src="{$v['image']}"></a>
+	     <div class="col5_leader_rt">
+	         <h3 class="col5_lrt_title">
+	         	 <a href="<notempty name='v.anonymous'>javascript:void(0)<else />{:userUrl($v['uid'])}</notempty>" class="helpren_name" target="_blank" title="{$v['nickname']}">{$v['nickname']|str_ellipsis_new=###,12}</a>
+		         <eq name='v.type' value='11'><img src="{:STATIC_SERVER_URL}/concur/images/icon_v.png" title="认证个人"><else /><img src="{:STATIC_SERVER_URL}/concur/images/icon_v1.png" title="认证组织"></eq>
+		         <a href="javascript:void(0)" class="pemail_btn pemail" data-toid="{$v['uid']}" title="私信"></a>
+	         </h3>
+	         <p class="col5_lrt_address">{$v['userAddress']}</p>
+	          <p>
+				<empty name="v['service']">
+					{$v['supplies']}
+				<else />
+					{$v['service']}	
+				</empty>
+			</p>
+			<p>{$v['time']}</p>
+	     </div>
+	 </div>
+	 </volist>
+<else />
+	<div class="none_msg">还没有人提出申请，还不快来申请~</div>	 
+</notempty>

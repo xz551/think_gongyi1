@@ -1,0 +1,150 @@
+
+	<script type="text/javascript">
+		$(function(){
+			//nav悬浮效果
+			$(".gy_nwc_lt>li").not("li.cur").hover(function(){$(this).addClass("cur");},function(){$(this).removeClass("cur");});
+			//搜索
+			$(".gy_seach_type").hover(function(){$(this).find("ul").toggleClass("gy_menu");});
+			//返回顶部
+			$(".gy_backtop").click(function(){  
+                $('body,html').animate({scrollTop:0},500);  
+                return false;  
+            });
+            //封装组织实践冒泡的方法
+		   	function stopPropagation(e){
+		      e=window.event || e;
+		      if(document.all){
+		        e.cancelBubble = true;
+		      }else{
+		        e.stopPropagation();
+		      }
+		   	}
+            //显示子菜单
+            $(".gy_sidebar>div").not("div.gy_backtop").on("click",function(e){
+            	$(this).children("div").show().end().siblings("div").children("div").hide();
+            	stopPropagation(e);
+            });
+            $("i.gy_close").on("click",function(e){
+            	stopPropagation(e);
+            	$(this).parent("div").hide();
+            });
+            $(".gy_fmb2").on("click",function(e){
+            	stopPropagation(e);
+            	$(this).parents("div.gy_yjfk").hide();
+            });
+            $(document).click(function(){
+            	$(".gy_sidebar>div").children("div:visible").hide();
+            });
+            //取消上传的意见反馈图片
+            $(".gy_upload_img").find("i").on("live",function(){
+            	$(this).parent("span").remove();
+            });
+            //去掉边距
+			removeMar($(".gy_users li"),4);
+			//tab切换
+			var a=$(".gy_sc_tabs"),b=a.find("span.cur"),c=$(".gy_sc_wraper"),e=c.find("ul");
+			e.eq(b.index()).show();
+			a.find("span").on("click",function(){
+				var t = $(this);
+				t.addClass("cur").siblings("span").removeClass("cur");
+				e.eq(t.index()).show().siblings("ul").hide();
+			});
+			var curren = {$page};
+			$(".wraper_paging").find("a").each(function(){
+				if($(this).text()==curren){
+					$(this).addClass().addClass("selected").siblings("a").removeClass("selected");
+				}
+			});
+
+		})
+		function removeMar(m,n){for(var i=n;i<m.length;i++){m.eq(i).css("margin-right","0px");i+=n;}}
+	</script>
+</head>
+<body>
+	<!-- 内容区 -->
+	<div class="gy_search_container">
+		<div class="gy_cr_search">
+			<if condition="$key">
+				<input id="key" type="text" name="search" value="{$key}" onkeydown="tab()">
+			<else/>
+				<input id="key" type="text" name="search" placeholder="看看中青公益有什么" onkeydown="tab()">			
+			</if>
+			<button id="click" onclick="searchs()">搜索</button>
+		</div>
+		<div class="gy_sc_result">
+			<if condition="$key">
+				<div class="gy_sc_tabs">
+					<a href="{:SERVER_VISIT_URL}/T/search/search/key/{$key}" >招募</a>
+					<a href="{:SERVER_VISIT_URL}/T/search/sea_act/key/{$key}" >活动</a>
+					<a href="{:SERVER_VISIT_URL}/T/search/sea_help/key/{$key}" >求助</a>
+					<a href="{:SERVER_VISIT_URL}/T/search/sea_res/key/{$key}" >资源</a>
+					<a href="{:SERVER_VISIT_URL}/T/search/sea_gro/key/{$key}" >小组</a>
+					<a href="{:SERVER_VISIT_URL}/T/search/sea_sub/key/{$key}" >话题</a>
+					<a href="#" class="cur">用户</a>
+				</div>
+			<else/>
+				<div class="gy_sc_tabs">
+					<a href="{:SERVER_VISIT_URL}/T/search/search" >招募</a>
+					<a href="{:SERVER_VISIT_URL}/T/search/sea_act" >活动</a>
+					<a href="{:SERVER_VISIT_URL}/T/search/sea_help">求助</a>
+					<a href="{:SERVER_VISIT_URL}/T/search/sea_res" >资源</a>
+					<a href="{:SERVER_VISIT_URL}/T/search/sea_gro" >小组</a>
+					<a href="{:SERVER_VISIT_URL}/T/search/sea_sub" >话题</a>
+					<a href="#" class="cur">用户</a>
+				</div>
+			</if>
+			<div class="gy_sc_wraper">
+				<!-- 用户[ -->
+				<if condition="$user">
+					<ul class="gy_users">	
+						<volist name="user" id="item">				
+						<li>
+							<a href="http://www.719kj.com/uc/{$item.uid}" class="gy_users_picture"><img src="{$item.photo}">
+								<if condition="$item.type eq 10">
+									<i class="ogm">个人用户</i>
+								<elseif condition="$item.type eq 11"/>
+									<i class="ogm">个人用户</i>
+								<elseif condition="$item.type eq 20"/>
+									<i class="psl">组织用户</i>
+								<elseif condition="$item.type eq 21"/>
+									<i class="psl">组织用户</i>
+								</if>
+							</a>
+							<div class="gy_users_name"><a href="http://www.719kj.com/uc/{$item.uid}">{$item.nickname}</a>
+							<if condition="$item.type eq 11">
+								<i class="ps"  title="{$item.is_ren}"></i>
+							</if>
+							<if condition="$item.type eq 21">
+								<i class="og"  title="{$item.is_ren}"></i>
+							</if>
+							<a class="pletter" href="http://uc.719kj.com/inbox/messagebox/singlebox/from_uid/{$item.uid}.html"></a></div>
+							<div class="gy_users_posi">{$item.address}</div>
+						</li>
+						</volist>
+					</ul><!-- ]用户 -->
+					<!-- 分页 -->
+					<div class="wraper_paging">
+						{$str}
+					</div>
+				<else/>
+					<div class="none_msg">该条件下暂无相关内容</div>	
+				</if>				
+				
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+function tab(){
+    if(event.keyCode ==13){
+         document.getElementById("click").click();
+    }
+}
+function searchs(){
+    var key=document.getElementById('key').value;
+    location.href="{:SERVER_VISIT_URL}/T/search/search/key/"+key;
+}
+function message(uid){
+    location.href="http://uc.719kj.com/inbox/messagebox/singlebox/from_uid/"+uid+".html";
+}
+</script>

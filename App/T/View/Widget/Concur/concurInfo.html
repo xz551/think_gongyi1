@@ -1,0 +1,76 @@
+<ul class="wpr_tab_top">
+
+    <neq name='money' value='0'><li class="tab_li1 tab_cur">求款项</li></neq>
+    <neq name='supplies' value='0'><li class="tab_li2">求物资<a name="wuzi"></a></li></neq>
+    <neq name='service' value='0'><li class="tab_li3">求服务</li></neq>
+</ul>
+<!-- 选项卡所对应的内容容器[ -->
+<div class="wraper_tab_cont" data-id='{$id}'>
+    <!--
+    <neq name='money' value='0'>
+    求款项
+    <div class="wpr_tab_cont tab_cont1">
+        <i class="detail_arrow_up"></i>
+        <p class="progress_bar"><span class="this_progress"></span><span class="this_prog_num">34%</span></p>
+        <p class="progress_detail"><span class="pd_lt">已捐助：<i>7600.00</i>元</span><span class="pd_rt">目标：20000.00</span></p>
+        <p class="tab_cont1_btns"><span class="btns_manager">捐款管理</span><span class="btns_endkx">结束求助款项</span></p>
+    </div>>
+    </neq>
+    -->
+
+    <neq name='supplies' value='0'>
+    <!-- 求物资[ -->
+    <div class="wpr_tab_cont tab_cont2">
+        <i class="detail_arrow_up"></i>
+        <p class="wpr_tc_info">
+            <label>还需要物资：</label>
+			<span>{$needSupplies|default="无"}</span> 
+        </p>
+        <notempty name='alShow'>
+            <p class="wpr_tc_info">
+                <label>已筹得物资：</label>
+                <span>{$alShow}</span>
+            </p>
+        </notempty>
+        {:W('Concurpage/supplies',array($isown,$applyStatus,$islogin,1))}
+    </div><!-- 求物资 -->
+    </neq>
+
+    <neq name='service' value='0'>
+    <!-- 求服务[ -->
+    <div class="wpr_tab_cont tab_cont3">
+        <i class="detail_arrow_up"></i>
+        <p class="wpr_tc_info">
+            <label>需要服务：</label>
+            <span>{$serviceInfo.summary}</span>
+        </p>
+        <p class="wpr_tc_info">
+            <label>服务时间：</label>
+            <span>{$serviceInfo.start_time|date="Y-m-d H:i:s",###} - {$serviceInfo.end_time|date="Y-m-d H:i:s",###}</span>
+        </p>
+        <div class="serviceApply">
+            {:W('Concurpage/service',array($isown,$serviceApplyStatus,$islogin,1))}
+        </div>
+    </div><!--求服务 -->
+    </neq>
+
+</div><!-- 选项卡所对应的内容容器[ -->
+<!--友好提示弹出层[-->
+<div class="promptHtml ptHtml2">
+    <p class="promptHtmlText">服务虽免费的，爱心却无价~确定要提供此项服务吗？建议您先与发起人就“服务内容、服务时间、服务地点”等问题进行沟通，并待对方确认您的捐助请求后，再进行服务的对接和进行</p>
+</div><!--]友好提示弹出-->
+
+<div class="promptHtml ptHtml4">
+    <p class="promptHtmlText">确定要撤销当前的请求吗？</p>
+</div>
+
+<script>
+    $(function () {
+        //选择金额
+        $(".col3_jk_items > span").click(function () {
+        $(this).addClass("sp_cur").siblings('span').removeClass("sp_cur");
+                //$(".jinE").val($(".col3_jk_items").find("span.sp_cur").text());
+        });
+        $("#box1,#mask1").hide();              
+    })
+</script>

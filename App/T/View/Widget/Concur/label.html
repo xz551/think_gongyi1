@@ -1,0 +1,28 @@
+<input type="hidden" id="type_lab" name="type_lab require" value='{$slist}'/>
+<volist name='list' id='vo'>
+    <label class="lab_list"><input type="checkbox" data-uid="{$key}" name="labelList" <in name='key' value='$slist'>checked="checked"</in>>{$vo}</label>
+</volist>
+<script type="text/javascript">
+//实时为类型标签隐藏域赋值方法
+    function typelb() {
+        var sel = $(".lab_list input:checked");
+        var str = '';
+        sel.each(function () {
+            str += $(this).attr('data-uid') + ",";
+        });
+        $("#type_lab").val(str);
+        //return str;
+    }
+//验证类型标签隐藏域是否有值
+    function isnovalue() {
+        typelb();
+        var type_lab = $("#type_lab"), e_msg = type_lab.parent().prev().find('span');        
+		if (type_lab.val() == "") {
+            e_msg.addClass("error_msg").removeClass('change_icon').html("类别标签不能为空").show();
+			return false;
+        } else {
+            e_msg.addClass("change_icon").removeClass('error_msg').html("").show();
+            return true;
+        }
+    }
+</script>

@@ -1,0 +1,60 @@
+<form style="display:none;" id="apyform" action="http://count.cyol.com/alipay/alipayapi.php" method="post">
+    <dl class="content">
+        <dt>商户订单号：</dt>
+        <dd>
+            <span class="null-star">*</span>
+            <input size="30" name="WIDout_trade_no" value="{$minfo.number}" />
+            <span>商户网站订单系统中唯一订单号，必填
+            </span>
+        </dd>
+        <dt>订单名称：</dt>
+        <dd>
+            <span class="null-star">*</span>
+            <input size="30" name="WIDsubject" value="{$minfo.concur_id}捐献款项" />
+            <span>必填
+            </span>
+        </dd>
+        <dt>付款金额：</dt>
+        <dd>
+            <span class="null-star">*</span>
+            <input size="30" name="WIDtotal_fee" value="{$minfo.money}" />
+            <span>必填
+            </span>
+        </dd>
+        <dt>订单描述
+        ：</dt>
+        <dd>
+            <span class="null-star">*</span>
+            <input size="30" name="WIDbody" value="寄语:{$minfo.content}" />
+            <span></span>
+        </dd>
+        <dt>平台
+        ：</dt>
+        <dd>
+            <span class="null-star">*</span>
+            <input size="30" name="platform" value="huayun" />
+            <span></span>
+        </dd>
+        <dt>商品展示地址：</dt>
+        <dd>
+            <span class="null-star">*</span>
+            <input size="30" name="WIDshow_url" value="http://www.719kj.com/t/Donate/returnContribute"  />
+            <span>需以http://开头的完整路径，例如：http://www.商户网址.com/myorder.html
+            </span>
+        </dd>
+        <dt></dt>
+        <dd>
+            <span class="new-btn-login-sp">
+                <button class="new-btn-login" type="submit" id="submitBtn" style="text-align:center;">确 认</button>
+            </span>
+        </dd>
+    </dl>
+</div>
+</form>
+<script src="{:STATIC_SERVER_URL}/public/js/jquery.js"></script>
+<script>
+    $(function(){
+        
+       $("#apyform").submit();
+   });
+</script>

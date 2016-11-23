@@ -1,0 +1,169 @@
+<div class="zqgy_clm1_edit shw">
+    <form action="javascript:void(0)" id="edit_form2">
+        <p>
+            <label><i>*</i>昵称：</label>
+            <input type="text" name="nickname" id="nickname" value="{$userinfo['nickname']}">
+        <p>
+            <label><i>*</i>民族：</label>
+            <select name="ethnic" id="ethnic">
+                <volist name="ethnic" id="vo">
+                    <option value="{$vo}">{$vo}</option>
+                </volist>
+            </select>
+        <script type="text/javascript">$('#ethnic').val("{$userinfo['ethnic']}");</script>
+            <span class="msg-box n-right" for="ethnic"></span>
+        </p>
+        <p>
+            <label><i>*</i>性别：</label>
+            <span class="gender">
+                <label><input {$userinfo['gender']==1?' checked="checked" ':''} type="radio" name="gender" value="1" >男</label>
+                <label><input {$userinfo['gender']==2?' checked="checked" ':''} type="radio" name="gender" value="2" >女</label>
+            </span>
+        </p>
+
+        <p>
+            <label><i>*</i>最高学历：</label>
+            <select name="education" id="education" data-msgClass="n-bottom">
+                <volist name="education" id="vo">
+                    <option value="{$vo}">{$vo}</option>
+                </volist>
+            </select>
+            <script type="text/javascript">$('#education').val("{$vol['education']}");</script>
+            <span class="msg-box n-right" for="education"></span>
+        </p>
+        <p class="cz_address">
+            <label><i>*</i>常住地址：</label>
+            <select name="provinceid" id="provinceid" class="parent_city" data-msgClass="n-bottom">
+                <option value="">--请选择--</option>
+                <volist name="province" id="vo">
+                    <option value="{$vo['id']}">{$vo['class_name']}</option>
+                </volist>
+            </select>
+            <select name="cityid" id="cityid" class="parent_city" data-msgClass="n-bottom">
+                <option value="">--请选择--</option>
+                <volist name="city" id="vo">
+                    <option  value="{$vo['id']}">{$vo['class_name']}</option>
+                </volist>
+            </select>
+            <select name="countyid" id="countyid" data-msgClass="n-bottom">
+                <option value="">--请选择--</option>
+                <volist name="county" id="vo">
+                    <option value="{$vo['id']}">{$vo['class_name']}</option>
+                </volist>
+            </select>
+            <script type="text/javascript">
+                $('#provinceid').val("{$userinfo['provinceid']}");
+                var city=$('#cityid');
+                if(city.find('option').length==2){
+                    city.find('option:last').attr('selected','selected');
+                }else{
+                    city.val("{$userinfo['cityid']}");
+                }
+                $('#countyid').val("{$userinfo['countyid']}");
+            </script>
+            <input type="text" value="{$userinfo['address']}" name="address" id="address" placeholder="常住地址">
+            <span class="msg-box n-right" for="address"></span>
+        </p>
+        <p>
+            <label><i>*</i>QQ：</label>
+            <input type="text" name="qq" id="qq" value="{$userinfo['qq']}">
+            <span class="msg-box n-right" for="qq"></span>
+        </p>
+
+        <div class="option_btns">
+            <button class="subbtn">保存</button>
+            <span class="cancel_base">取消</span></div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        ///'msgClass':'n-bottom'
+        $("#edit_form2").validator({
+            stopOnError:false,
+            fields:{
+                'nickname':{rule:"nickname"},
+                'provinceid':{rule:"required",msg:"&nbsp;"},
+                'cityid':{rule:"required",msg:"&nbsp;"},
+                'countyid':{rule:"required",msg:"&nbsp;"},
+                'ethnic':{rule:"required",msg:"名族不能为空"},
+                'education':{rule:"required",msg:"学历不能为空"},
+                'address':{rule:"required",msg:"详细地址不能为空"},
+                'qq':{rule:"required; qq"}
+            },rules:{
+                nickname:[/^[_a-zA-Z0-9\u4E00-\u9FA5]{2,10}$/,'昵称为2到10位合法字符'],
+                qq:[/^\d{4,}$/,'qq号错误']
+            },
+            valid:function(form){
+                $(form).find('.subbtn').addClass('dis');
+                sub();
+            },
+            beforeSubmit:function(){}
+        });
+        var get_city_ajax=false;
+        $('.parent_city').change(function(){
+            if(get_city_ajax){
+                return;
+            }
+            get_city_ajax=true;
+            var that=$(this);
+            that.nextAll('select').html('<option value="">--请选择--</option>');
+            $.ajax({
+                url:'/t/public/getCity',
+                data:{cid:that.val()},
+                dataType:'json',
+                success:function(d){
+                    get_city_ajax=false;
+                    if(typeof d!='undefined'){
+                        var option=['<option value="">--请选择--</option>'];
+                        for(var n in  d){
+                            option.push('<option value="'+n+'">'+d[n]+'</option>');
+                        }
+                        that.nextAll('select:first').html(option.join(''));
+                    }
+                }
+            });
+        }); 
+        /**
+         * 封装数据提交
+         */
+        function sub(){
+            if(is_ajax){
+                return;
+            }
+            is_ajax=true;
+            var data={
+                nickname:$('#nickname').val(),
+                ethnic:$('#ethnic').val(),
+                gender:$('input:checked').val(),
+                education:$('#education').val(),
+                provinceid:$('#provinceid').val(),
+                cityid:$('#cityid').val(),
+                countyid:$('#countyid').val(),
+                address:$('#address').val(),
+                qq:$('#qq').val()
+            };
+            $.ajax({
+                url:'/uc/Accountajax/edit_base_do',
+                data:data,
+                type:'post',
+                success:function(d){
+                    is_ajax=false;
+                    var _form=$("#edit_form2");
+                    _form.find('.subbtn').removeClass('dis');
+                    if(d.status==-1){
+                        alert(d.msg);
+                    }else{
+                        var _form_parent=_form.parent();
+                        var _h=_form_parent.prev();
+                        _h.find('a.ajax').removeClass('cancel').html('编辑');
+                        _form_parent.next().replaceWith(d.msg);
+                        _form_parent.remove();
+
+                    }
+
+                }
+            });
+        }
+    });
+</script>

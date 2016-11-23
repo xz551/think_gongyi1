@@ -1,0 +1,20 @@
+<!-- wwc_slider[ -->
+<!--<div id="slides">
+    <volist name="data" id="vo">
+        <if condition="$vo['url']">
+            <a href="{$vo['url']}" target="_blank"><img width="760" height='400'  data-original="{$vo['image']}" class="lazy"/><span class="banner_info">{$vo['title']}</span></a>
+        </if>
+    </volist>
+</div>--><!-- ]wwc_slider -->
+<div class="swiper-container" >
+    <div class="swiper-wrapper">
+		<volist name="data" id="vo">
+        	<if condition="$vo['url']">
+        		<div class="swiper-slide"><a href="{$vo['url']}" target="_blank"><img width="760" height='400'  src="{$vo['image']}"/><span class="banner_info">{$vo['title']}</span></a></a></div>
+    		</if>
+    	</volist>
+	</div>
+    <!-- 如果需要导航按钮 -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>

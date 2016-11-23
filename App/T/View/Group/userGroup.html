@@ -1,0 +1,96 @@
+<css:add href="{:STATIC_SERVER_URL}/usercenter/group/css/page1.css?0" />
+<js:add src="{:STATIC_SERVER_URL}/usercenter/group/js/paging.js" />
+<js:w>
+    $(function () {
+        var group_len = $(".visit_group_list a").length;
+        for (var i = 4; i < group_len; i++) {
+            $(".visit_group_list a").eq(i).css("margin-right", "0px");
+            i += 4;
+        }
+    });
+</js:w>
+<div class="wraper_main">
+    <notempty name="info.groupNum" value="0">
+        <div class="wraper_main_left">
+            <div class="wraper_menus_tab">
+                <a class="bottom_border">我的公益小组</a>
+                <a href="{:U('T/Group/FindGroup')}" >发现公益小组</a>
+            </div>
+            <div class="wraper_group_cont">
+                <!-- 一个小组 -->
+                <volist name="info.groupInfo" id="vo">
+                    <div class="my_group_list">
+                        <div class="group_top"><a href="{:U('t/group/selgroup',array('id'=>$vo['id']))}" ><img src="{$vo.image}" title="{$vo.name}"></a><a href="{:U('t/group/selgroup',array('id'=>$vo['id']))}" title="{$vo.name}">{$vo.name}</a></div>
+                        <notempty name="vo.newReply">
+                        <div class="new_reply">最新回复</div>              
+                        <volist name="vo.newReply" id="v">
+                            <p><span class="replay_title"><a href="{:U('t/subject/subinfo',array('id'=>$v['id']))}" title="{$v.title}">{$v.title}</a></span><span class="raply_num"><a href="{:U('t/subject/subinfo',array('id'=>$v['id']))}#discuss">{$v.num}回复</a></span><span class="raply_time">{$v.mintime}</span></p>
+                        </volist>
+                        </notempty>
+                        <notempty name="vo.newJoinUser">
+                        <div class="new_join">最新加入</div>
+                        <div class="join_users_list">
+                            <volist name="vo.newJoinUser" id="photo">
+                                <a href="{:userUrl($photo['uid'])}"><img src="{$photo.photo}" title="{$photo.nickname}"></a>
+                            </volist>
+                        </div>
+                        </notempty>
+                        
+                    </div>
+                </volist>
+                <notempty name='info.groupInfo'>
+                <!-- 分页 -->
+                <div class="wraper_paging">{$page}</div>
+                </notempty>
+            </div>
+        </div>
+    <else/>
+        <link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/group/css/page2.css">
+        <div class="wraper_main_left">
+            <div class="wraper_menus_tab">
+                <a class="bottom_border"><neq name="userType" value="2">我的</neq>公益小组</a>
+                <a href="{:U('T/Group/FindGroup')}" >发现公益小组</a>
+            </div>
+            <div class="wraper_group_cont">
+                <p>还没有加入任何公益小组哈~</p>
+                <p>先看看我们都有那些公益小组吧，没准儿有你喜欢的~</p>
+                <a href="{:U('T/Group/FindGroup')}" ><img src="{:STATIC_SERVER_URL}/usercenter/group/images/icon_found.png">发现小组</a>
+            </div>
+        </div>
+    </notempty>
+    <!-- 右边 -->
+    <div class="wraper_main_right">
+        <!-- top -->
+        <div class="wpr_mr_top">
+            <p class="mrtop_show_num"><a href="{:U('t/group/liveGroup',array('id'=>$uid))}" >{$info.groupNum}</a><a href="{:U('t/group/startSub',array('uid'=>$uid))}"  class="a_center">{$info.initiatedSubNum}</a><a href="{:U('t/group/partakeSub',array('uid'=>$uid))}" >{$info.partakeSubNum}</a></p>
+            <p class="mrtop_show_text"><span>所在的小组</span><span>发起的话题</span><span>参与的话题</span></p>
+        </div>
+        <!-- center -->
+        <div class="wpr_mr_center">
+            <h3 class="project_title">我访问过的小组<i></i></h3>
+            <div class="visit_group_list">
+                <volist name='isRead' id='vo'>
+                    <a href="{:U('t/group/selgroup',array('id'=>$vo['id']))}" ><img src="{$vo.image}" style="max-height:60px;max-width:60px;"  title='{$vo.name}'></a>
+                </volist>
+            </div>
+        </div>
+        <!-- bottom -->
+        <div class="wpr_mr_bottom">
+            <h3 class="project_title">新创建的小组<i></i></h3>
+            
+            
+            <volist name="info.newGroup" id="vo">
+            <!-- 一个小组 -->
+            <div class="new_create_group">
+                <a href="{:U('t/group/selgroup',array('id'=>$vo['id']))}" ><img src="{$vo.image}" title="{$vo.name}"></a>
+                <div class="new_cr_detail">
+                    <a href="{:U('t/group/selgroup',array('id'=>$vo['id']))}" title="{$vo.name}">{$vo.name}</a>
+                    <p>{$vo.introduce}</p>
+                </div>
+            </div>
+            </volist>
+           
+
+        </div>
+    </div>
+</div>

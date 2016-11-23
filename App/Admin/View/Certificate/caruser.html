@@ -1,0 +1,83 @@
+<div class="alert alert-error">
+  以下<span class="label" id='parent_num'>{$data|count}</span>人获得了 <span class="label label-important">{:I('zsname')}</span>
+</div>
+<table class="table table-bordered table-hover table-condensed">
+    <tr >
+        <th rowspan="3" width='100px'>
+            头像
+        </th>
+        <th style="width: 100px">
+            编号
+        </th>
+        <th style="width: 100px">
+            姓名
+        </th>
+        <th style="width: 200px">
+            邮箱
+        </th>
+        <th style="width: 50px">
+            性别
+        </th>
+        <th style="width: 200px">
+            身份证号
+        </th>
+        <th>
+            账户类型
+        </th>
+    </tr>
+    <tr >
+        <th colspan="6">
+            省份
+        </th> 
+    </tr>
+     <tr >
+        <th colspan="6">
+            手机号
+        </th>
+    </tr>
+    <volist name="data" id="vo">
+         <tr>
+            <td rowspan="3"> 
+                <img style="width: 100px" src="{$vo['user'][0]['photo']}" />
+            </td>
+             <td>
+                 {$vo['user'][0]['uid']}
+             </td>
+            <td>
+                {$vo['user'][0]['real_name']}
+            </td>
+             <td>
+                 {$vo['user'][0]['email']}
+             </td>
+            <td>
+                {$vo['user'][0]['gender']}
+            </td>
+            <td>
+                {$vo['user'][0]['idcard_code']}
+            </td>
+             <td>
+                 {$vo['user'][0]['type']}
+             </td>
+            
+        </tr>
+        <tr>
+            <td colspan="6">
+                {$vo['user'][0]['province']}
+            </td>
+
+        </tr>
+         <tr>
+            <td colspan="6">
+                {$vo['user'][0]['phone']}
+            </td>
+        </tr>
+    </volist>
+    <tr>
+        <td>
+            
+        </td>
+        <td>
+            <a  class="btn" href="{:U('Certificate/carlist')}">返回证书列表</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        </td>
+    </tr>
+</table>

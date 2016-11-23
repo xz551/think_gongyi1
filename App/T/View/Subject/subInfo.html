@@ -1,0 +1,538 @@
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/group/css/style.css">
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/group/css/page11.css">
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/popWindow.js"></script>
+<script type="text/javascript" src="__STATIC_URL__/yun/js/ajaxupload.js"></script>
+<script type="text/javascript">
+    /*对textarea 和 input 的输入实时监听事件代码*/
+    $.event.special.valuechange = {
+        teardown: function (namespaces) {
+            $(this).unbind('.valuechange');
+        },
+        handler: function (e) {
+            $.event.special.valuechange.triggerChanged($(this));
+        },
+        add: function (obj) {
+            $(this).on('keyup.valuechange cut.valuechange paste.valuechange input.valuechange', obj.selector, $.event.special.valuechange.handler)
+        },
+        triggerChanged: function (element) {
+            var current = element[0].contentEditable === 'true' ? element.html() : element.val()
+                    , previous = typeof element.data('previous') === 'undefined' ? element[0].defaultValue : element.data('previous')
+            if (current !== previous) {
+                element.trigger('valuechange', [element.data('previous')])
+                element.data('previous', current)
+            }
+        }
+    }
+    $(function () {
+        $(".class_label p a").hover(function () {
+            $(this).addClass("selected").siblings().removeClass("selected");
+        });
+
+        var group_len = $(".visit_group_list a").length;
+        for (var i = 4; i < group_len; i++) {
+            $(".visit_group_list a").eq(i).css("margin-right", "0px");
+            i += 4;
+        }
+
+
+        /*我来说两句的交互*/
+        $(".okBtn1").click(function () {
+            var inputV = $(".edit_box").val().substr(0, 140);   //发的内容
+            var _this = $(this);
+            var uid = _this.attr('data-uid');
+            var sid = _this.attr('data-sid');
+            var calluid = 0;
+            var cid = 0;
+            addComment(uid, sid, calluid, cid, inputV);
+        });
+        /*回复那里的交互*/
+        $(".okBtn2").live("click", function () {
+            var inputV = $(this).prev().val();
+            /**
+             * 回复人uid
+             * 给哪个话题回复 sid
+             * 给哪个人 回复 calluid
+             * 给哪条评论回复 cid
+             */
+            var _this = $(this);
+            var uid = _this.attr('data-uid');
+            var sid = _this.attr('data-sid');
+            var calluid = _this.attr('data-calluid');
+            var cid = _this.attr('data-cid');
+            addComment(uid, sid, calluid, cid, inputV);
+        });
+
+        $(".edit_box").live('click', function () {
+            var islogin = "{$islogin}";
+            if (islogin == 0) {
+                var ac = "{$login}";
+                $('#form1').attr('action', ac);
+                showbox();
+            }
+        });
+
+        /*点击回复按钮*/
+        $(".a_reply").live("click", function () {
+            var islogin = "{$islogin}";
+            if (islogin == 0) {
+                var ac = "{$login}";
+                $('#form1').attr('action', ac);
+                showbox();
+            } else {
+                $(this).next('form').toggle("50");
+				promptInfo();
+            }
+        });
+
+
+
+
+        $(".edit_box").text("我来说两句...").css({
+            color: '#999',
+            fontSize: '14px',
+            fontFamily: '微软雅黑'
+        }).focus(function () {
+            $(this).text("").css("color","#555555");;
+        });
+        /*textarea实时监听事件*/
+        $('.edit_box').on('valuechange', function (e, previous) {
+            var _this = $('.edit_box');
+            var _result = 140 - _this.val().length;
+            _result > 0 ? $(".font_length").text(_result) : $(".font_length").text(0);
+
+        })
+
+        /*编辑*/
+        $(".a_edit").click(function () {
+            var _detcont = $(".this_chat_details").hide();
+            var _titcont = $(".this_chat_title").hide();
+            
+            _detcont.prev('input').val(_titcont.find(".p_title").text()).show();
+            _detcont.next('textarea').val(_detcont.text()).show();
+            $(".p_btn").show();
+        });
+        $(".quxiao_btn").click(function () {
+            var _detcont = $(".this_chat_details").show();
+            var _titcont = $(".this_chat_title").show();
+            _detcont.prev('input').hide();
+            _detcont.next('textarea').hide();      
+            $(".pos1").hide();  //隐藏错误信息
+            $(".pos2").hide();
+            var imgsrc = $(".this_chat_photo").attr('data-img')?$(".this_chat_photo").attr('data-img'):'';
+            if(imgsrc == ''){
+           		$(".this_chat_photo_new").html('');
+			}
+            
+            
+            $(".this_chat_photo").attr('src',imgsrc);
+            $(".p_btn").hide();
+        });
+        //调用回复框的提示信息
+        promptInfo();
+    });
+    /*回复框的提示输入信息*/
+    function promptInfo() {
+        $(".edit_box1").text("回复:我来说两句").css({
+            color: '#999',
+            fontSize: '14px',
+            fontFamily: '微软雅黑'
+        }).focus(function () {
+            $(this).text("").css("color","#555555");;
+        });
+    }
+
+    //添加话题回复
+    function addComment(uid, sid, calluid, cid, content) {
+        content = encodeURIComponent(content);
+        var data = 'uid=' + uid + "&sid=" + sid + "&calluid=" + calluid + "&cid=" + cid + "&content=" + content;
+        $.ajax({
+            type: "POST",
+            url: "/t/subject/addComment",
+            data: data,
+            success: function (msg) {
+                if (msg == 1) {
+                     $(".edit_box").val("");
+                    submitAjaxData();
+                } else {
+                    alert(msg);
+                }
+            }
+        });
+    }
+
+    /*验证长度*/
+    function CheckLen(v, o, f, s, e) {
+        if(e==0){
+            if(v>=s){
+                return true;
+            }else{
+                o.text("话题详情请至少输入10个字符").show();
+                return false;
+            }
+        }else{  
+            if (v >= s && v <= e) {
+                f = true;
+            } else {
+                o.text("话题标题请输入" + s + "~" + e + "字符").show();
+                f = false;
+            }
+            return f;
+        }
+    }
+    /*验证非法字符*/
+    function ExpReg(v, o, f) {
+        return true;    //去掉验证
+        var reg = /^[^~!@#\<\>\$\%\^&\*\(\)\+]{1,}$/;
+        if (reg.test(v)) {
+            f = true;
+        } else {
+            f = false;
+            o.text("话题内容有非法字符").show();
+        }
+        return f;
+    }
+
+
+    /*表单提交验证*/
+    function checksub() {
+        var flag1 = true, //变量1
+                flag2 = true, //变量2
+                flag3 = true, //变量3
+                flag4 = true, //变量4
+                v1 = $(".chat_title_input").val(), //标题值
+                v2 = $(".chat_det_edit").val(), //内容值
+                e1 = $(".pos1").hide(), //显示错误信息元素1
+                e2 = $(".pos2").hide();//显示错误信息元素2
+        //调用验证非法字符方法
+        flag1 = ExpReg(v1, e1, flag1);
+        flag2 = ExpReg(v2, e2, flag2);
+        //调用验证长度方法
+        flag3 = CheckLen(v1.length, e1, flag3, 5, 30);
+        flag4 = CheckLen(v2.length, e2, flag4, 10, 0);
+
+        return flag1 && flag2 && flag3 && flag4;
+    }
+</script>
+<!-- wraper_main[ -->
+<div class="wraper_main">
+    <!-- wraper_main_left -->
+    <div class="wraper_main_left">
+        <!-- wpr_ml_top -->
+        <div class="wpr_ml_top">
+            <div class="wpr_mlt_detail">
+                <!-- 如果是未加入的小组那么点击加入 -->
+                <eq name="ismgroup" value="0">
+                <a href="javascript:void(0)" class="join_group_btn" data-gid="{$gid}" data-isvip="{$isvip}" ><span>+</span>&nbsp;加入小组</a>
+                <else/>
+                <p class="signout_group_btn">已经是小组成员，<a  class="logout" href="javascript:void(0);">退出小组</a></p>
+                </eq>
+                <!-- 如果是已加入的小组就不一样了 -->
+                <!-- <p class="signout_group_btn">已经是小组成员，<a href="#">退出小组</a></p> -->
+                <a href="{:U('t/group/selgroup',array('id'=>$groupInfo['id']))}"><img src="{$groupInfo.image}" class="wpr_mltd_left" title="{$groupInfo.name}"></a>
+                <div class="wpr_mltd_right">
+                    <a href="{:U('t/group/selgroup',array('id'=>$groupInfo['id']))}" title="{$groupInfo.name}">{$groupInfo.name}</a>
+                    <p class="create_time">{$groupInfo.addtime}</p>
+                    <div class="label_list">
+                        <label>标签：</label>
+                        <p>
+                        <volist name='groupInfo.label' id='vo'>
+                            <span>{$vo}</span>
+                        </volist>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div><!-- wpr_ml_top -->
+        <!-- wpr_ml_center -->
+        <div class="wpr_ml_center"> 
+            <h3 class="project_title">话题详情<i></i></h3><a name="subject"></a>
+            <div class="wpr_mlc_cont">
+                <a href="{:userUrl($subuser['uid'])}" title="{$subuser.nickname}"><img src="{$subuser.photo}" class="wpr_mlcc_left"></a>
+                <div class="wpr_mlcc_right">
+                    <div class="this_chat_title">
+                        <p class="p_uname"><a href="{:userUrl($subuser['uid'])}" title="{$subuser.nickname}">{$subuser.nickname}</a>
+                            <eq name='subuser.type' value='11'><img src="{:STATIC_SERVER_URL}/usercenter/group/images/icon_v.png" title="认证个人">
+                            <else />
+                                <img src="{:STATIC_SERVER_URL}/usercenter/group/images/icon_v1.png" title="认证组织">
+                            </eq>
+                        </p>
+                        <p class="p_title">{$subject.title}</p>
+                        <p class="p_time">{$subject.time}</p>
+                        <eq name="ismine" value="1">
+                        <p class="p_operation"><a href="javascript:void(0);" class="a_edit">编辑</a><a href="javascript:void(0);"  data-sid="{$sid}" data-url="{:U('t/subject/delsub')}"  class="a_delete">删除</a></p>
+                        </eq>
+                    </div>
+                    <form action="{:U('T/Subject/updateSubject')}" id="editForm" method="post">
+                        <input type="text" name="title" placeholder="话题标题" class="chat_title_input">
+                        <div class="this_chat_details"><pre>{$subject.content}</pre></div>
+                        <textarea name="content" class="chat_det_edit"></textarea>
+                        <input type="hidden" name="image" value="{$subject.image}"/>
+                        <input type='hidden' name='gid' value='{$subject.gid}'>
+                        <input type='hidden' name='id' value='{$subject.id}'>
+                        <span class="error_msg pos1">请输入合法字符</span><span class="error_msg pos2">请输入合法字符</span>
+                        <notempty name="subject.image">
+                            <div class="p_btn"><a href="#" id="upload-show-image" data-url="{:U('T/Img/uploadImg/type/subject/width/600')}">重新上传</a>支持jpg、jpeg和png格式，大小不超过1M<span class="subInfo">发布</span><span class="quxiao_btn">取消</span></div>
+                            <else />
+                            <div class="p_btn"><a href="#" id="upload-show-image" data-url="{:U('T/Img/uploadImg/type/subject/width/600')}">上传图片</a>支持jpg、jpeg和png格式，大小不超过1M<span class="subInfo">发布</span><span class="quxiao_btn">取消</span></div>
+                        </notempty>
+                    </form>
+                    <notempty name="subject.image">
+                        <img src="{$subject.image}" data-img="{$subject.image}"  class="this_chat_photo" style="max-width:600px">
+                        <else />
+                        <div class="this_chat_photo_new" data-tag="1"></div>
+                    </notempty>
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            var button = $('#upload-show-image'), interval;
+                            var url = $("#upload-show-image").attr('data-url');
+                            new AjaxUpload(button, {
+                                name: 'img_file',
+                                action: url,
+                                onSubmit: function (file, ext) {
+                                    if (!(ext && /^(jpg|JPG|png|PNG|jpeg|JPEG)$/.test(ext))) {
+                                        alert("您上传的图片格式不对，请重新选择！");
+                                        return false;
+                                    }
+                                },
+                                onComplete: function (file, response) {
+                                    var obj = eval("(" + response + ")");
+                                    if (obj.status === 0) {
+                                        alert(obj.info);
+                                    }
+                                    if ($(".this_chat_photo_new").attr('data-tag') == 1) {
+                                        $(".this_chat_photo_new").html("<img src='" + obj.url + "' style='max-width:600px'>");
+                                    } else {
+                                        $('.this_chat_photo').attr('src', obj.url);
+                                    }
+                                    $("input[name='image']").val(obj.imgName);
+                                }
+                            });
+                        });
+
+                        $(".subInfo").click(function () {
+                            if (checksub()) {
+                                $("#editForm").submit();
+                            }
+                        });
+                    </script>
+                    <a href="javascript:void(0)" class="p_share">分享({$sharenum})</a>
+                </div>
+            </div>
+        </div>
+        <!-- wpr_ml_bottom -->
+        <div class="wpr_ml_bottom">
+            <h3 class="project_title">讨论区<i></i></h3><a name="discuss"></a>
+            <div class="wpr_mlb_top">
+                <div class="wpr_comment">
+                    <img src="{$userPhoto}" class="wpr_mlbt_left">               
+                    <div class="wpr_mlbt_right">
+                        <form action="">
+                            <div class="wrp_textarea">
+                                <textarea name="edit_box" class="edit_box" maxlength="140"></textarea>
+                            </div>
+                            <p class="ok_btn">最多可输入<strong class="font_length">140</strong>个字符<span class="okBtn1" data-uid="{$uid}" data-sid="{$sid}">确定</span></p>								
+                        </form>
+                    </div>
+                </div>
+                <!-- 列表显示讨论的内容 -->
+                <div class="wrp_discuss_list" id='getAjaxPage' data-url="/t/subject/ajaxSubInfo" data-condition='id={$sid}' >
+
+                </div>
+
+            </div>
+        </div><!-- wpr_ml_bottom -->
+    </div><!-- wraper_main_left -->
+    <div class="wraper_main_right">
+        <!-- wpr_mr_top -->
+        <eq name="islogin" value="1"><div class="wpr_mr_top"><a href="{:U('t/group/usergroup')}">返回到我的公益小组</a></div></eq> 
+        <!-- bottom -->
+        <div class="wpr_mr_bottom">
+            <h3 class="project_title">组内话题<i></i></h3>
+            <!-- 一个小组 -->
+            <volist name='sub' id='vo'>
+                <div class="new_create_group">
+                    <a href="{:U('uc/user/index',array('uid'=>$vo['user']['uid']))}"><img src="{$vo['user'].photo}" title="{$vo['user'].nickname}"></a>
+                    <div class="new_cr_detail">
+                        <a href="{:U('t/subject/subinfo',array('id'=>$vo['id']))}">{$vo.title}</a>
+                        <p>
+                            {$vo.content}
+                        </p>
+                        <span>{$vo.time}</span>
+                    </div>
+                </div>
+            </volist>     
+        </div><!-- bottom -->
+    </div>
+</div>
+{~W('Common/Login/showLogin')}
+<!--弹出层1[-->
+<div class="promptHtml">
+    <p class="promptHtmlText">确定要删除话题吗？</p>
+</div> <!--]弹出层1-->
+<script type="text/javascript">
+    $(function () {
+        /*======================弹出层1==============================*/
+        $('.promptHtmlText').text('确定要删除话题吗?');
+        var uid = '';
+        var obj = '';
+        $(".a_delete").popWindow({
+            width: "400",
+            height: "170",
+            content: $(".promptHtml").html(),
+            closePic: "{:STATIC_SERVER_URL}/usercenter/group/images/close_icon.png",
+            id: "box1",
+            callback: function (a, box) {
+                uid = a.data('uid');
+                obj = a.parent().parent().parent();
+            },
+            button: {
+                cancel: function () {
+                },
+                ok: function (t, box) {
+                    var sid = $('.a_delete').attr('data-sid');
+                    var url = $('.a_delete').attr('data-url');
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: "sid=" + sid,
+                        success: function (msg) {
+                            if (msg == 1) {
+                                window.location.href = "{:U('t/group/selgroup',array('id'=>$gid))}";
+                            }
+                        }
+                    });
+
+                }
+            }
+        });
+        $("#box1").find("#winTitle").css("border-bottom", "none");
+
+
+        $('.logout').live('click', function () {
+            var gid = "{$gid}";
+            $.ajax({
+                type: "POST",
+                url: "/t/group/exitgroup",
+                data: "gid=" + gid,
+                success: function (msg) {
+                    if (msg == 1) {
+                        $(".signout_group_btn").replaceWith('<a href="javascript:void(0)" class="join_group_btn" data-gid="{$gid}" data-isvip="{$isvip}" ><span>+</span>&nbsp;加入小组</a>');
+                    } else if (msg == -1) {
+                        alert("不能退出自己创建的小组");
+                    } else {
+                        alert("删除失败");
+                    }
+
+                }
+            });
+
+        });
+
+        /*
+         分享弹出窗
+         */
+        $(".p_share").click(function () {
+            var url = "/t/subject/shareSub";
+            var sid = "{$sid}";
+            var name = '{$subject.title}';
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: "sid="+sid+"&name="+name,
+                success: function (msg) {
+                    $(".p_share").popWindow({
+                        width: "548",
+                        height: "268",
+                        title: "分享到：",
+                        content: msg,
+                        closePic: "{:STATIC_SERVER_URL}/usercenter/group/images/close_icon.png",
+                        autoshow: true,
+                        id: "box2",
+                        callback: function (a, box) {
+                            uid = a.data('uid');
+                            obj = a.parent().parent().parent();
+                        },
+                        button: {
+                        }
+                    });
+                }
+            });
+
+        });
+
+        $(".txtBox").focus(function () {
+            $(this).css("color", "#333");
+        });
+        $("#box2").find(".popOkBtn").css({float: "right", marginRight: '0px'}).text("分享");
+        $("#box2").find("#winfooter").css({"text-align": "right", "color": "#626262"}).append("你最多可以输入<strong class='font_length1'>140</strong>个字符&nbsp;&nbsp;");
+    });
+    //刷新话题评论页面
+    function submitAjaxData(page) {
+        var sid = '{$sid}';
+        $.ajax({
+            type: "POST",
+            url: "/t/subject/ajaxSubInfo",
+            data: "id=" + sid,
+            success: function (msg) {
+                $(".wrp_discuss_list").html(msg);
+                if (page == 1) {
+                    $(".wraper_paging a:contains(1):first").addClass('selected');
+                }
+               
+            }
+        });
+    }
+    submitAjaxData(1);
+
+
+
+</script>
+
+<script>
+    $('.join_group_btn').live('click', function () {
+        var login = '{$islogin}';
+        if (login == 1) {
+            $('.promptHtmlText').text('只有认证用户才可加入小组');
+            var _this = $(this);
+            var isVip = $('.join_group_btn').attr('data-isvip');
+            if (isVip == 0) {
+                $(this).popWindow({
+                    width: "400",
+                    height: "170",
+                    content: $(".promptHtml").html(),
+                    closePic: "{:STATIC_SERVER_URL}/usercenter/group/images/close_icon.png",
+                    id: "box2",
+                    autoshow: true,
+                    callback: function (a, box) {
+                    },
+                    button: {ok: function (t, box) {
+                            box.hide();
+                            $("#mask1").hide();
+                        }}
+                });
+                $("#box2").find("#winTitle").css("border-bottom", "none");
+            } else {
+                var gid = _this.attr('data-gid');
+                $.ajax({
+                    type: "POST",
+                    url: "/T/Group/addUserInGroup",
+                    data: "gid=" + gid,
+                    success: function (msg) {
+                        if (msg > 0) {
+                            _this.replaceWith('<p class="signout_group_btn">已经是小组成员，<a  class="logout" href="javascript:void(0);">退出小组</a></p>');
+                        } else {
+                            alert(msg);
+                        }
+                    }
+                });
+            }
+        } else {
+            var ac = "{$login2}";
+            $('#form1').attr('action', ac);
+            showbox();
+        }
+
+
+    });
+
+</script>

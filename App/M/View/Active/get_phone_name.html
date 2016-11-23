@@ -1,0 +1,40 @@
+<div class="zqgy_bmw_top">
+    <span class="close_btn"></span>
+    <h3>参与活动的需要留下您的姓名和联系方式</h3>
+    <p>以便于活动发起方与您取得联系</p>
+</div>
+<div class="zqgy_bmw_bottom">
+    <form action="javascript:void(0)" onsubmit="return sub()">
+        <input type="text" required value="{$uname}" id="uname" name="uname" placeholder="姓名">
+        <input type="text" required value="{$phone}" id="uphone" name="uphone" placeholder="联系电话">
+        <button class="ok_btn">确定</button>
+    </form>
+</div>
+<script>
+    $(function(){
+        $(".close_btn").bind('click',function(){
+            hide();
+            _bm_btn.removeClass('havebm').text('我要报名');
+        });
+    });
+    function sub(){
+        if(_is_sub){
+            return false;
+        }
+        var reg_name=/^[_a-zA-Z0-9\u4E00-\u9FA5]{2,10}$/;
+        var reg_phone=/^1\d{10}$/;
+        var _name=$('#uname').val();
+        if(!reg_name.test(_name)){
+            alert('请填写正确的姓名');
+            return false;
+        }
+        var _phone=$("#uphone").val();
+        if(!reg_phone.test(_phone)){
+            alert('请填写正确的手机号');
+            return false;
+        }
+        //参与活动
+        bm(_name,_phone);
+        return false;
+    }
+</script>

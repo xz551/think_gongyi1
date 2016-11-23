@@ -1,0 +1,123 @@
+<script type="text/javascript">
+$(function(){
+	$(".verify_pass").click(function(){
+		var url=$(this).data('url');
+		var id=$(this).data('id');
+		$.ajax({
+			url:url,
+			data:{id:id},
+			success:function(d){
+				if(d.status){
+					location.reload();
+				}else{
+					alert(d.message);
+				}
+			}
+		});
+	});
+	$(".verify_fail").click(function(){
+		$("#EventModal").show();
+		var id=$(this).data('id');
+		$("#verifyfailed_id").attr('value',id);
+		
+	});
+	$(".btn-link").click(function(){
+		$("#EventModal").hide();
+	});
+	$("#verifyfailed").click(function(){
+		$("form").submit();
+	});
+});
+</script>
+<div class="row-fluid">
+    <div class="span12">
+        <div id="project_verify_list" class="list-view">
+			<div class="items">
+			<volist name="info" id="vo">
+				<div class="well well-small">
+				    <div class="media" style="position: relative">
+				        <a class="pull-left" href="javascript:;">
+				            <img class="media-object img-polaroid" src="{$vo['image']}" width="200" height="160">
+				        </a>
+				        <div class="media-body">
+				            <h5 class="media-heading"><span style="color:red;">【<notempty name="vo.type">资源<else />求助</notempty>项目】</span><a href="javascript:;">{$vo['title']}</a></h5>
+				            <div class="media">
+				                <div class="menu_admin">
+				                    <div class="btn-group">
+				                        <a class="btn dropdown-toggle btn-mini btn-primary" data-toggle="dropdown" href="javascript:;">
+				                        	审核操作<span class="caret"></span>
+				                        </a>
+				                        <ul class="dropdown-menu pull-right">
+				                            <li><a href="javascript:;" class="verify_pass" data-url="/Admin/concur/verifysuccess" data-id="{$vo['id']}">审核通过</a></li>
+				                            <li><a href="javascript:;" class="verify_fail" data-id="{$vo['id']}" >审核失败</a></li>
+				                        </ul>
+				                    </div>
+				                </div>
+					                <ul>
+					                    <li><b>发起人：</b>{$vo['nickname']} (UID:{$vo['creator']})</li>
+					                	<li><b>类别标签：</b>  
+					                		<volist name="vo['label']" id='v'>
+                								{$v}&nbsp;&nbsp;|&nbsp;&nbsp;
+            								</volist>
+            							</li>
+					                    <li><b>受助对象：</b>{$vo['server_for']}</li>
+					                    <li><b>受助地点：</b>{$vo['area']}</li>
+					                    <li><b>求助时间：</b>{$vo['start_time']} 至 {$vo['end_time']}</li>
+					                <if condition="$vo['type'] eq 0">
+					                <!-- <li><b>求款项：</b>10000.00元</li> -->
+					                	<notempty name="vo['is_supplies']">
+					                    <li><b>求物资：</b>{$vo['supplies']}<br/>
+										    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收件地址：{$vo['mailAddress']}<br/>
+										    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收件人：{$vo['mailName']}<br/>
+										    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系电话：{$vo['mailPhone']}<br/>
+										    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮政编码：{$vo['code']}<br/>
+										</li>
+										</notempty>
+										<notempty name="vo['is_service']">
+										<li><b>求服务：</b>{$vo['servicesummary']}<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;服务时间：{$vo['servicetime']}<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;服务地点：{$vo['serviceaddress']}<br/>
+										</li>
+										</notempty>
+									<else />
+										<notempty name="vo['is_supplies']">
+										<li><b>捐资源：</b>{$vo['supplies']}<br/></li>
+										</notempty>
+										<notempty name="vo['is_service']">
+										<li><b>捐服务：</b>{$vo['servicesummary']}<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;服务时间：{$vo['servicetime']}<br/>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;服务地点：{$vo['serviceaddress']}<br/>
+										</li>
+										</notempty>	
+									</if>
+										
+										<li><a href="javascript:;" class="open_modal" data-type="ajax" data-load="/admin/Concur/detail/id/{$vo['id']}.html">查看详细</a></li>
+					                </ul>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+			</volist>	
+			</div>
+		</div>                    
+		<div class="clearfix"></div>
+    </div>
+</div>
+{$page}
+<div id="EventModal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: none;">
+	<form method="post" action="/admin/concur/verifyrefuse">
+	<div class="modal-header">
+        <button type="button" class="close btn-link" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">审核不通过的原因</h3>
+    </div>
+	<div class="modal-body">
+		<input type="hidden" id="verifyfailed_id" name="id" >
+		<textarea rows="5" style="width:515px;" id="verifyfailed_reject" name="reject" maxlength="100"></textarea>
+		<p class="text-warning">100字以内</p>
+	</div>
+    <div class="modal-footer">
+        <input type="button" id="verifyfailed" class="btn btn-primary" value="审核不通过">
+        <span class="btn btn-link" data-dismiss="modal" aria-hidden="true">关闭</span>
+    </div>
+	</form>
+</div>

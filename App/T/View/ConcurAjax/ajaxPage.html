@@ -1,0 +1,22 @@
+{__NOLAYOUT__}
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/ajaxpage.js"></script>  
+     <notempty name="donName">
+	     <ul>
+	     <volist name="donName" id="vo">
+	         <li>
+	             <a href="<notempty name='vo.anonymous'>javascript:void(0)<else />{:userUrl($vo['apply_uid'])}</notempty>" title="{$vo['nickname']}" class="jzmd_lt" target="_blank"><img src="{$vo['image']}"><span>{$vo['nickname']}</span></a>
+	             <empty name="vo['supplies']">
+	             	<span class="jzmd_ctr"><i>{$vo['service']}</i></span>
+	             <else />
+	             	<span class="jzmd_ctr" title="{$vo['supplies']}"><i>{$vo['supplies']|str_ellipsis_new=###,85}</i></span>	
+	             </empty>
+	             <span class="jzmd_rt"><i>{$vo['time']}</i></span>
+	         </li>
+	     </volist>    
+	     </ul>
+	   	 <gt name='donCount' value='8'>
+			<div class="wraper_paging">{$page}</div>
+	     </gt>
+     <else />
+     	<div class="none_msg">暂无申请人</div>
+     </notempty>

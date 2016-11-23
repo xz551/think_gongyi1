@@ -1,0 +1,85 @@
+<div class="interaction_module">
+<p class="wzjz_tijiao1" style="display:block;">物资<eq name='concurtype' value='1'>捐助<else />申请</eq>请求已提交，等待<eq name='concurtype' value='1'>求助<else />捐助</eq>人确认
+    <span class="a_cxjz" >撤销<eq name='concurtype' value='1'>捐助<else />申请</eq></span><span  class="a_xgwzx" data-id="{$id}" data-title='修改物资项' >修改物资项</span>
+</p>
+<p class="sqjz_list1" style="display:block;">您<eq name='concurtype' value='1'>捐助物资<else />申请物资</eq>：{$alSuppliesShow}</p>
+</div>
+<!--友好提示弹出层[-->
+<div class="promptHtml ptHtml1">
+    <p class="promptHtmlText">确定要撤销当前的<eq name='concurtype' value='1'>物资捐助<else />物资申请</eq>请求吗？</p>
+</div><!--]友好提示弹出-->
+
+
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/concur/js/supother.js"></script>
+<script>
+    /**
+     *  定义提交的url地址
+     *  @param number subtype 1-表示捐物资  2-表示修改物资
+     */
+    var sup_ajax_url = "{:SERVER_VISIT_URL}/T/Supplies/SuppliesAjaxPage/subtype/2.html";
+    /**
+     * 修改html
+     */
+    function updateHtml(alSuppliesShow){
+        var html =  '<p class="wzjz_tijiao1" style="display:block;">物资<eq name="concurtype" value="1">申请<else />捐助</eq>请求已提交，等待<eq name="concurtype" value="1">捐助<else />求助</eq>人确认';
+            html += '<span class="a_cxjz" > <eq name="concurtype" value="1">撤销捐助<else />撤销申请</eq></span><span  class="a_xgwzx" data-id="{$id}" data-title="修改物资项" >修改物资项</span>';
+            html += '</p>';
+            html += '<p class="sqjz_list1" style="display:block;">您<eq name="concurtype" value="1">捐助物资<else />申请物资</eq>：'+alSuppliesShow+'</p>';
+        $('.interaction_module').html(html);
+        var sup_ajax_url = "{:SERVER_VISIT_URL}/T/Supplies/SuppliesAjaxPage/subtype/2.html";
+    }
+    
+    
+    $(function(){      
+        //修改物资项
+        $(".a_xgwzx,.btns_jwuzi").live('click', function () {
+            var islogin = '{$islogin}';	
+            if(islogin == 1){            
+		var type = '{$concurtype}';
+                var _this = $(this);
+                var url = sup_ajax_url;
+                var title = _this.attr('data-title');
+                applyAjaxPage(_this,url,title,type);
+            }else{
+                showbox();
+            }
+        });
+        
+        /*弹出层(撤销捐助)*/
+        $(".a_cxjz").popWindow({
+            width: "400",
+            height: "170",
+            content: $(".ptHtml1").html(),
+            id: "box_cxjz",
+            callback: function (a, box) {
+            },
+            button: {			
+                cancel: function () {
+                },
+                ok: function (t, box) {
+                    var id = "{$id}";
+                    $.ajax({
+                        type: "POST",
+                        url: "{:SERVER_VISIT_URL}/T/Supplies/cancelSupplies",
+                        data: 'id=' + id,
+                        success: function (msg) {
+                            if(msg.status==-1){
+                                alert(msg.content);
+                            }else{
+                                box.hide();
+                                $("#mask1").hide();
+                                var html = '<p class="tab_cont1_btns">';
+                                    html += '<span class="btns_jwuzi" data-id="{$id}" data-title="<eq name="concurtype" value="1">捐物资<else />申请物资</eq>">';
+                                    html += '<eq name="concurtype" value="1">捐物资<else />申请物资</eq>';
+                                    html += '</span>'
+                                    html += '</p>';
+                                $(".interaction_module").html(html);
+                            }
+    
+                        }
+                    });
+                }
+            }
+        });       
+    })
+</script>

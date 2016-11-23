@@ -1,0 +1,23 @@
+<volist name='voliumteer' id='vo'>                         
+    <li class="item">
+        <div class="head">
+            <a target="_blank" href="{$vo['vo']}" title="{$vo['nickname']}">
+                <span class="fix_icons img_wrap"></span>
+                <img class="userError" width="120" height="120" src="{$vo['photo']}" />
+            </a>
+        </div>
+        <div class="head-bot">
+            <div>
+                <a target="_blank" href="{$vo['url']}" class="name" title="{$vo['nickname']}">{$vo['nickname']}</a>
+            </div>
+            <div class="address">
+                <div class="address_wrap">
+                    <span class="fix_icons address_icon"></span>
+                    <span title="{$vo['area']}">
+                        {$vo['area']}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </li>                        
+</volist>

@@ -1,0 +1,55 @@
+
+<volist name="data" id="vo">
+    <div class="wpr_fankui_items">
+        <i class="icon_yuan"></i>
+        <a href="{$vo['uid']|ucUrl=###}" class="wpr_fki_lt" title="{$vo['nickname']}" target="_blank">
+            <img src="{$vo['photo']}">
+            <span>{$vo['role']}</span>
+        </a>
+        <div class="wpr_fki_rt">
+            <a href="{$vo['uid']|ucUrl=###}" class="wpr_fk_title" title="{$vo['nickname']}" target="_blank"><span>{$vo['nickname']|str_ellipsis_new=###,12}</span>发布了{$concur['type']==0?'求助':'资源'}反馈：</a>
+            <p class="wpr_fk_cont">
+                {$vo['content']}
+            </p>
+            
+            <if condition="count($vo['feedback_img']) gt 0">
+                <ul class="wpr_imgorvideo_list">
+                    <volist name="vo['feedback_img']" id="img">
+                        <li><a href="javascript:void(0)"><img  class="show_max" src="{$img[0]}" data-max="{$img[1]}"></a></li>
+                    </volist>
+                </ul>
+            </if>
+			<if condition="count($vo['feedback_video']) gt 0">
+                <ul class="wpr_imgorvideo_list">
+                    <volist name="vo['feedback_video']" id="video">
+                        <li>
+                            <img src="{$video['img']}">
+                            <span class="show_max" data-unique="{$video['unique']}" ><img src="__STATIC_URL__/concur/images/bf.png"></span>
+                        </li>
+                    </volist>
+                </ul>
+            </if>
+
+            <p class="wpr_fk_time">{$vo['time']}</p>
+        </div>
+    </div>
+</volist>
+<if condition="$is_count">
+    <img style="width: 20px;position: absolute;display: none" class="loding_all_feedback" src="__STATIC_URL__/yijuan/product/images/loader.gif">
+    <img src="http://static.719kj.com/concur/images/xl_down.png" class="img_xiala load_feedback" data-id="0">
+    <script type="text/javascript">
+        var loading_all=0;
+        (function(){
+            $('.load_feedback').click(function(){
+                if(loading_all==1){return;}
+                loading_all=1;
+                $('.loding_all_feedback').show();
+                getFeedBack(20,function(){
+                    $('.loding_all_feedback').hide();
+                    loading_all=0;
+					$('.load_feedback').remove();
+                });
+            });
+        })();
+    </script>
+</if>

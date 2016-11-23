@@ -1,0 +1,46 @@
+<div class="header">
+    <div class="top">
+        <ul class="OtherInter">
+            <li><img src="{:__STATIC_URL__}/gongyi/images/duobianxing.png"/>&nbsp;<a target=" _blank " href="http://www.zgzyz.org.cn/"/>中国青年志愿者网</a></li>
+            <li><img src="{:__STATIC_URL__}/gongyi/images/duobianxing.png"/>&nbsp;<a target=" _blank " href="http://www.kab.org.cn/"/>KAB创业教育网</a></li>
+            <li><img src="{:__STATIC_URL__}/gongyi/images/duobianxing.png"/>&nbsp;<a target=" _blank " href="http://www.xiaomei.cc/"/>校煤网</a></li>
+            <li><img src="{:__STATIC_URL__}/gongyi/images/duobianxing.png"/>&nbsp;<a target=" _blank " href="http://www.cyol.com/"/>中青在线</a></li>
+        </ul>
+    </div>
+    <div class="top_bottom">
+        <div class="wrap">
+            <div class="loginORregist">
+                <if condition="$userInfo">
+                    <a href="{:UCENTER}/user/login.html" />{$userInfo['nickname']}</a>
+                    <else/>
+                    <a href="{:UCENTER}/user/login.html" />登录</a>&nbsp;<strong>|</strong>&nbsp;<a href="{:UCENTER}/user/register.html" />注册</a>
+                </if> 
+            </div>
+            <div class="zhongqing_logo"></div>
+            <div class="navBar">
+                <ul class="nav clearfix">
+                    <li class="parent_item"><a href="/"/>首页</a></li>
+                    <li class="parent_item"><a href="{:SERVER_VISIT_URL}/project/all.html"/>招募</a></li>
+                    <li class="parent_item"><a href="{:SERVER_VISIT_URL}/active/all.html"/>活动</a></li>
+                    <li class="parent_item"><a href="{:SERVER_VISIT_URL}/raisegoods/all.html"/>求助</a></li>
+                    <li class="parent_item"><a href="{:SERVER_VISIT_URL}/project/alleventlist.html"/>征集</a></li>
+                    <li class="parent_item">
+                        <a href="javascript:void(0)"/>资讯</a>&nbsp;<img src="{:__STATIC_URL__}/gongyi/images/dbx_xia.png"/>
+                        <ul class="sub" style="display:none;">
+                            <li><a href="http://www.gy.com/gong_yi_bao_dao.html" title="中秋节了">公益报道</a></li>
+                            <li><a href="http://www.gy.com/gong_yi_yu_qing.html" title="中秋节了">公益舆情</a></li>
+                        </ul>
+                    </li>
+                    <li class="parent_item">
+                        <a href="javascript:void(0)"/>互动</a>&nbsp;<img src="{:__STATIC_URL__}/gongyi/images/dbx_xia.png"/>
+                        <ul class="sub"  style="display:none;">
+                            <li><a href="{:UCENTER}" title="个人主页">个人主页</a></li>	
+                            <li><a href="{:SERVER_VISIT_URL}/authuser/all.html" title="公益伙伴">公益伙伴</a></li>	
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div> 

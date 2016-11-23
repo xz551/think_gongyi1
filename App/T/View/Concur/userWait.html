@@ -1,0 +1,20 @@
+<style type="text/css">
+        *{margin: 0px;padding: 0px;}
+        .Container{width: 1200px;height: 1000px;margin:0px auto;}
+        .succ_cont{width: 1140px;margin: 0px auto;}
+        .succ_cont h3{width: 100%;padding-bottom: 5px;color: #555555;font-size: 22px;font-weight: normal;border-bottom:1px solid #e0e0e0;}
+        .succ_cont .succ_cont_detail{width: 100%;padding: 200px 0px;}
+        .succ_cont .succ_cont_detail p{color: #555555;font-size: 16px;line-height:25px;text-align: center;}
+        .succ_cont .succ_cont_detail p a{color: #78b23e;padding:0px 5px;text-decoration: none;}
+        .succ_cont .succ_cont_detail .p1{width:220px;height: 48px;line-height:48px;text-align: center;margin: 0px auto;font-size: 24px;background: url("images/success.png") no-repeat;background-position:0px -2px;}
+</style>
+<div class="Container">
+        <div class="succ_cont">
+                <h3>系统通知</h3>
+                <div class="succ_cont_detail">
+                        <p class="p1">提交成功</p>
+                        <p class="p2">我们将于一个工作日之内完成{$tag}信息的审核,请注意查收邮件和消息通知</p>
+                        <p class="p3"><a href="{:userUrl($uid)}">返回{$typename}主页</a>或<a href="{:SERVER_VISIT_URL}">返回中青公益首页</a></p>
+                </div>
+        </div>
+</div>

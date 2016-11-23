@@ -1,0 +1,16 @@
+<table class="table table-bordered table-hover table-condensed">
+    <tr>
+        <th>证书名称</th>
+        <th>证书描述</th>
+        <th>操作</th>
+    </tr>
+    <volist name='data' id='vo'>
+        <tr>
+        <td>{$vo['name']}</td>
+        <td>{$vo['desc']}</td>
+        <td>
+            <a href="{:U('Certificate/caruser',array('zs'=>$vo['id'],'zsname'=>$vo['name']))}">查看获得人员</a>
+        </td>
+    </tr>
+    </volist>
+</table>

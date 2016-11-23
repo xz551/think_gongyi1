@@ -1,0 +1,138 @@
+{__NOLAYOUT__}
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/ajaxpage.js"></script>
+<style type="text/css">
+.wraper_paging{
+	width: 100%;
+	margin-top:60px;
+	text-align: center;
+}
+.wraper_paging a{
+	display: inline-block;
+	width: 25px;
+	height:25px;
+	line-height: 25px;
+	margin-right:15px;
+	text-align: center;
+	color: #999;
+	font-size: 14px;
+}
+a.mouse_hover,a.selected{
+	color: #fff;
+	background: #2f9be7;
+}
+</style>
+<div class="summary"><notempty name="num">第 {$start}-{$end} 条, 共 {$count} 条.</notempty></div>
+<table class="table table-bordered table-hover table-condensed">
+	  <thead>
+	    <tr>
+	      <th>ID</th>
+	      <th>标题</th>
+	      <th>发起人</th>
+	      <th><notempty name="type">捐<else />受</notempty>助对象</th>
+	      <th><notempty name="type">所在<else />受助</notempty>地点</th>
+	      <th><notempty name="type">资源有效期<else />求助时间</notempty></th>
+	      <th><notempty name="type">资源<else />求助</notempty>类型</th>
+	      <th>创建时间</th>
+	      <th>状态</th>
+	      <th>操作</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<volist name="helplist" id="vo">
+		    <tr>
+		      <td>{$vo['id']}</td>	
+		      <td class="text-info"><a href="__WEB_SITE__/T/Concurinfo/index/id/{$vo['id']}" target="_blank">{$vo['title']}</a></td>
+		      <td class="text-info"><a href="__WEB_SITE__{$vo['uid']|userUrl=###}" target="_blank">{$vo['creator']}(ID:{$vo['uid']})</a></td>
+		      <td>{$vo['server_for']}</td>
+		      <td>{$vo['address']}</td>	
+		      <td>{$vo['time']}</td>	
+		      <td class="text-info genre" data-id="{$vo['id']}" data-type="{$type}" data-url="/Admin/Concur/ajaxgenre" ><a href="#myModal" data-toggle="modal" role="button">{$vo['genre']}</a></td>	
+		      <td>{$vo['create_date']}</td>	
+		      <td>{$status[$vo['status']]}</td>
+		      <td class="text-info">
+		      	<if condition="($vo['status'] eq -1) or ($vo['status'] eq 403) or ($vo['status'] eq 404)">
+		      		<p class="summary" data-id="{$vo['id']}" data-url="/Admin/Concur/ajaxsummary" ><a href="#summary" data-toggle="modal" role="button">查看详情</a></p>
+		      	</if>	
+		      	<if condition="$vo['status'] eq -1" >
+		      		<p class="fail" data-id="{$vo['id']}" data-url="/Admin/Concur/ajaxfail"><a href="#fail" data-toggle="modal" role="button">审核不通过原因</a></p>
+		      	</if>	
+		      	<if condition="($vo['status'] eq 100) or ($vo['status'] eq 888)">
+		      		<p class="reset" data-id="{$vo['id']}"><a href="#reset" data-toggle="modal" role="button">重置</a></p>
+		      	<notempty name="type">
+		      		<p><a href="/Admin/Concur/donatelist/id/{$vo['id']}">申请列表</a></p>
+		      	<else />
+		      		<p><a href="/Admin/Concur/donatelist/id/{$vo['id']}">捐助列表</a></p>
+		      		<p><a href="/Admin/Concur/loves/id/{$vo['id']}">爱心认证员</a></p>
+		      	</notempty>
+		      		
+		      	<empty name="vo['recommend']">
+		      		<p class="approve" data-id="{$vo['id']}"><a href="#approve" data-toggle="modal" role="button">认证真实性</a></p>
+		      	<else />
+		      		<p class="text-error">已认证真实性</p>
+		      	</empty>		
+		      	</if>
+		      </td>
+		    </tr>
+	    </volist>
+	  </tbody>
+</table>
+<!-- 分页 -->
+<div class="wraper_paging">{$page}</div>
+<script type="text/javascript">
+	$(function(){
+		var path,id,type;
+		//查看求助物资/服务
+		$(".genre").click(function(){
+			path=$(this).data('url');
+			id=$(this).data("id");
+			$.ajax({
+				url:path,
+				data:{id:id},
+				success:function(d){
+					$("#myModal").html(d);
+				}
+			});
+		});
+		//查看求助项目详情
+		$(".summary").click(function(){
+			path=$(this).data('url');
+			id=$(this).data("id");
+			$.ajax({
+				url:path,
+				data:{id:id},
+				success:function(d){
+					$("#summary").html(d);
+				}
+			});
+		});
+		//查看审核不通过原因
+		$(".fail").click(function(){
+			path=$(this).data('url');
+			id=$(this).data("id");
+			$.ajax({
+				url:path,
+				data:{id:id},
+				success:function(d){
+					$("#fail").html(d);
+				}
+			});
+		});
+		//重置
+		$(".reset").click(function(){
+			id=$(this).data("id");
+			type=$(".genre").data("type");
+			$("#verifyfailed_id").attr('value',id);
+			$("#verifyfailed_type").attr('value',type);
+			$("#reset").show();
+		});
+		//认证求助项目的真实性
+		$(".approve").click(function(){
+			id=$(this).data("id");
+			type=$(".genre").data("type");
+			$("#failed_id").attr('value',id);
+			$("#failed_type").attr('value',type);
+			$("#approve").show();
+		});
+	});
+	
+</script>

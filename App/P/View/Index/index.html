@@ -1,0 +1,157 @@
+
+<style>
+
+    #section0,
+    #section1,
+    #section2,
+    #section3,
+    #section4{
+        background-size: cover;
+		padding:10px
+    }
+    #section1{
+        background-image: url(__STATIC_URL__/gongyi/yuqing/FeatureItemConvo.jpg);
+         background-size:100%;
+		 background-repeat:no-repeat;
+		 background-position-y:center ;
+    }
+
+    #section2{
+        background-image: url(__STATIC_URL__/gongyi/yuqing/FeatureItemInfluencer.jpg);
+        background-size:100%;
+		 background-repeat:no-repeat;
+		 background-position-y:center ;
+    }
+
+    #section3{
+        background-image: url(__STATIC_URL__/gongyi/yuqing/FeatureItemKey.jpg);
+        background-size:100%;
+		 background-repeat:no-repeat;
+		 background-position-y:center ;
+    }
+
+    #section4{
+        background-image: url(__STATIC_URL__/gongyi/yuqing/zhengshu.png);
+        background-size:100%;
+		 background-repeat:no-repeat;
+		 background-position-y:center ;
+    }
+    .txt{
+        color: rgb(199, 255, 221);
+        display: none;
+        position: absolute;
+    }
+    .h{
+        color: rgb(255, 197, 13);
+        display: none;
+        position: absolute;
+    }
+    .h span{
+        color:#FF7E00;
+        font-weight: bold;
+    }
+    .mode{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        opacity: 0.5;
+        background-color:#000;
+        display: none;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#fullpage').fullpage({
+            verticalCentered: false,
+            'navigation': true,
+            afterLoad:function(anchorLink, index){
+                var that=$(this);
+                that.find('.mode').show(function(){
+                    var _div=that.find('.h');
+                    _div.each(function(){
+                        var $div=$(this);
+                        var start=$div.data('start');
+                        if(start) {
+                            var end = $div.data('end'); 
+                            var attr = $div.data('attr');
+                            var p = {};
+                            $(this).css(attr, start);
+                            p[attr] = end;
+                            p['opacity'] = 'show';
+                            $div.animate(p);
+                        }
+                    });
+                });
+
+            },
+            onLeave:function(){
+                var that=$(this);
+                setTimeout(function(){
+                    that.find('.mode').hide();
+                    var _div=that.find('.h');
+                    _div.each(function(){
+                        var $div=$(this);
+                        var start=$div.data('start');
+                        if(start) {
+                            var end = $div.data('end');
+                            var attr = $div.data('attr');
+                            $(this).css(attr, start).hide();
+
+                        }
+                    });
+                },500);
+
+            }
+        });
+        
+    });
+</script>
+<div id="fullpage">
+    <div class="section active" id="section0">
+        <h1>
+            中<br/>青<br/>舆<br/>情
+        </h1>
+    </div>
+    <div class="section" id="section1">
+        <div class="mode"></div>
+        <h1>功能特色</h1>
+        <h3 class="h" style="top: 100px" data-start="-250px" data-end="20px" data-attr="left">
+            全面监测：想搜哪里搜哪里
+        </h3>
+        <h3 class="h" style="top: 160px" data-start="1000px" data-end="20px" data-attr="left">
+            实时捕获：想搜多快就搜多快
+        </h3>
+        <h3 class="h" style="top: 220px" data-start="-250px" data-end="20px" data-attr="left">
+            精细采集：想搜多精细就搜多精细
+        </h3>
+        <h3 class="h" style="top: 280px" data-start="1000px" data-end="20px" data-attr="left">
+            深入分析：想怎么分析就怎么分析
+        </h3>
+
+    </div>
+    <div class="section" id="section2">
+        <div class="mode"></div>
+        <h1>服务模式</h1>
+        <h3 class="h" style="top: 100px" data-start="-250px" data-end="20px" data-attr="left">
+            <span>全面实时监测网络舆论</span><br/>
+            热点舆论、重点舆论、倾向性舆论 和负面舆论的全面监测
+        </h3>
+        <h3 class="h" style="top: 200px" data-start="1000px" data-end="20px" data-attr="left">
+            <span>敏感话题的实时捕捉</span><br/>
+            自动捕捉敏感话题，实时跟踪话题 的发展
+        </h3>
+        <h3 class="h" style="top: 280px" data-start="-250px" data-end="20px" data-attr="left">
+            <span>危机项目管理</span><br/>
+            事前: 严密监测，积极预防<br/>
+            事中: 实时反馈，配合应对<br/>
+            事后: 深度分析，及时总结
+        </h3>
+
+
+
+    </div>
+    <div class="section" id="section3"></div>
+    <div class="section" id="section4"></div>
+</div>

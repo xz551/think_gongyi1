@@ -1,0 +1,58 @@
+<select id="s_province" name="s_province" data-cityid = '{$cityid}' data-countyid= '{$countyid}' onchange="getProvince(this);">
+    <option value="" >请选择</option>
+    <volist name="areaList" id="vo">
+        <option value="{$vo.id}" <eq name='vo.id' value='$provinceid'>selected='selected'</eq>>{$vo.class_name}</option>
+    </volist>
+</select>&nbsp;&nbsp;
+<select id="s_city" name="s_city" onchange="getCity(this);"></select>&nbsp;&nbsp;
+<select id="s_area" name="s_area" ></select>&nbsp;&nbsp;
+<script>
+    
+    function getProvince(_this){
+        var cid = _this.options[_this.options.selectedIndex].value;
+        $("#s_city option").remove();
+        $("#s_area option").remove(); 
+        getCityList(cid,'s_city',2);
+    }
+    
+    function getCity(_this){
+        var cid = _this.options[_this.options.selectedIndex].value;
+        getCityList(cid,'s_area',3);    
+        
+    }
+    
+    $(function () {
+        var provinceid = '{$provinceid}';
+        var cityid = '{$cityid}';
+        if(provinceid){
+            getCityList(provinceid,'s_city',2);
+        }
+        if(provinceid){
+            getCityList(cityid,'s_area',3);
+        }
+    })
+
+    function getCityList(cid, name, level) {
+        var countyid = $("#s_province").attr('data-countyid') ;
+        var cityid = $("#s_province").attr('data-cityid') ;
+        $.ajax({
+            type: "POST",
+            url: "{:U('t/Public/getCity')}",
+            data: "cid=" + cid + "&level="+level,
+            success: function (msg) {
+                var obj = jQuery.parseJSON(msg);
+                var tagid = (level==2)?cityid:countyid;
+                $("#"+name+"").append("<option value=''>请选择</option>");
+                $.each(obj, function (key, value) {
+                    var tagid = (level==2)?cityid:countyid;
+                    if (key == tagid) {
+                        $("#"+name+"").append("<option value=" + key + " selected='selected' >" + value + "</option>");
+                    } else {
+                        $("#"+name+"").append("<option value=" + key + ">" + value + "</option>");
+                    }
+                });
+            }
+        });
+    }
+
+</script>

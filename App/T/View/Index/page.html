@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>中青公益(PC-清华培训)</title>
+        <link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/tsinghua/css/base.css">
+        <link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/tsinghua/css/pc_index.css">
+    </head>
+    <body>
+       <!-- TopBar[ -->
+<div class="gy_top_wrap">
+    <div class="gy_tw_bar">
+        <eq name="isLogin" value="1">
+            <!-- 登录后的状态[ -->
+            <div class="gy_bar_status">
+                <ul>
+                    <li><a href="{$privateLetter}">私信<gt name="messageboxNum" value="0"><i>{$messageboxNum}</i></gt></a></li>
+                    <li><a href="{$notice}">通知<gt name="noticeNum" value="0"><i>{$noticeNum}</i></gt></a></li>
+                    <li class="gy_bsts_user">
+                        <a href="{:userUrl($user['uid'])}">{$user.nickname}</a>
+                        <in name="userType" value="10,11">
+                            <div class="gy_user_menus usr clearfix">
+                                <a href="{:userUrl($user['uid'])}">我的主页</a>
+                                <a href="/uc/accountinfo/base.html">我的资料</a>
+                                <a href="{$murl['project']}">我的志愿项目</a>
+                                <a href="{$murl['active']}">我的公益活动</a>
+                                <a href="{$murl['group']}">我的公益小组</a>
+                                <a href="{$logout}">退出</a>
+                            </div>
+                        </in>
+                        <in name="userType" value="20,21">
+                            <div class="gy_user_menus org clearfix">
+                                <a href="{:userUrl($user['uid'])}">我的主页</a>
+                                <a href="/uc/accountinfo/base.html">我的资料</a>
+                                <a href="{$murl['jia']}">我的志愿+</a>
+                                <a href="{$murl['group']}">我的公益小组</a>
+                                <a href="{$logout}">退出</a>
+                            </div>
+                        </in>
+                    </li>
+                </ul>
+            </div><!-- ]登录后的状态 -->
+            <else/>
+            <!-- 未登录的状态[ -->
+            <div class="gy_bar_status">
+                <a href="{$login}">快速登录</a>
+                <a href="{$register}">注册</a>
+            </div><!-- 未登录的状态[ -->
+        </eq>
+    </div>
+</div><!-- TopBar[ -->
+        <div class="Container">
+            <img src="{:STATIC_SERVER_URL}/tsinghua/images/pc_index.png">
+            <a href="http://www.gy.com" class="pc_logo"></a>
+            <a href="http://thtm.tsinghua.edu.cn" target="_blank" class="pc_qhua">http://thtm.tsinghua.edu.cn。</a>
+            <a href="{:STATIC_SERVER_URL}/tsinghua/uii/download.xls" class="pc_download">下载报名表格</a>
+        </div>
+        <!-- footer[ -->
+        <div class="zqgy_footer">
+            <div class="zqgy_ftcont">
+                <div class="zqgy_ftcont_top">
+                    <dl>
+                        <dt>主管单位</dt>
+                        <dd><a href="">中国青年报社</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>主办单位</dt>
+                        <dd><a href="">中青华云</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>合作伙伴</dt>
+                        <dd><a href="">科技部</a></dd>
+                        <dd><a href="">教育部</a></dd>
+                        <dd><a href="">团中央</a></dd>
+                        <dd><a href="">西安交通大学</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>友情链接</dt>
+                        <dd><a href="http://www.cyol.com/" target=" _blank ">中青在线</a></dd>
+                        <dd><a href="http://www.xiaomei.cc/" target=" _blank ">校媒网</a></dd>
+                        <dd><a href="http://www.kab.org.cn/" target=" _blank ">KAB创业教育网</a></dd>
+                        <dd><a href="http://www.kab.org.cn/" target=" _blank ">中国青年志愿者网</a></dd>
+                    </dl>
+                    <div>
+                        <p>北京市东城区海运仓2号<span>010-64098678</span></p>
+                        <p>公益合作：zqgy@gy.com </p>
+                        <p>媒体合作：zqgymedia@gy.com</p>
+                        <p class="btns"><a href="#">关于我们</a><a href="#">使用帮助</a></p>
+                    </div>
+                </div>
+                <div class="zqgy_ftcont_bom">Copyright © 2012 - 2053 gy.com All Right Reserved   京ICP备13034192号</div>
+            </div>
+        </div><!-- ]footer -->
+    </body>
+</html>

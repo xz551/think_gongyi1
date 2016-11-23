@@ -1,0 +1,28 @@
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/gongyi/css/zhaomu_list.css?3">
+<script type="text/javascript">
+   $(function(){
+       /*去除每排最后一个的右边距*/
+        var li = $(".zml_lt_bottom ul li");
+        for(var i=3;i<li.length;i++){li.eq(i).css("margin-right","0px");i+=3;}
+        /*选中效果*/
+        var a = $(".label_type").attr("data-def"),
+            b = $(".label_addr").attr("data-def");
+            $(".lab_type"+a).addClass("cur");
+            $(".lab_addr"+b).addClass("cur");
+            if(b>5){$(".other_city").hide().siblings("a.hdc").removeClass("hdc");}
+        /*其他省份*/
+        $(".other_city").click(function(){$(this).hide().siblings("a.hdc").removeClass("hdc");});
+        /*获取截止日期，设置百分比宽度*/
+        $("p.pro_time").find("i").each(function(){
+            var a = $(this),b=a.attr("data-width");
+                if(b !== ""){a.css("width",b+"%");}
+        });
+   });
+</script>
+<div class="zm_list">
+    <div class="zml_lt">
+      {~W('Recruit/searchTerms')}
+      {~W('Recruit/projectList')}
+    </div>
+    {~W('Recruit/projectRecommed')}
+</div>

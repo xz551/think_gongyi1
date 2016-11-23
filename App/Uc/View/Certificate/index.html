@@ -1,0 +1,12 @@
+<css:add href="{:STATIC_SERVER_URL}/usercenter/tp/css/psl_dzzhengshu.css" />
+<!-- 右边主体内容[ -->
+<div class="myhome_cmain_right">
+	<notempty name="cartificateUser">
+		<foreach name="cartificateUser" item="vo">
+			<a href="{$vo['cart']}" target="_blank"><img alt="" src="{$vo['cart1']}"></a>
+		</foreach>
+	<else />
+		<h3 class="project_title">相关证书<i></i></h3>
+		<div class="prompt_states">未获得证书</div>
+	</notempty>
+</div>

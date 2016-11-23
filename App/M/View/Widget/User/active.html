@@ -1,0 +1,9 @@
+<volist name="data" id="vo">
+    <a href="/m/active/index/id/{$vo['active_id']}" class="zqgy_proj_items">
+        <div class="zqgy_pilt"><img src="{$vo['image']}"></div>
+        <div class="zqgy_pirt">
+            <h3>{$vo['name']}</h3>
+            <p class="bm_time"><label>报名时间:</label><span>{$vo['join_date']|date='Y/m/d',###}</span></p>
+        </div>
+    </a>
+</volist>

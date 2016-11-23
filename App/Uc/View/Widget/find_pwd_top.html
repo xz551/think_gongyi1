@@ -1,0 +1,15 @@
+<h1>找回密码</h1>
+<div class="zqgy_fdpwd_step">
+	<p class="zqgy_fdsp_pic"><i class="step1"></i><i class="step2"></i><i class="step3"></i><i class="step4"></i></p>
+	<p class="zqgy_fdsp_txt"><span class="sp_1">填写帐户名</span><span class="sp_2">验证身份</span><span class="sp_3">重置密码</span><span class="sp_4">完成</span></p>
+</div>
+<script type="text/javascript">
+	$(function(){
+		var tag={$tag};
+		for(var i=1;i<=tag;i++){
+			$(".step"+i+"").addClass('stp_cur');
+			$(".step"+(i-1)+"").addClass('puse');
+			$(".sp_"+i+"").addClass('sp_cur');
+		}
+	});
+</script>

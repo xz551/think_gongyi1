@@ -1,0 +1,24 @@
+<!-- 志愿者招募 -->
+<h3 class="gy_col_title"><i>志愿者招募</i><a href="{:WEB_SITE}/project/all.html">更多></a></h3>
+<ul class="gy_col_pro clearfix">
+    <volist name="project" id="pjt" offset="0" length='4'>
+        <li>
+            <a href="{$pjt.url}"><img class="lazy" data-original="{$pjt.show_image}"></a>
+            <div class="gy_detail_info">
+                <a href="{$pjt.url}" title="{$pjt.name}">{$pjt.name}</a>
+                <p class="ifo_form jump-user-page"  data-url='{:userUrl($pjt['creatorid'])}'>{$pjt.creator}</p>
+                <p class="ifo_addr">{$pjt.area}</p>
+                <p class="ifo_numb"><label>招募:</label><span><i>{$pjt.job_num}</i>岗位<i>{$pjt.need_num}</i>人</span></p>
+                <p class="ifo_time">报名截止：<span><i data-width='{$pjt.percent}'></i></span><i>{$pjt.clos_date}</i></p>
+            </div>
+        </li>
+    </volist>
+</ul>
+<script>
+	$(function(){
+		$(".jump-user-page").css("cursor","pointer").click(function(){
+			var url = $(this).attr('data-url');
+			window.location.href = url;
+		})
+	})
+</script>

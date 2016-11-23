@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$title}</title>
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/css/base.css">
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/css/regist_succ.css">
+	<script src="{:STATIC_SERVER_URL}/public/js/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){$(".myhome_users_wraper").hover(function(){$(this).find('ul').show("200");},function(){$(this).find('ul').hide();});});
+	</script>
+</head>
+<body>
+ 	{~W('Layout/header')}
+	<!-- 注册成功 -->
+	<div class="zqgy_regist_succ">
+		<h1><img src="{:STATIC_SERVER_URL}/usercenter/tp/images/reg_succ.png">注册成功</h1>
+		<p class="zqgy_rsp1">您可使用<span>{$phone_email}</span>作为登录名进行登录！</p>
+		<notempty name="tag">
+			<div class="zqgy_regsucc_tips">
+				<p>验证邮箱让账户更安全！</p>
+				<p>系统已经向您的注册邮箱发送了一封验证邮件。请您登陆邮箱，点击邮件中的链接完成验证。</p>
+				<a href="{$email}" target="_blank" title="验证邮箱">验证邮箱</a>
+			</div>
+		</notempty>
+		<empty name="type">
+			<p class="zqgy_rsp2"><label><a href="{:UCENTER}/volunteer/apply">成为实名认证个人用户</a>,</label>多种公益方式随你用！可发布可参与，可求助可奉献，召唤小伙伴，加入大家庭，没有什么做不到~</p>
+		<else />
+			<p class="zqgy_rsp2"><label><a href="{:UCENTER}/organization/apply">成为认证公益组织</a>，</label>体验方便、快捷的公益服务管理模式，实现组织多样化的管理需求。</p>
+		</empty>
+		<ul>
+			<li><a href="{:SERVER_VISIT_URL}">中青公益首页</a><i>|</i></li>
+			<li><a href="{:userUrl($uid,$url)}">我的主页</a><i>|</i></li>
+			<li><a href="/Uc/Accountinfo/base.html">完善资料</a><i>|</i></li>
+			<li><a href="{$returnurl}">返回到注册之前的页面</a></li>
+		</ul>
+	</div>
+	{~W('Layout/footer')}
+</body>
+</html>

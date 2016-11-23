@@ -1,0 +1,53 @@
+<span class="complain" data-type="{$type}" data-id="{$id}" data-uname="{$uname}" data-pid="{$pid}">投诉</span>
+<script type="text/javascript">
+    var _is_ajax = false;
+    $(function () {
+        var _login_a=$(".myhome_nav_wraper a:contains('登录')");
+        if(_login_a.length>0){
+            $(".complain").click(function(){
+                window.location.href=_login_a.attr("href");
+            });
+            return;
+        }else{
+            _login_a=$(".gy_bar_status a:contains('登录')");
+            if(_login_a.length>0){
+                $(".complain").click(function(){
+                    window.location.href=_login_a.attr("href");
+                });
+                return;
+            }
+        } 
+        $(".complain").bind("click", function () {
+            if (_is_ajax) {
+                return;
+            }
+            var that=$(this);
+            var uid=that.data("id");
+            var uname=that.data("uname");
+            var pid=that.data("pid");
+            var type=that.data("type");
+            _is_ajax = true;
+            $.ajax({
+                url: "/t/complain/index",
+                data: {type:type,cuserid:uid,cusername:uname,pid:pid},
+                success: function (a) {
+                    _is_ajax = false;
+                    if (a == 0) {
+                        alert("请先登录");
+                    } else {
+                        $(".complain").unbind("click");
+                        if (typeof AjaxUpload == "undefined") {
+                            $("body").append('<script type="text/javascript" src="' + static_url + '/public/js/ajaxupload.js"><\/script>');
+                            setTimeout(function(){
+                                $('body').append(a);
+                            },300);
+                        }else{
+                            $('body').append(a);
+                        }
+
+                    }
+                }
+            });
+        });
+    });
+</script>

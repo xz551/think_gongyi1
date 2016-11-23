@@ -1,0 +1,143 @@
+{__NOLAYOUT__}
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/ajaxpage.js"></script>
+<style type="text/css">
+.wraper_paging{
+	width: 100%;
+	margin-top:60px;
+	text-align: center;
+}
+.wraper_paging a{
+	display: inline-block;
+	width: 25px;
+	height:25px;
+	line-height: 25px;
+	margin-right:15px;
+	text-align: center;
+	color: #999;
+	font-size: 14px;
+}
+a.mouse_hover,a.selected{
+	color: #fff;
+	background: #2f9be7;
+}
+</style>
+	<div class="modal-header">
+        <button type="button" class="close btn-link" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel"><empty name="id">添加<else />修改</empty>推荐<empty name="type">求助<else />资源</empty></h3>
+    </div>
+	<div class="modal-body">
+		<div class="summary"><notempty name="num">第 {$start}-{$end} 条, 共 {$count} 条.</notempty></div>
+		<table class="table table-bordered table-hover table-condensed">
+		  <thead>
+		    <tr>
+		      <th>ID</th>
+		      <th>标题</th>
+		      <th>状态</th>
+		      <th>操作</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <td><input type="text" name="recommend_id" class="input-small recommend_id" data-url="/Admin/Concur/ajaxrecommend" <notempty name="{cid}">value="{$cid}"</notempty>></td>
+		      <td><input type="text" name="recommend_title" class="input-small recommend_title" <notempty name="{title}">value="{$title}"</notempty>></td>
+		      <td><select name="recommend_status" class="recommend_status">
+		      		<option value="0" >全部状态</option>
+		      	<volist name="recommend_status" id="vo">
+		      		<eq name="key" value="100"><option value="{$key}" >{$vo}</option></eq>
+		      		<eq name="key" value="888"><option value="{$key}" >{$vo}</option></eq>
+		      	</volist>
+		      	  </select>
+		      </td>
+		      <td></td>
+		    </tr>
+		    <notempty name="info">
+		    <volist name="info" id="v">
+			    <tr>
+			      <td>{$v['id']}</td>
+			     
+			      <td> <a href="__WEB_SITE__/T/Concurinfo/index/id/{$v['id']}" target="_blank">{$v['title']}</a></td>
+			      <td>{$recommend_status[$v['status']]}</td>
+			      <td class="text-info" data-id="{$v['id']}" data-type="{$v['type']}" data-concurid="{$id}"><a href="javascript:void(0)">添加</a></td>
+			    </tr>
+		    </volist>
+		    <else />
+		    	<tr><td colspan=4>没有找到数据.</td></tr>
+		    </notempty>
+		  </tbody>
+		</table>
+		<!-- 分页 -->
+		<div class="wraper_paging">{$page}</div>
+	</div>
+<script type="text/javascript">
+	var cid="{$cid}",title="{$title}",status="{$status}",type="{$type}",id="{$id}";
+	var url=$(".recommend_id").data('url');
+	$(function(){
+		$(".recommend_id").blur(function(){
+			if(cid !=$(this).val()){
+				cid =$(this).val();
+				$.ajax({
+					url:url,
+					data:{type:type,id:id,cid:cid,title:title,status:status},
+					success:function(d){
+						$("#getAjaxPage").html(d);
+						$(".wraper_paging a:contains(1):first").addClass('selected');
+					}
+				});
+			}
+		});
+		$(".recommend_title").blur(function(){
+			if(title !=$(this).val()){
+				title =$(this).val();
+				$.ajax({
+					url:url,
+					data:{type:type,id:id,cid:cid,title:title,status:status},
+					success:function(d){
+						$("#getAjaxPage").html(d);
+						$(".wraper_paging a:contains(1):first").addClass('selected');
+					}
+				});
+			}
+		});
+	
+		$(".recommend_status option").each(function(i){
+			if(status ==$(this).val()){
+				$(this).attr("selected","selected");
+			}
+		});
+		$(".recommend_status").change(function(){
+			
+			if(status !=$(this).val()){
+				status =$(this).val();
+				$.ajax({
+					url:url,
+					data:{type:type,id:id,cid:cid,title:title,status:status},
+					success:function(d){
+						$("#getAjaxPage").html(d);
+						$(".wraper_paging a:contains(1):first").addClass('selected');
+					}
+				});
+			}
+		});
+		$(".text-info").click(function(){
+			var id=$(this).data('id');
+			var type=$(this).data('type');
+			var concur_id=$(this).data('concurid');
+			$.ajax({
+				url:"/Admin/Concur/adddonate",
+				data:{id:id,type:type,concur_id:concur_id},
+				dataType:"json",
+				success:function(d){
+				 	if(d.status){
+						 location.reload(); 
+					}else{
+						if(d.concur_id==0){
+							alert("添加失败");
+						}else{
+							alert("修改失败");
+						}
+					}
+				}
+			});
+		});
+	});
+</script>

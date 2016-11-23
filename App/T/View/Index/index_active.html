@@ -1,0 +1,13 @@
+<ul class="volunteer_content">
+    <volist name='active' id='vo'>
+        <li <if condition="$i eq 4"> style="margin-right:0px" </if> >
+                                    <span class="Project_img">
+                                        <a href="{$vo['url']}"><img width='177' height='124' src="{$vo['image']}"/></a>
+                                    </span>
+            <span class="Vtitle_text"><a href="{$vo['url']}">{$vo['name']}</a></span>
+            <span class="count_num"><span class="s_bule">{$vo['usercount']}</span><br /> 总人数</span>
+            <span class="count_num"><span class="s_yellow">{$vo['allcount']}</span><br />参加人数</span>
+            <span class="canjia" id="CanJia"><a href="{$vo['url']}">参加</a></span>
+        </li>
+    </volist>
+</ul>

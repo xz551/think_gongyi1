@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>注册-选择用户类型{$title}</title>
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/css/base.css">
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/css/regist_che.css">
+	<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){$(".myhome_users_wraper").hover(function(){$(this).find('ul').show("200");},function(){$(this).find('ul').hide();});});
+	</script>
+</head>
+<body>
+	{~W('Layout/header')}
+	<div class="zqgy_regist">
+		<div class="zqgy_regcont reglt">
+			<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_psl1.png">
+			<span>个人用户</span>
+			<p><img src="{:STATIC_SERVER_URL}/usercenter/tp/images/reg_pslt.png"></p>
+			<a href="/Uc/Register/userRegister.html?returnurl={:I('returnurl')}">注册</a>
+		</div>
+		<div class="zqgy_line"></div>
+		<div class="zqgy_regcont regrt">
+			<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_ogn.png">
+			<span>组织用户</span>
+			<p><img src="{:STATIC_SERVER_URL}/usercenter/tp/images/reg_ognt.png"></p>
+			<a href="/Uc/Register/orgRegister.html?returnurl={:I('returnurl')}">注册</a>
+		</div>
+	</div>
+	{~W('Layout/footer')}
+</body>
+</html>

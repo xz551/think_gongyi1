@@ -1,0 +1,131 @@
+<css:add href="{:STATIC_SERVER_URL}/usercenter/group/css/page10.css" />
+<js:add src="{:STATIC_SERVER_URL}/public/js/jquery.validator.js" />
+<js:add src="__STATIC_URL__/yun/js/ajaxupload.js" />
+<js:w>
+        $(function(){
+        	$(".group_intrduc").focus(function(){
+				$(this).next('span').remove();
+			});
+			$(".prompt_text").click(function(){
+				$(this).remove();
+				$(".group_intrduc").focus();
+			});
+                
+                //在点击多选框的时候判断是否有选中其中一项或多项
+				$("input:checkbox").click(function(){
+                    
+					if($(this).attr("checked")){
+						$("#labelClass").hide();	
+					}else{
+						if($("input:checked").length==0){
+								$("#labelClass").show();
+						}
+					}
+                });               
+                
+                $("#form").validator({
+                    fields: {
+                        'name': '小组名称:required;checkName',
+                        'introduce':'小组简介:required;check',
+                        "image": {
+                            rule: "required",
+                            msg: "请上传图片",
+                        },                        
+                    },messages: {
+                        required: "请填写{0}",
+                    },rules: {
+                        check: [/^[\d\D]{10,50565}$/, '请输入10个以上字符'],
+                        checkName: [/^[\d\D]{2,30}$/, '请输入2到30个字符']
+                    },invalid:function(){
+                        if($("input:checked").length==0){
+                            $("#labelClass").show();
+                        }
+                    } ,valid: function(form) {
+                        if($("input:checked").length>0){
+                                form.submit();
+                        }else{
+                                $("#labelClass").show();
+
+                        }
+                    }
+                });    
+        });
+</js:w>
+<div class="wraper_main">
+        <eq name="isUp" value="1">
+            <div class="wpr_main_top">修改公益小组</div>
+        <else/>
+            <div class="wpr_main_top">创建公益小组</div>
+        </eq>
+        <div class="wpr_main_bottom">
+                <div class="wpr_mb_top">
+                        <p class="icon_prompt">1、如果想就某一类“公益”话题展开交流，可以创建一个小组，小伙伴们可以聚集到小组中进行沟通交流。</p>
+                        <p>2、请创建与“公益”相关的小组，否则管理员会残忍滴拒绝。</p>
+                        <p>3、请围绕“公益”主题，督促小组文明。中青公益保留强制解散小组的权利。</p>
+                </div>
+                <form action="{:U('T/Group/doAddGroup')}" id='form' method='post'>
+                        <dl>
+                                <dt><span>*</span>小组名称:&nbsp;&nbsp;<span class="msg-box n-right" for="name"></span></dt>
+                                <dd>
+                                    <input type="text" name="name" class="group_name" value="{$groupInfo.name}" <neq name="isUp" value="1">placeholder="言简意赅,让小伙伴们知道小组要讨论啥，2到30个字符"</neq>>
+                                </dd>
+                                
+                        </dl>
+                        <dl>
+                                <dt><span>*</span>小组简介:&nbsp;&nbsp;<span class="msg-box n-right" for="introduce"></span></dt>
+                                <dd>
+                                    <textarea name="introduce" class="group_intrduc" cols="30" rows="10">{$groupInfo.introduce}</textarea>
+									<neq name="isUp" value="1"><span class="prompt_text">请描述您创建小组的目的，至少10个字符</span></neq>                                </dd>
+                        </dl>
+                        <dl>
+                                <dt><span>*</span>小组标签:&nbsp;&nbsp;<span id="labelClass" style="color:red;display:none;">请选择标签</span></dt>
+                                <dd class="group_label">
+                                    <volist name="attList" id="vo">    
+                                        <p><input type="checkbox" name="label[]" value="{$vo.id}" <in name="vo.id" value="$groupInfo.label">checked</in> >{$vo.name}</p>
+                                    </volist>
+                                </dd>
+                        </dl>
+                        <dl>
+                                <dt><span>*</span>展示图片:&nbsp;&nbsp;<span class="msg-box" style="color:red;" for="image"></span></dt>
+                                <dd class="upload_photo" ><a id="upload-show-image" data-url="<?php echo JIA_SERVER_URL.U('Img/uploadImg/type/group');  ?>">上传图片</a>建议上传长宽比为1:1的图片。支持jpg、jpeg和png格式，大小不超过1M
+                                </dd>
+                                <dd class="show_up_photo">
+                                    <eq name="isUp" value="1">
+                                        <input type="hidden" name="id" value="{$gid}">
+                                        <img id="image-preview" src="{$groupInfo.imagesrc}">
+                                        <input type="hidden" name="image" value="{$groupInfo.image}"/>
+                                    <else/>
+                                        <img id="image-preview" src="{:STATIC_SERVER_URL}/usercenter/group/images/upload_photos.png">
+                                        <input type="hidden" name="image" value=""/>
+                                    </eq>
+                                </dd>
+                                
+                        </dl>
+                    
+                        <js:w>
+                                $(document).ready(function () {
+                                    var button = $('#upload-show-image'), interval;
+                                    new AjaxUpload(button, {
+                                        name: 'img_file',
+                                        action: '{:U("T/Img/uploadImg/type/group")}',
+                                        onSubmit: function(file, ext) {
+                                             if (!(ext && /^(jpg|JPG|png|PNG|jpeg|JPEG)$/.test(ext))) {
+                                                alert("您上传的图片格式不对，请重新选择！");
+                                                return false;
+                                            }
+                                        },
+                                        onComplete: function (file, response) {                    
+                                            var obj=eval("("+response+")");
+                                            if(obj.status===0){
+                                                alert(obj.info);
+                                            }
+                                            $('#image-preview').attr('src',obj.url);
+                                            $("input[name='image']").val(obj.imgName);
+                                        }
+                                    });
+                                });
+                            </js:w>
+                        <p class="create_btn"><button> <eq name="isUp" value="1">修改<else/>创建</eq></button></p>
+                </form>
+        </div>
+</div>

@@ -1,0 +1,74 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/zqgym/css/regist.css?0">
+<section class="zqgy_regist">
+    <form action="{:U('Reg/vcode')}" method="post" id="zqgy_regist1">
+        <h3>手机版仅支持个人用户注册</h3>
+        <div class="zqgy_emsg"></div>
+        <p>
+            <input data-reg="/^1\d{10}$/" maxlength="11" data-error="请输入正确手机号" required type="tel " id="telphone" name="telphone" placeholder="手机号">
+        </p>
+        <p class="ckcode">
+            <input data-reg="/^\d{4}$/" maxlength="4" data-error="请输入正确验证码" required type="text" name="ckcode" id="code" placeholder="请输入验证码">
+            <span>
+            <img src="{:U('Code/index')}" id="verify"></span></p>
+        <button id="subbtn" >获取短信验证</button>
+    </form>
+</section>
+<script type="text/javascript">
+    var emsg=$('.zqgy_emsg'),
+            sub=$('#subbtn'),
+            issub=false;
+    $(function(){
+        $('#verify').on('touchstart',function(){
+            $(this).hide().attr('src','/m/code/index?'+Math.random).show();
+        });
+        function v(p){
+            var back=true;
+            p=p||$('input');
+            p.each(function(){
+                var that=$(this);
+                var reg=that.data('reg');
+                if(typeof reg=='undefined'){
+                    return;
+                }
+                reg=eval(reg);
+                var val=that.val();
+                if(reg.test(val)==false){
+                    emsg.text(that.data('error')).show();
+                    back=false;
+                    return back;
+                }
+            });
+            return back;
+        }
+        $("#zqgy_regist1").submit(function(){
+            if(issub){
+                return;
+            }
+            sub.addClass('smting');
+            sub.prop('disabled',true);
+            issub=true;
+            emsg.hide();
+            var _v=v();
+            if(_v){
+                //验证码校验
+                $.ajax({
+                    url:'/m/code/verify',
+                    data:{'code':$('#code').val(),'phone':$('#telphone').val()},
+                    async:false,
+                    success:function(d ){
+                        var status= d.status;
+                        _v=status>0;
+                        if(status<0) {
+                            _v = false;
+                            emsg.text(d.msg).show();
+							 issub=false;
+							  sub.removeClass('smting');
+                			sub.prop('disabled',false);
+                        }
+                    }
+                });
+            }
+            return _v;
+        });
+    });
+</script>

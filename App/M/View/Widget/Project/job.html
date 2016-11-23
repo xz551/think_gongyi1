@@ -1,0 +1,36 @@
+<volist name="data" id="vo">
+    <dd class="hide_info">
+        <p class="ijob gw_name" data-job="{$vo['id']}">
+            <span>{$vo['name']}<i></i></span>
+            <if condition="$vo['isjoin'] eq 1">
+                <span id="ymb{$vo['id']}" class="ybm">已报名</span>
+                <elseif condition="!$user_join and  $is_show_bm and $vo['status'] neq -1 and $info['status'] eq 100"/>
+                <span id="ymb{$vo['id']}" class="bm">报名</span>
+                <elseif condition="$vo['status'] eq -1 or $info['status'] neq 100"/>
+                <span class="smting">已结束</span>
+                <else/>
+            </if>
+        </p>
+        <dl>
+            <dt>岗位描述：</dt>
+            <dd><pre>{$vo['description']}</pre></dd>
+            <dt>应聘条件：</dt>
+            <dd><pre>{$vo['need_condition']}</pre></dd>
+        </dl>
+        <div class="active_baomin" data-job="{$vo['id']}">
+            <if condition="$vo['isjoin'] eq 1">
+                <div class="bm_btn cancel">取消报名</div>
+                <elseif condition="!$user_join and  $is_show_bm and $vo['status'] neq -1 and $info['status'] eq 100"/>
+                <div class="bm_btn submit">我要报名</div>
+                <elseif condition="$vo['status'] eq -1 or $info['status'] neq 100"/>
+                <div class="bm_btn havebm null">已结束</div>
+                <else/>
+            </if>
+
+            <div>
+                <i class="count{$vo['id']}">{$vo['count']}</i>
+                <span>已报名人数</span>
+            </div>
+        </div>
+    </dd>
+</volist>

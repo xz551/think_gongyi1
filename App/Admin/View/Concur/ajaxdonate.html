@@ -1,0 +1,72 @@
+{__NOLAYOUT__}
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/ajaxpage.js"></script>
+<style type="text/css">
+.wraper_paging{
+	width: 100%;
+	margin-top:60px;
+	text-align: center;
+}
+.wraper_paging a{
+	display: inline-block;
+	width: 25px;
+	height:25px;
+	line-height: 25px;
+	margin-right:15px;
+	text-align: center;
+	color: #999;
+	font-size: 14px;
+}
+a.mouse_hover,a.selected{
+	color: #fff;
+	background: #2f9be7;
+}
+</style>
+<div class="summary"><notempty name="num">第 {$start}-{$end} 条, 共 {$count} 条.</notempty></div>
+<table class="table table-bordered table-hover table-condensed">
+	  <thead>
+	    <tr>
+	      <th>流水号</th>
+	      <th>用户ID</th>
+	      <th>{$info['is_donate']}人名称</th>
+	      <th>提出{$info['is_donate']}时间</th>
+	      <th>发起人处理时间</th>
+	      <empty name="info['type']"><th>{$info['is_donate']}类型</th></empty>
+	      <th>{$info['is_donate']}内容</th>
+	      <th>邮寄信息</th>
+	      <th>{$info['is_donate']}状态</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<volist name="donName" id="vo">
+		    <tr>
+		      <td></td>	
+		      <td>{$vo['apply_uid']}</td>
+		      <td class="text-info"> <a href="__WEB_SITE__{$vo['apply_uid']|userUrl=###}" target="_blank">{$vo['nickname']}</a></td>
+		      <td>{$vo['time']}</td>
+		      <td>{$vo['time1']}</td>	
+		      <empty name="info['type']"><td>{$vo['type']}</td></empty>
+		      <td><notempty name="vo['service']">{$vo['service']}<else />{$vo['supplies']}</notempty></td>
+		      <td><empty name="vo['service']"><p>收件人：{$vo['phone']}</p><p>联系电话：{$vo['name']}</p><p class="wuliu" data-id="{$id}" data-uid="{$vo['apply_uid']}" data-url="/Admin/Concur/ajaxwuliu"><a href="#wuliu" data-toggle="modal" role="button">物流信息</a></p><else />无</empty></td>
+		      <td><if condition="$vo['status'] eq 1">已接受<elseif condition="$vo['status'] eq 0" />未处理<else />已拒绝</if></td>	
+		    </tr>
+	    </volist>
+	  </tbody>
+</table>
+<!-- 分页 -->
+<div class="wraper_paging">{$page}</div>
+<script type="text/javascript">
+	$(function(){
+		$(".wuliu").click(function(){
+			var id=$(this).data("id");
+			var uid=$(this).data("uid");
+			var url=$(this).data("url");
+			$.ajax({
+				url:url,
+				data:{id:id,uid:uid},
+				success:function(d){
+					$("#wuliu").html(d);
+				}
+			});
+		})
+	});
+</script>

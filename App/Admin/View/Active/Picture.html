@@ -1,0 +1,64 @@
+<div class="alert alert-success">
+    第{$firstRow+1}-{$lastRow},共{$count}条
+</div>
+<div class="alert alert-info">
+    当前活动名称：<span class="label label-success">{$active['name']}</span>{
+    当前活动发起者：<span class="label label-inverse">{$active['user']['uid']}({$active['user']['nickname']})</span>
+</div>
+<if condition="count($data) gt 0">
+    <table class="table table-bordered table-hover table-condensed">
+        <thead>
+        <tr>
+            <th width="50px">序号</th>
+            <th width="95px">图片</th>
+            <th width="180px">图片地址</th>
+            <th>图片描述</th>
+            <th width="150px">图片上传者</th>
+            <th width="100px">上传时间</th>
+            <th width="50px">状态</th>
+            <th width="50px">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <volist name="data" id="vo">
+            <tr>
+                <td>{$vo['did']}</td>
+                <td><img src="{$vo['img_url']}"/></td>
+                <td>{$vo['image']}</td>
+                <td>{$vo['content']}</td>
+                <td>{$vo['user_id']}({$vo['user']['nickname']})</td>
+                <td>{$vo['create_date']|date='Y-m-d H:i:s',###}</td>
+                <td>{$vo['status']==1?'正常':'已删除'}</td>
+                <td><a href="javascript:void(0)" class="del" data-aid="{:I('aid')}" data-did="{$vo['did']}">删除</a></td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+{$pageHtml}
+    <else/>
+    没有图片
+</if>
+<script type="text/javascript">
+$('.del').bind('click',function(){
+    if(!window.confirm('确定要删除？')){
+        return false;
+    }
+    var that=$(this);
+    var aid=that.data('aid');
+    var did=that.data('did');
+
+    $.ajax({
+        url:'/admin/active/delpic',
+        data:{aid:aid,did:did},
+        dataType:'json',
+        success:function(d){
+            var status= d.status;
+            alert(d.msg);
+            if(status==1){
+                location.reload();
+            }
+
+        }
+    });
+});
+</script>

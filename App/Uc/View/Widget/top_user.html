@@ -1,0 +1,161 @@
+<link rel="stylesheet" href="{:STATIC_SERVER_URL}/usercenter/tp/css/style.css"/>
+<link rel="stylesheet" href="{:STATIC_SERVER_URL}/usercenter/tp/css/help_center.css">
+
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/css/complain2.css?123">
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/js/ajaxupload.3.5.js">
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/js/jquery-1.6.2.js">
+<script type="text/javascript">
+    $(function () {
+        $(".btn_helpOrziyuan").popWindow({
+            width: "880",
+            height: "425",
+            title: "请选择",
+            content: $(".ptHtml1").html(),
+            id: "box1",
+            callback: function (a, box) {
+            }
+        });
+        $("#box1").wrap("<form class='foot'></form>");
+    });
+
+</script>
+
+<div class="myhome_center_top">
+    <img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_psl.png" class="myhome_volunteer">
+    <div class="myhome_users_photo1">
+        <div class="infoimg">
+            <img src="{$userInfo.photo}" class="myhome_users_photo"  onerror="this.src='http://static.zzg.link/public/images/user_default.png'" >
+            <div class="popmsg">
+                <neq name="isMine" value="1">
+                    <span class="pemail_btn" data-toid="{$uid}" data-uname="{$userInfo.name}">私信</span>
+                    {~W('Layout/complain',array("type"=>2,"id"=>$uid,"uname"=>$userInfo['name']))}
+
+                </neq>
+            </div>
+        </div>
+    </div>
+    <div class="myhome_users_details">
+        <p class="myhome_users_name"><strong>{$userInfo.name}</strong>
+            <eq name="isVip" value="1"><img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_v.png" title="认证个人">
+            </eq>
+            &nbsp;{$userInfo.sex}&nbsp;
+            <eq name="isMine" value="0"><a href="javascript:void(0)" class="private_letter pemail_btn"
+                                           data-toid="{$uid}" title="私信"></a></eq>
+        </p>
+        <if condition="$userInfo.area neq '&nbsp;&nbsp;'">
+            <p class="myhome_users_address">{$userInfo.area}</p>
+        </if>
+        <p class="myhome_users_timelen">志愿服务时长：<a href="{:SERVER_VISIT_URL}/Uc/Resumes/index/uid/{$uid}.html">{$serverTime}</a>&nbsp;小时
+        </p>
+        <p class="myhome_users_level">
+            <label>综合服务评价：</label>
+            <span><i class="users_level"></i></span>
+            <i>{$userLevel}</i>
+        </p>
+        <script type="text/javascript">
+            $(function () {
+                setUsersLevel({$userLevel});
+            });
+            /*
+             设置评价星级
+             */
+            function setUsersLevel(j) {
+                $(".users_level").css("width", j * 16 + "px");
+            }
+        </script>
+
+
+        <div class="myhome_attention_ly">
+            <label>关注领域：</label>
+            <p class="mh_attent_lylist">
+                <volist name="interest" id='vo'>
+                    <span>{$vo}</span>
+                </volist>
+            </p>
+        </div>
+        <div class="myhome_attention_jn">
+            <label>个人技能：</label>
+            <p class="mh_attent_jnlist">
+                <volist name="userSkill" id='vo'>
+                    <span>{$vo}</span>
+                </volist>
+            </p>
+        </div>
+        <p class="network_icon">
+            <volist name="aouth" id='vo'>
+                <eq name='vo.type' value='1'><a href="{$vo.homepage}" target="_black"><img
+                        src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_tencent.png"></a></eq>
+                <eq name='vo.type' value='2'><a href="{$vo.homepage}" target="_black"><img
+                        src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_sana.png"></a></eq>
+                <eq name='vo.type' value='3'><a href="{$vo.homepage}" target="_black"><img
+                        src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_renren.png"></a></eq>
+            </volist>
+        </p>
+    </div>
+</div>
+<eq name="isMine" value="1">
+    <div class="myhome_center_options">
+        <input id="isVip" type="hidden" value="{$isVip}">
+        <eq name="isVip" value="0">
+            <a href="__UCENTER_URL__/volunteer/apply/step/1.html"><img
+                    src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_ren.png">申请成为认证用户</a>
+        </eq>
+        <a href="{:U('Evaluate/index',array('uid'=>$uid))}"><img
+                src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_ping.png">项目评价<span>(<span id="pjs">0</span>)</span></a>
+        <a href="{:YI_JUAN}/active/create.html"><img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_yi.png">发起公益活动</a>
+        <a href="javascript:void(0)" class="btn_helpOrziyuan"><img
+                src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_zhu.png">发起求助/资源</a>
+        <input id="userID" type="hidden" value="{$uid}">
+
+    </div>
+</eq>
+<!-- 弹出层选择求助还是资源 -->
+<div class="promptHtml ptHtml1" style="display:none;">
+    <div class="promptHtmlText">
+        <div class="choice_options">
+            <a href="{:U('/T/Concur/concurOne')}" class="co_top">
+                <img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_help.png">
+                <span>我要求助</span>
+            </a>
+            <p class="co_tips">
+                有困难，快来发布求助项目，互相帮助渡难关！
+                支持：物资求助、款项求助、服务求助
+            </p>
+        </div>
+        <div class="choice_options">
+            <a href="{:U('/T/Concur/concurOne/type/1')}" class="co_top">
+                <img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_ziyuan.png">
+                <span>我有资源</span>
+            </a>
+            <p class="co_tips">
+                有闲置物资或时间想要帮助别人，快来广而告之！
+                支持：物资资源、服务资源
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    var obj = $(".myhome_center_options a");
+    var anum = obj.length;
+    if (anum == 3) {
+        obj.width(1190 / 3);
+    } else if (anum == 4) {
+        obj.width(1190 / 4);
+    } else if (anum == 5) {
+        obj.width(1190 / 5);
+    }
+    var isVip = $("#isVip").val();
+    if (isVip) {
+        var uid = $('#userID').val();
+        $.ajax({
+            type: "POST",
+            url: "/Uc/Evaluate/getEvalNum",
+            data: "uid=" + uid,
+            success: function (r) {
+                $('#pjs').html(r);
+            }
+        });
+    }
+
+</script>

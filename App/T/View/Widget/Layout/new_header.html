@@ -1,0 +1,120 @@
+<script type='text/javascript'>
+    $(function(){
+        //nav悬浮效果
+        $(".gy_nwc_lt>li").not("li.cur").hover(function(){$(this).addClass("cur");},function(){$(this).removeClass("cur");});
+    })
+
+</script>
+<!-- TopBar[ -->
+<div class="gy_top_wrap">
+    <div class="gy_tw_bar">
+        <eq name="isLogin" value="1">
+            <!-- 登录后的状态[ -->
+            <div class="gy_bar_status">
+                <ul>
+                    <li><a href="{$privateLetter}">私信<gt name="messageboxNum" value="0"><i>{$messageboxNum}</i></gt></a></li>
+                    <li><a href="{$notice}">通知<gt name="noticeNum" value="0"><i>{$noticeNum}</i></gt></a></li>
+                    <li class="gy_bsts_user">
+                        <a href="{:userUrl($user['uid'])}">{$user.nickname}</a>
+                        <in name="userType" value="10,11">
+                            <div class="gy_user_menus usr clearfix">
+                                <a href="{:WEB_SITE}/uc/{$user['uid']}">我的主页</a>
+                                <a href="{:UCENTER}/accountinfo/base.html">我的资料</a>
+                                <a href="{:WEB_SITE}/Uc/Project/index/uid/{$user['uid']}.html">我的志愿项目</a>
+                                <a href="{:WEB_SITE}/Uc/Active/index/uid/{$user['uid']}.html">我的公益活动</a>
+                                <a href="{:WEB_SITE}/T/Group/usergroup/id/{$user['uid']}.html">我的公益小组</a>
+                                <a href="{$logout}">退出</a>
+                            </div>
+                        </in>
+                        <in name="userType" value="20,21">
+                            <div class="gy_user_menus org clearfix">
+                                <a href="{:WEB_SITE}/uc/{$user['uid']}">我的主页</a>
+                                <a href="{:UCENTER}/accountinfo/base.html">我的资料</a>
+                                <a href="{:JIA_SERVER_URL}/Index/index.html">我的志愿+</a>
+                                <a href="{:WEB_SITE}/T/Group/usergroup/id/{$user['uid']}.html">我的公益小组</a>
+                                <a href="{$logout}">退出</a>
+                            </div>
+                        </in>
+                    </li>
+                </ul>
+            </div><!-- ]登录后的状态 -->
+            <else/>
+            <!-- 未登录的状态[ -->
+            <div class="gy_bar_status">
+                <a href="{$login}">登录</a>
+                <a href="{$register}">注册</a>
+            </div><!-- 未登录的状态[ -->
+        </eq>
+    </div>
+</div><!-- TopBar[ -->
+
+<!-- TopNav[ -->
+<div class="gy_nav_wrap">
+    <div class="gy_nw_cont">
+		<a href="{:WEB_SITE}" id="gy_logo"></a>
+        <ul class="gy_nwc_lt">
+            <li><a href="/">首页</a></li>
+            <li data-cur="/project/all,/project/view"><a href="{:SERVER_VISIT_URL}/project/all.html">招募</a></li>
+            <li data-cur="/active/"><a href="{:SERVER_VISIT_URL}/active/all.html">活动</a></li>
+            <li data-cur="/group/selgroup,/group/usergroup,/subject/,/group/findgroup"><a href="{:SERVER_VISIT_URL}/t/group/usergroup" title="公益小组">小组</a></li>
+            <li data-cur="/donate/,/concurinfo/" class="gy_nav_hz">
+                <a href="#">透明捐助</a>
+                <div class="gy_hz_menus clearfix">
+                    <a href="{:SERVER_VISIT_URL}/T/Donate/index.html" title="求助中心">求助中心</a>
+                    <a href="{:SERVER_VISIT_URL}/T/Donate/index/tag/1.html" title="爱心资源">爱心资源</a>
+                </div>
+            </li>
+            <li data-cur="/authuser/"><a href="{:SERVER_VISIT_URL}/authuser/all.html" title="公益伙伴">公益伙伴</a></li>
+            <li data-cur="/project/alleventlist"><a href="{:SERVER_VISIT_URL}/project/alleventlist.html">征集</a></li>
+            <eq name="isLogin" value="1">
+            <!-- 登录后的状态[ -->
+                <li><a href="{:SERVER_VISIT_URL}/uc/$user['uid']">志愿者互联社区</a></li>
+            <!-- ]登录后的状态 -->
+            <else/>
+            <!-- 未登录的状态[ -->
+                <li><a href="{$login}">志愿者互联社区</a></li>
+            <!-- 未登录的状态[ -->
+        </eq>
+        </ul>
+        <div class="gy_nwc_seach">
+            <input id="search" style="margin-left:10px;" type="text" name="gy_seach" placeholder="看看中青公益有什么" onkeydown="tab1()">
+            <span id="click1" class="gy_seach_btn" onclick="search()"></span>
+        </div>
+
+    </div>
+</div><!-- ]TopNav -->
+<script>
+function tab1(){
+    if(event.keyCode ==13){
+         document.getElementById("click1").click();
+    }
+}
+function search(){
+    var key=document.getElementById('search').value;
+    location.href="{:SERVER_VISIT_URL}/T/search/search/key/"+key;
+}
+var pathname=location.pathname.toLowerCase();
+var curLi="";
+if(pathname!="/" && pathname!=""){
+    $(".gy_nwc_lt li ").each(function () {
+        var that=$(this);
+        var isEach=true;
+        var cur=that.data("cur");
+        if(cur){
+            cur=cur.split(",");
+            for(var i=0;i<cur.length;i++){
+                if(pathname.indexOf(cur[i])!=-1){
+                    isEach=false;
+                    curLi=that;
+                    break;
+                }
+            }
+        }
+        return isEach;
+    });
+}
+if(curLi==""){
+    curLi=$(".gy_nwc_lt li").first();
+}
+curLi.addClass("cur");
+</script>

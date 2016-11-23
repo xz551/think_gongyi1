@@ -1,0 +1,27 @@
+{__NOLAYOUT__}
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/ajaxpage.js"></script>  
+<table id="tab">
+	<thead>
+		<th width="35%">兑换内容</th>
+		<th width="30%">消耗志愿服务时间(小时)</th>
+		<th width="15%">兑换来源</th>
+		<th width="20%">兑换时间</th>
+	</thead>
+	<tbody>
+	<foreach name="changeinfo" item="val">
+		<tr>
+			<td>{$val.description}</td>
+			<td>{$val.credits}</td>
+			<td>兑吧</td>
+			<td>{$val.time}</td>
+		</tr>
+	</foreach>
+	</tbody>
+</table>
+<div class="wraper_paging">{$page}</div>
+<script type="text/javascript">
+	$(function(){
+			/*表格的隔行变色*/
+		$("#tab tbody tr:even").addClass("odd");
+	});
+</script>

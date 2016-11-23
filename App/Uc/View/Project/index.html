@@ -1,0 +1,16 @@
+<css:add href="{:STATIC_SERVER_URL}/usercenter/tp/css/psl_about_pjt.css" />
+<div id='getAjaxPage' data-url="{:U('ajaxGetProject')}" data-uid="{$uid}"><img src="__STATIC_URL__/public/images/loading.gif"/></div>
+<js:w>
+ $(function(){ 
+    var url = $("#getAjaxPage").attr('data-url');  
+    var uid =$("#getAjaxPage").attr('data-uid');
+    $.ajax({
+        url: url,
+        data:{uid:uid},
+        success: function(msg){
+            $("#getAjaxPage").html(msg);
+            $(".wraper_paging a:contains(1):first").addClass('selected');
+        }
+    });
+}); 
+</js:w>

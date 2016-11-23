@@ -1,0 +1,108 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/zqgym/css/regist.css?0">
+<section class="zqgy_regist">
+    <form action="javascript:void(0)" method="post" id="zqgy_regist2">
+        <h3>已发送短信验证码至<i>{$phone1}</i><i>{$phone2}</i><i>{$phone3}</i></h3>
+        <div class="zqgy_emsg"></div>
+        <p class="zqgy_yzcode">
+            <input required type="text" id="ckcode" name="ckcode" placeholder="请输入验证码">
+            <span class="sendagin">重新获取</span>
+        </p>
+        <input type="hidden" id="smscode" value="{$smscode}"/>
+        <input type="hidden" id="phone" value="{:I('telphone')}"/>
+        <button id="btnsub">下一步</button>
+    </form>
+</section>
+<script type="text/javascript">
+    var sendagin=$('.sendagin'),
+            btnsub=$('#btnsub');
+    (function(){
+        sendsms();
+        sendagin.addClass('smting');
+        $('span.sendagin').on('click',function(){
+            var that=$(this);
+            if(that.hasClass('smting')){
+                return;
+            }
+            that.addClass('smting');
+            sendsms();
+        });
+    })();
+    
+    function djs(){
+        t--;
+        if(t<=0){
+            sendagin.removeClass('smting').text('重新获取');
+        }else{
+            sendagin.text(t+'重新获取');
+            setTimeout("djs()",1000);
+        }
+    }
+    var is_send=false;
+    function sendsms(){
+        if(is_send){
+            return;
+        }
+        is_send=true;
+        sendagin.text('正在发送');
+        sendagin.prop('disabled',true);
+        $.ajax({
+            url:'/m/sms/sendsms',
+            data:{'phone':$('#phone').val(),'smscode':$('#smscode').val()},
+            dataType:'json',
+            success:function(d){
+                is_send=false;
+                sendagin.prop('disabled',false);
+                var s= parseInt(d.status);
+                if(s<0){
+                    $('.zqgy_emsg').text(d.msg).show();
+                    sendagin.removeClass('smting');
+                    sendagin.text('重新获取');
+                }else{
+				    window.t=60;
+                    djs();
+                }
+            }
+        });
+    }
+    /**
+     * 验证
+     */
+    var is_sub=false;
+    $('#zqgy_regist2').submit(function(){
+        if(is_sub){
+            return;
+        }
+        var ckcode= $.trim($('#ckcode').val());
+        if(ckcode==""){
+            $('.zqgy_emsg').text('输入短信验证码').show();
+        }
+        is_sub=true;
+        btnsub.addClass('smting');
+        btnsub.prop('disabled',true);
+        verify_code();
+        return false;
+    });
+    function verify_code(){
+        btnsub.text('验证中…');
+        $.ajax({
+            url:'/m/sms/verify',
+            data:{'phone':$('#phone').val(),'smscode':$('#smscode').val(),'code':$('#ckcode').val()},
+            dataType:'json',
+            type:'post',
+            async:false,
+            success:function(d){
+                var status=parseInt(d.status);
+                if(status<0){
+                    is_sub=false;
+                    $('.zqgy_emsg').text(d.msg).show();
+                    btnsub.removeClass('smting');
+                    btnsub.prop('disabled',false);
+                    btnsub.text('下一步');
+                }else{
+                    //验证通过
+                    window.location.href='{:U("Reg/setpwd")}';
+                }
+            }
+        });
+    }
+</script>

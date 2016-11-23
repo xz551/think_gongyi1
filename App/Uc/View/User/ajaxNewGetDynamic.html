@@ -1,0 +1,170 @@
+{__NOLAYOUT__}
+<style type="text/css">
+/*
+	资讯滚动
+*/
+.gy_infos{position: absolute;left: 0px;bottom: 0px;width: 100%;height: 40px;line-height: 42px;border-top:1px solid #e0e0e0;}
+.gy_info_icon{width: 50px;height: 40px;float: left;background:url("http://fs.719kj.com/infos.png") no-repeat center center;}
+.gy_info_list{width: 930px;height: 100%;float: left;overflow: hidden;}
+.gy_infos .gy_info_list ul:after{display: table;content: "";clear: both;}
+.gy_infos .gy_info_list ul li{float: left;height:42px;line-height:42px;padding: 0px 5px;}
+.gy_infos .gy_info_list ul li a{color: #2f9be7;}
+    
+    
+</style>    
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/ajaxpage.js"></script>  
+<div class="wraper_dynamic">
+    <h3 class="project_title">动态<i></i></h3>
+    <volist name="userDynamic" id="vo">
+        <eq name="vo.ctype" value="0">
+        <!-- 一条动态[ -->
+        <div class="dynamic_list">
+            <img src="{$userPhoto}" class="user_photos">
+            <div class="dynamic_list_right">
+                <p class="user_name_info">
+                    <a href="{:userUrl($vo['uid'])}">{$nickname}</a>
+                    <eq name="isorg" value="1">
+                        <img src="{:STATIC_SERVER_URL}/usercenter/org/images/icon_v.png" title="认证组织">
+                    </eq>
+                    <eq name="isorg" value="2">
+                        <img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_v.png" title="认证个人">
+                    </eq>
+                {$vo.typename}
+                </p>
+                <div class="dynamic_activit_details">
+                    <if condition="$vo.image and $vo.image neq 'javascript::' ">
+                        <a href="{$vo.url}"><img src="{$vo.image}" class="activ_left_photo"></a>
+                    </if>
+                    <div class="this_project_details">
+                        <span class="blue_strip"></span>
+                        <a href="{$vo.url }">{$vo.title}</a>
+                        <p>{$vo.time|date="Y-m-d H:i:s",###}</p>
+                    </div>
+                </div>
+            </div>
+        </div><!-- ]一条动态 -->
+        </eq>
+        <eq name="vo.ctype" value="1">
+        <!-- 一条动态[ -->
+        <div class="dynamic_list">
+            <img src="{$userPhoto}" class="user_photos">
+            <div class="dynamic_list_right">
+                <p class="user_name_info">
+                    <a href="{:userUrl($vo['uid'])}">{$nickname}</a>
+                    <eq name="isorg" value="1">
+                        <img src="{:STATIC_SERVER_URL}/usercenter/org/images/icon_v.png" title="认证组织">
+                    </eq>
+                    <eq name="isorg" value="2">
+                        <img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_v.png" title="认证个人">
+                    </eq>
+                {$vo.typename}
+                </p>
+                <div class="dynamic_activit_details">
+                    <a href="{$vo.url}"><img src="{$vo.image}" class="activ_left_photo"></a>
+                    <div class="this_project_details">
+                        <span class="blue_strip"></span>
+                        <a href="{$vo.url }">{$vo.title}</a>
+                        <p class="content_text">
+                            {$vo.content}
+                        </p>
+                        <p class="content_time">{$vo.time|date="Y-m-d H:i:s",###}</p>
+                    </div>
+                </div>
+            </div>
+        </div><!-- ]一条动态 -->
+        </eq>
+        <eq name="vo.ctype" value="2">
+        <!-- 一条动态[ -->
+        <div class="dynamic_list">
+            <img src="{$userPhoto}" class="user_photos">
+            <div class="dynamic_list_right">
+                <p class="user_name_info">
+                    <a href="{:userUrl($vo['uid'])}">{$nickname}</a>
+                    <eq name="isorg" value="1">
+                        <img src="{:STATIC_SERVER_URL}/usercenter/org/images/icon_v.png" title="认证组织">
+                    </eq>
+                    <eq name="isorg" value="2">
+                        <img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_v.png" title="认证个人">
+                    </eq>
+                {$vo.typename}
+                </p>
+                <div class="dynamic_activit_details">
+                    <a href="{$vo.url}"><img src="{$vo.image}" class="activ_left_photo"></a>
+                    <div class="this_project_details">
+                        <span class="blue_strip"></span>
+                        <a href="{$vo.url }">{$vo.title}</a>
+                        <p class="allphoto_list">
+                        <volist name="vo.content" id="v">
+                            <a href="{:userUrl($key)}"><img src="{$v}"></a>
+                        </volist>
+                        </p>
+                        <p class="content_time">{$vo.time|date="Y-m-d H:i:s",###}</p>
+                    </div>
+                </div>
+            </div>
+        </div><!-- ]一条动态 -->
+        </eq>
+        <eq name="vo.ctype" value="4">
+        <!-- 一条动态[ -->
+        <div class="dynamic_list">
+            <img src="images/qq8.jpg" class="user_photos">
+            <div class="dynamic_list_right">
+                <p class="user_name_info">
+                    <a href="{:userUrl($vo['uid'])}">{$nickname}</a>
+                    <eq name="isorg" value="1">
+                        <img src="{:STATIC_SERVER_URL}/usercenter/org/images/icon_v.png" title="认证组织">
+                    </eq>
+                    <eq name="isorg" value="2">
+                        <img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_v.png" title="认证个人">
+                    </eq>
+                {$vo.typename}
+                </p>
+                <div class="dynamic_activit_details">
+                     <a href="{$vo.url}"><img src="{$vo.image}" class="activ_left_photo"></a>
+                    <div class="this_project_details">
+                        <span class="blue_strip"></span>
+                        <a href="{$vo.url }">{$vo.title}</a>
+                        <p class="content_text">
+                            {$vo.contnet}
+                        </p>
+                        <p class="content_time">{$vo.time|date="Y-m-d H:i:s",###}</p>
+                    </div>
+                </div>
+            </div>
+        </div><!-- ]一条动态 -->
+        </eq>
+    </volist>
+</div><!-- ]动态 -->
+<div class="wraper_paging">{$page}</div>
+<div class="gy_infos">
+    <div class="gy_info_icon"></div>
+    <div class="gy_info_list">
+        <ul>
+            <li><a href="http://www.gy.com/news/3548.html" target="_blank">2016年春运志愿服务“暖冬行动”全面启动&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a href="http://www.gy.com/news/3547.html" target="_blank">春运首日：三省接力为摩托大军温暖返乡路&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+            <li><a href="http://www.gy.com/news/3545.html" target="_blank">资助型公益基金成长的“烦恼”&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			<li><a href="http://www.gy.com/news/3544.html" target="_blank">评论：像姚晨一样做公益才是刷存在感的正确方式&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			
+        </ul>
+    </div>
+</div>
+<script>
+    //滚动资讯
+    var a = $(".gy_infos"),
+            b = a.find("ul"),
+            c = a.find("li"),
+            d = c.outerWidth(),
+            e = c.length;
+    b.css("width", e * d);
+    var infos = function () {
+        b.animate({marginLeft: -b.find("li:first").outerWidth()}, 1000, function () {
+            b.css("margin-left", "0px").find("li:first").appendTo(b);
+        });
+
+    }
+    setInterval(function () {
+        infos();
+    }, 5000);
+
+
+</script>    

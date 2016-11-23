@@ -1,0 +1,47 @@
+<?php if (!defined('THINK_PATH')) exit();?><link rel="stylesheet" type="text/css" href="<?php echo STATIC_SERVER_URL;?>/usercenter/group/css/login.css" />
+<script type="text/javascript" src="<?php echo STATIC_SERVER_URL;?>/usercenter/group/js/login_box.js"></script>
+<div id="mnlogin_wraper" style="display:none;">
+        <div class="mnlogin_top"><img src="<?php echo STATIC_SERVER_URL;?>/usercenter/group/images/login_closebtn.png"></div>
+        <div class="mnlogin_center">
+                <form action="<?php echo ($login); ?>" method="post" id="form1">
+                        <p><input type="text" name="LoginForm[username]" class="username" placeholder="账号"></p>
+                        <span class="error_msg">用户名不能为空！</span>
+                        <p><input type="password" name="LoginForm[password]" class="userpwd" placeholder="密码"></p>
+                        <span class="error_msg checkpwd">密码不能为空！</span>
+                        <input type="hidden" name="LoginForm[rememberMe]"  value="1">
+                        <p class="choice_cont"><span><i class="chkbox" data-id="1" data-img1="<?php echo STATIC_SERVER_URL;?>/usercenter/group/images/chk_boxsel_bg.png" data-img2="<?php echo STATIC_SERVER_URL;?>/usercenter/group/images/chk_box_bg.png" ></i>记住我</span><a href="<?php echo UCENTER;?>/user/findpassword.html">忘记密码？</a></p>
+                        <button class="loginBtn" type="submit">登&nbsp;录</button>
+                </form>
+                <div class="mnlogin_other_account">
+                        <div class="wpr_oa_top"><i></i><span>社交账号登录</span></div>
+                        <div class="wpr_oa_bottom">
+                                <a href="<?php echo UCENTER;?>/oauth/auth/provider/weibo.html"><img src="<?php echo STATIC_SERVER_URL;?>/usercenter/group/images/icon_sina1.png" title="用新浪微博账号登陆"></a>
+                                <a href="<?php echo UCENTER;?>/oauth/auth/provider/qq.html" class="between_mar"><img src="<?php echo STATIC_SERVER_URL;?>/usercenter/group/images/icon_tencent1.png" title="用腾讯微博账号登陆"></a>
+                                <a href="<?php echo UCENTER;?>/oauth/auth/provider/renren.html"><img src="<?php echo STATIC_SERVER_URL;?>/usercenter/group/images/icon_renren1.png" title="用人人账号登录"></a>
+                        </div>
+                </div>
+        </div>
+        <div class="mnlogin_bottom">还没有中青公益账号？<a href="<?php echo UCENTER;?>/user/register.html">马上注册</a></div>
+</div><!-- ]登录窗 -->
+<script>
+
+ $(function(){
+   $(".loginBtn").click(function(){     
+       var name = $(".username").val();
+       var pwd =  $(".userpwd").val();
+        $.ajax({
+           type: "POST",
+            url: "<?php echo U('t/user/checkuser');?>",
+            data: "name="+name+"&pwd="+pwd,
+           success: function(msg){
+           		if(msg > 0){
+					$("#form1").submit();
+				}else{
+					$(".checkpwd").text("用户名或密码错误").css('visibility','visible');
+				}				
+            }
+       });
+        return false;   
+   });
+});
+</script>

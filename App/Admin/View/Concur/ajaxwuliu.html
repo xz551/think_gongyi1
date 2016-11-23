@@ -1,0 +1,14 @@
+{__NOLAYOUT__}
+<div class="modal-header">
+        <button type="button" class="close btn-link" data-dismiss="modal" aria-hidden="true">×</button>
+</div>
+<div class="modal-body">
+	<notempty name="info['content']">
+		<ul class="wl_info_list">
+			<li>{$info['expTextName']} 运单编号：<span class="sp_wlbh">{$info['logistics_number']}</span></li>
+			{$info['logistics']->data}
+		</ul>
+	<else />
+		暂无物流信息	
+	</notempty>
+</div>

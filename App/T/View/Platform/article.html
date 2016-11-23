@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>中青公益</title>
+    <style>
+        .listc{
+            padding-top: 6px;
+            margin-left: 3px;
+        }
+        ul{
+            list-style-type: none;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .listc li {
+            height: 28px;
+            line-height: 28px;
+            font-size: 12px;
+            overflow: hidden;
+        }
+        li {
+            list-style-type: none;
+        }
+        .listc li a {
+            color: #11264f;
+            width: 250px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+    display: inline-block;
+
+        }
+       a:visited {
+    text-decoration: none;
+    }
+   a:link {
+    text-decoration: none;
+    }
+    a:visited {
+    text-decoration: none;
+    }
+	a:hover {text-decoration: underline;}
+    </style>
+</head>
+<body>
+    <ul class="listc">
+        <volist name="baodao" id="vo">
+            <li>
+                <a href="http://www.gy.com/news/{$vo['id']}.html" target="_blank">
+                    {$vo['title']}
+                </a>
+            </li>
+        </volist>
+
+    </ul>
+	<script>
+	var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?32d80154d45fbea6c3447e50edbac692";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+	
+	</script>
+</body>
+</html>

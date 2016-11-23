@@ -1,0 +1,235 @@
+<div class="main"> 
+    <div class="main_content"> 
+        <div class="main_content_left"> 
+            <!--焦点图--> 
+            {~W('Slider/init')}
+            <!--项目征集--> 
+            <div class="project_search"> 
+                <p class="project_title"> 
+                    <span class="Ptitle_left">
+                        <img src="{:STATIC_SERVER_URL}/gongyi/images/title_img.png" />&nbsp;项目征集
+                    </span> 
+                    <span class="Ptitle_right">
+                        <img src="{:STATIC_SERVER_URL}/gongyi/images/lanxian.png" />&nbsp;<a href="{:SERVER_VISIT_URL}/project/alleventlist.html">MORE</a>
+                    </span> 
+                </p>  
+                <ul class="Project_one">
+                    <li>
+                        <a href="{:SERVER_VISIT_URL}/project/alleventlist/id/{$event[0]['id']}.html">
+                            <img src="{$event[0]['show_image']}?0" />
+                        </a> 
+                    </li>
+                    <li style="float:right;width:226px;height:130px">
+                        <span class="Project_one_title">
+                            <a href="{:SERVER_VISIT_URL}/project/alleventlist/id/{$event[0]['id']}.html">{$event[0]['name']}</a>
+                        </span>
+                        <span class="Project_one_date">发起方:{$event[0]['host']}<br/>{$event[0]['event_begin_time']}-{$event[0]['event_end_time']}</span>
+                        <span class="Project_one_state {$event[1]['statue']==-1? "projrct_end":"  " } ">{$event[0]['statue_text']}</span>
+                    </li>	
+                </ul> 
+                <ul class="Project_one">
+                    <li><a href="{:SERVER_VISIT_URL}/project/alleventlist/id/{$event[1]['id']}.html"><img src="{$event[1]['show_image']}?00"/></a></li>
+                    <li style="float:right;width:226px;height:130px">
+                        <span class="Project_one_title"><a href="{:SERVER_VISIT_URL}/project/alleventlist/id/{$event[1]['id']}.html">{$event[1]['name']}</a></span>
+                        <span class="Project_one_date">发起方:{$event[1]['host']}<br/>{$event[1]['event_begin_time']}-{$event[1]['event_end_time']}</span>
+                        <span class="Project_one_state {$event[1]['statue']==-1? "projrct_end":" " }">{$event[1]['statue_text']}</span>
+                    </li>	
+                </ul> 
+
+            </div>
+                    <!--志愿者招募--> 
+                    <div class="volunteer_search"> 
+                        <p class="project_title"> <span class="Ptitle_left"><img src="{:STATIC_SERVER_URL}/gongyi/images/title_img.png" />&nbsp;志愿者招募</span> <span class="Ptitle_right"><img src="{:STATIC_SERVER_URL}/gongyi/images/lanxian.png" />&nbsp;<a href="{:SERVER_VISIT_URL}/project/all.html">MORE</a></span> </p> 
+                        <ul class="volunteer_content"> 
+                            <volist name="project" id="vo">
+                                <li> 
+                                    <span class="Project_img">
+                                        <a href="{$vo['url']}"><img width='177' height='124' src="{$vo['show_image']}?00" /></a> 
+                                    </span>
+                                    <span class="Vtitle_text"><a href="{$vo['url']}">{$vo['name']}</a></span> 
+                                    <span class="count_num"><span class="s_bule">{$vo['needcount']}</span><br /> 总招募</span> 
+                                    <span class="count_num"><span class="s_yellow">{$vo['usercount']}</span><br /> 已招募</span> 
+                                    <span class="baoming"><a href="{$vo['url']}">报名</a></span>
+                                </li>
+                            </volist> 
+                        </ul> 
+                    </div> 
+                    <!--公益活动--> 
+                    <div class="welfare_activities"> 
+                        <p class="project_title"> <span class="Ptitle_left"><img src="{:STATIC_SERVER_URL}/gongyi/images/title_img.png" />&nbsp;公益活动</span> <span class="Ptitle_right"><img src="{:STATIC_SERVER_URL}/gongyi/images/lanxian.png" />&nbsp;<a href="{:SERVER_VISIT_URL}/active/all.html">MORE</a></span> </p> 
+                        <ul class="volunteer_content"> 
+                            <volist name='active' id='vo'>
+                                <li>
+                                    <span class="Project_img">
+                                    <a href="{$vo['url']}"><img width='177' height='124' src="{$vo['image']}"/></a>
+                                    </span>
+                                    <span class="Vtitle_text"><a href="{$vo['url']}">{$vo['name']}</a></span> 
+                                    <span class="count_num"><span class="s_bule">{$vo['usercount']}</span><br /> 总人数</span> 
+                                    <span class="count_num"><span class="s_yellow">{$vo['allcount']}</span><br />参加人数</span> 
+                                    <span class="canjia" id="CanJia"><a href="{$vo['url']}">参加</a></span>
+                                </li>
+                            </volist>
+                        </ul> 
+                    </div> 
+                    <!--求助--> 
+                    <div class="For_help"> 
+                        <p class="project_title"> <span class="Ptitle_left"><img src="{:STATIC_SERVER_URL}/gongyi/images/title_img.png" />&nbsp;求助</span> <span class="Ptitle_right"><img src="{:STATIC_SERVER_URL}/gongyi/images/lanxian.png" />&nbsp;<a href="{:SERVER_VISIT_URL}/raisegoods/all.html">MORE</a></span> </p> 
+                        <div class="for_help_items" id="IE8_fh_left"> 
+                            <ul> 
+                                <volist name='goods' id='vo'  offset="0" length='6'>
+                                    <li><a href="{$vo['url']}">{$vo['name']}</a><a href="{$vo['url']}" id="renjuan">认捐</a></li> 
+                                </volist>
+                            </ul> 
+                        </div> 
+                        <div class="for_help_items" id="IE8_fh_right"> 
+                            <ul> 
+                                <volist name='goods' id='vo'  offset="6" length='6'>
+                                    <li><a href="{$vo['url']}">{$vo['name']}</a><a href="{$vo['url']}" id="renjuan">认捐</a></li> 
+                                </volist>
+                            </ul> 
+                        </div> 
+                    </div> 
+                    <!--公益组织--> 
+                    <div class="welfare_organization" style="clear:both;"> 
+                        <p class="project_title" id="IE8_project_title"> <span class="Ptitle_left"><img src="{:STATIC_SERVER_URL}/gongyi/images/title_img.png" />&nbsp;公益组织</span> 
+                            <span class="Ptitle_right" style="display: none"><img src="{:STATIC_SERVER_URL}/gongyi/images/lanxian.png" />&nbsp;<a href="#">MORE</a></span> </p> 
+                        <div class="organization_name"> 
+                            <table class="tbl"> 
+                                <tbody>
+                                    <tr> 
+                                         <volist name='org' id='vo' offset="0" length='5'>                                         
+                                            <td>
+											<a href="{$vo['url']}" style="width:150px;overflow:hidden;display:block"><img onload="img_load(this)" src="{$vo['photo_photo']}"/></a>
+											</td>
+                                        </volist>
+                                    </tr> 
+                                    <tr>
+                                        <volist name='org' id='vo' offset="5" length='5'>
+                                            <td><a href="{$vo['url']}"><img onload="img_load(this)" src="{$vo['photo_photo']}"/></a></td>
+                                        </volist> 
+                                        </tr>
+                                </tbody>
+                            </table>
+                        </div> 
+                    </div> 
+                </div> 
+<script type="text/javascript">
+            function img_load(obj){
+                var obj=$(obj);
+                var w=parseInt(obj.width());
+                var h=parseInt(obj.height());
+ 
+                obj.data('data-w',w);
+                obj.data('data-h',h);
+                if(w>150 || h>70){
+ 
+                    if((w/h)>(150/70)){
+                        obj.width(150+'px');
+                    }else{
+                       obj.height(70+'px');
+                    }
+                }
+            }
+        </script>
+                <div class="main_content_right"> 
+                    <div class="Join_us"> 
+                        <div class="different_users"> 
+                            <div class="title_number">
+                                个人用户
+                                <br />
+                                <span style="color:#2f9be7; font:30px 微软雅黑;">{$userCount|default=0}</span>
+                                <span style="color:#2f9be7;">人</span> 
+                            </div> 
+                            <div class="join_btn1 A_Btn">
+                                <a href="{:UCENTER}/user/register.html">我要加入</a>
+                            </div> 
+                        </div> 
+                        <div class="different_users"> 
+                            <div class="title_number">
+                                组织用户
+                                <br />
+                                <span style="color:#e78a2f; font:30px 微软雅黑;">{$orgcount|default=0}</span>
+                                <span style="color:#e78a2f;">个</span> 
+                            </div> 
+                            <div class="join_btn2 A_Btn">
+                                <a href="{:UCENTER}/organization/register.html">我要加入</a>
+                            </div> 
+                        </div> 
+                        <div class="erweima"> 
+                            <div class="Qr_code"> 
+                                <img src="{:STATIC_SERVER_URL}/gongyi/images/erweima.png" width="100px"/>
+                                <br /> 
+                                <span style="line-height:18px;">扫描二维码<br />跟我们互动吧</span> 
+                            </div> 
+                            <div class="floww_me"> 
+                                <img src="{:STATIC_SERVER_URL}/gongyi/images/follow.png" /> 
+                            </div> 
+                        </div> 
+                    </div> 
+                    <!--公益资讯--> 
+                    <div class="welfare_information "> 
+                        <p class="project_title"><span class="Ptitle_left"><img src="{:STATIC_SERVER_URL}/gongyi/images/title_img.png" />&nbsp;公益资讯</span></p> 
+                        {~W('Article/init')}
+                        <!--                        <iframe scrolling="no" frameborder="0" src="http://www.zgzyz.org.cn/node_50862.htm" style="width:425px; height:802px; overflow-x:hidden;overflow-y: hidden;"></iframe> -->
+                    </div> 
+                    <!--关于我们--> 
+                    <div class="About_us"> 
+                        <p class="project_title"><span class="Ptitle_left"><img src="{:STATIC_SERVER_URL}/gongyi/images/title_img.png" />&nbsp;关于我们</span></p> 
+                        <div class="About_us_content"> 
+                            <p class="About_us_content1"> <span>中青公益——聚合青年公益力量，服务志愿者成长。</span> <span>无论您是公益组织还是热心公益的伙伴，是想要寻找志愿者还是参与公益活动，在中青公益，我们都竭力为您服务。</span> <span> 中青公益，由成立于2010年2月，中国青年报组建、共青团中央下属的中青华云承载运营，旨在建设一个国家级的中国公益新媒体平台。作为国家&quot;十二五&quot;科技支撑项目（项目编号：2013BAK09B00）,在科技部,教育部等部委的关怀指导下，旨在建设一个国家级的、统一的&quot;国家志愿者公益服务支撑平台&quot;。达到引导志愿者、志愿者组织、企业、专家、媒体积极参与，实现招募、动员、协调、评价、服务进行统一管理和协调，志愿者和公益项目的有效对接、整合和引导志愿者服务社会、疏导社会舆论以营造公益氛围，&quot;把各方面的积极性充分调动起来的目的，为发展我国慈善事业&quot;，为实现中国梦做出重要贡献。 </span> <span> 项目分为三个课题，将整体任务循序渐进分解进行。未来，中青公益将集成公益项目、志愿者管理、社区平台及志愿者回馈四个子平台，满足互联网时代您的全方位公益需求。 </span> </p> 
+                            <p class="About_us_content2"> <span><a href="http://www.gy.com/news/2530.html">项目简介</a></span><span style="color:#63b4ed;">|</span>
+                                        <span><a href="http://www.gy.com/news/2529.html">课题团队</a></span><span style="color:#63b4ed;">|</span>
+                                        <span><a href="http://www.gy.com/news/2527.html">合作伙伴</a></span><span style="color:#63b4ed;">|</span>
+                                        <span><a href="http://www.gy.com/news/2526.html">联系我们</a></span></p>
+                        </div> 
+                    </div> 
+                </div> 
+            </div> 
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+	$(function(){ 
+			if(window.screen.width==1024){
+				$(".header").css("width","1300px");
+			}
+			if(window.screen.width==1024){
+				$(".main").css("width","1300px");
+			}
+			if(window.screen.width==1024){
+				$(".footer").css("width","1300px");
+			}
+			$(".li_items,.sub").hover(function(){
+				$(this).children('.sub').show(500);
+				//$(this).children('a').css("color","#2f9be7");
+			},function(){
+				$(this).children('.sub').hide();
+			//	$(this).children('a').css("color","#4c4c4c");
+                });
+                $(".volunteer_content li:last-child").css("marginRight", "0px"); 
+            });
+        </script>

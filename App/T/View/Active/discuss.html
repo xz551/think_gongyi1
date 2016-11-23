@@ -1,0 +1,23 @@
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/ajaxpage.js"></script>
+<!-- 一个讨论 -->
+<volist name="info" id="vo">
+<div class="wraper_taolun" data-did="{$did}">
+    <div class="taolun">
+        <a href="{:userUrl($vo['user_id'])}"><img src="{$vo.user_image}"></a>
+        <div class="taolun_right">
+            <p class="taolun_rht_uname"><a href="{:userUrl($vo['user_id'])}" class="a_uname">{$vo.username}</a><span class="a_time">{:time_day($vo['create_date'])}</span></p>
+            <div class="wrp_discuss_cont">
+                <p class="taolun_rht_cont">回复 <a  href="{:userUrl($vo['reply_user_id'])}" class="replaywho">{$vo.reply_username}</a> 说：{$vo.content}</p>
+            </div>
+            <a href="javascript:void(0);" class="a_reply">回复</a>
+            <form action="#">
+                <textarea name="edit_box1" class="edit_box1" cols="30" rows="10"></textarea>
+                <span class="okBtn2" data-uid="{$vo['user_id']}">确定</span>
+            </form>
+        </div>
+    </div>
+</div>
+</volist>
+<div class="wraper_paging">
+    {$page}
+</div>

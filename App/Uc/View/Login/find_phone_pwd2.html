@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$title}</title>
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/css/base.css">
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/css/find_pwd.css">
+	<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("input").focus(function(){$(this).parent().css("border-color","#2f9be7");});
+			$("input").blur(function(){$(this).parent().css("border-color","#e0e0e0");});
+			//获取手机验证码
+		     $("#getCode").bind('click',function(){
+		    	 var secs=60,type=1;
+		    	 var phone='{$user['phone']}';
+			     var smscode=$("#smscode").attr('value');
+		    	 if($(this).is('.dis')){
+		    		 return;
+		    	 }
+		    	 if(phone == '' || phone == null || phone == undefined){
+		      		return;
+		      	 }
+		       $(this).addClass("dis");	 
+			   if(smscode){
+				   //发送手机验证码短信
+				   sms(phone,smscode,secs);  
+			   }else{
+				   $.ajax({
+		    		   url:"/M/Sms/token",
+		    		   data:{phone:phone,type:type},
+		    		   type:"post",
+		    		   dataType:"json",
+		    		   success:function(d){
+		    			   if(d.status==-1){
+		    				   $("#smscode").attr('value',d.smscode);
+		    				   var smscode=$("#smscode").attr('value');
+		    				  //发送手机验证码短信
+		    				   sms(phone,smscode,secs); 
+		    			   }
+		    		   }
+		    	   });
+			   }
+		    });	
+		    //验证手机提交
+			$("#btn").click(function(){
+				//验证文本框是否有值
+				var h=$("#code").val();
+				if(h=='' || h==null || h==undefined){
+					$('.error_msg').html("验证码不能为空");
+					$("#code").focus();
+					return;
+				}else{
+					var phone='{$user['phone']}';
+		  		    var smscode=$("#smscode").attr('value');
+		  			var code=$("#code").val(); 
+		  			//验证手机验证码
+		  			verify(phone,smscode,code)
+				}
+			});
+		});
+		//发送手机验证码短信
+		function sms(phone,smscode,secs){
+		  $.ajax({
+			   url:"/M/Sms/sendsms",
+			   data:{phone:phone,smscode:smscode},
+			   type:"post",
+			   dataType:"json",
+			   success:function(msg){
+				   if(msg.status==1){
+					   $("#getCode").text('正在发送')
+					   for(var i=1;i<=secs;i++){
+			        		 window.setTimeout("update(" + i + ","+secs+")", i * 1000);
+			           } 
+				   }else{
+					   $("#getCode").removeClass("dis");  
+				   }
+				   $(".error_msg").html(msg.msg);
+				   
+			   }
+		   });
+		}
+		//验证手机验证码
+		function verify(phone,smscode,code){
+			$.ajax({
+				url:'/M/Sms/verify',
+				data:{phone:phone,smscode:smscode,code:code},
+				type:'post',
+				dataType:'json',
+				success:function(d){
+				 	if(d.status==-1){
+		     			$("#form_step2").submit();
+					}else{
+						$(".error_msg").html(d.msg);
+					}
+				}
+			});
+		}
+		//验证码倒计时
+		function update(num,secs){
+			 if(num == secs){
+				 $("#getCode").html("重新获取验证码").removeClass("dis");
+			 }else{
+				 printnr = secs-num;
+				 $("#getCode").html(printnr+"秒后,可重新发送");
+			 }
+		}
+	</script>
+</head>
+<body>
+    {~W('Layout/header')}
+	<div class="zqgy_find_pwd">
+		{:W('Layout/findPasswordTop',array($tag))}
+		<div class="zqgy_fdpd_detail">
+			<form action="/Uc/Login/findPassword3" id="form_step2" method="post">
+				<p class="fdp_title">正在为<span>{$user['nickname']}</span>找回账户密码，请使用以下方式进行验证：</p>
+				<div class="fdp_way way2 active">
+					<p>您正在使用 短信验证码 验证身份，请完成以下操作：</p>
+					<input type="hidden" name="phone" value="{$user['phone']}">
+					<p class="fdpw_p"><label>验证手机：</label><notempty name="user['phone']">{$user['phone']}<else />无</notempty></p>
+					<p class="fdpw_p">
+						<label>验证码：</label>
+						<input type="hidden" name="smscode" id="smscode" value="" >
+						<i><input type="text" name="code" id="code" placeholder="请输入验证码"></i><a href="javascript:void(0)" id="getCode">获取短信验证码</a>
+						<span class="error_msg"></span>
+					</p>
+					<p class="fdp_btns"><span id="btn">确定</span></p>
+				</div>
+				<if condition="($user['status'] neq -1) && ($user['email'] neq null)">
+				<div class="fdp_swh_btns cur">
+					<p class="fdp_swh"><a href="{:U('/Uc/Login/findPassword2',array('tag'=>1))}">通过 邮箱验证 验证身份</a></p>
+				</div>
+				</if>
+			</form>
+			<dl>
+				<dt>如通过以上两种方式（邮箱验证、手机验证），均无法找回账户密码；或发现您的证件信息、登录名等信息，被他人占用，请联系我们：</dt>
+				<dd>邮箱：zqgy@gy.com</dd>
+				<dd>电话：010-64060200-813</dd>
+			</dl>
+		</div>
+	</div>
+	{~W('Layout/footer')}
+</body>
+</html>

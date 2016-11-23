@@ -1,0 +1,122 @@
+<form action="javascript:void(0)" onsubmit="return sub()">
+    <input type="text" required id="uname" value="{$username}" {$user_vol_lock==1?'readonly':''}   name="uname" placeholder="真实姓名">
+    <input type="text" required id="idcard" value="{$usercard}" {$user_vol_lock==1?'readonly':''} name="uidcard" placeholder="身份证号码">
+    <p class="{$user_phone_lock==1?'zqgy_zyok':'zqgy_zycode'} ">
+        <input type="text" required id="phone" value="{$userphone}" {$user_phone_lock==1?'readonly':''} name="uphone" placeholder="手机号码">
+        <if condition="$user_phone_lock eq 1">
+            <span></span>
+        <else/>
+            <span id="getsms" onclick="sendsms()">获取验证码</span>
+        </if>
+
+    </p>
+    <if condition="$user_phone_lock eq 0">
+        <p class="zqgy_zycode">
+            <input type="text" id="code" name="phcode" placeholder="验证码">
+        </p>
+<else/>
+        <input type="hidden" id="code" value="0000"  name="phcode" placeholder="验证码">
+    </if>
+    <button class="ok_btn" >确定</button>
+</form>
+<if condition="$user_phone_lock eq 0 or $user_vol_lock eq 0">
+    <script type="text/javascript">
+        var is_ajax=false,
+                getsms=$('#getsms'),
+                ok_btn=$('.ok_btn');
+        function sendsms(){
+            if(is_ajax){
+                return;
+            }
+            var phone=$('#phone').val();
+            var reg_phone=/^1\d{10}$/;
+            if(!reg_phone.test(phone)){
+                alert('请填写正确的手机号');
+                return false;
+            }
+            is_ajax=true;
+            getsms.addClass('smting').text('正在发送…');
+            $.ajax({
+                url:'/m/sms/sendsms',
+                data:{phone:phone,smscode:'join_project'},
+                dataType:'json',
+                type:'post',
+                success:function(d){
+                    is_ajax=false;
+                    var status= d.status;
+                    if(status==-1){
+                        alert(d.msg);
+                    }else if(status==1){
+                        window.t=60;
+                        djs();
+                    }
+                }
+            });
+        }
+        var t=60;
+        function djs(){
+            t--;
+            if(t<=0){
+                getsms.removeClass('smting').text('重新获取');
+            }else{
+                getsms.text(t+'重新获取');
+                setTimeout("djs()",1000);
+            }
+        }
+        function sub(){
+            if(is_ajax){
+                return;
+            }
+            var _uname=$('#uname').val();
+            var reg_name=/^[_a-zA-Z0-9\u4E00-\u9FA5]{2,10}$/;
+            if(!reg_name.test(_uname)){
+                alert('请填写正确的真实姓名');
+                return false;
+            }
+            var phone=$('#phone').val();
+            var reg_phone=/^1\d{10}$/;
+            if(!reg_phone.test(phone)){
+                alert('请填写正确的手机号');
+                return false;
+            }
+            var idcard= $.trim($('#idcard').val());
+            if(idcard==''){
+                alert('请填写身份证号');
+                return false;
+            }
+            var code= $.trim($('#code').val());
+            if(code==''){
+                alert('请填写短信验证码');
+                return false;
+            }
+            is_ajax=true;
+            ok_btn.addClass('smting').text('提交中…');
+            ok_btn.prop('disabled',true);
+            if($('#code').attr('type')!='hidden'){
+                verify_code(_uname,idcard);
+            }else{
+                sum_join(_uname,idcard);
+            }
+        }
+        function verify_code(_uname,idcard){
+            $.ajax({
+                url:'/m/sms/verify',
+                data:{'phone':$('#phone').val(),'smscode':'join_project','code':$('#code').val()},
+                dataType:'json',
+                type:'post',
+                async:false,
+                success:function(d){
+                    is_ajax=false;
+                    var status=parseInt(d.status);
+                    if(status<0){
+                        alert(d.msg);
+                        ok_btn.removeClass('smting').text('确定');
+                        ok_btn.prop('disabled',false);
+                    }else{
+                        sum_join($('#uname').val(),$('#idcard').val());
+                    }
+                }
+            });
+        }
+    </script>
+</if>

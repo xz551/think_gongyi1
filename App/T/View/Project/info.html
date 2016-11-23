@@ -1,0 +1,426 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/yijuan/project/css/base.css" />
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/yijuan/project/css/zhaomu_detail.css" />
+<script type="text/javascript">
+    $(function () {
+        $(".zm_proims1 > p > a").click(function () {
+            var a = $(this);
+            a.addClass("cur").siblings("a").removeClass("cur");
+            $(".zm_proims1 > div").eq(a.index()).show().siblings("div").hide();
+        });
+
+        $(".zm_pro_detail > ul li").click(function () {
+            var a = $(this);
+            a.addClass("cur").siblings("li").removeClass("cur");
+            $(".zm_pro_detail > div").eq(a.index()).show().siblings("div").hide();
+        });
+
+        $(".rt_ewm").hover(function () {
+            $(".big_ewm").show();
+        }, function () {
+            $(".big_ewm").hide();
+        });
+
+        $("textarea").focus(function () {
+            $(this).parent().next('.sp_placeholder').remove();
+        });
+        $('.sp_tishi1').click(function () {
+            $(this).remove();
+            $('.help_fankui').focus();
+        });
+
+        $(".wpr_img > i").click(function () {
+            $(this).parents('.wpr_img').remove();
+        });
+
+    });
+</script>
+<div class="zm_detail">
+    <!-- zm_detail_top[ -->
+    <div class="zm_detail_top">
+        <h3>{$project['name']}</h3>
+        <p>
+            <span class="addr"><i>{$addr['provice']}</i>{$addr['city']}<i>{$addr['county']}</i></span>
+            <span class="tag">
+                <volist name='taglist' id='vo'>
+                <i>{$vo}</i>
+                </volist>
+            </span>
+        </p>
+        <div class="rt_ewm"></div>
+        <div class="big_ewm">
+            <p><span>手机也能报名了~</span><span> 快用手机扫一扫~</span></p>
+            <div><img src="__STATIC_URL__/yijuan/project/images/demo_ewm.png"></div>
+        </div>
+    </div><!-- ]zm_detail_top -->
+    <!-- zm_dtl_info[ -->
+    <div class="zm_dtl_info">
+        <span class="sta2"></span>
+        <div class="zm_dtlif_lt">
+            <div class="zm_dtl_pic"><img src="{$project.show_image}"></div>
+            <a href="#">分享(12)</a>
+        </div>
+        <div class="zm_dtlif_rt">
+            <p><label>服务对象：</label><span>{$project['server_for']}</span></p>
+            <div>
+                <label class="det_title">招募时间：</label>
+                <div class="det_cont">
+                    <p><span><i style="width:{$ptime[1]}%;"></i></span>{$ptime[0]}</b></p>
+                    <p class="betw_date"><i class="betw_dlt">{:substr($project['begin_time'],0,10)}</i><i class="betw_drt">{:substr($project['end_time'],0,10)}</i></p>
+                </div>
+            </div>
+            <div>
+                <label class="det_title">服务时间：</label>
+                <div class="det_cont">
+                    <p><span><i style="width:{$vtime[1]}%;"></i></span>{$vtime[0]}</p>
+                    <p class="betw_date"><i class="betw_dlt">{:substr($volunteer['begin_time'],0,10)}</i><i class="betw_drt">{:substr($volunteer['end_time'],0,10)}</i></p>
+                </div>
+            </div>
+            <dl>
+                <dt>项目概述：</dt>
+                <dd>
+                    {$project['summary']}
+                </dd>
+            </dl>
+            <dl>
+                <dt>费用保障说明：</dt>
+                <dd>
+                {$volunteer['volunteer_cost']}
+                </dd>
+            </dl>
+        </div>
+    </div><!-- ]zm_dtl_info -->
+    <!-- zm_detail_center[ -->
+    <div class="zm_detail_center">
+        <div class="zm_dtlc_lt">
+            <div class="zm_post_desc">
+			
+                <volist name='job' id="vo">
+				<div class="zm_ptdc_top">
+                    <div class="zm_ptdctp_lt">{$vo['name']}</div>
+                    <div class="zm_ptdctp_rt">
+                        <span>目标人数：<i>{$vo['need_count']}人</i></span>
+                        <span>报名人数：<i>{$vo['registnum']}人</i></span>
+                        <a href="#">我要报名</a>
+                    </div>
+                </div>
+                <div class="zm_ptdc_main">
+                    <dl>
+                        <dt>岗位描述：</dt>
+                        {$vo['description']}
+                    </dl>
+                    <dl>
+                        <dt>应聘条件：</dt>
+                        {$vo['need_condition']}
+                    </dl>
+                </div>
+				</volist>
+				
+            </div>
+            <!-- 项目详情[ -->
+            <div class="zm_pro_detail">
+                <ul>
+                    <li><a href="javascript:void(0);">项目详情</a></li>
+                    <li class="cur"><a href="javascript:void(0);">报名名单</a></li>
+                    <li><a href="javascript:void(0);">讨论区</a></li>
+                    <li><a href="javascript:void(0);">项目反馈</a></li>
+                    <li><a href="javascript:void(0);">项目评价</a></li>
+                </ul>
+                <div class="zm_pro_items1">{$project['description']}</div>
+                <div class="zm_pro_items2" style="display:block;">
+                    <div class="zm_proims1">
+                        <p><a href="javascript:void(0);" class="cur">报名名单</a><a href="javascript:void(0);">入选名单</a></p>
+                        <!-- 报名名单[ -->
+                        <div class="bm_list shw">
+                            <!-- 一个名单[ -->
+                            <div class="zm_bmlist">
+                                <a href="#"><img src="__STATIC_URL__/yijuan/project/images/1.jpg"></a>
+                                <div class="zm_bmlist_name">
+                                    <h3>美丽中国志愿者联合会<img src="__STATIC_URL__/yijuan/project/images/icon_v.png"><a href="#"></a></h3>
+                                    <p>北京市 东城区</p>
+                                </div>
+                                <div class="zm_bmlist_title">美丽中国志愿者联合会</div>
+                                <div class="zm_bmlist_time">2015-09-12 12:30</div>
+                            </div><!-- ]一个名单 -->
+                            <!-- 一个名单[ -->
+                            <div class="zm_bmlist">
+                                <a href="#"><img src="__STATIC_URL__/yijuan/project/images/1.jpg"></a>
+                                <div class="zm_bmlist_name">
+                                    <h3>美丽中国志愿者联合会<img src="__STATIC_URL__/yijuan/project/images/icon_v.png"><a href="#"></a></h3>
+                                    <p>北京市 东城区</p>
+                                </div>
+                                <div class="zm_bmlist_title">美丽中国志愿者联合会</div>
+                                <div class="zm_bmlist_time">2015-09-12 12:30</div>
+                            </div><!-- ]一个名单 -->
+                            <!-- 一个名单[ -->
+                            <div class="zm_bmlist">
+                                <a href="#"><img src="__STATIC_URL__/yijuan/project/images/1.jpg"></a>
+                                <div class="zm_bmlist_name">
+                                    <h3>美丽中国志愿者联合会<img src="__STATIC_URL__/yijuan/project/images/icon_v.png"><a href="#"></a></h3>
+                                    <p>北京市 东城区</p>
+                                </div>
+                                <div class="zm_bmlist_title">美丽中国志愿者联合会</div>
+                                <div class="zm_bmlist_time">2015-09-12 12:30</div>
+                            </div><!-- ]一个名单 -->
+                            <!-- 一个名单[ -->
+                            <div class="zm_bmlist">
+                                <a href="#"><img src="__STATIC_URL__/yijuan/project/images/1.jpg"></a>
+                                <div class="zm_bmlist_name">
+                                    <h3>美丽中国志愿者联合会<img src="__STATIC_URL__/yijuan/project/images/icon_v.png"><a href="#"></a></h3>
+                                    <p>北京市 东城区</p>
+                                </div>
+                                <div class="zm_bmlist_title">美丽中国志愿者联合会</div>
+                                <div class="zm_bmlist_time">2015-09-12 12:30</div>
+                            </div><!-- ]一个名单 -->
+                            <div class="zml_page">
+                                <a href="#"><<</a>
+                                <a href="#"><</a>
+                                <a href="#" class="cur">1</a>
+                                <a href="#">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">></a>
+                                <a href="#">>></a>
+                            </div>
+                        </div><!-- ]报名名单 -->
+                        <!-- 入选名单[ -->
+                        <div class="rx_list">
+                            <!-- 一个名单[ -->
+                            <div class="zm_bmlist">
+                                <a href="#"><img src="__STATIC_URL__/yijuan/project/images/1.jpg"></a>
+                                <div class="zm_bmlist_name">
+                                    <h3>美丽中国志愿者联合会<img src="__STATIC_URL__/yijuan/project/images/icon_v.png"><a href="#"></a></h3>
+                                    <p>北京市 东城区</p>
+                                </div>
+                                <div class="zm_bmlist_title">美丽中国志愿者联合会</div>
+                                <div class="zm_bmlist_time">3小时</div>
+                            </div><!-- ]一个名单 -->
+                            <!-- 一个名单[ -->
+                            <div class="zm_bmlist">
+                                <a href="#"><img src="__STATIC_URL__/yijuan/project/images/1.jpg"></a>
+                                <div class="zm_bmlist_name">
+                                    <h3>美丽中国志愿者联合会<img src="images/icon_v.png"><a href="#"></a></h3>
+                                    <p>北京市 东城区</p>
+                                </div>
+                                <div class="zm_bmlist_title">美丽中国志愿者联合会</div>
+                                <div class="zm_bmlist_time">3小时</div>
+                            </div><!-- ]一个名单 -->
+                            <!-- 一个名单[ -->
+                            <div class="zm_bmlist">
+                                <a href="#"><img src="__STATIC_URL__/yijuan/project/images/1.jpg"></a>
+                                <div class="zm_bmlist_name">
+                                    <h3>美丽中国志愿者联合会<img src="__STATIC_URL__/yijuan/project/images/icon_v.png"><a href="#"></a></h3>
+                                    <p>北京市 东城区</p>
+                                </div>
+                                <div class="zm_bmlist_title">美丽中国志愿者联合会</div>
+                                <div class="zm_bmlist_time">3小时</div>
+                            </div><!-- ]一个名单 -->
+                            <!-- 一个名单[ -->
+                            <div class="zm_bmlist">
+                                <a href="#"><img src="__STATIC_URL__/yijuan/project/images/1.jpg"></a>
+                                <div class="zm_bmlist_name">
+                                    <h3>美丽中国志愿者联合会<img src="__STATIC_URL__/yijuan/project/images/icon_v.png"><a href="#"></a></h3>
+                                    <p>北京市 东城区</p>
+                                </div>
+                                <div class="zm_bmlist_title">美丽中国志愿者联合会</div>
+                                <div class="zm_bmlist_time">3小时</div>
+                            </div><!-- ]一个名单 -->
+                            <!-- 一个名单[ -->
+                            <div class="zm_bmlist">
+                                <a href="#"><img src="__STATIC_URL__/yijuan/project/images/1.jpg"></a>
+                                <div class="zm_bmlist_name">
+                                    <h3>美丽中国志愿者联合会<img src="__STATIC_URL__/yijuan/project/images/icon_v.png"><a href="#"></a></h3>
+                                    <p>北京市 东城区</p>
+                                </div>
+                                <div class="zm_bmlist_title">美丽中国志愿者联合会</div>
+                                <div class="zm_bmlist_time">3小时</div>
+                            </div><!-- ]一个名单 -->
+                            <!-- 一个名单[ -->
+                            <div class="zm_bmlist">
+                                <a href="#"><img src="__STATIC_URL__/yijuan/project/images/1.jpg"></a>
+                                <div class="zm_bmlist_name">
+                                    <h3>美丽中国志愿者联合会<img src="__STATIC_URL__/yijuan/project/images/icon_v.png"><a href="#"></a></h3>
+                                    <p>北京市 东城区</p>
+                                </div>
+                                <div class="zm_bmlist_title">美丽中国志愿者联合会</div>
+                                <div class="zm_bmlist_time">3小时</div>
+                            </div><!-- ]一个名单 -->
+                            <div class="zml_page">
+                                <a href="#"><<</a>
+                                <a href="#"><</a>
+                                <a href="#" class="cur">1</a>
+                                <a href="#">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">></a>
+                                <a href="#">>></a>
+                            </div>
+                        </div><!-- ]入选名单 -->
+                    </div>
+                </div>
+                <div class="zm_pro_items3">
+                    <!-- 讨论区[ -->
+                    <div class="wpr_comment">
+                        <img src="__STATIC_URL__/yijuan/project/images/1.jpg" class="wpr_mlbt_left">
+                        <div class="wpr_mlbt_right">
+                            <form action="">
+                                <div class="wrp_textarea">
+                                    <textarea name="edit_box" class="edit_box" maxlength="140"></textarea>
+                                </div>
+                                <p class="ok_btn">最多可输入<strong class="font_length">140</strong>个字符<span class="okBtn1">确定</span></p>
+                            </form>
+                        </div>
+                    </div><!-- ]讨论区 -->
+                    <!-- 列表显示讨论的内容 -->
+                    <div class="wrp_discuss_list">
+                        <!-- 一个讨论 -->
+                        <div class="wraper_taolun">
+                            <div class="taolun">
+                                <img src="__STATIC_URL__/yijuan/project/images/2.jpg">
+                                <div class="taolun_right">
+                                    <p class="taolun_rht_uname"><a href="#" class="a_uname">啦啦啦啦啦</a><span class="a_time">2013-06-14 09:35</span></p>
+                                    <div class="wrp_discuss_cont">
+                                        <p class="taolun_rht_cont">回复<a href="#" class="replaywho">@张三</a>说：很好的分享 ，除了没一点缺点还是没一点缺点。</p>
+                                    </div>
+                                    <a href="javascript:void(0);" class="a_reply">回复</a>
+                                    <form action="#">
+                                        <textarea name="edit_box1" class="edit_box1" cols="30" rows="10"></textarea>
+                                        <span class="okBtn2">确定</span>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="zm_pro_items4">
+                    <form action="#" method="post">
+                        <p><textarea name="help_fankui" class="help_fankui" id="help_fankui" maxlength="140"></textarea></p>
+                        <span class="sp_tishi1 sp_placeholder">发布求助反馈</span>
+                        <div class="wpr_options">
+                            <div class="wpr_opt_lt">
+                                <p><span class="sp_camera">上传照片</span><span class="sp_video">上传视频</span></p>
+                                <p class="text_info2">图片支持jpg、jpeg和png格式，大小不超过1M</p>
+                            </div>
+                            <div class="wpr_opt_rt">
+                                你最多可输入<span id="maxLen">140</span>个字符<button>发布</button>
+                            </div>
+                        </div>
+                        <div class="wraper_upload">
+                            <i class="icon_arrow"></i>
+                            <dl>
+                                <dt>照片</dt>
+                                <dd>
+                                    <span class="wpr_img"><img src="__STATIC_URL__/yijuan/project/images/2.jpg"><i></i></span>
+                                    <span class="wpr_img"><img src="__STATIC_URL__/yijuan/project/images/2.jpg"><i></i></span>
+                                    <span class="wpr_img"><img src="__STATIC_URL__/yijuan/project/images/2.jpg"><i></i></span>
+                                    <span class="wpr_img"><img src="__STATIC_URL__/yijuan/project/images/2.jpg"><i></i></span>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>视频</dt>
+                                <dd>
+                                    <span class="wpr_img"><img src="__STATIC_URL__/yijuan/project/images/2.jpg"><i></i></span>
+                                    <span class="wpr_img"><img src="__STATIC_URL__/yijuan/project/images/2.jpg"><i></i></span>
+                                </dd>
+                            </dl>
+                        </div>
+                    </form>
+                    <!-- 一个反馈[ -->
+                    <div class="wpr_fankui_items">
+                        <i class="icon_yuan"></i>
+                        <a href="#" class="wpr_fki_lt">
+                            <img src="__STATIC_URL__/yijuan/project/images/1.jpg">
+                            <span>发起人</span>
+                        </a>
+                        <div class="wpr_fki_rt">
+                            <a href="#" class="wpr_fk_title"><span>美丽中国</span>发布了求助反馈：</a>
+                            <p class="wpr_fk_cont">
+                                有很多朋友跟我们申请这批媒体资源，陆陆续续的寄了很多给边缘山区的学校~~现在还有很多~~
+                                需要的朋友们可以申请哒~只要地方不是太便宜，我们可以提供免费的物流运输~减轻大家的费用哦！
+                                有很多朋友跟我们申请这批媒体资源，陆陆续续的寄了很多给边缘山区的学校~~现在还有很多~~需要
+                                的朋友们可以申请哒~只要地方不是太便宜，我们可以提供免费的物流运输~减轻大家的费用哦！！！！
+                            </p>
+                            <ul class="wpr_imgorvideo_list">
+                                <li data-id="vo"><img src="__STATIC_URL__/yijuan/project/images/3.jpg"><span><img src="__STATIC_URL__/yijuan/project/images/bf.png"></span></li>
+                                <li data-id="im"><img src="__STATIC_URL__/yijuan/project/images/1.jpg"></li>
+                            </ul>
+                            <p class="wpr_fk_time">2015-05-25 11:35:22</p>
+                        </div>
+                    </div><!-- ]一个反馈 -->
+                    <!-- 一个反馈[ -->
+                    <div class="wpr_fankui_items">
+                        <i class="icon_yuan"></i>
+                        <a href="#" class="wpr_fki_lt">
+                            <img src="__STATIC_URL__/yijuan/project/images/2.jpg">
+                            <span>发起人</span>
+                        </a>
+                        <div class="wpr_fki_rt">
+                            <a href="#" class="wpr_fk_title"><span>美丽中国</span>发布了求助反馈：</a>
+                            <p class="wpr_fk_cont">
+                                有很多朋友跟我们申请这批媒体资源，陆陆续续的寄了很多给边缘山区的学校~~现在还有很多~~
+                                需要的朋友们可以申请哒~只要地方不是太便宜，我们可以提供免费的物流运输~减轻大家的费用哦！
+                                有很多朋友跟我们申请这批媒体资源，陆陆续续的寄了很多给边缘山区的学校~~现在还有很多~~需要
+                                的朋友们可以申请哒~只要地方不是太便宜，我们可以提供免费的物流运输~减轻大家的费用哦！！！！
+                            </p>
+                            <ul class="wpr_imgorvideo_list">
+                                <li><img src="__STATIC_URL__/yijuan/project/images/1.jpg"></li>
+                                <li><img src="__STATIC_URL__/yijuan/project/images/1.jpg"></li>
+                            </ul>
+                            <p class="wpr_fk_time">2015-05-25 11:35:22</p>
+                        </div>
+                    </div><!-- ]一个反馈 -->
+                </div>
+                <div class="zm_pro_items5">项目评价</div>
+            </div>
+        </div>
+        <div class="zm_dtlc_rt">
+            <!-- 一块 -->
+            <div class="zm_dtlcrt_clo1">
+                <h3 class="clo_title">发起人1</h3>
+                <div class="zm_clo1_detail">
+                    <a href="#"><img src="123g"></a>
+                    <div class="zm_clo1_dinfo">
+                        <h3>美丽中国志愿者联合会<img src="__STATIC_URL__/yijuan/project/images/icon_v1.png"><a href="#"></a></h3>
+                        <p>北京市 东城区</p>
+                    </div>
+                </div>
+                <p>项目联系人：张三 1303000000</p>
+            </div>
+            <!-- 一块 -->
+            <div class="zm_dtlcrt_clo2">
+                <h3 class="clo_title">项目动态</h3>
+                <p><a href="#">空城旧梦</a>报名参加了项目<a href="#">中青公益招募官方扣扣群管理</a><i>7小时前</i></p>
+                <p><a href="#">空城旧梦</a>报名参加了项目<a href="#">中青公益招募官方扣扣群管理</a><i>7小时前</i></p>
+                <p><a href="#">空城旧梦</a>报名参加了项目<a href="#">中青公益招募官方扣扣群管理</a><i>7小时前</i></p>
+                <p><a href="#">空城旧梦</a>报名参加了项目<a href="#">中青公益招募官方扣扣群管理</a><i>7小时前</i></p>
+                <p><a href="#">空城旧梦</a>报名参加了项目<a href="#">中青公益招募官方扣扣群管理</a><i>7小时前</i></p>
+                <p><a href="#">空城旧梦</a>报名参加了项目<a href="#">中青公益招募官方扣扣群管理</a><i>7小时前</i></p>
+                <p><a href="#">空城旧梦</a>报名参加了项目<a href="#">中青公益招募官方扣扣群管理</a><i>7小时前</i></p>
+                <p><a href="#">空城旧梦</a>报名参加了项目<a href="#">中青公益招募官方扣扣群管理</a><i>7小时前</i></p>
+            </div>
+        </div>
+    </div><!-- ]zm_detail_center -->
+</div>
+<!-- zm_detail_bottom[ -->
+<div class="zm_detail_bottom">
+    <p>推荐项目</p>
+    <a href="#">
+        <img src="__STATIC_URL__/yijuan/project/images/1.jpg">
+        <span>马上就放假了你打算去哪 。马上就放假了你打算去哪 。</span>
+    </a>
+    <a href="#">
+        <img src="__STATIC_URL__/yijuan/project/images/1.jpg">
+        <span>马上就放假了你打算去哪 。</span>
+    </a>
+    <a href="#">
+        <img src="__STATIC_URL__/yijuan/project/images/1.jpg">
+        <span>马上就放假了你打算去哪 。</span>
+    </a>
+    <a href="#">
+        <img src="__STATIC_URL__/yijuan/project/images/1.jpg">
+        <span>马上就放假了你打算去哪 。</span>
+    </a>
+    <a href="#">
+        <img src="__STATIC_URL__/yijuan/project/images/1.jpg">
+        <span>马上就放假了你打算去哪 。</span>
+    </a>
+</div><!-- ]zm_detail_bottom -->

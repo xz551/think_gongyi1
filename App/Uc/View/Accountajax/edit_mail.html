@@ -1,0 +1,97 @@
+<div class="ifo_yze_step3 shw">
+    <form action="javascript:void(0)" id="form4">
+        <if condition="$mail"><p><label>当前邮箱：</label>{$mail}</p></if>
+
+        <p>
+            <label>新的邮箱：</label>
+            <input type="text" id="mail" name="mail" required placeholder="请输入新的邮箱地址" aria-required="true">
+            <span class="msg-box n-right" for="mail"></span>
+        </p>
+        <p class="yzcode">
+            <label>验证码：</label>
+            <input type="text" id="code" name="code" required placeholder="请输入验证码" aria-required="true">
+            <i id="sendcode">获取邮箱验证码</i>
+            <span class="msg-box n-right" for="code"></span>
+        </p>
+        <button>确定</button>
+    </form>
+</div>
+<script>
+    var _sendcode=$('#sendcode');
+    $(function(){
+        var mail_verify=/^[\w\+\-]+(\.[\w\+\-]+)*@[a-z\d\-]+(\.[a-z\d\-]+)*\.([a-z]{2,4})$/i;
+        _sendcode.click(function(){
+            if(is_ajax || _sendcode.hasClass('send')){
+                return;
+            }
+            var _mail=$('#mail').val();
+            if(!mail_verify.test(_mail)){
+                alert('邮箱错误');
+                return;
+            }
+            is_ajax=true;
+            _sendcode.addClass('send').text('正在发送');
+            $.ajax({
+                url:'/uc/mail/sendcode',
+                data:{mail:_mail},
+                dataType:'json',
+                success:function(d){
+                    is_ajax=false;
+                    if(d.status==-1){
+                        _sendcode.removeClass('send').text('获取邮箱验证码');
+                        alert(d.msg);
+                    }else{
+                        //进入倒计时
+                        _time();
+                    }
+                }
+            });
+        });
+    });
+    var total=60;
+    function _time(){
+        _sendcode.text(total+'秒后重新发送');
+        --total;
+        if(total>0){
+            setTimeout(function(){
+                _time();
+            },1000);
+        }else{
+            total=60;
+            _sendcode.removeClass('send').text('获取邮箱验证码');
+        }
+    }
+    $("#form4").validator({
+        stopOnError:false,
+        fields:{
+            'mail':{rule:"邮箱:required;email"},
+            'code':{rule:"验证码:required;remote[/uc/mail/verify, mail]"}
+        },
+        valid:function(form){
+			edit_mail_do();
+        }
+    });
+    function edit_mail_do(){
+        if(is_ajax){
+            return;
+        }
+        is_ajax=true;
+        $.ajax({
+            url:'/uc/accountajax/edit_mail_do',
+            data:{mail:$('#mail').val(),code:$('#code').val()},
+            dataType:'json',
+            type:'post',
+            success:function(d){
+                is_ajax=false;
+                if(d.status==-1){
+                    alert(d.msg);
+                }else{
+                    var _email=$('.ifo_yzemail');
+                    _email.prev().addClass('succ');
+                    _email.html(d.msg);
+                }
+            }
+        });
+    }
+
+</script>

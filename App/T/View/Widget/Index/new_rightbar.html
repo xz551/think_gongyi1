@@ -1,0 +1,142 @@
+<!-- 侧边栏[ -->
+<div class="gy_sidebar">
+    <!-- 返回顶部[ -->
+    <div class="gy_backtop" title="返回顶部"></div><!-- ]返回顶部 -->
+    <!-- 微信[ -->
+    <div class="gy_weixin" title="微信">
+        <div class="gy_wx_ewm">
+
+            <div class="gy_wxem ewm_lt">
+                <a href="#">中青公益<i>订阅号</i></a>
+                <div><img class="lazy" data-original="{:STATIC_SERVER_URL}/gongyi/images/ewm_dyh.jpg"></div>
+            </div>
+            <div class="gy_wxem ewm_rt">
+                <a href="#">中青公益<i>服务号</i></a>
+                <div><img class="lazy" data-original="{:STATIC_SERVER_URL}/gongyi/images/ewm_fwh.jpg"></div>
+            </div>
+        </div>
+    </div><!-- ]微信 -->
+    <!-- 微博[ -->
+    <div class="gy_weibo" title="微博">
+        <div class="gy_wb_ewm">
+            <a>中青公益</a>
+            <div><a href="http://weibo.com/u/3242944234" target='_blank'><img src="{:STATIC_SERVER_URL}/gongyi/images/ewm_wb.png"></a></div>
+        </div>
+    </div><!-- ]微博 -->
+    <!-- 意见反馈[ -->
+    <div class="gy_yjfkui" data-id="0" title="意见反馈">
+        <div class="gy_yjfk">
+            <i class="gy_close"></i>
+            <h3>意见反馈</h3>
+            <div>
+                <form id="yjfk_form">
+                    <textarea name="content" placeholder="使用不方便？想要的功能or内容找不到？哪里不爽说哪里！我们虚心接受各种意见和吐槽！" class="gy_yjfk"></textarea>
+                    <p class="gy_error"><span class="msg-box n-right" for="content"></span></p>
+                    <p class="gy_tips">图片支持jpg、jpeg和png格式，大小不超过1M</p>
+                    <div class="gy_upload">
+                        <div class="gy_upload_img">
+
+                        </div>
+                        <span id="gy_upload_btn"></span>
+                    </div>
+                    <p class="gy_emalorphone"><input type="text" name="contact" placeholder="联系邮箱/手机"></p>
+                    <p class="gy_error"><span class="msg-box n-right" for="contact"></span></p>
+                    <p class="gy_yanzhengma">
+                        <input type="text" name="yzmcode" placeholder="验证码">
+                        <span><img id="yz_code1" src="/M/Code/index"></span>
+                        <a id="yz_code2" href="javascript:void(0);">换一张</a>
+                    </p>
+                    <p class="gy_error"><span class="msg-box n-right" for="yzmcode"></span></p>
+                    <input type="hidden" name="imgsrc" class="imgsrc">
+                    <div class="gy_fmbtns"><button class="gy_fmb1">提交</button><span class="gy_fmb2">取消</span></div>
+                </form>
+            </div>
+        </div>
+    </div><!-- 意见反馈 -->
+</div><!-- ]侧边栏 -->
+<script type="text/javascript">
+    $(function(){
+        /*验证*/
+        $("#yjfk_form").validator({
+            stopOnError:false,
+            ignore:':hidden',
+            rules:{
+                contact:[/(^1[0-9]{10}$)|(^[\w\+\-]+(\.[\w\+\-]+)*@[a-z\d\-]+(\.[a-z\d\-]+)*\.([a-z]{2,4})$)/,'邮箱或手机号格式不正确']
+            },
+            fields:{
+                'content':{rule:"意见反馈:required;length[15~]"},
+                'contact':{rule:"联系方式:required; contact"},
+                'yzmcode':{rule:"验证码:required;length[4]"}
+            },
+            valid:function(){
+                var content = $("textarea[name='content']").val(),
+                    contact = $("input[name='contact']").val(),
+                    imsrc = $("input[name='imgsrc']").val(),
+                    yzmcode  = $("input[name='yzmcode']").val();
+                var data = "content="+content+"&contact="+contact+"&imgsrc="+imsrc+"&yzmcode="+yzmcode;
+                $.ajax({
+                    type: "POST",
+                    url: "/T/UserProposal/proposal",
+                    data:data,
+                    success: function(msg){
+                        if(msg.check_verify != -1){
+                            if(msg.result==1){
+                                alert("感谢您提交的反馈意见，我们会尽快改进。");
+                                $(".gy_close").click();
+                                //清理
+                                $("textarea[name='content']").val("");
+                                $("input[name='contact']").val("");
+                                $("input[name='imgsrc']").val("");
+                                $("input[name='yzmcode']").val("");
+                                $(".gy_upload_img").html('');
+
+                            }else{
+                                alert("提交出错了 ，再试试吧 ！");
+                            }
+                        }else{
+                            $("#yz_code1").attr("src","/M/Code/index/"+Math.random()*50+1).parents("p.gy_yanzhengma").next("p").find("span.n-msg").text("验证码错误！");
+                        }
+                    }
+                });
+            }
+        });
+        /*验证码*/
+        $("#yz_code1,#yz_code2").click(function(){
+            $("#yz_code1").attr("src","/M/Code/index/"+Math.random()*50+1);
+        });
+       
+       
+       var button = $('#gy_upload_btn'), interval;
+        new AjaxUpload(button, {
+            name: 'img_file',
+            action: '{:U("T/Img/upload/type/feedback/w/60/h/60")}',
+            onSubmit: function(file, ext) {
+                 if (!(ext && /^(jpg|JPG|png|PNG|jpeg|JPEG)$/.test(ext))) {
+                    alert("您上传的图片格式不对，请重新选择！");
+                    return false;
+                }
+            },
+            onComplete: function (file, response) {                    
+                var data=eval("("+response+")"),
+                    wrap = $(".gy_upload_img"),
+                    len = wrap.find("img").size(),
+                    str = "",
+                    imgsrc = $(".imgsrc");
+                if(data.status===0){alert(data.info);}
+                if(len<5){
+                    wrap.append("<span><img src='"+data.url+"' data-path='"+data.imgName+"'><i class='test'></i></span").find("img").each(function(){
+                        str += $(this).attr("data-path")+",";
+                    });
+                }else{
+                    alert("反馈的图片最多只能上传5张 ！");
+                }
+                str = str.substr(0,str.length-1);
+                imgsrc.val(str);
+				wrap.find("i").on("click",function(){
+					$(this).parent("span").remove();
+				});
+            }
+        });
+	
+    });
+</script>

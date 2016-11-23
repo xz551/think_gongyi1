@@ -1,0 +1,48 @@
+<div class="alert alert-success  ">
+    <form class="form-inline" method="get" action="/Admin/User/twarn.html">
+        <div class="row">
+            <div class="span2">
+                <input class="input-medium" value="{:I('uid')}" type="text" name="uid" placeholder="用户编号"/>
+            </div>
+            <div class="span2">
+                <input class="input-medium" value="{:I('nickname')}" type="text" name="nickname" placeholder="昵称"/>
+            </div>
+            <div class="span2">
+                <input class="input-medium" value="{:I('pj_time')}" type="text" name="pj_time" placeholder="真实姓名"/>
+            </div>
+        </div>
+        <input type="submit" value="搜索"/>
+    </form>
+    <input type="hidden" name="h_tags" value="{:join(',',I('tags'))}" id="h_tags"/>
+</div>
+<p class="text-info">总条数：{$page['count']};页数：{$page['p']}/{$page['pageCount']}</p>
+<table class="table table-bordered table-hover table-condensed">
+    <tr>
+        <th style="width: 50px">用户ID</th>
+        <th style="width: 100px">用户姓名</th>
+        <th style="width: 100px">平均日时长</th>
+        <th style="width: 100px">总时长</th>
+        <th style="width: 100px">服务总天数</th>
+    </tr>
+    <volist name='data' id='vo'>
+        <tr>
+            <td>
+                {$vo['uid']}
+            </td>
+            <td>
+                {$vo['real_name']?$vo['real_name']:$vo['nickname']}
+            </td>
+
+            <td>
+                {$vo['pj_time']}
+            </td>
+            <td>
+                {$vo['sum_time']}
+            </td>
+            <td>
+                {$vo['count_day']}
+            </td>
+        </tr>
+    </volist>
+</table>
+{$pageHtml}

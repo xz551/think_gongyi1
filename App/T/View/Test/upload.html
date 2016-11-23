@@ -1,0 +1,13 @@
+<script type="text/javascript" src="http://static.719kj.com/yun/js/ajaxupload.js"></script>
+<div id="video_upload_progress_modal-hide-box" style="display:none"><div class="video_wrap">    <div class="video_progress progress" ><!--视频进度条-->        <span id="progress_counter"></span>        <div id="video_upload_progress"></div>    </div></div></div>
+<script type="text/javascript" src="http://static.719kj.com/public/js/letv.video"></script>
+
+<span id="upload_video" style="border: solid 1px #777a73 ;color:#fff;background: #444;width: 100px;padding: 10px">上传</span>
+<span id="press"></span>
+<div id="info"></div>
+<script>
+    letv_video.init('upload_video');
+    letv_video.callback=function(d){
+        alert(d);
+    }
+</script>

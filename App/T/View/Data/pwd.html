@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>密码重置</title>
+    <script src="http://static.zzg.link/public/js/jquery.js"></script>
+</head>
+<body>
+<h4>密码重置</h4>
+<table>
+    <tr>
+        <td>用户编号</td>
+        <td><input id="uid"/></td>
+    </tr>
+    <tr>
+        <td>新密码</td>
+        <td><input id="pwd"/></td>
+    </tr>
+    <tr>
+        <td>
+            <button id="btn">重置</button>
+        </td>
+        <td id="tip">
+
+        </td>
+    </tr>
+</table>
+<script type="text/javascript">
+    var isajax=false;
+    $("#btn").bind("click",function(){
+        if(isajax){
+            return;
+        }
+        var uid=$("#uid").val();
+        if(uid=='' || uid==0 || isNaN(uid)){
+            alert("编号错误");
+            return;
+        }
+        var pwd=$('#pwd').val();
+        if(pwd==''){
+            alert('输入密码');
+        }
+        $('#tip').text("开始重置……");
+        isajax=true;
+        $.ajax({
+            url:'/t/data/pwd',
+            data:{uid:uid,pwd:pwd},
+            success:function(d){
+                isajax=false;
+                $('#tip').text(d);
+            }
+        })
+    });
+</script>
+</body>
+</html>

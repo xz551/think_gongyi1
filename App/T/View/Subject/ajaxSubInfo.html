@@ -1,0 +1,46 @@
+{__NOLAYOUT__}
+<volist name="comment" id="vo">
+    <!-- 一个讨论 -->
+    <div class="wraper_taolun">
+        <div class="taolun">
+            <a href="{:userUrl($vo['userInfo']['uid'])}"><img src="{$vo['userInfo'].photo}" title="{$vo['userInfo'].nickname}"></a>
+            <div class="taolun_right">
+                <p class="taolun_rht_uname"><a href="{:userUrl($vo['userInfo']['uid'])}" title="{$vo['userInfo'].nickname}" class="a_uname">{$vo['userInfo'].nickname}</a><span class="a_time">{$vo.time}</span></p>
+                <div class="wrp_discuss_cont">
+                    <p class="taolun_rht_cont">{$vo.content}</p>
+                </div>
+                <a href="javascript:void(0);" class="a_reply" data-uid="">回复</a>
+                <form action="#">
+                    <textarea name="edit_box1" class="edit_box1" cols="30" rows="10" data-uid=""></textarea>
+                    <span class="okBtn2"  data-uid="{$uid}" data-sid="{$sid}" data-calluid="{$vo.uid}" data-cid="{$vo.id}" >确定</span>
+                </form>
+            </div>
+        </div>
+        <notempty name="vo.callback">
+            <volist name="vo.callback" id="v">
+                <div class='taolun1'>
+                    <a href="{:userUrl($v['userInfo']['uid'])}"><img src="{$v['userInfo'].photo}" title="{$v['userInfo'].nickname}" ></a>
+                    <div class='taolun_right'>
+                        <p class='taolun_rht_uname'><a  href="{:userUrl($v['userInfo']['uid'])}" title="{$v['userInfo'].nickname}" class='a_uname'>{$v['userInfo'].nickname}</a>回复&nbsp;&nbsp;&nbsp;&nbsp;<a class='a_uname' href="{:userUrl($v['calluserInfo']['uid'])}" title="{$v['calluserInfo'].nickname}">{$v['calluserInfo'].nickname}</a><span class='a_time'>{$v['subinfo'].time}</span></p>
+                        <div class='wrp_discuss_cont'>
+                            <p class='taolun_rht_cont'><pre>{$v['subinfo'].content}</pre></p>
+                        </div>
+                        <a href='javascript:void(0);' class='a_reply'>回复</a>
+                        <form action='#'>
+                            <textarea name='edit_box1' class='edit_box1' cols='30' rows='10'></textarea>
+                            <span class='okBtn2' data-uid="{$uid}" data-sid="{$sid}" data-calluid="{$v['userInfo'].uid}" data-cid="{$vo.id}">确定</span>
+                        </form>
+                    </div>
+                </div>
+            </volist>
+
+        </notempty>
+    </div>
+</volist>
+<gt name='num' value='8'>
+<div class="wraper_paging">
+    {$page}
+</div>
+</gt>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/ajaxpage.js"></script>
+

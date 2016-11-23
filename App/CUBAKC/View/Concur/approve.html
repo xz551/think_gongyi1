@@ -1,0 +1,31 @@
+<css:add href="{:STATIC_SERVER_URL}/usercenter/tp/css/psl_about_pjt.css" />
+<link rel="stylesheet" href="{:STATIC_SERVER_URL}/usercenter/tp/css/my_help.css">
+<div id='getAjaxPage' data-url="{:U('ajaxApprove')}" data-uid="{$uid}" ><img src="__STATIC_URL__/public/images/loading.gif"/></div>
+<js:w>
+$(function(){
+	   //ajax动态加载发起的求助||提供的资源
+    var url = $("#getAjaxPage").attr('data-url');  
+    var uid =$("#getAjaxPage").attr('data-uid');
+    $.ajax({
+        url: url,
+        data:{uid:uid},
+        success: function(msg){
+            $("#getAjaxPage").html(msg);
+            $(".wraper_paging a:contains(1):first").addClass('selected');
+        }
+    });
+	var tag;
+	$(".hc_mrt_nav a").live('click',function(){
+		$(this).addClass("nav_curr").siblings().removeClass("nav_curr");
+		tag=$(this).attr("data-tag");
+		$.ajax({
+			url:url,
+    		data:{uid:uid,tag:tag},
+    		success:function(d){
+    			 $("#getAjaxPage").html(d);
+            	 $(".wraper_paging a:contains(1):first").addClass('selected');
+    		}
+		});
+	});
+});
+</js:w>

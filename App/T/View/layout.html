@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="renderer" content="webkit" />
+        <meta name="Author" content="北京中青华云新媒体科技有限公司" />
+        <meta name="force-rendering" content="webkit" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta property="qc:admins" content="35124657676217767116727" />
+		<meta property="qc:admins" content="3512465207767116727" />
+        <title>{$title}<notempty name="title">&nbsp;|&nbsp;</notempty>中青公益-聚合青年公益力量</title>
+        <meta name="Keywords" content="公益网站,中青公益,中青公益网,公益,慈善,志愿者,NGO,基金会,爱心,梦想,透明,正能量,招募,活动,求助,捐助,认捐,中青,zqgongyi,益涓,志愿云,青年成长,高校,科技项目,中青公益官网">
+        <meta name="description" content="中青公益（gy.com）是依托于中国青年报的全新整合公益服务平台。作为国家“十二五”科技支撑项目（项目编号2013BAK09B00），致力于建设一个国家级的、统一的“国家志愿者公益服务支撑平台”，建立一套“透明捐助--志愿者统一管理--公益服务与互动--爱心回报”的国家志愿者公益服务模式。为广大热心公益的NGO组织、基金会、志愿者管理单位及爱心企业服务，推进公益事业及社会态度的正向引导。展现聚合青年公益力量，助力志愿者成长的公益新态度。"/>
+        <script src="{:STATIC_SERVER_URL}/public/js/jquery.js"></script>
+        <script src="{:STATIC_SERVER_URL}/public/js/jquery.slides.min.js"></script>
+        <script src="{:STATIC_SERVER_URL}/public/js/jquery.lazyload.js"></script>
+        <script src="{:STATIC_SERVER_URL}/public/js/defaultImg.js"></script>
+        <!--[if IE 8]>
+        <link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/gongyi/css/ie_8.css"/>
+        <![endif]-->
+
+        <link type="image/x-icon" rel="shortcut icon" href="{:STATIC_SERVER_URL}/favicon.ico" />
+        <link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/gongyi/css/header.css?1" />
+        <link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/gongyi/css/footer.css?d" />
+        <link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/gongyi/css/main.css?11" />
+        <link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/group/css/style.css?0">
+
+        <taglib name='Js,css' />
+        <script>var static_url="{:STATIC_SERVER_URL}";</script>
+		<css:r />
+    </head>
+    <body>
+        {~W('Layout/header')}
+        {__CONTENT__}
+        {~W('Layout/footer')}
+        <js:r />
+        <js:rw />
+        <script type="text/javascript">
+            $(function() {
+                $('.lazy').lazyload();
+                /*用户菜单js*/
+                $(".top_users_wraper").hover(function(){
+                        $(this).find('ul').show("200");
+                },function(){
+                        $(this).find('ul').hide();
+                });
+
+            });
+        </script>
+    </body>
+</html>

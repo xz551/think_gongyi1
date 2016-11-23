@@ -1,0 +1,58 @@
+<script type="text/javascript">
+    $(function () {
+        /*
+         解释爱心认证员
+         */
+        $(".sp_small").hover(function () {
+            $(".wpr_aixinrz_cont").show();
+        }, function () {
+            $(".wpr_aixinrz_cont").hide();
+        });
+        /*
+         下啦图标，显示完整内容
+         */
+        $(".sp_xiala").click(function () {
+            $(this).prev('dd').css("height", "auto");
+        });
+        /*
+         为textarea模拟placeholder
+         */
+        $("textarea").focus(function () {
+            $(this).parent().next('.sp_placeholder').remove();
+        });
+        $('.sp_tishi1').click(function () {
+            $(this).remove();
+            $('.help_fankui').focus();
+        });
+        $('.sp_tishi2').click(function () {
+            $(this).remove();
+            $('.txtarea_jiyu').focus();
+        });
+    })
+</script>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/login_box.js"></script>
+<ul class="wpr_tab_top">
+    <li class="tab_li2">捐物资</li>
+</ul>
+<!-- 容器1求款项[ -->
+<div class="wraper_tab_cont">
+<div class="wpr_tab_cont  tab_jwz_cont">
+    <i class="detail_arrow_up"></i>
+    <p class="wpr_tc_info">
+        <label>还可提供：</label>
+        <span>{$needSupplies}</span>
+    </p>
+    <notempty name="alShow">
+        <p class="wpr_tc_info">
+            <label>已经捐出：</label>
+            <span>{$alShow}</span>
+        </p> 
+    </notempty>
+    {:W('Concurpage/supplies',array($isown,$applyStatus,$islogin,2))}
+</div>
+</div>
+<!--友好提示弹出层[-->
+<div class="promptHtml ptHtml1">
+    <p class="promptHtmlText">确定要撤销当前的物资申请请求吗？</p>
+</div><!--]友好提示弹出-->
+

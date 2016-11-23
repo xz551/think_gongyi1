@@ -1,0 +1,69 @@
+ <script src="__STATIC_URL__/public/js/SWFObject.js?version=2.0.5"></script>
+ <link rel="stylesheet" type="text/css" href="__STATIC_URL__/gongyi/css/openv.css" />
+ <script type="text/javascript">
+	$(function() {
+    /***********判断屏幕分辨率**********************/
+    if (window.screen.width == 1024) {
+        $(".header").css("width", "1300px");
+    }
+    if (window.screen.width == 1024) {
+        $(".main").css("width", "1300px");
+    }
+    if (window.screen.width == 1024) {
+        $(".footer").css("width", "1300px");
+    }
+    /*********** 下拉框**********************/
+    $(".li_items,.sub").hover(function() {
+        $(this).children('.sub').show(500);
+    },
+    function() {
+        $(this).children('.sub').hide();
+    });
+    $(".recommend li:last").css("margin-right","0px");
+});
+</script>
+<div class="main">
+	<if condition="$video eq '' ">
+		 <h3 class="main_title">系统消息</h3>
+	     <div class="error_info">
+	        <p><span class="error_icon"></span>您所查看的视频不存在！</p>
+	     </div>
+	     <div id="flashcontent"></div>
+	<else />
+        <div class="v_title"><span class="v_title_cont">{$video.video_name}</span><span class="c_title_lab">{$video.video_type_desc}<span></div>
+        <ul class="this_detail">
+          <li>讲师：{$video.video_teacher}</li>
+          <li>来源/版权：{$video.video_source}</li>
+          <li>浏览：{$video.view}</li>
+        </ul>
+        <div class="v_play">
+            <div class="v_video">
+               	<div id="flashcontent"></div>	
+            </div>
+            <div class="v_introduction">{$video.video_desc}</div>
+        </div>
+        <div class="other_recommend">
+            <div class="c_line"></div>
+            <div class="c_text">其他视频推荐</div>
+        </div>
+        <ul class="recommend">
+        <foreach name="otherVideo" item="vol">
+          <li>
+            <a href="/t/Openv/index/id/{$vol.id}.html"><span class="icon_videobtn"></span><img src="{$vol.video_img}" alt=""/></a>
+            <a href="/t/Openv/index/id/{$vol.id}.html" class="video_name">{$vol.video_name}</a>
+            <span>讲师：{$vol.video_teacher}</span>
+          </li>
+          </foreach>
+        </ul>
+   </if>   
+ </div>
+ <script type="text/javascript">
+   var so = new SWFObject("{$video.video_swf}", "{$video.id}", "800", "489", "8", "#336699");
+   so.addParam("quality", "low");
+   so.addParam("wmode", "transparent");
+   so.addParam("salign", "t");
+   so.addParam("allowfullscreen", true);
+   so.addParam('autostart',false);
+   //so.addVariable("variable1", "value1");
+   so.write("flashcontent");
+</script>

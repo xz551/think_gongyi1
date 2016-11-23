@@ -1,0 +1,68 @@
+<css:add href="{:STATIC_SERVER_URL}/usercenter/tp/css/psl_home.css" />
+<!-- 右边主体内容[ -->
+<div class="myhome_cmain_right">
+    <!-- 我所在的公益组织[ -->
+    <div class="wraper_volunteer_group">
+        <h3 class="project_title"><eq name="isMine" value="1">我</eq>所在的公益组织
+        	<if condition="$org[0]['num'] neq 0">
+        		<a href="{:U('VolGroup/index',array('uid'=>$uid))}">(全部{$org[0]['num']})</a>
+        	</if>
+        	<i></i>
+        </h3>
+        <!-- 组织 -->
+        <if condition="$org[0]['num'] eq 0">
+        	<div class="prompt_states">尚未加入组织<eq name="isMine" value="1">，<a href="__WEB_SITE__/authuser/all.html?org"><发现公益组织></a></eq></div>
+        <else />
+	        <foreach name="org" item="vo">
+		        <div class="group_details_info">
+		            <a href="{:userUrl($vo['uid'])}" ><img src="{$vo['photo']}" title="{$vo['org_name']}"></a>
+		            <div class="group_introduc_text">
+		                <h3><a href="{:userUrl($vo['uid'])}" class="h3_title" title="{$vo['org_name']}">{$vo['org_name']}</a>
+		                	<neq name="isMine" value="2">
+		                		<a href="javascript:void(0)" class="h3_pemail pemail_btn" data-toid="{$vo['uid']}"></a>
+		                	</neq>
+		                </h3>
+		                <p class="grop_address">{$vo['provinceid']}&nbsp;{$vo['cityid']}</p>
+		                <div class="grop_details_intr">{$vo['summary']}</div>
+		            </div>
+		        </div>
+	        </foreach>
+        </if>
+    </div><!-- ]我所在的公益组织 -->
+
+    <!-- 我所在的公益小组[ -->
+    <div class="wraper_volunteer_group">
+        <empty name="group">
+            <h3 class="project_title"><eq name="isMine" value="1">我</eq>所在的公益小组<i></i></h3>
+            <div class="prompt_states">尚未加入小组<eq name="isMine" value="1">，<a href="__WEB_SITE__/T/Group/FindGroup.html"><发现公益小组></a></eq></div>
+        <else />
+            <h3 class="project_title"><eq name="isMine" value="1">我</eq>所在的公益小组<a href="__WEB_SITE__/T/Group/liveGroup/id/{$uid}"> (全部{$groupNum})</a><i></i></h3>
+            <volist name="group" id="vo">
+            <!-- 小组1 -->
+                <div class="group_details_info">
+                <a href="{:SERVER_VISIT_URL}/t/group/selgroup/id/{$vo.id}.html"><img src="{$vo.image}" title="{$vo.name}"></a>
+                    <div class="group_introduc_text">
+                        <h3><a href="{:SERVER_VISIT_URL}/t/group/selgroup/id/{$vo.id}.html" class="h3_title" title="{$vo.name}">{$vo.name}</a></h3>
+                        <div class="grop_details_intr">
+                            {$vo.introduce}
+                        </div>
+                    </div>
+                </div>
+            </volist>
+        </empty>
+    </div><!-- ]我所在的公益小组 -->
+    <div id='getAjaxPage' data-url="{:U('ajaxGetDynamic')}" data-uid="{$uid}"><img src="__STATIC_URL__/public/images/loading.gif"/></div>
+</div><!-- 右边主体内容[ -->
+<js:w>
+    //ajax动态加载小组页面
+    var url = $("#getAjaxPage").attr('data-url');
+    var uid =$("#getAjaxPage").attr('data-uid');
+    $.ajax({
+        url: url,
+        data:{uid:uid},
+        success: function(msg){
+            $("#getAjaxPage").html(msg);
+            $(".wraper_paging a:contains(1):first").addClass('selected');
+        }
+    });
+</js:w>

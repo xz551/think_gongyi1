@@ -1,0 +1,10 @@
+<div id="slides">
+    <volist name="data" id="vo">
+        <if condition="$vo['url']">
+            <a href="{$vo['url']}" target="_blank">
+                <img width="760" height='400' src="{$vo['image']}"/>
+                <span class="this_textinfo1">{$vo['title']}</span>
+            </a>
+        </if>
+    </volist>
+</div>

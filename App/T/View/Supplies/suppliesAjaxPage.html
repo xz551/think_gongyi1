@@ -1,0 +1,25 @@
+<div class="popwindow_jwuzi" style='display:block'>
+    <eq name='suppliesType' value='1'>
+        <div class="popw_prompt">
+            建议您先与求助发起人就“物资内容、物资数量、物流方式、邮寄地址、运费结算”等问题进行沟通，并待对方确认您的捐助请求后，再进行线下物资的发货和线上物流信息的提交，以免造成您的损失！
+        </div>
+		<else />
+		<div class="popw_prompt">建议您先与资源发起人就“物资内容、物资数量、物流方式、邮寄地址、运费结算”等问题进行沟通,并待对方确认您的资源申请请求后,督促发起人进行线下物资的发货和线上物流信息的提交！
+		</div>
+    </eq>
+    <dl class="choice_wzitems">
+        <dt>请选择并修改您想要<neq name="isaddress" value="1">捐助<else />求助</neq>的物资项：<span class="sp_msg wxwzx">请选择物资项</span></dt>
+        <volist name="showneedInfo" id="vo">
+            <dd>
+                <input type="checkbox" name="suppliesid[]" <eq name="vo.isapply" value="1">checked="checked"</eq> class="wz_chk" value="{$vo.id}" >
+                <input type="text" name="num[]" value='{$vo.num}' class="wz_ipt">X<span class="wz_name" data-id='{$vo.id}'data-name="{$vo.name}" >{$vo.name}&nbsp;</span><span class="sp_msg">请输入正整数</span>
+            </dd>
+        </volist>
+        <neq name="isaddress" value="1">
+            <dd class="dd_niming"><input type="checkbox" name="wz_chk" id="anonymouschecked" <eq name="anonymous" value="1">checked="checked"</eq>  class="wz_chk">匿名捐助(仅求助人可以浏览您的真实信息)</dd>
+            <else />
+             <dd class="dd_niming">请填写您的收件地址</dd>
+        </neq>
+    </dl>
+    <input type="hidden" class='submit_type' name="subtype" data-value="{$subtype}">
+</div>

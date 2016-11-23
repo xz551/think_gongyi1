@@ -1,0 +1,86 @@
+<script type='text/javascript'>
+    $(function(){
+        //nav悬浮效果
+        $(".gy_nwc_lt>li").not("li.cur").hover(function(){$(this).addClass("cur");},function(){$(this).removeClass("cur");});
+    })
+</script>
+<!-- TopBar[ -->
+<div class="gy_top_wrap">
+    <div class="gy_tw_bar">
+        <eq name="isLogin" value="1">
+            <!-- 登录后的状态[ -->
+            <div class="gy_bar_status">
+                <ul>
+                    <li><a href="{$privateLetter}">私信<gt name="messageboxNum" value="0"><i>{$messageboxNum}</i></gt></a></li>
+                    <li><a href="{$notice}">通知<gt name="noticeNum" value="0"><i>{$noticeNum}</i></gt></a></li>
+                    <li class="gy_bsts_user">
+                        <a href="{:userUrl($user['uid'])}">{$user.nickname}</a>
+                        <in name="userType" value="10,11">
+                            <div class="gy_user_menus usr clearfix">
+                                <a href="#">我的主页</a>
+                                <a href="#">我的资料</a>
+                                <a href="#">我的志愿项目</a>
+                                <a href="#">我的公益活动</a>
+                                <a href="#">我的公益小组</a>
+                                <a href="{$logout}">退出</a>
+                            </div>
+                        </in>
+                        <in name="userType" value="20,21">
+                            <div class="gy_user_menus org clearfix">
+                                <a href="#">我的主页</a>
+                                <a href="#">我的资料</a>
+                                <a href="#">我的志愿+</a>
+                                <a href="#">我的公益小组</a>
+                                <a href="{$logout}">退出</a>
+                            </div>
+                        </in>
+                    </li>
+                </ul>
+            </div><!-- ]登录后的状态 -->
+            <else/>
+            <!-- 未登录的状态[ -->
+            <div class="gy_bar_status">
+                <a href="{$login}">快速登录</a>
+                <a href="{$register}">注册</a>
+            </div><!-- 未登录的状态[ -->
+        </eq>
+    </div>
+</div><!-- TopBar[ -->
+
+<!-- TopNav[ -->
+<div class="gy_nav_wrap">
+    <div class="gy_nw_cont">
+        <ul class="gy_nwc_lt">
+            <li class="cur"><a href="/">首页</a></li>
+            <li><a href="{:SERVER_VISIT_URL}/project/all.html">招募</a></li>
+            <li><a href="{:SERVER_VISIT_URL}/active/all.html">活动</a></li>
+            <li><a href="{:SERVER_VISIT_URL}/t/group/usergroup" title="公益小组">小组</a></li>
+            <li class="gy_nav_hz">
+                <a href="#">互动</a>
+                <div class="gy_hz_menus clearfix">
+                    <a href="{:SERVER_VISIT_URL}/T/Donate/index.html" title="求助中心">求助中心</a>
+                    <a href="{:SERVER_VISIT_URL}/T/Donate/index/tag/1.html" title="爱心资源">爱心资源</a>
+                </div>
+            </li>
+            <li><a href="{:SERVER_VISIT_URL}/authuser/all.html" title="公益伙伴">公益伙伴</a></li>
+            <li><a href="{:SERVER_VISIT_URL}/project/alleventlist.html">征集</a></li>
+        </ul>
+		<!--
+        <div class="gy_nwc_seach">
+            <div class="gy_seach_type">
+                <div><span>活动</span><i class="gy_icon"></i></div>
+                <ul>
+                    <li>招募</li>
+                    <li>活动</li>
+                    <li>求助</li>
+                    <li>资源</li>
+                    <li>小组</li>
+                    <li>组织</li>
+                </ul>
+            </div>
+            <input type="text" name="gy_seach" placeholder="看看中青公益有什么">
+            <span class="gy_seach_btn"></span>
+        </div>
+		-->
+    </div>
+</div><!-- ]TopNav -->

@@ -1,0 +1,17 @@
+<css:add href="{:STATIC_SERVER_URL}/usercenter/tp/css/project_pingjia.css" />
+<div id='getAjaxPage' data-url="{:U('ajaxGetEvaluate')}" data-uid="{$uid}"><img src="__STATIC_URL__/public/images/loading.gif"/></div>
+<js:w>
+$(function(){
+	   //ajax动态加载参与过的活动评价
+    var url = $("#getAjaxPage").attr('data-url');  
+    var uid =$("#getAjaxPage").attr('data-uid');
+    $.ajax({
+        url: url,
+        data:{uid:uid},
+        success: function(msg){
+            $("#getAjaxPage").html(msg);
+            $(".wraper_paging a:contains(1):first").addClass('selected');
+        }
+    });
+});
+</js:w>

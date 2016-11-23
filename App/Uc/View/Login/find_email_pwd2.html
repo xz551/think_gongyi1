@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$title}</title>
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/css/base.css">
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/css/find_pwd.css">
+	<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("input").focus(function(){$(this).parent().css("border-color","#2f9be7");});
+			$("input").blur(function(){$(this).parent().css("border-color","#e0e0e0");});
+			//邮箱手机验证之间的切换
+			$(".fdp_swh").click(function(){$(this).parent().toggleClass("cur");$(".way1,.way2").toggleClass("active");});
+			//获取邮箱验证码
+			$("#get_code").bind('click',function(){
+				 var secs=60,tag=1;
+		    	 var email='{$user['email']}';
+		    	 if($(this).is('.dis')){
+		    		 return;
+		    	 }
+		    	 if(email == '' || email == null || email == undefined){
+			      		return;
+			     }
+	    		 $(this).text("发送中").addClass("dis");
+	    		  $.ajax({
+	                  url:'/Uc/Mail/sendcode',
+	                  data:{mail:email,tag:tag},
+	                  dataType:'json',
+	                  type:'post',
+	                  success:function(d){
+	                      if(d.status==1){
+	                          //进入倒计时
+                    	  	for(var i=1;i<=secs;i++){
+ 			        		    setTimeout("update(" + i + ","+secs+")", i * 1000);
+	 			            } 
+	                      }
+	                      $(".error_msg").html(d.msg);
+	                  }
+	              });
+			});
+			//提交邮箱验证
+			$("#ebtn").bind('click',function(){
+				//验证文本框是否有值
+				var ecode=$("#code").val();
+				if(ecode=='' || ecode==null || ecode==undefined){
+					$('.error_msg').html("验证码不能为空");
+					$("#code").focus();
+					return;
+				}else{
+					 var email='{$user['email']}';
+					 $.ajax({
+						 url:'/Uc/Login/ckCode',
+						 data:{email:email,ecode:ecode},
+						 dataType:'json',
+						 type:'post',
+						 success:function(d){
+							 if(d.status==1){
+								 $("#form_step2").submit();
+							 }else{
+								 $(".error_msg").html(d.msg);
+							 }
+						 }
+					 });
+				}
+			}); 
+		});
+		//验证码倒计时
+		function update(num,secs){
+			 if(num == secs){
+				 $("#get_code").html("重新获取验证码").removeClass("dis");
+			 }else{
+				 printnr = secs-num;
+				 $("#get_code").html(printnr+"秒后,可重新发送");
+			 }
+		}
+	</script>
+</head>
+<body>
+    {~W('Layout/header')}
+	<div class="zqgy_find_pwd">
+		{:W('Layout/findPasswordTop',array($tag))}
+		<div class="zqgy_fdpd_detail">
+			<form action="/Uc/Login/findPassword3" id="form_step2" method="post">
+				<input type="hidden" name="email" value="{$user['email']}">
+				<p class="fdp_title">正在为<span>{$user['nickname']}</span>找回账户密码，请使用以下方式进行验证：</p>
+				<div class="fdp_way way1 active">
+					<p>您正在使用 邮箱验证码 验证身份，请完成以下操作：</p>
+					<p class="fdpw_p"><label>验证邮箱：</label><span id="email"><notempty name="user['email']">{$user['email']}<else />无</notempty></span></p>
+					<p class="fdpw_p">
+						<label>验证码：</label>
+						<i><input type="text" name="code" id="code" placeholder="请输入验证码"></i><a href="javascript:void(0)" id="get_code">获取邮箱验证码</a>
+						<span class="error_msg"></span>
+					</p>
+					<p class="fdp_btns"><span id="ebtn">确定</span></p>
+				</div>
+				<notempty name="user['phone']">
+				<div class="fdp_swh_btns">
+					<p class="fdp_swh"><a href="{:U('/Uc/Login/findPassword2')}">通过 手机验证 验证身份</a></p>
+				</div>
+				</notempty>
+			</form>
+			<dl>
+				<dt>如通过以上两种方式（邮箱验证、手机验证），均无法找回账户密码；或发现您的证件信息、登录名等信息，被他人占用，请联系我们：</dt>
+				<dd>邮箱：zqgy@gy.com</dd>
+				<dd>电话：010-64060200-813</dd>
+			</dl>
+		</div>
+	</div>
+	{~W('Layout/footer')}
+</body>
+</html>

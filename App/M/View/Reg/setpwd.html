@@ -1,0 +1,46 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/zqgym/css/regist.css?0">
+<section class="zqgy_regist">
+    <form action="{:U('Reg/regdo')}" method="post" id="zqgy_regist3" onsubmit="return verfiy();">
+        <div class="zqgy_emsg"></div>
+        <p><input type="text" name="uname" class="require" placeholder="请输入2-10位字符昵称"></p>
+        <p class="upwd"><input type="password" name="upwd" class="require" placeholder="请输入6-15字符密码"><i class="eyes yc" data-id="0"></i></p>
+        <button>完成注册</button>
+    </form>
+</section>
+<script type="text/javascript">
+    $(function(){
+        //表单验证
+        $(".require").blur(function(){
+            var a = $(this),b = a.val(),c = $(".zqgy_emsg"),d = a.parent('p'),e = a.attr('placeholder'),f = b.length;
+            if(b == ""){d.addClass('no');c.text(e).show();
+            }else{
+                if(a.attr('name')=='uname'){
+                    if(f<2 || f> 10){d.addClass('no');c.text(e).show();}else{d.removeClass('no');c.hide();}
+                }else if(a.attr('name')=='upwd'){
+                    if(f<6 || f> 15){d.addClass('no');c.text(e).show();}else{d.removeClass('no');c.hide();}
+                }
+            }
+        });
+
+        //显示密码或隐藏
+        $(".eyes").live("touchstart",function(){
+            var a = $(this),b = a.attr('data-id'),c = a.prev('input').val(),d = $(".upwd");
+            if(b==0){
+                d.html('<input type="text" name="upwd" class="require" value="'+c+'" placeholder="请输入6-15字符密码"><i class="eyes kj" data-id="1"></i>');
+            }else{
+                d.html('<input type="password" name="upwd" class="require" value="'+c+'" placeholder="请输入6-15字符密码"><i class="eyes yc" data-id="0"></i>');
+            }
+        });
+    });
+    function verfiy(){
+        $(".require").blur();
+        var t = $("#zqgy_regist3").find('p.no'),u = t.size(),w = t.children('input').attr('placeholder'),x = $(".zqgy_emsg");
+        if(u == 2){
+            x.text("请输入昵称和密码").show();return false;
+        }else if(u == 1){
+            x.text(w).show();return false;
+        }else if(u == 0){
+            x.hide();return true;
+        }
+    }
+</script>

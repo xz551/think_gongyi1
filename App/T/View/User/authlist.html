@@ -1,0 +1,109 @@
+<div id="all_user_wrapper">
+    <ul class="users_list_box_inner clearfix users_list_box">
+        <if condition="$data">
+            <volist name="data" id="user">
+                <li class="fl">
+                    <div class="fl" >
+                        <a target="_blank" href="/uc/{$user['uid']}">
+                            <img class="user_head_style"  alt="{$user['type_name']}" src="{$user['photo_middle']}" onerror="this.src='http://static.zzg.link/public/images/user_default.png'" />
+                        </a>
+                        <span class="text-center {$user['type'] == 21?'organ_type':'user_type'}"><?php echo $user['type_name']; ?></span>
+                    </div>
+                    <div class="detail fl">
+                        <div class="item">
+                            <a class="name" target="_blank" href="/uc/{$user['uid']}">{$user['name']}</a>
+                        </div>
+						 <if condition="$user['province']">
+                        <div class="mes_addr">
+                            <span class="item_addr"> 
+                                    <span class="address_icon11"></span>
+                                    <span class="linyu_addr">{$user['province']}&nbsp;{$user['city']}</span> 
+                            </span>
+					
+                        </div>		  </if>
+                        <div class="item mar_tp10">
+                            <if condition="$user['type'] eq 21">
+                                <p>简介：{$user['summary']|default='暂无'}
+                                </p>
+                            </if>
+
+
+                        </div>
+                        <if condition="$user['type'] eq 21">
+                            <div class="item mar_tp10">
+                                <if condition="count($user['tags']) gt 0">
+                                    <?php
+                                    for($i=0;$i<count($user['tags']) && $i<4;$i++)
+                                    {
+                                        ?>
+                                    <span class="linyu"><?php echo $user['tags'][$i];?></span>
+                                    <?php
+                                    }
+                                    ?>
+
+                                </if>
+
+                            </div>
+                        </if>
+                        <if condition="$user['type'] eq 11 or $user['type'] eq 10">
+                            <div class="item atten_area clearfix mar_tp10">
+                                <if condition=" count($user['tags']) gt 0">
+                                <span class="atten_area_title fl">关注领域：</span>
+		                        <span class="fl atten_area_info">
+
+		                               <?php
+							   
+		                                    for($i=0;$i<count($user['tags']) && $i<4;$i++)
+		                                    { 
+		                                        ?>
+			                               <span class="linyu"><?php echo $user['tags'][$i];?></span>
+			                               <?php
+		                                    }
+		                                    ?>
+		                        </span>
+                                </if>
+                            </div>
+                            <div class="item  clearfix mar_tp10">
+                                <if condition="count($user['ability_tag']) gt 0">
+                                <span class="per_skill_title fl">个人技能：</span>
+                                <span class="fl atten_area_info">
+
+                                        <?php
+                                        for($i=0;$i<count($user['ability_tag']) && $i<4;$i++)
+                                        {
+                                            ?>
+                                            <span class="linyu"><?php echo $user['ability_tag'][$i];?></span>
+                                            <?php
+                                        }
+                                    ?>
+                                </span>
+                                </if>
+                            </div>
+                        </if>
+                    </div>
+                </li>
+                <if condition="$key%2 eq 1">
+                    <div class="fl divid_line"></div>
+                </if>
+            </volist>
+            <else/>
+            <div class="con_txt"><div class="empty-message"><p>该条件下暂无相关用户数据！</p></div></div>
+        </if>
+
+
+    </ul>
+     {$page}
+</div>
+
+<script>
+    $(function(){
+        $('#api-link-page li a').unbind('click').click(function(){
+            var _box = $('#all_user_wrapper');
+            _box.html('<div class="loading">加载中...</div>');
+            $.get($(this).attr('href'),{},function(data){
+                _box.html(data);
+            });
+            return false;
+        });
+    });
+</script>

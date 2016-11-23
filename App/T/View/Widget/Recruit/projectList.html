@@ -1,0 +1,24 @@
+<!-- 项目列表 -->
+ <if condition="$project">
+    <div class="zml_lt_bottom">
+            <ul>
+                <volist name="project" id="pjt">
+                    <li>
+                        <a href="#" class="pro_top"><img src="{$pjt.show_image}"></a>
+                        <div class="pro_bottom">
+                            <a href="#">{$pjt.name}</a>
+                            <p class="pro_form">{$pjt.creator}</p>
+                            <p class="pro_addr">{$pjt.area}</p>
+                            <p class="pro_numb"><label>招募:</label><span><i>{$pjt.job_num}</i>岗位<i>{$pjt.need_num}</i>人</span></p>
+                            <p class="pro_time">报名截止：<span><i data-width='{$pjt.percent}'></i></span><i>{$pjt.clos_date}</i></p>
+                        </div>
+                    </li>
+                </volist>
+            </ul>
+    </div>
+    <div class="zm_page">
+       {$page}
+    </div>
+ <else/>
+    <div class="no_data">暂无相关数据</div>
+</if>

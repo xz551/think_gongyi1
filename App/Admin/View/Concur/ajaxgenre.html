@@ -1,0 +1,22 @@
+{__NOLAYOUT__}
+<div class="modal-header">
+        <button type="button" class="close btn-link" data-dismiss="modal" aria-hidden="true">×</button>
+</div>
+<div class="modal-body">
+	<notempty name="info['money']"><p>求款项：</p></notempty>
+	<notempty name="info['is_supplies']">
+	<p><notempty name="info['type']">捐<else />求</notempty>物资：{$info['wuzi']}<br/>
+		<empty name="info['type']">
+		<span style="margin-left:48px;">收件地址：{$info['address']['address']}</span><br/>
+		<span style="margin-left:48px;">收件人：{$info['address']['name']}</span><br/>
+		<span style="margin-left:48px;">联系电话：{$info['address']['phone']}</span><br/>
+		<span style="margin-left:48px;">邮政编码：{$info['address']['code']}</span><br/>
+		</empty>
+	</p></notempty>
+	<notempty name="info['is_service']">
+	<p><notempty name="info['type']">捐<else />求</notempty>服务：{$info['servicesummary']}<br/>
+		<span style="margin-left:48px;">服务时间：{$info['servicetime']}</span>
+	
+	</p>
+	</notempty>
+</div>

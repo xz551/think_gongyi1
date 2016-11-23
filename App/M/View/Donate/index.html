@@ -1,0 +1,47 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/gongyi/css/donate.css">
+<!-- 承载所有内容的容器[ -->
+<div id="Container">
+	<!-- 活动状态 -->
+	<section class="active_state">{$status[$donate['status']]}</section>
+	<!-- Top -->
+	<section class="wraper_top">
+		<h3>{$donate['name']}</h3>
+		<p class="the_form"><label>求助发起方：</label><span>{$initiator['nickname']}</span></p>
+		<p class="active_details"><label>受助对象：</label><span>{$donate['server_for']}</span></p>
+		<p class="active_details"><label>所需物资：</label><span>{$donate['extra']}</span></p>
+		<p class="active_details"><label>受助地点：</label><span>{$donate['address']}</span></p>
+		<div class="wraper_button">
+			<if condition="$donate.status eq 2">
+			<a href="__YI_JUAN_SITE__/raisegoods/view/id/{$donate['id']}.html">我要认捐</a>
+			<elseif condition="$donate.status eq 3" /><a href="#">认捐已完成</a>
+			<else/><a href="#">认捐已关闭</a>
+			</if>
+			<a href="__YI_JUAN_SITE__/raisegoods/view/id/{$donate['id']}.html">分享</a>
+		</div>
+	</section>
+	<!-- 求助详情 -->
+	<section class="wraper_help_detail">
+		<h3 class="active_title">求助详情<i></i></h3>
+		<p>{$donate['description']}</p>
+	</section>
+	<!-- 求助发起方 -->
+	<section class="wraper_help_form">
+		<h3 class="active_title">求助发起方<i></i></h3>
+		<p>{$initiator['nickname']}</p>
+		<p>{$initiator['address']}</p>
+		<p>联系人：{$initiator['contact']}</p>
+		<p>手机号：{$initiator['phone']}</p>
+		<p>EMAIL：{$initiator['email']}</p>
+		<p>{$initiator['summary']}</p>
+		<p>求助发起方确认以上发布内容合法且真实有效，中青公益不承担任何后果。</p>
+	</section>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $('.wraper_help_detail img').css('max-width','100%');
+        $('.wraper_help_detail span').css({
+            'word-wrap':'break-word',
+            'word-break':'break-all'
+        });
+    });
+</script>

@@ -1,0 +1,74 @@
+<p class="tab_cont1_btns">
+    <include file="Widget/Concurpage:serviceMine" />
+    <span class="btns_jsjwz" id="applyEnd"  data-url="{:SERVER_VISIT_URL}/T/Service/applyEnd"  data-sid='{$sid}' data-id='{$id}'><eq name='concurtype' value='1'>结束求服务<else />结束捐服务</eq></span> 
+</p>
+<!--友好提示弹出层[-->
+<div class="promptHtml apply_service_end">
+    <p class="promptHtmlText serviceHtmlText">
+        确定要结束吗？
+    </p>
+</div><!--]友好提示弹出-->
+<script>
+    $(function () {
+     //捐服务
+        $("#applyEnd").popWindow({
+            width: "400",
+            height: "200",
+            content: $(".apply_service_end").html(),
+            id: "serviceend",
+            callback: function (a, box) {
+                var id = $("#applyEnd").attr('data-id');
+                var sid = $("#applyEnd").attr('data-sid');
+                $.ajax({
+                        type: "POST",
+                        url: "{:SERVER_VISIT_URL}/T/Service/getApplicationNumber",
+                        data: "id=" + id +"&sid="+sid,
+                        success: function (msg) {
+                            if(msg.status == 1){
+                                var ht = "当前尚有<b style='color:red;'>"+msg.sum+"</b>条未处理的";
+                                    ht += "<eq name='concurtype' value='1'>捐服务<else />求服务</eq>";
+                                    ht += "申请，确定结束后，未处理的<eq name='concurtype' value='1'>捐服务<else />求服务</eq>请求将直接全部拒绝！";
+                                    ht += "在结束时间到来之前，可手动结束，结束后不可重新开启！&nbsp;&nbsp;&nbsp;&nbsp;";
+                                    ht += "确定要结束<eq name='concurtype' value='1'>求服务<else />捐服务</eq>吗？";
+                                $(".serviceHtmlText").html(ht);
+                            }else{
+                                $(".serviceHtmlText").html("确定要结束<eq name='concurtype' value='1'>求服务<else />捐服务</eq>吗？");
+                            }
+                        }
+                    });  
+            },
+            button: {
+                cancel: function () {
+                },
+                ok: function (t, box) {
+                    var url = $("#applyEnd").attr('data-url');
+                    var id = $("#applyEnd").attr('data-id');
+                    var _this = $(this);
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: "id=" + id,
+                        success: function (msg) {
+                            if(msg.status == -1){
+                                alert(msg.content);
+                            }else{
+                                $('.btns_jsjwz').replaceWith('<span class="btns_jsjwz" >已结束</span>');
+								$('.system_msg').remove();
+                                if(msg.isend){
+                                    $("h3 .sp_state").html("已完成");
+                                }
+                                box.hide();
+                                $("#mask1").hide();
+                            }
+                        }
+                    });               
+                }
+            }
+        });
+
+
+
+
+       
+    })
+</script>

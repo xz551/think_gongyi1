@@ -1,0 +1,79 @@
+{__NOLAYOUT__}
+<div class="add_resume_wpr">
+    <form action="javascript:void(0)" method="post" id="form">
+        <dl>
+            <dt><span class="red">*</span>活动名称：<span class="msg-box n-right" for="act_name"></span></dt>
+            <dd><input type="text" value='{$resume.title}'  name="act_name" placeholder="活动名称"></dd>
+        </dl>
+        <dl>
+            <dt><span class="red">*</span>开始时间：<span class="msg-box n-right" for="act_btime"></span></dt>
+            <dd><input type="text" value='{$resume.start_time}' name="act_btime" id="act_btime" placeholder="开始时间"  class="laydate-icon" /></dd>
+        </dl>
+        <dl>
+            <dt><span class="red">*</span>结束时间：<span class="msg-box n-right" for="act_etime"></span></dt>
+            <dd><input type="text" name="act_etime" value='{$resume.end_time}' id="act_etime" placeholder="结束时间" class="laydate-icon"/></dd>
+        </dl>
+        <dl>
+            <dt><span class="red">*</span>服务地址：<span class="msg-box n-right" for="address"></span></dt>
+            <dd class="address">                                                                                          
+                <select id="s_province" name="provinceid">
+                    <option value="-1">请选择</option>
+                    <volist name="cityList" id="vo">
+                        <eq name="i" value="$resume.provinceid">
+                        <option value="{$i}" selected='selected' data-default='1'>{$vo}</option>
+                        <else/>
+                        <option value="{$i}">{$vo}</option>
+                        </eq>
+                    </volist>
+                </select>&nbsp;&nbsp;
+                <select id="s_city" name="cityid">
+                </select>&nbsp;&nbsp;
+                <input type="text" name='address' value='{$resume.address}' class="s_county"  value="{$proData.address}" placeholder="请输入详细地址">                             
+            </dd>
+        </dl>
+        <dl>
+            <dt><span class="red">*</span>发起组织：<span class="msg-box n-right" for="act_ogz"></span></dt>
+            <dd><input type="text" name="act_ogz" value='{$resume.org_name}' placeholder="发起组织"></dd>
+        </dl>
+        <dl>
+            <dt><span class="red">*</span>主要职责：<span class="msg-box n-right" for="act_duty"></span></dt>
+            <dd>
+                <textarea name="act_duty" class="duty_edit">{$resume.responsibility}</textarea>
+                <span class="prompt_text">请输入您的主要职责，至少10个字符</span>
+            </dd>
+        </dl>
+        <input type='hidden' name='id' value='{$resume.id}'>
+        <p class="btns"><button id="save" class="save_ll"><eq name="type" value="1">修改<else/>保存</eq>履历</button><a href="#" id="cancel" class="quxiao">取消</a></p>
+    </form>
+    <script type="text/javascript">
+    function getCityList(cid) {
+        $.ajax({
+            type: "POST",
+            url: "{:U('uc/volres/getcity')}",
+            data: "cid=" + cid,
+            success: function (msg) {
+                var obj = jQuery.parseJSON(msg);
+                $("#s_city option").remove();
+                $.each(obj, function (key, value) {
+                    if (key == '{$resume.cityid}') {
+                        $("#s_city").append("<option value=" + key + " selected='selected' >" + value + "</option>");
+                    } else {
+                        $("#s_city").append("<option value=" + key + ">" + value + "</option>");
+                    }
+                });
+            }
+        });
+    }
+
+	$(".duty_edit").focus(function () {
+         $(this).next('span').remove();
+    });
+    var sV = $("#s_province option[selected]").val();
+    getCityList(sV);
+    $("#s_province").change(function () {
+        var cid = this.options[this.options.selectedIndex].value;
+        getCityList(cid);
+    });
+
+</script>
+</div>

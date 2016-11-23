@@ -1,0 +1,31 @@
+<!-- Header[ -->
+<div class="myhome_header">
+    <div class="myhome_header_cont">
+        <a href="{$gongyi}" target="_blank"><img src="{:STATIC_SERVER_URL}/usercenter/tp/images/zqgylogo.png" clsas="myhome_top_left"></a>
+        <div class="myhome_top_right">
+            <eq name="isLogin" value="1">
+            <div class="myhome_users_wraper">
+                <a href="{:userUrl($uid)}">{$name}<i class="icon_arrow_down"></i></a>
+                <ul class="users_menus_bottom">
+                    <li><a href="{$edit}" class="edit_data">编辑资料</a></li>
+                    <li><a href="{$logout}" >退出登录</a></li>
+                </ul>
+            </div>
+            </eq>
+            <nav class="myhome_nav_wraper">
+                <ul>
+                    <eq name="isLogin" value="1">
+                    <li><a href="{$privateLetter}" target="_blank">私信<gt name="messageboxNum" value="0">&nbsp;<span>&nbsp;{$messageboxNum}&nbsp;</span></gt></a></li>
+                    <li><a href="{$notice}" target="_blank" >通知
+                           <neq name="noticeNum" value='0'>&nbsp;<span>&nbsp;{$noticeNum}&nbsp;</span></neq>
+                        </a></li>
+                    <else/>
+                    <li><a href="{$login}">登录</a></li>
+                    </eq>
+                    <li><a href="{$gongyi}" target="_blank" >中青公益</a></li>
+                    <li><a href="{$jiaUrl}" target="_blank" class="zhiyuanjia">志愿+</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div><!-- ]Header -->

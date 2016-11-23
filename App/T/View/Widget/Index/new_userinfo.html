@@ -1,0 +1,25 @@
+<!-- 用户信息及各样操作 -->
+<!-- gy_col1_rt-top[ -->
+<div class="gy_c1rt_top">
+    <a href="{:JIA_SERVER_URL}"></a>
+</div><!-- ]gy_col1_rt-top -->
+<!-- gy_col1_rt-center[ -->
+<div class="gy_c1rt_center">
+    <div class="gy_cc_info">
+        <a class="gy_cci_lt" <neq name="isLogin" value="0">href="#"</neq> ><img src="{$uInfo.photo}"></a>
+        <include file="$userPageByUserType" /> 
+    </div>
+</div>
+<div class="gy_c1rt_bottom">
+    <a href="{:WEB_SITE}/project/all.html" class="gy_c1rtb_lt"><i>招募志愿者</i></a>
+    <div class="gy_c1rtb_rt">
+        <a href="{:WEB_SITE}/active/all.html" class="gy_menus1"><i>公益活动</i></a>
+        <a href="{:WEB_SITE}/T/Group/FindGroup.html" class="gy_menus2"><i>小组话题</i></a>
+        <a href="{:WEB_SITE}/T/Donate/index.html" class="gy_menus3"><i>求助中心</i></a>
+        <a href="{:WEB_SITE}/T/Donate/index/tag/1.html" class="gy_menus4"><i>爱心资源</i></a>
+        <a href="<eq name='uInfo.type' value='11'>{:WEB_SITE}/authuser/all.html</eq>" class="gy_menus5"><i>志愿者</i></a>
+        <a href="http://192.168.1.16" class="gy_menus6" target="_blank"><i>移动培训</i></a>
+        <a href="119.40.17.21:8080/VolunteerValue/1_pro_num.jsp" target="_blank" class="gy_menus7"><i>评估系统</i></a>
+        <a href="{:WEB_SITE}/t/video/" class="gy_menus8"><i>视频培训</i></a>
+    </div>
+</div><!-- ]gy_col1_rt-bottom -->

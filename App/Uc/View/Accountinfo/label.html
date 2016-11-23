@@ -1,0 +1,193 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/usercenter/account/css/atten_linyu.css">
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/popWindow.js"></script>
+<script type="text/javascript">
+    /*验证非法字符*/
+    function ExpReg(v){
+            var reg = /^[^~!@#\<\>\$\%\^&\*\(\)\+]{1,}$/;
+            var f = false;
+            if(reg.test(v)){
+                    f = true;
+            }
+            return f;
+    }
+    
+    $(function () {
+        $(".myhome_users_wraper").hover(function () {
+            $(this).find('ul').show("200");
+        }, function () {
+            $(this).find('ul').hide();
+        });
+        //添加选中效果模拟input框
+        $(".dl_linyu i").click(function () {
+            $(this).toggleClass("chk");
+            var a = $("i.chk"),
+                    b = $("input[name='ly_label']");
+            fillVal(a, b, 1);
+        });
+        //自定义添加标签
+        $(".tjn_label a").click(function () {
+            var a = $(this), b = a.prev('input').val(), c = $(".add_label"), arr = new Array();
+            if (b != "") {
+                //验证用户是否输入非法字符
+                if(!ExpReg(b)){
+                    alert("标签不能含有非法字符");
+                    return;
+                }
+                arr = b.split(" ");
+                for (var i = 0; i < arr.length; i++) {
+                    if (arr[i] != "") {
+                        c.append("<span>" + arr[i] + "<i></i></span>");
+                        a.prev('input').val("");
+                    }
+                }
+            }
+            fillVal($(".add_label span"), $("input[name='jn_label']"), 0);
+        });
+        //添加推荐标签
+        $(".tjn_label i").click(function () {
+            var a = $(this).parent(),
+                    b = a.text();
+            if (!a.hasClass("dis")) {
+                if (b != "") {
+                    $(".add_label").append("<span>" + b + "<i></i></span>");
+                }
+            }
+            a.addClass("dis");
+            fillVal($(".add_label span"), $("input[name='jn_label']"), 0);
+        });
+        //移除标签
+        $(".add_label i").live("click", function () {
+            var a = $(this),
+                    b = a.parent(),
+                    c = b.text();
+            $(".tjn_label span").each(function () {
+                if ($(this).text() == c) {
+                    $(this).removeClass("dis");
+                }
+            });
+            b.remove();
+            fillVal($(".add_label span"), $("input[name='jn_label']"));
+        });
+        $("#form_lyjn").submit(function () {
+            var ly_sel = $("i.chk"),
+                jn_sel = $(".add_label span"),
+                ly_ipn = $("input[name='ly_label']"),
+                jn_ipn = $("input[name='jn_label']"),
+                flag1 = fillVal(ly_sel, ly_ipn, 1),
+                flag2 = fillVal(jn_sel, jn_ipn, 0);
+            var s = flag1 && flag2;
+            if (s) {
+                $(".sub_btn").text("请稍候...");
+                var ly_label = $("input[name='ly_label']").val();
+                var jn_label = $("input[name='jn_label']").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/uc/accountajax/setuserlabel",
+                    data: "ly_label="+ly_label+"&jn_label="+jn_label,
+                    success: function(msg){
+                        if(msg.status==1){
+                            $(".sub_btn").text("操作成功");
+                            $("#box1").show();
+                            $("#mask1").show();
+                        }else{
+                            $(".sub_btn").text("操作失败");
+                            alert(msg.msg)
+                        }
+                    }
+                 });
+        }
+            return false;
+        });
+
+        //往input里面填充值
+        function fillVal(a, b, c) {
+            var sel = a, inp = b, str = "";
+            if (sel.length != 0) {
+                sel.each(function () {
+                    if (c) {
+                        str += $(this).attr('data-id') + ",";
+                    } else {
+                        str += $(this).text() + ",";
+                    }
+                });
+                inp.val(str).prevAll("dt").children("span").hide();
+                return true;
+            } else {
+                inp.val("").prevAll("dt").children("span").show();
+                return false;
+            }
+        }
+        $(".sub_btn").popWindow({
+            width: "400",
+            height: "220",
+            title: "提示",
+            content: $(".promptHtml").html(),
+            id: "box1",
+            autoshow: 'true',
+            callback: function (a, box) {
+                box.hide();
+                $("#mask1").hide();
+            },
+            button: {
+                ok: function (t, box) {
+                    box.hide();
+                    $("#mask1").hide();
+                    $(".sub_btn").text("确定");
+                }
+            }
+        });
+        $("#box1").find("span.popOkBtn").text("立即返回");
+
+    });
+</script>
+
+
+<h3>账户设置 > 技能及关注领域</h3>
+<div class="zqgy_asrt_cont">
+    <form action="#" id="form_lyjn">
+        <dl class="dl_linyu">
+            <dt><i>*</i>关注领域：<span class="e_msg">至少选择一个标签</span></dt>
+            <dd>
+            <volist name="field" id="vo">
+                <i data-id="{$key}" <in name="key" value="$interestlist">class="chk"</in>  >{$vo}</i>
+            </volist>
+            </dd>
+            <input type="hidden" name="ly_label">
+        </dl>
+        <dl class="dl_jineng">
+            <dt><i>*</i>技能标签：<span class="e_msg">至少选择一个标签</span></dt>
+            <dd class="add_label">
+                <volist name="list" id="v">
+                    <span>{$v}<i></i></span>
+                </volist>              
+            </dd>
+            <dd class="tjn_label">
+                <span>医疗救助<i></i></span>
+                <span>体育竞技<i></i></span>
+                <span>驾驶运输<i></i></span>
+                <span>法律服务<i></i></span>
+                <span>信息技术<i></i></span>
+                <span>经验管理<i></i></span>
+                <span>公共关系<i></i></span>
+                <span>教育培训<i></i></span>
+                <span>电器维修<i></i></span>
+                <span>安全保卫<i></i></span>
+                <span>财会金融<i></i></span>
+                <span>客户接待<i></i></span>
+                <span>新闻写作<i></i></span>
+                <span>设计创意<i></i></span>
+                <span>物业养护<i></i></span>
+                <span>摄像摄影<i></i></span>
+                <span>音乐<i></i></span>
+                <input type="text" name="other_label" placeholder="没有合适的标签！可以在这里自定义哦~">
+                <a href="javascript:void(0);">添加标签</a>
+            </dd>
+            <input type="hidden" name="jn_label">
+        </dl>
+        <button class="sub_btn">确定</button>
+    </form>
+</div>
+<!--提示弹出层[-->
+<div class="promptHtml">
+    <p class="promptHtmlText">提交成功!</p>
+</div><!--]提示弹出-->

@@ -1,0 +1,26 @@
+
+<script type="text/javascript">
+    $(function(){
+		//点击默认填充的内容是当前自己隐藏，就可以正常输入了
+		$(".default_text").click(function(){$(this).hide();});
+        //文本编辑器的配置代码
+        window.editor;
+        KindEditor.ready(function(K) {
+            editor = K.create('#{$id}', {
+                cssPath:'__STATIC_URL__/yun/js/editor/plugins/code/prettify.css',
+                uploadJson:"{:U('t/Img/uploadEditorImg')}",
+                width : "700px", //编辑器的宽度为70%
+                height : "450px", //编辑器的高度为100px
+                resizeType:"0",
+                items:  [ 'undo', 'redo', '|', 'preview', 'cut', 'copy', 'paste',
+                    'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                    'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent',  'clearhtml', 'quickformat',
+                    'selectall', '|', 'fullscreen', '/', 'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                    'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|',
+                    'image', 'table', 'hr', 'pagebreak',
+                ]
+            });
+        });
+    });
+</script>
+<textarea id="{$id}" cols="{$cols}" rows="{$rows}" name="{$name}">{$value}</textarea>

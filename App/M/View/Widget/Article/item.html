@@ -1,0 +1,8 @@
+<volist name="data" id="vo">
+    <a href="/m/bao/index/id/{$vo['id']}" class="bd_items">
+        <span>{$vo['title']}</span>
+        <p><span>来源：{$vo['origin_from']|default='中青公益'}</span>
+            <span>{$vo['update_date']|date='Y-m-d H:i:s'}</span>
+			</p>
+    </a> 
+</volist>

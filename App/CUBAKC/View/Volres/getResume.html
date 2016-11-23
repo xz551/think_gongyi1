@@ -1,0 +1,39 @@
+{__NOLAYOUT__}
+<volist name="resume" id="vo">
+<div class="wraper_resume_list">
+    <eq name='ismine' value='1'><a href="javascript:void(0)" class='eidt_user_resume' data-id="{$vo.id}">编辑</a></eq>
+    <p><label>志愿时间段：</label><span>{$vo.start_time} ———— {$vo.end_time}</span></p>
+    <p><label>志愿服务地点：</label><span>{$vo.address}</span></p>
+    <p><label>发起组织：</label><span>{$vo.org_name}</span></p>
+    <p><label>活动名称：</label><span>{$vo.title}</span></p>
+    <p class="main_duty"><label>主要职责：</label><span>{$vo.responsibility}</span></p>
+</div>
+</volist>
+<!-- 分页 -->
+<div class="wraper_paging">
+    {$page}
+</div>
+<script>
+    $('.eidt_user_resume').click(function () {
+        var _this = $(this);
+        var url = $('.eidtResume').attr('data-url');
+        $('.add_resume_wpr').remove();
+        var id = _this.attr('data-id');
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: "type=1&id="+id,
+            success: function (msg) {
+                //当前的隐藏，其他的显示，将获取的内容追加到当前元素后面
+                _this.parent().hide().siblings().show();
+                _this.parent().after(msg);
+                $(".add_resume_wpr").toggle("200", function () {
+				    $(".prompt_text").remove();
+                    bind_time();
+                    check();
+                });
+            }
+        });
+    });
+</script>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/ajaxpage.js"></script>

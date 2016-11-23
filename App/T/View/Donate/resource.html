@@ -1,0 +1,91 @@
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/help_list.css">
+<script type="text/javascript">
+	$(function(){
+		/*去掉奇数所对应的下边的对象的右边距*/
+		var res_list = $(".tuijian_list > li");
+		delMargin(res_list,1,"mar0");
+	
+		//去掉资源列表的边距
+		var res_list1 = $(".regouress_items > li");
+		delMargin(res_list1,2,"lrMargin");
+		//鼠标悬浮是显示详细信息
+		$(".hp_pjt_right > dl").hover(function(){
+			$(this).find('.wraper_detail_info').show();
+		},function(){
+			$(this).find('.wraper_detail_info').hide();
+		});
+		/*分页*/ 
+		$(".wraper_paging li").hover(function(){
+			$(this).addClass("mouse_hover").siblings().removeClass("mouse_hover");
+		});
+		$(".wraper_paging ul .curr").addClass("mouse_hover");
+		var type=$(".type").attr("data-class");
+		var status=$(".status").attr("data-class");
+		var label=$(".label").attr("data-class");
+		var pro=$(".pro").attr("data-class");
+		$(".status_"+status).addClass("sp_cur");
+		$(".type_"+type).addClass("sp_cur");
+		$(".label_"+label).addClass("sp_cur");
+		$(".pro_"+pro).addClass("sp_cur");
+	
+	});
+	function delMargin(o,n,c){
+		for(var i=1;i<o.length;i++){
+			o.eq(i).addClass(c);
+			i+=n;
+		}
+	}
+</script>
+<div class="wraper_main clearfix">
+		<div id='mask' style="display: none;"></div>
+		<!-- 左边部分[ -->
+		<div class="slidebar_left">
+			{~W('Donate/left_top')}
+			<!-- 左—CENTER[ -->
+			<!-- <div class="slider_lf_center">
+				<h3>推荐资源</h3>
+				<ul class="tuijian_list clearfix">
+					<li>
+						<a href="#" class="tjlist_top">
+							<img src="images/qq8.jpg">
+							<span class="tjlist_top_choice"><i class="icon_money"></i><i class="icon_gift"></i><i class="icon_heart"></i></span>
+						</a>
+						<a href="#" class="thlist_bottom">
+							求助求助求助求助求助求助求助求助求助求助求助求助
+						</a>
+					</li>
+				</ul>
+			</div> --><!-- ]左—CENTER -->
+		</div><!-- ]左边部分 -->
+		<!-- 右边部分[ -->
+		<div class="wpr_main_right">
+			{~W('Donate/main_top')}
+			<!-- 一个资源[ -->
+			<if condition="$concurInfo">
+				<ul class="regouress_items">
+					<volist name="concurInfo" id="vo">
+						<li>
+							<a href="__WEB_SITE__/T/Concurinfo/index/id/{$vo['id']}" class="regouress_top" target="_blank" title="{$vo.title}"><img src="{$vo.image}"></a>
+							<div class="regouress_bottom">
+								<h3><a href="__WEB_SITE__/T/Concurinfo/index/id/{$vo['id']}" target="_blank" title="{$vo.title}">{$vo.title}</a></h3>
+								<p class="form_people"><label>资源发起人：</label><a href="{:userUrl($vo['creator'])}" title="{$vo.nickname}" target="_blank">{$vo.nickname}</a></p>
+								<p class="regouress_bottom_detail">
+									<if condition="$vo['supplies']">
+										<label class="icon_lb_gift"></label>
+										<span title="提供{$vo['supplies'][0]['res']}等物">提供{$vo['supplies'][0]['res']}等物</span>
+									<else />
+										<label class="icon_lb_service"></label>
+										<span title="{$vo.summary}">{$vo.summary}</span>	
+									</if>
+								</p>
+							</div>
+						</li>
+					</volist>
+				</ul><!-- ]一个资源 -->
+			<!-- 分页 -->
+				<div class="wraper_paging">{$page}</div>
+			<else />
+				<div class="none_msg">该条件下暂无相关资源项目</div>
+			</if>
+		</div><!-- ]右边部分 -->
+</div>

@@ -1,0 +1,117 @@
+<title>求助详情</title>
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/help_header.css">
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/help_detail.css?0">
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/public/css/jquery.validator.css">
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/jquery.validator.js"></script>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/zh_CN.js"></script>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/popWindow.js"></script>
+<script>
+$(function(){ 
+	var id="{$sid}";
+	showLove(id);
+	setInterval (function(){showLove(id)}, 120000);
+	function showLove(id){
+	    $.ajax({
+	    	 url:"/T/Test1/love",
+	    	 data:{id:id},
+	    	 type:"post",
+	    	 success:function(d){
+	    		 $(".wpr_mclt_column7").html(d);
+	    	 }
+	    }); 
+	}
+    /*
+    分享弹出窗
+    */
+   $(".wpr_mtl_share").click(function () {
+       var url = "{:U('t/Test1/shareSub')}";
+       var sid = "{$sid}";
+       var name = "{$concur['title']}";
+       $.ajax({
+           type: "POST",
+           url: url,
+           data: "sid="+sid+"&name="+name,
+           success: function (msg) {
+               $(".wpr_mtl_share").popWindow({
+                   width: "548",
+                   height: "268",
+                   title: "分享到：",
+                   content: msg,
+                   autoshow: true,
+                   id: "box2",
+                   callback: function (a, box) {
+                       uid = a.data('uid');
+                       obj = a.parent().parent().parent();
+                   },
+                   button: {
+                   }
+               });
+           }
+       });
+
+   });
+
+   $(".txtBox").focus(function () {
+       $(this).css("color", "#333");
+   });
+   $("#box2").find(".popOkBtn").css({float: "right", marginRight: '0px'}).text("分享");
+   $("#box2").find("#winfooter").css({"text-align": "right", "color": "#626262"}).append("你最多可以输入<strong class='font_length1'>140</strong>个字符&nbsp;&nbsp;");
+});	 
+</script>
+<!-- wraper_main[ -->
+<div class="wraper_main clearfix">
+    <!-- main_top[ -->
+    <div class="wpr_main_top">
+        <!-- main_top_左边[ -->
+        <div class="wpr_mtop_lt">
+            <img src="{:STATIC_SERVER_URL}/concur/images/icon_rzbz.png" class="img_rzbz">
+            <a href="#" class="wpr_mtl_img"><img src="{$concur['image']}"></a>
+            <a href="#" class="wpr_mtl_share">分享(100)</a>
+        </div><!-- ]main_top_左边 -->
+        <!-- main_top_右边[ -->
+        <div class="wpr_mtop_rt">
+            <h3><a href="#">{$info.title}</a><span class="sp_state"><a name="names">进行中</a></span></h3>
+            <p class="wpr_mtoprt_detail"><label><eq name='type' value='1'>求助类型<else />资源类型</eq>：</label>
+            <volist name='label' id='vo'>
+                {$vo}&nbsp;&nbsp;|&nbsp;&nbsp;
+            </volist>
+            </p>
+            <p class="wpr_mtoprt_detail"><label><eq name='type' value='1'>求助时间<else />资源有效期</eq>：</label>2015年1月1日 - 2015年8月9日</p>
+            <p class="wpr_mtoprt_detail"><label><eq name='type' value='1'>受助地点<else />所在地点</eq>：</label>{$area}</p>
+            <p class="wpr_mtoprt_detail"><label><eq name='type' value='1'>受助对象<else />捐助对象</eq>：</label>{$info.server_for}</p>
+        </div><!-- ]main_top_右边 -->
+    </div><!-- ]main_top -->
+    <!-- main_center[ -->
+    <div class="wpr_main_center clearfix">
+        <!-- main_center_左边[ -->
+        <div class="wpr_mcenter_lt">
+            <!-- Column3[ -->
+            {~W('Donate/main_donate')}
+            <!-- Column4[ -->
+         	{~W('Donate/reply')}
+        </div><!-- ]main_center_左边 -->
+        <!-- ]main_center_右边 -->
+        <div class="wpr_mcenter_rt">
+            <!-- Column5[ -->
+            <div class="wpr_mclt_column5">
+                <h3 class="h3_title"><i></i>求助发起人</h3>
+                <div class="col5_leader_info">
+                    <a href="#" class="col5_leader_lt"><img src="{:STATIC_SERVER_URL}/concur/images/qq6.jpg"></a>
+                    <div class="col5_leader_rt">
+                        <h3 class="col5_lrt_title"><a href="#" class="helpren_name">美丽中国美丽中国尽快释</a><img src="{:STATIC_SERVER_URL}/concur/images/icon_v1.png"><a href="#" class="pemail"></a></h3>
+                        <p class="col5_lrt_address">北京市 东城</p>
+                        <p>联系人：吴忘成</p>
+                        <p>联系电话：13051038371</p>
+                        <p>Email:wuwc19950201@gmail.com</p>
+                    </div>
+                </div>
+            </div><!-- ]Column5 -->
+            <!-- 爱心认证-->
+            {~W('Concur/iLove')}
+                     <!-- Column7[ -->
+			<div class="wpr_mclt_column7"></div>
+        </div><!-- ]main_center_右边 -->
+    </div><!-- ]main_center -->
+</div><!-- ]wraper_main -->
+{~W('Common/Login/showLogin')}
+{~W('Common/Message/privateLetter')}

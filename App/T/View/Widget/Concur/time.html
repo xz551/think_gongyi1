@@ -1,0 +1,86 @@
+<input type="text" name="act_btime" id="act_btime" placeholder="开始时间" value='{$stime}'  class="laydate-icon" />&nbsp;
+<input type="text" name="act_etime" id="act_etime" placeholder="结束时间" value='{$etime}' class="laydate-icon"/>
+<script type="text/javascript">
+    function bindDate() {
+        var myDate =  new Date();
+        var m = myDate.getMonth()+1;
+        if(m<10){
+            m = '0'+m;
+        }
+        var d = myDate.getDate();
+        if(d<10){
+            d = '0'+d;
+        }
+        var minTime = myDate.getFullYear() + "-" + m + "-" + d;
+        window.start ={
+            elem: '#act_btime', //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
+            event: 'focus', //响应事件。如果没有传入event，则按照默认的click
+            istime: <eq name="timeShowType" value='1'>true<else />false</eq>,
+            min: minTime, //最小日期
+            max: '2099-06-16 23:59:59',
+            format: '<eq name="timeShowType" value='1'>YYYY-MM-DD hh:mm:ss<else/>YYYY-MM-DD</eq>', //日期格式
+            choose: function (datas) {
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+                if(end.istime){ 
+                    datas=datas.split(' ')[0]+' 23:59:59';
+                }
+                end.start = datas; //将结束日的初始值设定为开始日
+            },
+            closecallback: function () {
+                $("#act_btime").blur();
+            }
+        };
+
+        window.end={
+            elem: '#act_etime', //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
+            event: 'focus', //响应事件。如果没有传入event，则按照默认的click
+            istime: <eq name="timeShowType" value='1'>true<else />false</eq>,
+            format: '<eq name="timeShowType" value='1'>YYYY-MM-DD hh:mm:ss<else/>YYYY-MM-DD</eq>', //日期格式
+            choose: function (datas) {
+                start.max = datas; //结束日选好后，重置开始日的最大日期
+            },
+            closecallback: function () {
+                $("#act_etime").blur();
+            }
+        };
+        laydate(end);
+        laydate(start);
+    }
+
+//验证时间
+    function validatime(b, e, emsg) {
+        //var emsg = b.parent().prev().find('span');
+        var text;
+        if (b.val() == "" && e.val() == "") {
+            text = b.attr('placeholder');
+            emsg.addClass("error_msg").removeClass('change_icon').html(text + '不能为空').show();
+            return false;
+        } else if (b.val() == "" && e.val() != "") {
+            text = b.attr('placeholder');
+            emsg.addClass("error_msg").removeClass('change_icon').html(text + '不能为空').show();
+            return false;
+        } else if (b.val() != "" && e.val() == "") {
+            text = e.attr('placeholder');
+            emsg.addClass("error_msg").removeClass('change_icon').html(text + '不能为空').show();
+            return false;
+        } else {
+            emsg.addClass("change_icon").removeClass('error_msg').show();
+            return true;
+        }
+    }
+//时间失去焦点事件
+    function blurchktime(o, etext, emsg) {
+        //var emsg = o.parent().prev().find('span');
+        if (o.val() == "") {
+            emsg.addClass("error_msg").removeClass('change_icon').html(etext).show();
+            return false;
+        } else {
+            emsg.addClass("change_icon").removeClass('error_msg').html("").show();
+            return true;
+        }
+    }
+    <if condition="$auto eq 1">
+    bindDate();
+    </if>
+
+</script>

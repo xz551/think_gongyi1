@@ -1,0 +1,114 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/gongyi/css/recruit.css?0">
+<script type="text/javascript">
+	$(function(){
+		//给显示部落时所有中间的一个元素对两边添加了一个边距
+		var len = $(".wraper_active_photo img").length;
+		for(var i=0;i<len;i++){
+			$(".wraper_active_photo img").eq(i).addClass("right_mar");
+			i++;
+		}
+	});
+</script>
+<!-- 承载所有内容的容器[ -->
+<div id="Container">
+	<section class="active_state">{$status[$rePro[0]['status']]}</section>
+	<!-- Top -->
+	<section class="wraper_top">
+		<h3>{$rePro[0]['name']}</h3>
+		<p class="the_form"><label>发起人：</label><span>{$rePro[0]['user']}</span></p>
+		<img src="{$rePro[0]['show_image']}" class="active_img">
+		<p class="the_time"><label>服务对象：</label><span>{$rePro[0]['server_for']}</span></p>
+		<p class="the_address"><label>招募时间：</label><span>{$rePro[0]['begin_time']}&nbsp;&nbsp;-&nbsp;&nbsp;{$rePro[0]['end_time']}</span></p>
+		<p class="the_address"><label>服务时间：</label><span>{$rePro[0]['bt']}&nbsp;&nbsp;-&nbsp;&nbsp;{$rePro[0]['et']}</span></p>
+		<p class="the_address"><label>服务地点：</label><span>{$rePro[0]['province']}&nbsp;&nbsp;{$rePro[0]['city']}&nbsp;&nbsp;{$rePro[0]['address']}</span></p>
+	</section>
+	<!-- 项目概述 -->
+	<section class="wraper_project_summary">
+		<h3 class="active_title">项目概述<i></i></h3>
+		<p>{$rePro[0]['summary']}</p>
+	</section>
+	<!-- 费用保障说明 -->
+	<section class="wraper_project_summary">
+		<h3 class="active_title">费用保障说明<i></i></h3>
+		<p>{$rePro[0]['volunteer_cost']}</p>
+	</section>
+	<!-- 招募岗位 -->
+	<section class="wraper_find_post">
+		<h3 class="active_title">招募岗位<i></i></h3>
+		<foreach name="rePro" item="vo">
+			<div class="post_details">
+				<p class="post_name">{$vo.jobname}<i></i></p>
+				<dl>
+					<dt>岗位描述：</dt>
+					<dd>{$vo.des}</dd>
+				</dl>
+				<dl>
+					<dt>应聘条件：</dt>
+					<dd>{$vo.need_condition}</dd>
+				</dl>
+				<div class="wraper_button">
+					<if condition="$vo.status eq 1">
+					<a href="__YI_JUAN_SITE__/project/view/id/{$vo.id}.html">我要报名</a>
+					<else /><a href="#">报名已结束</a>
+					</if>
+					<div class="wraper_number">
+						<p>目标人数<br><span>{$vo.need_count}</span></p>
+						<p>报名人数<br><span>{$vo.jobUserCount}</span></p>
+					</div>
+				</div>
+			</div>
+		</foreach>	
+	</section>
+	<!-- 项目详情 -->
+	<section class="wraper_project_details">
+		<h3 class="active_title">项目详情<i></i></h3>
+		<p>{$rePro[0]['description']}</p>
+	</section>
+	<!-- 报名名单 -->
+	<section class="wraper_people_list">
+		<h3 class="active_title">项目成员<span class="col_gray">(共{$userCount}人报名{$ruxuanCount}人入选)</span><i></i></h3>
+		<if condition="$userCount neq 0">
+			<foreach name="proJoin" item="val">
+			<a href="__UCENTER_URL__/user/index/uid/{$val.user_id}.html" target="_blank">
+			<img src="{$val.photo}" title="{$val['joinName']}">
+				<if condition="$val.status eq 201">
+				<i></i>
+				</if>
+			</a>
+			</foreach>
+		<else /><div class="empty-message">暂无成员！</div>	
+		</if>
+	</section>
+	<!-- 项目反馈 -->
+	<section class="wraper_project_feedback">
+		<h3 class="active_title">项目反馈<i></i></h3>
+		<if condition="count($feedback) neq 0">
+			<foreach name="feedback" item="vo">
+				<div class="feedback_details">
+					<img src="{$vo['userphoto']}" class="feedback_details_left">
+					<aside class="feedback_details_right">
+						<p>{$vo['nickname']}</p>
+						<p>{$vo['create_date']}发布反馈</p>
+							<h6>{$vo['content']}</h6>
+							<if condition="$vo['image'] neq null">
+								<img src="{$vo['image']}">
+							</if>
+							<if condition="$vo['video_id'] neq null">
+								<div class="swf_play" id="swf_play2CDC1B7BFBB758509C33DC5901307461">
+									<embed type="application/x-shockwave-flash" src="http://union.bokecc.com/flash/player.swf" width="400" height="300"
+									 style="undefined" id="playerswf" name="playerswf" quality="high" allowfullscreen="true" allowscriptaccess="always" wmode="transparent"
+									 flashvars="userid=90C1920E4883E0D7&amp;videoid={$vo['video_id']}&amp;mode=api&amp;autostart=false&amp;jscontrol=true">
+								</div>
+							</if>
+					</aside>
+				</div>
+			</foreach>
+		<else /><div class="empty-message">发起人还没有发布反馈！</div>	
+		</if>		
+	</section>
+</div><!-- ]承载所有内容的容器 -->
+<script type="text/javascript">
+    $(function(){
+        $('.wraper_project_details img').css('max-width','100%');
+    });
+</script>

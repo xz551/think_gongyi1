@@ -1,0 +1,26 @@
+{__NOLAYOUT__}	
+	<form method="post" action="{:U('close')}">
+		<div class="modal-header">
+	        <button type="button" class="close btn-link" data-dismiss="modal" aria-hidden="true">×</button>
+	        <h3 id="myModalLabel">强制关闭的原因</h3>
+	    </div>
+		<div class="modal-body">
+			<input type="hidden" id="verifyfailed_id" name="id" value="{$pid}">
+			<textarea rows="5" style="width:515px;" id="verifyfailed_reject" name="reject" maxlength="100"></textarea>
+			<p class="text-warning">100字以内</p>
+		</div>
+	    <div class="modal-footer">
+	        <input type="button" id="verifyfailed" class="btn btn-primary" value="提交">
+	        <button class="btn btn-link" data-dismiss="modal" aria-hidden="true">关闭</button>
+	    </div>
+	</form>
+	<script>
+		$(function(){
+			$(".btn-link").click(function(){
+				$(".popu").hide();
+			});
+			$("#verifyfailed").click(function(){
+				$("form").submit();
+			});
+		});
+	</script>

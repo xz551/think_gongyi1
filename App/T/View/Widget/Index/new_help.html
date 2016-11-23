@@ -1,0 +1,42 @@
+<!-- 公益互助 -->
+<h3 class="gy_col_title"><i>公益互助</i></h3>
+<div class="clearfix">
+    <div class="gy_col_hzhu hz_lt">
+    <h3>求助<a href="{:U('T/Donate/index')}">更多></a></h3>
+    <div class="gy_hz_cont">
+        <volist name="help" id="help">
+            <!-- 一个项目[ -->
+            <div class="gy_hz_list">
+                <p>{$help.title}</p>
+                <div class="gy_hz_detail">
+                    <a href="{:U('T/Concurinfo/index',array('id'=>$help['id']))}"><img src="{$help.image}"></a>
+                    <div class="gy_hud_info">
+                        <a href="{:U('T/Concurinfo/index',array('id'=>$help['id']))}">{$help.title}</a>
+                        <p class="hz_form"><a  href="{:userurl($help['creatorid'])}" style='font-size: 14px;font-family: "微软雅黑"; color:#999;'>{$help.creator}</a></p>
+                        <p class="hz_addr">{$help.area}</p>
+                    </div>
+                </div>
+            </div><!-- ]一个项目 -->
+        </volist>
+    </div>
+</div>
+<div class="gy_col_hzhu hz_rt">
+    <h3>捐助<a href="{:U('T/Donate/index',array('tag'=>1))}">更多></a></h3>
+    <div class="gy_hz_cont">
+        <volist name="dona" id="dona">
+            <!-- 一个项目[ -->
+            <div class="gy_hz_list">
+                <p>{$dona.title}</p>
+                <div class="gy_hz_detail">
+                    <a href="{:U('T/Concurinfo/index',array('id'=>$dona['id']))}"><img  data-original="{$dona.image}" class="lazy" /></a>
+                    <div class="gy_hud_info">
+                        <a href="{:U('T/Concurinfo/index',array('id'=>$dona['id']))}">{$dona.title}</a>
+                        <p class="hz_form"><a  href="{:userurl($dona['creatorid'])}" style='font-size: 14px;font-family: "微软雅黑"; color:#999;'>{$dona.creator}</a></p>
+                        <p class="hz_addr">{$dona.area}</p>
+                    </div>
+                </div>
+            </div><!-- ]一个项目 -->
+        </volist>
+    </div>
+</div>
+</div>

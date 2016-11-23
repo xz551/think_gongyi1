@@ -1,0 +1,23 @@
+<div class="myhome_cmain_left" data-class='{$info}'>
+	<ul>
+		<li class='user_0'><a href="{:userUrl($uid)}" >主页<span class='user_1'></span></a></li>
+		<li class='resumes_0'><a href="{:U('Resumes/index',array('uid'=>$uid))}" >志愿履历&时长<span class='resumes_1'></span></a></li>
+		<li class='project_0'><a href="{:U('Project/index',array('uid'=>$uid))}">相关项目<span class='project_1'></span></a></li>
+		<li class='active_0'><a href="{:U('Active/index',array('uid'=>$uid))}">相关活动<span class='active_1'></span></a></li>
+		<li class='concur_0'><a href="{:U('Concur/index',array('uid'=>$uid))}">求助与捐助<span class='concur_1'></span></a></li>
+		<eq name="showPic" value="1"><li class='certificate_0'><a href="{:U('Certificate/index',array('uid'=>$uid))}">表彰奖励<span class='certificate_1'></span></a></li></eq>
+		<eq name="showPic" value="1"><li class='picturewall_0'><a href="{:U('PictureWall/index')}">图片墙<span class="picturewall_1"></span></a></li></eq>
+		<li class='count_0'><a href="{:U('count/index',array('uid'=>$uid))}" >活动量化统计<span class='count_1'></span></a></li>
+		<li class='con_0'><a href="http://119.40.17.21:8080/Volunteer5/ImpelServlet?uid={:I('uid')}
+" target='_blank'>激励机制<span class='con_0'></span></a></li>
+		<!--
+		<li class='con_0'><a href="http://192.168.1.123:8080/VolunteerKey5/UsersClServlet?uid={$uid}" target='_blank'>活动量化统计<span class='con_0'></span></a></li>
+		<li class='con_0'><a href="http://192.168.1.123:8080/VolunteerKey5/AdminServlet?uid={$uid}" target='_blank'>动机与激励策略<span class='con_0'></span></a></li>
+		-->
+	</ul>
+</div>
+<script>
+    var info = $(".myhome_cmain_left").attr('data-class').toLocaleLowerCase();
+    $("."+info+"_0").addClass('add_arrow_bg');
+    $("."+info+"_1").html('<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_arrow_right.png">');
+</script>

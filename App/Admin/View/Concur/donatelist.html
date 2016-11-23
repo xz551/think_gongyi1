@@ -1,0 +1,65 @@
+<div class="modal-body">
+	ID：{$info['id']}&nbsp;&nbsp;&nbsp;<a href="__WEB_SITE__/T/Concurinfo/index/id/{$info['id']}" target="_blank" class="text-info">{$info['title']}</a>
+	<notempty name="info['money']"><p>求款项：目标：20000.00 已捐助：10000.00</p></notempty>
+	<notempty name="info['is_supplies']">
+		<p><empty name="info['type']">求物资：还需要物资<else />捐物资：还可提供</empty>：{$supplies[0]['need']|default="无"}<br/>
+			<span style="margin-left:48px;"><empty name="info['type']">已筹得物资<else />已捐出</empty>：{$supplies[0]['obtain']|default="无"}</span><br/>
+			<span style="margin-left:48px;">已同意{$supplies[0]['userPassCount']}个物资{$info['is_donate']}请求，已拒绝{$supplies[0]['userNpassCount']}个物资{$info['is_donate']}请求，
+			当前尚有<span class="text-error">{$supplies[0]['userAuthstrCount']}</span>条未处理的物资{$info['is_donate']}请求！</span><br/>
+		</p>
+	</notempty>
+	<notempty name="info['is_service']">
+		<p><empty name="info['type']">求服务：需要服务<else />捐服务：提供服务</empty>：{$service['summary']}<br/>
+			<span style="margin-left:48px;">服务时间：{$service['time']}</span><br/>
+			<span style="margin-left:48px;">已同意{$service['userPassCount']}个服务{$info['is_donate']}请求，已拒绝{$service['userNpassCount']}个服务{$info['is_donate']}请求，
+			当前尚有<span class="text-error">{$service['userAuthstrCount']}</span>条未处理的服务{$info['is_donate']}请求！</span><br/>
+			
+		</p>
+	</notempty>
+</div>
+<input type="text" name="uid" class="input-medium uid" placeholder="用户ID">
+<input type="text" name="name" class="input-medium name" <empty name="info['type']">placeholder="捐助人名称"<else />placeholder="申请人名称"</empty>>
+<empty name="info['type']">
+	<select name="concur_genre" class="concur_genre">
+		<option value="0" >请选择{$info['is_donate']}类型</option>
+	<volist name="type" id="vo">
+		<option value="{$key}" >{$vo}</option>
+	</volist>
+	</select>
+</empty>
+<select name="concur_status" class="concur_status">
+	<option value="2" >请选择{$info['is_donate']}状态</option>
+<volist name="status" id="v">
+	<option value="{$key}" >{$v}</option>
+</volist>
+</select>
+<button type="button" class="btn btn-primary search">搜索</button>
+<div id="getAjaxPage" data-url="/Admin/Concur/ajaxdonate"></div>
+<div id="wuliu" class="modal hide fade"   tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+<script type="text/javascript">
+	$(function(){
+		var id="{$info['id']}",uid="{$uid}",concur_genre="{$concur_genre}",concur_status="{$concur_status}",url=$("#getAjaxPage").data('url');
+		$.ajax({
+			url:url,
+			data:{id:id},
+			success:function(d){
+				$("#getAjaxPage").html(d);
+				$(".wraper_paging a:contains(1):first").addClass('selected');
+			}
+		});
+		$(".search").click(function(){
+			uid=$(".uid").val();
+			concur_genre=$(".concur_genre").val();
+			concur_status=$(".concur_status").val();
+				$.ajax({
+					url:url,
+					data:{id:id,uid:uid,concur_genre:concur_genre,concur_status:concur_status},
+					success:function(d){
+						$("#getAjaxPage").html(d);
+						$(".wraper_paging a:contains(1):first").addClass('selected');
+					}
+				});
+		});
+		
+	});
+</script>

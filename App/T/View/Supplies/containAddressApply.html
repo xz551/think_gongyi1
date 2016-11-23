@@ -1,0 +1,70 @@
+<form id="formInfo">
+    <include file="Supplies/suppliesAjaxPage" />
+    <p class="form_items" id="p_detail_addr"><label><i class="i_col">*</i>收件地址：</label>
+        <notempty name="suppliesAddress">
+            {:W('Concur/area',array($suppliesAddress['provinceid'],$suppliesAddress['cityid'],$suppliesAddress['countyid']))}
+        <else/>
+            {:W('Concur/area')}
+        </notempty>
+        <input type="text" name="hp_detaddr" id="hp_detaddr" placeholder="详细地址" class="hp_detil_address" value="{$suppliesAddress['address']}">
+        <span class="msg-box n-right" for="hp_detaddr"></span>
+    </p>
+    <p class="form_items"><label><i class="i_col">*</i>收件人姓名：</label>
+        <input type="text" name="hp_rec_name" placeholder="收件人姓名" value="{$suppliesAddress['name']}">
+        <span class="msg-box n-right" for="hp_rec_name"></span>
+    </p>
+    <p class="form_items"><label><i class="i_col">*</i>联系电话：</label>
+        <input type="text" name="hp_rec_phone" placeholder="联系电话" value="{$suppliesAddress['phone']}">
+        <span class="msg-box n-right" for="hp_rec_phone"></span>
+    </p>
+    <p class="form_items"><label><i class="i_col">*</i>邮政编码：</label>
+        <input type="text" name="hp_rec_address" placeholder="邮政编码" value="{$suppliesAddress['code']}">
+        <span class="msg-box n-right" for="hp_rec_address"></span>
+    </p>
+</form>
+<script>
+    $(function(){
+        $("#formInfo").validator({
+            stopOnError: false,
+            fields: {
+                hp_rec_name: {rule: "required;length[2~20];unlawful", msg:{required:"收件人姓名不能为空"}},
+                hp_rec_phone: {rule: "required;phone", msg: "联系电话错误"},
+                hp_rec_address: {rule: "required;postcode", msg: "邮编错误"},
+                hp_detaddr:{rule: "required;unlawful", msg:{required:"地址不能为空"}},
+            },
+            valid: function (form) {
+                var chk_obj = $("#formInfo .choice_wzitems").find('input:checked').not('input[name="wz_chk"]');
+                var p = $("#box1>#winContent").find('dt').children('span');
+                var tag = 1;
+                if(chk_obj.size()==0){
+                    $('.wxwzx').show();
+                    tag = 0;
+                }else{
+                    chk_obj.each(function(){
+                        var t = $(this),v=t.next('input').val(),z= /^[0-9]*$/,e=t.nextAll('span.sp_msg');
+                        if(v==""){
+                            e.show();
+                            tag = 0;
+                        }else{
+                            if(!z.test(v)){
+                                tag = 0;
+                                e.show();
+                            }
+                        }
+                    });
+                }
+                if(tag){
+                    var url = "{:U('t/supplies/applysupplies',array('id'=>$id))}";
+                    var anonymous = $('#anonymouschecked').is(":checked")?1:0;
+                    var subtype = $('.submit_type').attr('data-value');
+                    applySuccess(1,url,anonymous,1,subtype);
+                }else{
+                    applyError(1);
+                }
+            },
+            invalid:function(form){
+                applyError(1);
+            }
+        });
+    })
+</script>

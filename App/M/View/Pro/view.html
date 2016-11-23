@@ -1,0 +1,58 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/gongyi/css/view.css">
+<!-- 承载所有内容的容器[ -->
+<div id="Container">
+	<!-- Top -->
+	<section class="wraper_top">
+		<h3>{$pro['name']}</h3>
+		<p class="the_form"><label>发行方：</label><span>{$pro['nickname']}</span></p>
+		<img src="{$pro['show_image']}" class="active_img">
+		<p>{$pro['summary']}</p>
+		<p>创建时间：{$pro['create_date']}</p>
+		<p>服务对象：{$pro['server_for']}</p>
+		<p>服务地区：{$pro['address']}</p>
+		<p>主办方: {$pro['host']}</p>
+		<div class="wraper_button">
+			<a href="__YI_JUAN_SITE__/project/view/id/{$pro['id']}.html">赞一个</a>
+			<a href="__YI_JUAN_SITE__/project/view/id/{$pro['id']}.html">分享</a>
+		</div>
+	</section>
+
+	<!-- 项目详情 -->
+	<section class="wraper_project_details">
+		<h3 class="active_title">项目详情<i></i></h3>
+		{$pro['description']}
+	</section>
+
+	<!-- 项目反馈 -->
+	<section class="wraper_project_feedback">
+		<h3 class="active_title">项目反馈<i></i></h3>
+		<if condition="count($feedback) neq 0">
+			<foreach name="feedback" item="vo">
+				<div class="feedback_details">
+					<img src="{$vo['userphoto']}" class="feedback_details_left">
+					<aside class="feedback_details_right">
+						<p>{$vo['nickname']}</p>
+						<p>{$vo['create_date']}发布反馈</p>
+							<h6>{$vo['content']}</h6>
+							<if condition="$vo['image'] neq null">
+								<img src="{$vo['image']}">
+							</if>
+							<if condition="$vo['video_id'] neq null">
+								<div class="swf_play" id="swf_play2CDC1B7BFBB758509C33DC5901307461">
+									<embed type="application/x-shockwave-flash" src="http://union.bokecc.com/flash/player.swf" width="400" height="300"
+									 style="undefined" id="playerswf" name="playerswf" quality="high" allowfullscreen="true" allowscriptaccess="always" wmode="transparent"
+									 flashvars="userid=90C1920E4883E0D7&amp;videoid={$vo['video_id']}&amp;mode=api&amp;autostart=false&amp;jscontrol=true">
+								</div>
+							</if>
+					</aside>
+				</div>
+			</foreach>
+		<else /><div class="empty-message">发起人还没有发布反馈！</div>	
+		</if>	
+	</section>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $('.wraper_project_details img').css('max-width','100%');
+    });
+</script>

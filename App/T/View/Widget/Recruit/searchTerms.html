@@ -1,0 +1,20 @@
+<!-- 搜索条件 -->
+<div class="zml_lt_top">
+    <p>
+        <label data-def="{$lab_cur}" class="label_type">类别标签：</label>
+        <span class="class_label">
+            <a href="{:create_href('label','0')}" class="lab_type0">全部</a>
+            <volist name="label" id="lb"><a href="{$key|create_href='label',###}" class="lab_type{$key}">{$lb}</a></volist>
+        </span>
+    </p>
+    <p>
+        <label data-def="{$pro_cur}" class="label_addr">地域：</label>
+        <span class="addr_label">
+            <a href="{:create_href('provi','0')}" class="lab_addr0">全部</a>
+            <volist name="address" id="addr" key="k">
+                <if condition="$k lt 6"><a href="{$addr.id|create_href='provi',###}" class="lab_addr{$addr.id}">{$addr.class_name}</a><else /><a href="{$addr.id|create_href='provi',###}" data-id="{$addr.id}" class="hdc lab_addr{$addr.id}">{$addr.class_name}</a></if>
+            </volist>
+            <a href="javascript:void(0);" class="other_city">其它省份</a>
+        </span>
+    </p>
+</div>

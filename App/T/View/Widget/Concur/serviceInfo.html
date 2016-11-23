@@ -1,0 +1,18 @@
+<ul class="wpr_tab_top">
+    <li class="tab_li3">捐服务</li>
+</ul>
+<!-- 求服务start -->
+<div class="wraper_tab_cont">
+<div class="wpr_tab_cont  tab_jwz_cont">
+    <i class="detail_arrow_up"></i>
+    <p class="wpr_tc_info">
+        <label>提供服务：</label>
+        <span>{$serviceInfo.summary}</span>
+    </p>
+    <p class="wpr_tc_info">
+        <label>服务时间：</label>
+        <span>{$serviceInfo.start_time|date='Y-m-d H:i:s',###} - {$serviceInfo.end_time|date='Y-m-d H:i:s',###}</span>
+    </p>
+    {:W('Concurpage/service',array($isown,$serviceApplyStatus,$islogin,2))}
+</div><!-- 求服务end -->
+</div>

@@ -1,0 +1,12 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/gongyi/css/collect.css">
+<div id="Container">
+    <span class="top_title">征集</span>
+        <volist name='colinfo' id='vo'>
+	<div class="wpr_project">
+		<a href="{:U('pro/index',array('id'=>$vo['id']))}"><img src="{$vo.image}"></a>
+		<p>
+			{$vo.summary}
+		</p>
+	</div>
+        </volist>
+</div>

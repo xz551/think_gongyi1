@@ -1,0 +1,13 @@
+	<div class="welfare_ogm">
+  		<div class="welfare_ogm_cent">
+  			<volist name='org' id='vo' offset="0" length='7'>
+			<a href="{$vo['url']}" target="_blank"><img src="{$vo['photo_photo']}"></a>
+  			 </volist>
+  		</div>  
+		</div>
+		
+		<script type="text/javascript">
+			$(function(){
+					$('.welfare_ogm_cent a:first-child').css("border-left","none");
+			});
+		</script>

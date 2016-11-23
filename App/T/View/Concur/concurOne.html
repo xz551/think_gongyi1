@@ -1,0 +1,114 @@
+    <link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/public.css">
+    <link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/common.css">
+    <link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/help_header.css">
+    <link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/help_step1.css">
+    <link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/public/css/jquery.validator.css">
+    <script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/jquery.validator.js"></script>
+    <script type="text/javascript" src="{:STATIC_SERVER_URL}/public/laydate/laydate.js"></script>
+    <script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/ajaxupload.js"></script>
+	<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/zh_CN.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            /*用户菜单js*/
+            $(".top_users_wraper").hover(function () {
+                $(this).find('ul').show("200");
+            }, function () {
+                $(this).find('ul').hide();
+            });
+            /*导航栏*/
+            $(".li_items,.sub").hover(function () {
+                $(this).children('.sub').show(500);
+            }, function () {
+                $(this).children('.sub').hide();
+            });
+        });
+    </script>
+    <div class="wraper_main">
+        <div class="wpr_main_top"><eq name="type" value="1">我有资源<else />发起求助</eq></div>
+        <div class="wpr_main_bottom">
+            <ul class="wpr_setps">
+                <li class="li_step1">填写{$tag}基本信息</li>
+                <li class="li_step2">选择{$tag}类型</li>
+                <li class="li_step3">填写{$tag}描述</li>
+            </ul>
+            {~W('Concur/prompt',array($type))}
+            <form action="{:U('t/concur/ConcurOneStorage',array('type'=>$type))}" method="post" id="form1">
+                <dl>
+                    <dt><i class="i_col">*</i>标题：<span class="msg-box n-right" for="hp_title"></span></dt>
+                    <dd><input type="text" name="hp_title" class="hp_title require" placeholder="{$tag}标题最多可输入30个字符" value="{$concurInfo.title}"></dd> 
+                </dl>
+                <dl>
+					<dt><i class="i_col">*</i>类型标签：<span class="error_msg"></span></dt>
+                    <dd><eq name='id' value='0'>{~W('Concur/label')} <else />{:W('Concur/label',array($concurInfo['label']))} </eq></dd> 
+                </dl>
+                <dl>
+                    <dt><i class="i_col">*</i><eq name='type' value='1'>捐助<else />受助</eq>对象：<span class="msg-box n-right" for="hp_obj"></span></dt>
+                    <dd><input type="text" name="hp_obj" class="hp_obj require" placeholder="姓名或其他称谓，1~20个字符如：李明，或 春蕾小学一年级新生" value="{$concurInfo.server_for}"></dd> 
+                </dl>
+                <dl>
+                    <dt><i class="i_col">*</i><eq name='type' value='1'>所在<else />受助</eq>地点：<span class="msg-box n-right"  for="hp_detaddr"></span></dt>
+                    <dd><eq name='id' value='0'>{~W('Concur/area')}<else />{:W('Concur/area',array($concurInfo['provinceid'],$concurInfo['cityid'],$concurInfo['countyid']))}</eq>
+                        <input type="text" name="hp_detaddr" id="check_address" placeholder="详细地址" value='{$concurInfo.address}' class="hp_detil_address">
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><i class="i_col">*</i><eq name="type" value="1">资源有效期（超过结束时间后，资源项目自动结束）：<else />求助时间（超过结束时间后，求助项目自动结束）：</eq><span class="error_msg"></span></dt>
+                    <dd><eq name='id' value='0'>{~W('Concur/time')}<else />{:W('Concur/time',array($concurInfo['start_time'],$concurInfo['end_time']))}</eq></dd>
+                </dl>
+                <dl>
+                    <dt><i class="i_col">*</i>展示图片：<span class="msg-box" for="imgsrc"></span></dt>
+                    <dd><eq name='id' value='0'>{~W('Concur/image')}<else />{:W('Concur/image',array($concurInfo['image']))}</eq></dd>
+                </dl>
+                <input type="hidden" name="type" value="{$type}">
+                <input type="hidden" name="id" value="{$id}">
+                <p class="btns"><button class="btn_next">下一步</button></p>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            /*验证*/     			           
+            $("#form1").validator({
+               
+                fields: {                
+                        hp_title: {rule: "required;length[2~30];unlawful", msg:{required:"标题不能为空",length:'标题必须为2-30个字'}},
+                        hp_obj: {rule: "required;length[1~20];unlawful", msg:{required:'<eq name='type' value='1'>捐助<else />受助</eq>对象不能为空'}},
+                        hp_detaddr: {rule: "required;unlawful", msg: {required:'<eq name='type' value='1'>所在<else />受助</eq>地点不能为空'}},
+                        s_province:{rule: "required", msg: "<eq name='type' value='1'>所在<else />受助</eq>地点不能为空",target:'#check_address'},
+                        s_city:{rule: "required", msg: "<eq name='type' value='1'>所在<else />受助</eq>地点不能为空",target:'#check_address'},
+                        s_area:{rule: "required", msg: "<eq name='type' value='1'>所在<else />受助</eq>地点不能为空",target:'#check_address'},
+                        imgsrc:{rule: "required", msg: "图片不能为空"},    
+                    },
+                valid: function (form) {
+                    if (validaSubmit()) {
+                        form.submit();
+                    }
+                },
+                beforeSubmit: function () {
+                    validaSubmit();
+                }
+            });
+            //类项标签点击事件
+            $(".p_lab input").click(function () {
+                isnovalue();
+            });
+            //开始时间的失去焦点
+            $("#act_btime").blur(function () {
+                var _this = $(this), emsg = _this.parent().prev().find('span');
+               
+                blurchktime(_this, "开始时间不能为空", emsg);
+            });
+            //结束时间失去焦点
+            $("#act_etime").blur(function () {
+                var _this = $(this), emsg = _this.parent().prev().find('span');
+                blurchktime(_this, "结束时间不能为空", emsg);
+            });
+        });
+
+        //提交验证
+        function validaSubmit() {
+            var btime = $("#act_btime"), etime = $("#act_etime"), emsg = btime.parent().prev().find('span');
+            var flag1 = isnovalue(), flag2 = validatime(btime, etime, emsg);
+            return flag1 && flag2;
+        }
+    </script>

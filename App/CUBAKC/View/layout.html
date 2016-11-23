@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>{$title}</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<taglib name='Js,css' />
+	<css:r />
+	<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/jquery.js"></script>
+	<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/popWindow.js"></script>
+	<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/tp/js/message.js"></script>
+	<script type="text/javascript">
+		var closeUrl="{:STATIC_SERVER_URL}/usercenter/tp/images/close_icon.png";
+		var static_url="{:STATIC_SERVER_URL}";
+		var server_url="{:SERVER_VISIT_URL}";
+		$(function(){
+			$(".myhome_users_wraper").hover(function(){
+				$(this).find('ul').show("200");
+			},function(){
+				$(this).find('ul').hide();
+			});
+		});
+	</script>
+</head>
+<body>
+        {~W('Layout/header')}
+	<!-- Center[ -->
+	<div class="myhome_center">
+		<!-- Center-Top[ -->
+		{~W('Layout/top')}
+		<!-- Center-Top[ -->
+		<!-- myhome_center_options[ -->
+		
+		<!-- ]myhome_center_options -->
+		<!-- myhome_center_main[ -->
+		<div class="myhome_center_main">
+		{~W('Layout/left')}
+		{~W('Common/Message/privateLetter')}
+            {__CONTENT__}
+		</div><!-- ]myhome_center_main -->
+	</div><!-- ]Center -->
+		{~W('Layout/footer')}
+<js:r />
+<js:rw />	
+</body>
+</html>

@@ -1,0 +1,15 @@
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/ajaxpage.js"></script>
+<volist name="proInfo" id="vo">
+<div class="activ_items clear">
+    <a href="{:U('recruit/index',array('id'=>$vo['pid']))}" class="act_itms_left"><img src="{$vo.image}"></a>
+    <div class="act_itms_right">
+        <a href="{:U('recruit/index',array('id'=>$vo['pid']))}">{$vo.name}</a>
+        <p class="p_cont">{$vo.summary}</p>
+        <span>{$vo.ads}</span>
+    </div>
+</div>
+</volist>
+<!-- 分页 -->
+<section class="wraper_paging">
+    {$page}
+</section>

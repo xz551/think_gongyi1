@@ -1,0 +1,37 @@
+<div id="formInfo">
+    <include file="Supplies/suppliesAjaxPage" />
+</div>
+<script>
+   $(function(){
+        $("#formInfo").submit(function(){            
+            var chk_obj = $("#formInfo .choice_wzitems").find('input:checked').not('input[name="wz_chk"]');
+            var p = $("#box1>#winContent").find('dt').children('span');
+            var tag = 1;
+            if(chk_obj.size()==0){
+                $('.wxwzx').show();
+                tag = 0;
+            }else{
+                chk_obj.each(function(){
+                    var t = $(this),v=t.next('input').val(),z= /^[0-9]*$/,e=t.nextAll('span.sp_msg');
+                    if(v==""){
+                        e.show();
+                        tag = 0;
+                    }else{
+                        if(!z.test(v)){
+                            tag = 0;
+                            e.show();
+                        }
+                    }
+                });
+            }
+            if(tag){
+                var subtype = $('.submit_type').attr('data-value');
+                var anonymous = $('#anonymouschecked').is(":checked")?1:0;
+                var url = "{:U('t/supplies/applysupplies',array('id'=>$id))}";
+                applySuccess(0,url,anonymous,0,subtype);
+            }else{
+                applyError(0);
+            }
+        });
+   })
+</script>

@@ -1,0 +1,63 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/zqgym/css/login.css?a">
+<script type="text/javascript" src="__STATIC_URL__/zqgym/js/login.verfiy.js"></script>
+
+<section class="zqgy_login_cont">
+    <form action="#" method="" id="loginForm">
+        <h3>手机版仅支持个人用户登录</h3>
+        <div class="zqgy_emsg"></div>
+        <p class="zqgy_uname"><i></i><input type="text" id="username" name="unameOremail" class="require" data-error ="请输入邮箱或手机号" placeholder="邮箱或手机号"></p>
+        <p class="zqgy_upwd"><i></i><input type="password" id="password" name="password" class="require" data-error ="请输入密码" placeholder="密码"></p>
+        <button class="submit_btn" >登录</button>
+    </form>
+    <!-- 其他方式登录[ -->
+    <h3 class="zqgy_otherways"><i></i><span>或使用一下方式登录</span></h3><!-- ]其他方式登录 -->
+    <div class="zqgy_lgway_list">
+        <a href="{$weibo}"></a>
+        <a href="{$tweibo}"></a>
+        <a href="{$renren}"></a>
+        <a href="{$weixin}"></a>
+    </div>
+    <div class="zqgy_regfast"><a href="/m/reg/regiset">快速注册</a></div>
+</section>
+<input type="hidden" id="returnurl" value="{$returnurl}"/>
+<script type="text/javascript">
+    $(function(){
+        //调用获取margin值的方法
+        getMargin();$(window).resize(function(){getMargin();});
+    });
+    //获取其他登录方式的margin值
+    function getMargin(){
+        var a = $(".zqgy_lgway_list"),
+                b =a.find('a'),
+                c = b.width(),
+                e = Math.floor((a.width()-c*4)/3);
+        b.css("margin-right",e).last().css("margin-right","0px");
+    }
+    var is_sub=false;
+    function sub(){
+        is_sub=true;
+        var subBtn=$('.submit_btn');
+        subBtn.addClass('smting');
+        subBtn.prop('disabled',true);
+        subBtn.text('登录…');
+        $.ajax({
+            url:"/m/user/logindo",
+            data:{"LoginForm[username]":$('#username').val(),"LoginForm[password]":$('#password').val()},
+            dataType:'json',
+            type:'post',
+            success:function(d){
+                var status= d.status;
+                if(status==true){
+                    subBtn.text("登录成功");
+                    window.location.href=$('#returnurl').val();
+                }else if( is_sub){
+                    subBtn.removeClass('smting');
+                    subBtn.prop('disabled',false);
+                    subBtn.text("登录");
+                    $('.zqgy_emsg').text(d.msg||'登录异常').show();
+                }
+            }
+        });
+
+    }
+</script>

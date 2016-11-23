@@ -1,0 +1,140 @@
+<link href="__STATIC_URL__/usercenter/account/css/account_bind.css" rel="stylesheet"/>
+<h3>账户设置 &gt; 我的资料</h3>
+<div class="zqgy_asrt_cont">
+    <p class="mi_xinl {$data['weibo']==1?'':'an'}">
+        <if condition="$data['weibo'] eq 1">
+            <span class="bd_lt "><i>已绑定新浪微博</i><i>绑定账号：***</i></span>
+            <a class="unbind" href="{:UCENTER}/oauth/unbind/provider/weibo.html?returnurl={$returnurl}">解绑</a>
+            <else/>
+            <span class="bd_lt "><i>未绑定新浪微博</i></span>
+            <a href="{:UCENTER}/oauth/bind/provider/weibo.html?returnurl={$returnurl}" class="bd_btn">立即绑定</a>
+        </if>
+    </p>
+
+    <p class="mi_txun {$data['qq']==1?'':'an'}">
+        <if condition="$data['qq'] eq 1">
+            <span class="bd_lt"><i>已绑定腾讯微博</i><i>绑定账号：***</i></span>
+            <a class="unbind" href="{:UCENTER}/oauth/unbind/provider/qq.html?returnurl={$returnurl}">解绑</a>
+            <else/>
+            <span class="bd_lt"><i>未绑定腾讯微博</i></span>
+            <a href="{:UCENTER}/oauth/bind/provider/qq.html?returnurl={$returnurl}" class="bd_btn">立即绑定</a>
+            </if>
+    </p>
+
+    <p class="mi_wxin {$wx_user?'':'an'}">
+        <if condition="$wx_user">
+            <span class="bd_lt"><i>已绑定微信</i><i>绑定账号：{$wx_user['nickname']}</i></span>
+            <a class="unbind" href="/uc/accountinfo/unbindwx">解绑</a>
+            <else/>
+            <span class="bd_lt"><i>未绑定微信</i></span>
+            <a href="javascript:void(0)" class="bd_btn">立即绑定</a>
+        </if>
+
+    </p>
+
+    <p class="mi_rren {$data['renren']==1?'':'an'}">
+        <if condition="$data['renren'] eq 1">
+            <span class="bd_lt "><i>已绑定人人</i><i>绑定账号：***</i></span>
+            <a class="unbind" href="{:UCENTER}/oauth/unbind/provider/renren.html?returnurl={$returnurl}">解绑</a>
+            <else/>
+            <span class="bd_lt "><i>未绑定人人</i></span>
+            <a href="{:UCENTER}/oauth/bind/provider/renren.html?returnurl={$returnurl}" class="bd_btn">立即绑定</a>
+            </if> 
+
+    </p>
+
+    <p class="mi_qqqq {$qq_user?'':'an'}">
+        <if condition="$qq_user">
+            <span class="bd_lt">
+                <i>已绑定QQ</i>
+                <i>绑定账号：{$qq_user['nickname']}</i>
+            </span>
+            <a href="{:WEB_SITE}/t/author/unbind?returnurl={$returnurl}" class="unbind">解绑</a>
+            <else/>
+            <span class="bd_lt">
+                <i>未绑定QQ</i>
+            </span>
+            <a href="{:WEB_SITE}/t/author/qq_login.html?returnurl={$returnurl}&t=1" class="bd_btn">立即绑定</a>
+        </if>
+    </p>
+</div>
+<div class="popWeiXin">
+    <h3><span>微信绑定</span><i class="popw_close"></i></h3>
+    <div class="wraper_ewcode"></div>
+    <p><span>拿出手机，打开微信，扫一扫，就能绑定中青公益啦~</span></p>
+    <p><span>欢迎关注"中青公益"的服务号哦</span></p>
+    
+</div>
+<div id="mask"></div>
+
+<script type="text/javascript">
+    var is_ajax=false;
+    $(function(){
+        $('a.unbind').click(function(){
+            if(is_ajax){
+                return;
+            }
+            is_ajax=true;
+            var that=$(this);
+            var url=that.attr('href');
+            $.ajax({
+                url:'/t/authorajax/is_exsis',
+                dataType:'json',
+                success:function(d){
+                    is_ajax=false;
+                    if(d.status==1){
+                        window.location=url;
+                    }else{
+                        that.after('<i>尚未设置账号密码无法解除绑定</i>');
+                    }
+                }
+            });
+            return false;
+        });
+        $(".mi_wxin a.bd_btn").click(function(){showWindow();});
+        $(".popw_close").click(function(){$("#mask,.popWeiXin").hide();});
+    });
+    function showWindow(){
+        $('div.wraper_ewcode').html('');
+        var e = $(window).width(),f = $(window).height(),g = $(".popWeiXin"),h = g.width(),i = g.height(),j =(e-h)/2,k= (f-i)/2;
+        g.css({top:k + 'px',left:j + 'px'}).show();$("#mask").show();
+        get_img();
+    }
+    /**
+     * 获取二维码图片
+     */
+    function get_img(){
+        $.ajax({
+            url:'/uc/accountajax/get_bind_weixin_qrcode',
+            dataType:'json',
+            success:function(d){
+                if(typeof d.status!='undefined' && d.status<0){
+            alert(d.msg);
+            $("#mask,.popWeiXin").hide();
+        }else{
+            $('div.wraper_ewcode').html('<img width="280px" src="'+ d.img+'"/>');
+            check_bind();
+        }
+
+    }
+    });
+    }
+    function check_bind(){
+        $.ajax({
+            url:'/uc/accountajax/check_wx_bind',
+            dataType:'json',
+            success:function(d){
+                if(d.status==-1 && $(".popWeiXin:visible").length>0){
+                    setTimeout(function(){
+                        check_bind();
+                    },1000);
+                }else{
+                    $('.popWeiXin').append('<p class="wxl_true"><i></i><span>绑定成功</span></p>');
+                    setTimeout(function(){
+                        window.history.go(0);
+                    },2000);
+                }
+            }
+        });
+    }
+</script>

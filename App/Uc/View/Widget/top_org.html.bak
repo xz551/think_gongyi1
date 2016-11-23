@@ -1,0 +1,155 @@
+<link rel="stylesheet" href="{:STATIC_SERVER_URL}/usercenter/org/css/style.css"/>
+<link rel="stylesheet" href="{:STATIC_SERVER_URL}/usercenter/tp/css/help_center.css">
+<script type="text/javascript">
+$(function(){
+	$(".btn_helpOrziyuan").popWindow({
+	  width:"880",
+            height:"425",
+	  title:"请选择",
+            content:$(".ptHtml1").html(),
+            id:"box1",
+            callback:function(a,box){}
+	});
+	$("#box1").wrap("<form class='foot'></form>");
+});
+</script>
+<div class="myhome_center_top">
+			<div id='mask' style="display: none;"></div>
+			{~W('Common/Login/showLogin')}
+			<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_ogm.png" class="myhome_volunteer">
+			<img src="{$userInfo.photo}" class="myhome_users_photo">
+			
+			<div class="myhome_users_details">
+                <p class="myhome_users_name"><strong>{$userInfo.name}</strong>
+                	<eq name="isVip" value="1"><img src="{:STATIC_SERVER_URL}/usercenter/org/images/icon_v.png" title="认证组织"></eq>
+                    <eq name="isMine" value="0"><a href="javascript:void(0)"  class="private_letter pemail_btn" data-toid="{$uid}"></a></eq>
+                </p>
+				<p class="myhome_users_address">{$userInfo.area}</p>
+				<p class="myhome_users_timelen">志愿服务时长：<a href="<if condition='($isMine eq 1) and ($isVip eq 1)'>{:JIA_SERVER_URL}/Duration/durateDetail.html<else />javascript:void(0)</if>">{$serverTime}</a>&nbsp;小时</p>
+				<p>组织类型：{$orgInfo->typename}</p>
+				<eq name="isshow" value="1"><a href="{$orgInfo->website}" target='_blank' class="this_website">{$orgInfo->website}</a></eq>
+				<div class="myhome_attention_ly">
+					<label>关注领域：</label>
+					<p class="mh_attent_lylist">
+                                            <volist name="interest" id='vo'>
+                                                <span>{$vo}</span>
+                                            </volist>
+					</p>
+				</div>
+				<p class="network_icon">
+					 <volist name="aouth" id='vo'>
+                                            <eq name='vo.type' value='1'><a href="{$vo.homepage}" target="_black"><img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_tencent.png"></a></eq>
+                                            <eq name='vo.type' value='2'><a href="{$vo.homepage}" target="_black"><img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_sana.png"></a></eq> 
+                                            <eq name='vo.type' value='3'><a href="{$vo.homepage}" target="_black"><img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_renren.png"></a></eq>
+                                        </volist>   
+				</p>
+			</div>
+			<span class="join_btn" title="申请加入组织" style="display:none"><img alt="" src="{:STATIC_SERVER_URL}/usercenter/org/images/icon_yijr.png">申请加入</span>
+</div>
+<eq name="isMine" value="1">
+	<div class="myhome_center_options">
+	    <eq name="isVip" value="0">
+	        <a href="__UCENTER_URL__/organization/apply.html"><img src="{:STATIC_SERVER_URL}/usercenter/org/images/icon_ren.png">申请成为认证组织</a>	
+	        <a href="__WEB_SITE__/T/Group/addGroup.html" ><img src="{:STATIC_SERVER_URL}/usercenter/org/images/icon_zu.png">创建公益小组</a>
+	        <a href="{:YI_JUAN}/project/create_recruit_1.html"><img src="{:STATIC_SERVER_URL}/usercenter/org/images/icon_zhi.png">发起志愿招募项目</a>
+	        <a href="{:YI_JUAN}/active/create.html" ><img src="{:STATIC_SERVER_URL}/usercenter/org/images/icon_yi.png">发起公益活动</a>
+	   <else />
+	        <a href="__WEB_SITE__/T/Group/addGroup.html" ><img src="{:STATIC_SERVER_URL}/usercenter/org/images/icon_zu.png">创建公益小组</a>
+	        <a href="{:JIA_SERVER_URL}/Project/createProject.html" ><img src="{:STATIC_SERVER_URL}/usercenter/org/images/icon_zhi.png">发起志愿招募项目</a>
+	        <a href="{:JIA_SERVER_URL}/Active/createActivity.html" ><img src="{:STATIC_SERVER_URL}/usercenter/org/images/icon_yi.png">发起公益活动</a>
+	    </eq>
+	     	<a href="javascript:void(0)" class="btn_helpOrziyuan"><img src="{:STATIC_SERVER_URL}/usercenter/org/images/icon_zhu.png">发起求助/资源</a> 
+	</div>
+</eq>
+<!-- 弹出层选择求助还是资源 -->
+<div class="promptHtml ptHtml1" style="display:none;">
+	<div class="promptHtmlText">
+		<div class="choice_options">
+			<a href="{:U('/T/Concur/concurOne')}" class="co_top">
+				<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_help.png">
+				<span>我要求助</span>
+			</a>
+			<p class="co_tips">
+				有困难，快来发布求助项目，互相帮助渡难关！
+				支持：物资求助、款项求助、服务求助
+			</p>
+		</div>
+		<div class="choice_options">
+			<a href="{:U('/T/Concur/concurOne/type/1')}" class="co_top">
+				<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_ziyuan.png">
+				<span>我有资源</span>
+			</a>
+			<p class="co_tips">
+				有闲置物资或时间想要帮助别人，快来广而告之！
+				支持：物资资源、服务资源
+			</p>
+		</div>
+	</div>
+</div>        
+<script>
+var obj = $(".myhome_center_options a");
+var anum = obj.length;
+if(anum==3){
+        obj.width(1190/3);
+}else if(anum==4){
+        obj.width(1190/4);
+}else if(anum==5){
+        obj.width(1190/5);
+}
+function joinorg(org){
+	$.ajax({
+		url:'/t/UCenter/join_org/orgid/'+org,
+		dataType:'jsonp',
+		success:function(d){
+			if(d){
+				var status=d['status'];
+				if(status==-1){
+					//需要登陆
+					showbox();
+				}else if(status==-2){
+					//需要认证
+					window.location.href='{:UCENTER}/volunteer/apply/type/1/org/'+(d['orgname']);
+				}else{
+					alert(d['msg']);
+				}
+
+				if(status==1){
+					$('.join_btn').text("已申请").unbind('click');
+				}
+			}
+		}
+	});
+}
+function getStatus() {
+	var org=$(".private_letter").data('toid');
+	if(org){
+		$.ajax({
+			url:'/t/UCenter/org_user_status/org/'+org,
+			dataType:'jsonp',
+			success:function(d){
+				if(d){
+					var status=d['status'];
+					var jBtn=$('.join_btn');
+					if(status==-1){
+						//审核失败，或者没有申请
+						jBtn.html('申请加入').show();
+						jBtn.bind('click',function(){
+							joinorg(org);
+						});
+					}else if(status==0){
+						//已经审核 等待审核
+						jBtn.html("已申请").show();
+					}else if(status==1){
+						//审核通过已申请
+						jBtn.html("<img  src='{:STATIC_SERVER_URL}/usercenter/org/images/icon_yijr.png'>已加入").show();
+					}else{
+						//不显示
+						$('.join_btn').remove();
+					}
+				}
+			}
+		});
+	}
+}
+getStatus();
+</script>

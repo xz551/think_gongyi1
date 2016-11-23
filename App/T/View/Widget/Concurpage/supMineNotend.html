@@ -1,0 +1,61 @@
+<include file="Widget/Concurpage:supMine" />
+<span class="btns_end" data-type="0"><eq name='concurtype' value='1'>结束求助物资<else />结束捐助物资</eq></span></eq></p>
+<div class="promptHtml endapply">
+    <p class="promptHtmlText suppliesHtmlText">确定要撤销当前的请求吗？</p>
+</div>
+<script>
+    $(function(){
+        $(".btns_end").popWindow({
+            width: "400",
+            height: "200",
+            content: $(".endapply").html(),
+            id: "box5",
+            callback: function (a, box) {
+                $.ajax({
+                        type: "POST",
+                        url: "{:SERVER_VISIT_URL}/T/Supplies/getSuppliesApplyNumber",
+                        data: "id={$id}",
+                        success: function (msg) {
+                            if(msg.status == 1 && msg.sum>0){
+                                var ht = "当前尚有<b style='color:red;'>"+msg.sum+"</b>条未处理的";
+                                    ht += "<eq name='concurtype' value='1'>捐物资<else />求物资</eq>";
+                                    ht += "申请，确定结束后，未处理的<eq name='concurtype' value='1'>捐物资<else />求物资</eq>请求将直接全部拒绝！";
+                                    ht += "在结束时间到来之前，可手动结束，结束后不可重新开启！&nbsp;&nbsp;&nbsp;&nbsp;";
+                                    ht += "确定要结束<eq name='concurtype' value='1'>求物资<else />捐物资</eq>吗？";
+                                $(".suppliesHtmlText").html(ht);
+                            }else{
+                                $(".suppliesHtmlText").html("确定要结束<eq name='concurtype' value='1'>求物资<else />捐物资</eq>吗？");
+                            }
+                        }
+                    });   
+            },
+            button: {
+                cancel: function () {
+                },
+                ok: function (t, box) {
+                    var _this = $(".btns_end");
+                    var type = _this.attr('data-type');
+                    var id = {$id};
+                    $.ajax({
+                    type: "POST",
+                        url: "{:SERVER_VISIT_URL}/T/Concur/end",
+                        data: 'id=' + id + "&type=" + type,
+                        success: function (msg) {
+                            if (msg.status==1){
+                                _this.replaceWith('<span class="btns_endkx">已结束</span>');
+                                if(msg.isend==1){
+                                    $("h3 .sp_state").html("已完成");
+                                }
+                                box.hide();
+                                $("#mask1").hide();
+                            }else{
+                                alert(msg.messagge);
+                            }
+                        }
+                    });
+                  
+                }
+            }
+        });
+    })
+</script>

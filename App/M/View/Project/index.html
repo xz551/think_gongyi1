@@ -1,0 +1,53 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/zqgym/css/active.css?aa0">
+<section class="zqgy_actdetail">
+    <eq name="info['status']" value="100"><i class="zm_state1"></i><else/><i class="zm_state2"></i></eq>
+
+    <h3>{$info['name']}</h3>
+    <p><label>发起人：</label><span>{$info['creator']}</span></p>
+    <p><label>类型标签：</label><span>
+        <volist name="info['server_tag']" id="vo">
+            <i>{$vo}</i>
+        </volist>
+    </span></p>
+    <span class="active_pic"><img src="{$info['show_image']}"></span>
+    <p class="zm_intrdoc"><label>服务对象：</label><span>{$info['server_for']}</span></p>
+    <p class="zm_intrdoc"><label>招募时间：</label>
+        <span>{$info['begin_time']|date='Y-m-d',###} - {$info['end_time']|date='Y-m-d',###}</span></p>
+    <p class="zm_intrdoc"><label>服务时间：</label>
+        <span>
+            {$info['volun']['begin_time']|date='Y-m-d',###} -
+            {$info['volun']['end_time']|date='Y-m-d',###}
+        </span>
+    </p>
+    <p class="zm_intrdoc"><label>所在地点：</label>
+        <span>{$info['province']}&nbsp;{$info['city']}</span>
+    </p>
+    <dl class="zm_fysm">
+        <dt class="public_title">费用保障说明</dt>
+        <dd>
+            {$info['volun']['volunteer_cost']}
+        </dd>
+    </dl>
+    <dl class="zm_gawei">
+        <dt class="public_title">招募岗位</dt>
+        {~W('Project/job',array($info['job']))}
+    </dl>
+    <div class="active_intrd">
+        <h3 class="public_title">活动详情</h3>
+        <div class="active_intrd_cont">
+             {$info['description']}
+        </div>
+    </div>
+    <div id="mask"></div>
+</section>
+<div class="zqgy_bmwindow">
+    <div class="zqgy_bmw_top">
+        <span class="close_btn"></span>
+        <h3>岗位报名需要提交一下材料</h3>
+    </div>
+    <div class="zqgy_bmw_bottom">
+
+    </div>
+</div>
+<input type="hidden" id="projectid" value="{:I('id')}"/>
+<script type="text/javascript" src="__STATIC_URL__/zqgym/js/project.js"></script>

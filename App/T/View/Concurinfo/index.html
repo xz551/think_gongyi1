@@ -1,0 +1,258 @@
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/help_header.css">
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/help_detail.css?0">
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/public/css/jquery.validator.css">
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/jquery.validator.js"></script>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/zh_CN.js"></script>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/popWindow.js"></script>
+<script type="text/javascript" src="__STATIC_URL__/usercenter/tp/js/message.js"></script>
+<script type="text/javascript" src="__STATIC_URL__/public/js/ajaxupload.js"></script>
+<script type="text/javascript" src="__STATIC_URL__/public/js/letv.video.js"></script>
+<script type="text/javascript">
+    $(function () {
+    	//2分钟调用一次爱心动态信息
+    	var p = 0;
+    	var pageCount="{$pageCount}";
+    	var id="{$id}";
+    	showLove(id,p);
+    	function showLove(id,p){
+    		if(p<pageCount){
+    			p += 1;
+    		}else{
+    			p=1;
+    		}
+   		   $.ajax({
+       	    	 url:"/T/ConcurAjax/showLove",
+       	    	 data:{id:id,p:p},
+       	    	 type:"post",
+       	    	 success:function(d){
+       	    		 $(".wpr_mclt_column7").html(d);
+       	    	 }
+       	    });
+    		setTimeout(function(){showLove(id,p);},120000);
+    	}
+        /*对textarea 和 input 的输入实时监听事件代码*/
+        $.event.special.valuechange = {
+            teardown: function (namespaces) {
+                $(this).unbind('.valuechange');
+            },
+            handler: function (e) {
+                $.event.special.valuechange.triggerChanged($(this));
+            },
+            add: function (obj) {
+                $(this).on('keyup.valuechange cut.valuechange paste.valuechange input.valuechange', obj.selector, $.event.special.valuechange.handler)
+            },
+            triggerChanged: function (element) {
+                var current = element[0].contentEditable === 'true' ? element.html() : element.val()
+                        , previous = typeof element.data('previous') === 'undefined' ? element[0].defaultValue : element.data('previous')
+                if (current !== previous) {
+                    element.trigger('valuechange', [element.data('previous')])
+                    element.data('previous', current)
+                }
+            }
+        }
+        //动态设置容器向上的三角的位置
+        var divCont = $(".wraper_tab_cont > div"),divLen = divCont.length,tabUl = $(".wpr_tab_top"),lt = 60;
+        for(var i=0;i<divLen;i++){
+                divCont.eq(i).find("i.detail_arrow_up").css("left",lt);
+                lt+=110;
+        }
+        tabUl.find('li').eq(0).addClass("tab_cur");
+        divCont.eq(tabUl.find("li.tab_cur").index()).show();
+        $(".wpr_tab_top > li").hover(function(){
+                var _this = $(this),_ind = _this.index(),_div = $(".wraper_tab_cont > div");
+                _this.addClass("tab_cur").siblings().removeClass("tab_cur");
+                _div.eq(_ind).show(0,function(){
+                        $(this).parent().css({
+                                height:$(this).outerHeight()
+                        })
+                }).siblings().hide();
+        });
+		
+		/*
+			设置初始化容器的高度
+		*/
+		initHeight();
+		function initHeight(){
+			var a=$(".wraper_tab_cont"),b=a.find('div:visible').outerHeight();
+			a.height(b);
+		}
+
+        /*
+         解释爱心认证员
+         */
+        $(".sp_small").hover(function () {
+            $(".wpr_aixinrz_cont").show();
+        }, function () {
+            $(".wpr_aixinrz_cont").hide();
+        });
+       
+        /**
+         *	下拉图标，显示完整内容
+         */
+        var desc_cont = $(".help_desc_cont").height(),desc_xiala = $(".img_xiala");
+        desc_cont>135?desc_xiala.show():desc_xiala.hide();
+        desc_xiala.click(function(){
+                var t = $(this),id = t.attr('data-id');
+                if(id == 0){
+                        t.attr('data-id','1').prop('src','{:STATIC_SERVER_URL}/concur/images/xl_up.png').prev('div').css('max-height','10000px');
+                }else{
+                        t.attr('data-id','0').prop('src','{:STATIC_SERVER_URL}/concur/images/xl_down.png').prev('div').css('max-height','135px');
+                }
+        });
+
+
+        /*
+         为textarea模拟placeholder
+         */
+        $("textarea").focus(function () {
+            $(this).parent().next('.sp_placeholder').remove();
+        });
+        $('.sp_tishi1').click(function () {
+            $(this).remove();
+            $('.help_fankui').focus();
+        });
+        $('.sp_tishi2').click(function () {
+            $(this).remove();
+            $('.txtarea_jiyu').focus();
+        });
+        /*
+        分享弹出窗
+        */
+       $(".wpr_mtl_share").click(function () {
+           var url = "/T/ConcurAjax/shareSub";
+           var sid = "{$id}";
+           var name = "{$info['title']}";
+           $.ajax({
+               type: "POST",
+               url: url,
+               data: "sid="+sid+"&name="+name,
+               success: function (msg) {
+                   $(".wpr_mtl_share").popWindow({
+                       width: "548",
+                       height: "268",
+                       title: "分享到：",
+                       content: msg,
+                       autoshow: true,
+                       id: "box2",
+                       callback: function (a, box) {
+                           uid = a.data('uid');
+                           obj = a.parent().parent().parent();
+                       },
+                       button: {
+                       }
+                   });
+               }
+           });
+
+       });
+
+       $(".txtBox").focus(function () {
+           $(this).css("color", "#333");
+       });
+       $("#box2").find(".popOkBtn").css({float: "right", marginRight: '0px'}).text("分享");
+       $("#box2").find("#winfooter").css({"text-align": "right", "color": "#626262"}).append("你最多可以输入<strong class='font_length1'>140</strong>个字符&nbsp;&nbsp;");
+    });
+</script>
+<!-- wraper_main[ -->
+<div class="wraper_main clearfix">
+    <!-- main_top[ -->
+    <div class="wpr_main_top">
+        <!-- main_top_左边[ -->
+        <div class="wpr_mtop_lt">
+            <eq name='recommend' value='1'>
+                <eq name='htype' value='1'>
+                    <img src="{:STATIC_SERVER_URL}/concur/images/icon_rzzy.png" class="img_rzbz">
+                <else />
+                    <img src="{:STATIC_SERVER_URL}/concur/images/icon_rzbz.png" class="img_rzbz">
+                </eq>
+            </eq>
+            <a href="javascript:void(0)" class="wpr_mtl_img"><img src="{$image}"></a>
+            <a href="javascript:void(0)" class="wpr_mtl_share">分享({$sharenum})</a>
+        </div><!-- ]main_top_左边 -->
+        <!-- main_top_右边[ -->
+        <div class="wpr_mtop_rt">
+            <h3><a href="javascript:void(0)">{$info.title}</a><span class="sp_state">{$statusName}</span></h3>
+            <p class="wpr_mtoprt_detail"><label>类别标签：</label>
+            <volist name='label' id='vo'>
+                {$vo}&nbsp;&nbsp;|&nbsp;&nbsp;
+            </volist>
+            </p>
+            <p class="wpr_mtoprt_detail"><label><eq name='htype' value='1'>资源有效期<else />求助时间</eq>：</label>{$info.start_time|date="Y-m-d",###} - {$info.end_time|date="Y-m-d",###}</p>
+            <p class="wpr_mtoprt_detail"><label><eq name='htype' value='1'>所在地点<else />受助地点</eq>：</label>{$area}</p>
+            <p class="wpr_mtoprt_detail"><label><eq name='htype' value='1'>捐助对象<else />受助对象</eq>：</label>{$info.server_for}</p>
+            {:W('Concur/concurInfo',array($info['id'],$info['is_service'],$info['is_supplies'],$info['money'],$info['type'],$isown))}
+        </div><!-- ]main_top_右边 -->
+    </div><!-- ]main_top -->
+    <!-- main_center[ -->
+    <div class="wpr_main_center clearfix">
+        <!-- main_center_左边[ -->
+        <div class="wpr_mcenter_lt">
+            <!-- Column1[ -->
+            <div class="wpr_mclt_column1">
+                <h3 class="h3_title"><i></i><eq name='htype' value='1'>资源<else />求助</eq>描述</h3>
+                <div class="wpr_help_detail">
+                    <div class="wpr_help_desc">
+                            <div class="help_desc_cont">
+                                {$info['summary']}
+                            </div>
+                    </div>
+                    <img src="{:STATIC_SERVER_URL}/concur/images/xl_down.png" class="img_xiala" data-id="0">
+                </div>
+            </div><!-- ]Column1 -->
+            <!-- 反馈信息 -->
+            {~W('Concur/feedback',array($info['creator']))}
+            <!-- 捐助申请名单 -->
+            {~W('Donate/main_donate')}
+            <!-- 讨论区 -->
+            {~W('Donate/reply')}
+        </div>
+        <!-- ]main_center_右边 -->
+        <div class="wpr_mcenter_rt">
+            <!-- 创建者信息 -->
+            {~W('Concur/creator',array($info['creator']))}<!-- ]Column5 -->
+            <!-- 爱心认证-->
+            {~W('Concur/iLove',array($info['type']))}
+            <!-- 爱心动态 -->
+            <div class="wpr_mclt_column7"></div>
+        </div><!-- ]main_center_右边 -->
+    </div><!-- ]main_center -->
+    <!-- ]main_bottom[ -->
+    <!--
+    <div class="wpr_main_bottom">
+        <h3 class="h3_title"><i></i>他们也在求助</h3>
+        <ul class="wpr_mbhelp_list">
+            <li>
+                <a href="#" class="wpr_mbhl_pic"><img src="{:STATIC_SERVER_URL}/concur/images/qq7.jpg"></a>
+                <a href="#" class="wpr_mbhl_title">今天天气真好适合睡觉。今天天气真好适合睡觉.</a>
+            </li>
+            <li>
+                <a href="#" class="wpr_mbhl_pic"><img src="{:STATIC_SERVER_URL}/concur/images/qq7.jpg"></a>
+                <a href="#" class="wpr_mbhl_title">今天天气真好适合睡觉。今天天气真好适合睡觉.</a>
+            </li>
+            <li>
+                <a href="#" class="wpr_mbhl_pic"><img src="{:STATIC_SERVER_URL}/concur/images/qq7.jpg"></a>
+                <a href="#" class="wpr_mbhl_title">今天天气真好适合睡觉。今天天气真好适合睡觉.</a>
+            </li>
+            <li>
+                <a href="#" class="wpr_mbhl_pic"><img src="{:STATIC_SERVER_URL}/concur/images/qq7.jpg"></a>
+                <a href="#" class="wpr_mbhl_title">今天天气真好适合睡觉。今天天气真好适合睡觉.</a>
+            </li>
+            <li>
+                <a href="#" class="wpr_mbhl_pic"><img src="{:STATIC_SERVER_URL}/concur/images/qq7.jpg"></a>
+                <a href="#" class="wpr_mbhl_title">今天天气真好适合睡觉。今天天气真好适合睡觉.</a>
+            </li>
+        </ul>
+    </div>
+    -->
+    <p class="text_info4">发起人确认以上发布内容合法且真实有效，中青公益作为平台方支持不承担任何后果。</p>
+</div><!-- ]wraper_main -->
+<script type="text/javascript">
+    $("#form_zxjz").validator({
+        stopOnError: false,
+        fields: {
+            hp_money: {rule: "required", msg: "标题不能为空"}
+        }
+    });
+</script>
+{~W('Common/Login/showLogin')}
+{~W('Common/Message/privateLetter')}

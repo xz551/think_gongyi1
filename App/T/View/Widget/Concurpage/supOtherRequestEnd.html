@@ -1,0 +1,30 @@
+ <div class="tab_cont1_btns">
+<notempty name="endSuppliesShow">
+        <eq name='htype' value='1'><span class="btns_wuliu">查看物流</span></eq>
+        <span class="btns_endkx">已结束</span>
+        <div class="sp_wuliu_list">
+            <i class="sys_msg_arrow"></i>
+            <ul class="wuliu_info_list">
+                <notempty name='logisticsInfo'>
+                    物流方式: <notempty name='logisticsNumber[2]'>{$logisticsNumber[2]}<else />无</notempty>&nbsp;&nbsp;&nbsp;订单编号: <notempty name='logisticsNumber[0]'>{$logisticsNumber[0]}<else />无</notempty>
+                    <volist name='logisticsInfo' id='vo'>
+                        <li>{$vo.time}{$vo.context}</li>
+                    </volist>
+                    <else />
+                    <li>暂无物流信息</li>
+                </notempty>
+            </ul>
+        </div>
+        <else />
+        <span class="btns_endkx">已结束</span>
+</notempty>
+</div>
+ <notempty name="endSuppliesShow">
+     <p class="show_yjz_info">您已<eq name='htype' value='1'>申请<else />捐助</eq>：{$endSuppliesShow}</p>
+ </notempty>
+<script>
+   $('.btns_wuliu').click(function () {
+       $('.sp_wuliu_list').toggle();      
+   })
+</script>
+ 

@@ -1,0 +1,26 @@
+<span class="sp_title">类别标签</span>
+<ul class="ul_items">
+    <li data-pid="0" class="li_cur"><a href="javascript:void(0)">全部</a></li>
+    <volist name="label" id="vo">
+    <li data-pid="{$key}"><a href="javascript:void(0)">{$vo}</a></li>
+    </volist>
+</ul>
+<span class="sp_title">地域</span>
+<ul class="ul_items city_list">
+	<li data-pid="0" class="li_cur"><a href="javascript:void(0)">全部</a></li>
+    <volist name="area" id="vo" key="k">
+        <elt name="k" value="4"><li data-pid="{$vo.id}"><a href="javascript:void(0)">{$vo.class_name}</a></li>
+            <else />
+            <li data-pid="{$vo.id}" class="c_items"><a href='javascript:void(0)'>{$vo.class_name}</a></li>
+        </elt>
+    </volist>
+    <li class="more_city nomar"><a href="javascript:void(0)">更多省份</a></li>
+</ul>
+<neq name="tag" value="1">
+<span class="sp_title">活动类型</span>
+<ul class="ul_items act_type">
+    <li data-pid="0" class="li_cur"><a href="javascript:void(0)">全部</a></li>
+    <li data-pid="1"><a href="javascript:void(0)">线上活动</a></li>
+    <li data-pid="2"><a href="javascript:void(0)">线下活动</a></li>
+</ul>
+</neq>

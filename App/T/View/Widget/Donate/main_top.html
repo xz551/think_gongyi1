@@ -1,0 +1,34 @@
+<if condition="$tag">
+<div class="mr_topbar"><a href="/T/Donate/index.html" >求助项目</a><a href="javascript:void(0)" class="a_cur">爱心资源</a></div>
+<else />
+<div class="mr_topbar"><a href="javascript:void(0)" class="a_cur">求助项目</a><a href="/T/Donate/index/tag/1.html">爱心资源</a></div>
+</if>
+<div class="wpr_choice_items">
+	<dl>
+		<dt>状态：</dt><dd class="status" data-class='{$status}'><a href="{:create_href('status','0')}" class="status_0" >全部</a><a href="{:create_href('status','1')}" class="status_1">进行中</a><a href="{:create_href('status','-1')}" class="status_-1">已完成</a></dd>
+	</dl>
+	<dl>
+		<dt>{:I('tag')=='1'?'资源类型':'求助类型'}：</dt>
+		<eq name="tag" value="1">
+			<dd class="type" data-class='{$type}'><a href="{:create_href('type','0')}"  class="type_0">全部</a><a href="{:create_href('type','-1')}" class="type_-1">捐物资</a><a href="{:create_href('type','-2')}" class="type_-2">捐服务</a></dd>
+		<else />
+			<dd class="type" data-class='{$type}'><a href="{:create_href('type','0')}"  class="type_0">全部</a><!-- <a href="{:create_href('type','1')}" class="type_1">求款项</a> --><a href="{:create_href('type','-1')}" class="type_-1">求物资</a><a href="{:create_href('type','-2')}" class="type_-2">求服务</a></dd>
+		</eq>
+	</dl>
+	<dl>
+		<dt>类别标签：</dt>
+			<dd class="label" data-class="{$label}"><a href="{:create_href('label','0')}" class="label_0">全部</a>
+				<volist name="list" id="vo">
+					<a href="{$vo.id|create_href='label',###}" class="label_{$vo.id}">{$vo.name}</a>
+				</volist>
+			</dd>
+	</dl>
+	<dl>
+		<dt>地域：</dt>
+			<dd class="pro" data-class="{$pro}"><a href="{:create_href('pro','0')}" class="pro_0">全部</a>
+				<volist name='province' id='v'>
+					<a href="{$v.id|create_href='pro',###}" class="pro_{$v.id}">{$v.class_name}</a>
+				</volist>
+			</dd>
+	</dl>
+</div>

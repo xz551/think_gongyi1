@@ -1,0 +1,13 @@
+<volist name="data" id="vo">
+    <a href="{:U('Active/index','id='.$vo['id'])}" class="act_itemts i0" data-id="{$vo['id']}">
+        <div class="act_lt">
+            <img src="{$vo['image']}">
+            <i class="{$vo['type']==1?'sta_xs':'sta_xx'}"></i>
+        </div>
+        <div class="act_detail">
+            <h3>{$vo['name']}</h3>
+            <p><label>发起人:</label><span>{$vo['creator']}</span></p>
+            <span class="{$vo['status_id']==1?'sta_jxz':( $vo['status_id']==0?'sta_jjks':'sta_yjs' )}">{$vo['status_label']}</span>
+        </div>
+    </a>
+</volist>

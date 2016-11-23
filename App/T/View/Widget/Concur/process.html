@@ -1,0 +1,40 @@
+<script type="text/javascript">
+    $(function () {
+        var a = $(".fk_step"), b = a.find("ul"), c = a.find("li.cur"), d = c.index();
+        b.css("background", "url({:STATIC_SERVER_URL}/concur/images/fk_c" + (d + 1) + ".png) no-repeat -300px center");
+        b.animate({
+            backgroundPosition: c.position().left
+        }, 1000, "easeOutBounce", function () {
+            c.css("color", "#fff");
+            if (d > 0) {
+                for (var i = d - 1; i >= 0; i--) {
+                    b.find("li").eq(i).addClass("fk_ok");
+                }
+            }
+        });
+    });
+</script>
+<div class="wpr_project_detail">
+    <!-- 求助步骤[ -->
+    <div class="fk_step">
+        <ul>
+            <li class="sp1"><span><i>项目发起</i><em>{$starttime}</em></span></li>
+            <li class="sp2 "><span><i>项目上线</i><em>{$linetime}</em></span></li>
+            <li class="sp3 <eq name='status' value='100'>cur</eq>">捐助中</li>
+            <li class="sp4 <neq name='status' value='100'>cur</neq>"><span><i>项目结束</i><em>{$endtime}</em></span></li>
+        </ul>
+    </div>
+    <volist name="processinfo" id="v">
+        <div class="wpr_help_pross">
+            <i class="icon_yuan"></i>
+            <a href="{$v.userurl}" class="wpr_fki_lt">
+                <img src="{$v.photo}">
+                <span>{$v['typename']}</span>
+            </a>
+            <div class="wpr_fki_rt">
+                <a href="{$v.userurl}" class="wpr_fk_title"><span>{$v.nickname}</span>{$v.process}</a>
+                <p class="wpr_fk_time">{$v.time}</p>
+            </div>
+        </div>
+    </volist>
+</div>

@@ -1,0 +1,175 @@
+<css:add href="{:STATIC_SERVER_URL}/usercenter/group/css/page9.css" />
+<js:add src="{:STATIC_SERVER_URL}/public/js/popWindow.js" />
+<js:add src="{:STATIC_SERVER_URL}/usercenter/group/js/paging.js" />
+<js:w>
+    $(function () {
+        $(".class_label p a").hover(function () {
+            $(this).addClass("selected").siblings().removeClass("selected");
+        });
+        
+        /*去除右边距*/
+        var group_len = $(".visit_group_list a").length;
+        for (var i = 4; i < group_len; i++) {
+            $(".visit_group_list a").eq(i).css("margin-right", "0px");
+            i += 4;
+        }
+        /*去除右边距*/
+        var memb_len = $(".wpr_member_list").length;
+        for (var i = 1; i < group_len; i++) {
+            $(".wpr_member_list").eq(i).css("margin-right", "0px");
+            i++;
+        }
+        $(".wpr_member_list").hover(function () {
+            $(this).find(".remove_btn").show();
+        }, function () {
+            $(this).find(".remove_btn").hide();
+        });
+
+
+        /*
+         确认删除
+         */
+        var gid = '';
+        var url = '';
+        var uid = '';
+        var group = '';
+        $(".remove_btn").click(function(){
+            var username = $(this).attr('data-uname');
+            var userct = "确定要将 "+username+" 移除吗?";
+            $('.promptHtmlText').text(userct);
+        
+        $(".remove_btn").popWindow({
+            width: "400",
+            height: "170",
+            content: $(".promptHtml").html(),
+            closePic: "{:STATIC_SERVER_URL}/usercenter/group/images/close_icon.png",
+            id: "box1",
+            callback: function (a, box) {
+                gid = $('.wpr_ml_bottom').attr('data-gid');
+                url = $('.wpr_ml_bottom').attr('data-url');
+                uid = a.attr('data-uid');
+                group = a.parent();
+            },
+            button: {
+                cancel: function () {
+                },
+                ok: function (t, box) {
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: "gid=" + gid + "&uid=" + uid,
+                        success: function (msg) {
+                          
+                            if (msg==1) {
+                                group.remove();
+                                box.hide();
+                                $("#mask1").hide();
+                            } else {
+                                box.hide();
+                                $("#mask1").hide();
+                                alert("删除失败");
+                            }
+                          
+                        }
+                    });
+                    
+                }
+            }
+        });
+        $("#box1").find("#winTitle").css("border-bottom", "none");
+        })
+    });
+
+</js:w>
+<!-- wraper_main[ -->
+<div class="wraper_main">
+    <!-- wraper_main_left -->
+    <div class="wraper_main_left">
+        <!-- wpr_ml_top -->
+        <div class="wpr_ml_top">
+            <div class="wpr_mlt_detail">
+                <eq name="groupInfo.ismine" value="1">
+                <div class="wpr_mltd_top">我创建的小组</div>
+                </eq>
+                <a href="{:U('t/group/selgroup',array('id'=>$groupInfo['id']))}" title="{$groupInfo.name}"><img src="{$groupInfo.image}" class="wpr_mltd_left"></a>
+                <div class="wpr_mltd_right">
+                    <a href="{:U('t/group/selgroup',array('id'=>$groupInfo['id']))}" title="{$groupInfo.name}">{$groupInfo.name}</a>
+                    <p class="create_time">{$groupInfo.addtime}</p>
+                    <div class="label_list">
+                        <label>标签：</label>
+                        <p>
+                            <volist name='groupInfo.label' id='vo'>
+                            <span>{$vo}</span>
+                            </volist>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div><!-- wpr_ml_top -->
+        <!-- wpr_ml_bottom -->
+        <div class="wpr_ml_bottom" data-gid='{$gid}' data-url='{:U("t/group/deluser")}'>
+            <h3 class="project_title">小组成员<i></i></h3><a name="user"></a>       
+            <volist name="userInfo" id="vo">
+                <!-- 一个成员 -->
+                <div class="wpr_member_list">
+                    <eq name="groupInfo.ismine" value="1">
+                    <span data-uid="{$vo.uid}" data-uname="{$vo.nickname}"  class="remove_btn"></span>
+                    </eq>
+                    <a href="{:userUrl($vo['uid'])}" ><img src="{$vo.photo}" class="wpr_ml_left" title="{$vo.nickname}"></a>
+                    <div class="wpr_ml_right">
+                        <p class="wpr_mlr_title"><a href="{:userUrl($vo['uid'])}" title="{$vo.nickname}">{$vo.nickname}</a><eq name='vo.type' value='11'><img src="{:STATIC_SERVER_URL}/usercenter/group/images/icon_v.png" title="认证个人"><else /><img src="{:STATIC_SERVER_URL}/usercenter/group/images/icon_v1.png" title="认证组织"></eq>
+                            <eq name='islogin' value='1'><a href="{:UCENTER}/inbox/messagebox/singlebox/from_uid/{$vo['uid']}"><img src="{:STATIC_SERVER_URL}/usercenter/group/images/icon_semail.png"></a></eq>
+                        </p>
+                        <p class="wpr_mlr_address">{$vo.address}</p>
+                    </div>
+                </div>
+            </volist>   
+            <notempty name='userInfo'>
+            <!-- 分页 -->
+            <div class="wraper_paging">
+                {$page}
+            </div>
+            </notempty>
+            
+        </div>
+    </div><!-- wraper_main_left -->
+    <div class="wraper_main_right">
+        <!-- wpr_mr_top -->
+        <eq name='islogin' value='1'><div class="wpr_mr_top"><a href="{:U('t/group/usergroup',array('id'=>$uid))}" >返回到我的公益小组</a></div></eq>
+        <!-- wpr_mr_center1 -->
+        <div class="wpr_mr_center1">
+            <h3 class="project_title">组长<i></i></h3>
+            <div class="group_leader_info">
+                <a href="{:userUrl($groupInfo['user']['uid'])}" ><img src="{$groupInfo['user'].photo}" class="group_li_left" title="{$groupInfo['user'].org_name}"></a>
+                <div class="group_li_right">
+                    <p class="group_li_title"><a href="{:userUrl($groupInfo['user']['uid'])}" title="{$groupInfo['user'].org_name}">{$groupInfo['user'].org_name}</a><img src="{:STATIC_SERVER_URL}/usercenter/group/images/icon_v1.png" title="认证组织"><eq name='islogin' value='1'><a href="{:UCENTER}/inbox/messagebox/singlebox/from_uid/{$groupInfo['user']['uid']}" class="pemail"></a></eq></p>
+                    <p class="group_li_address">{$groupInfo['user'].address}</p>
+                    <p class="group_li_cont">
+                        {$groupInfo['user'].summary}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- bottom -->
+        <div class="wpr_mr_bottom">
+            <h3 class="project_title">成员们还加入了<i></i></h3>
+            <volist name='otherGroup' id='vo'>
+            <!-- 一个小组 -->
+            <div class="new_create_group">
+                <a href="{:U('t/group/selgroup',array('id'=>$vo['gid']))}" ><img src="{$vo.image}" title="{$vo.name}"></a>
+                <div class="new_cr_detail">
+                    <a href="{:U('t/group/selgroup',array('id'=>$vo['gid']))}" title="{$vo.name}">{$vo.name}</a>
+                    <p>
+                       {$vo.introduce}
+                    </p>
+                </div>
+            </div>
+            </volist>        
+        </div><!-- bottom -->
+    </div>
+</div>
+
+<!--弹出层1[-->
+<div class="promptHtml">
+    <p class="promptHtmlText">确认删除吗？</p>
+</div> <!--]弹出层1-->

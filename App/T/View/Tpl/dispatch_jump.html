@@ -1,0 +1,54 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit" />
+    <meta name="Author" content="北京中青华云新媒体科技有限公司" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>中青公益-聚合青年公益力量 系统提示</title>
+    </head>
+<body>
+<if condition="strtoupper(MODULE_NAME) eq 'UC'">
+    <link rel="stylesheet" type="text/css" href="http://static.zzg.link/usercenter/tp/css/style.css">
+    {~W('Uc/Layout/header')}
+    <elseif condition="strtoupper(MODULE_NAME) eq 'T'"/>
+    <link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/gongyi/css/header.css?da" />
+    <link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/group/css/style.css">
+    {~W('T/Layout/header')}
+</if>
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/gongyi/css/tishi.css">
+<div class="wraper_main">
+    <p class="wm_prompt_title">系统消息</p>
+    <div class="{$status==1?'wm_ok_info':'wm_error_info'}">
+        <h3>
+            <if condition="$message">
+                {$message}
+                <elseif condition="$error"/>
+                {$error}
+                <else/>
+                {:C('ERROR_MESSAGE')}
+            </if>
+        </h3>
+        <p><b id="wait"><?php echo($waitSecond); ?></b>秒后自动<a id="href" href="<?php echo($jumpUrl==''?'/index':$jumpUrl); ?>">跳转</a>...</p>
+    </div>
+</div>
+<script type="text/javascript">
+(function(){
+var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+    if(href==""){
+        href="/index";
+    }
+var interval = setInterval(function(){
+	var time = --wait.innerHTML;
+	if(time <= 0) {
+		location.href = href;
+		clearInterval(interval);
+	};
+}, 1000);
+})();
+</script>
+
+</body>
+</html>

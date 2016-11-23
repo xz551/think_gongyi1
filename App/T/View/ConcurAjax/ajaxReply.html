@@ -1,0 +1,44 @@
+ {__NOLAYOUT__} 
+  <!-- 一个讨论 -->
+<volist name="commentInfo" id="vo">
+    <div class="wraper_taolun">
+        <div class="taolun">
+            <a href="{:userUrl($vo['uid'])}" target="_blank"><img src="{$vo['image']}" title="{$vo['nickname']}"></a>
+            <div class="taolun_right">
+                <p class="taolun_rht_uname"><a href="{:userUrl($vo['uid'])}" class="a_uname" title="{$vo['nickname']}" target="_blank">{$vo['nickname']|str_ellipsis_new=###,12}</a><span class="a_time">{$vo['time']}</span></p>
+                <div class="wrp_discuss_cont">
+                    <p class="taolun_rht_cont">{$vo['content']}</p>
+                </div>
+                <a href="javascript:void(0);" class="a_reply">回复</a>
+                <form action="#">
+                    <textarea name="edit_box1" class="edit_box1" cols="30" rows="10"></textarea>
+                    <span class="okBtn2" data-sid="{$id}" data-calluid="{$vo['uid']}" data-cid="{$vo['id']}">确定</span>
+                </form>
+            </div>
+        </div>
+        <notempty name="vo.reply">
+			<volist name="vo.reply" id="v">
+				<div class='taolun1'>
+   					<a href="{:userUrl($v['uid'])}" target="_blank"><img src="{$v['image']}" title="{$v['nickname']}"></a>
+   					<div class='taolun_right'>
+        				<p class='taolun_rht_uname'><a  href="{:userUrl($v['uid'])}" class='a_uname' title="{$v['nickname']}" target="_blank">{$v['nickname']|str_ellipsis_new=###,12}</a>回复&nbsp;&nbsp;&nbsp;&nbsp;<a class='a_uname' href="{:userUrl($v['calluid'])}" title="{$v['callNickname']}" target="_blank">{$v['callNickname']|str_ellipsis_new=###,10}</a><span class='a_time'>{$v['time']}</span></p>
+        				<div class='wrp_discuss_cont'>
+            				<p class='taolun_rht_cont'><pre>{$v['content']}</pre></p>
+        				</div>
+        				<a href='javascript:void(0);' class='a_reply'>回复</a>
+        				<form action='#'>
+            				<textarea name='edit_box1' class='edit_box1' cols='30' rows='10'></textarea>
+            				<span class='okBtn2' data-sid="{$id}" data-calluid="{$v['uid']}" data-cid="{$v.cid}">确定</span>
+        				</form>
+   					</div>
+				</div>
+			</volist>
+		</notempty>
+    </div>
+</volist>
+<gt name='num' value='8'>
+<div class="wraper_paging">
+    {$page}
+</div>
+</gt>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/ajaxpage.js"></script>

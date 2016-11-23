@@ -1,0 +1,94 @@
+<div class="service_apply">
+    <p class="wzjz_tijiao2" style='display:block'><eq name="servicetype" value="2">服务申请<else/>服务捐助</eq>已提交，等待<eq name="servicetype" value="2">捐助<else/>求助</eq>人确认
+        <span class="a_cxjz2" id="endOnMine"  data-url="{:SERVER_VISIT_URL}/T/Service/endOnMine"  data-sid='{$sid}' data-id='{$id}'><eq name="servicetype" value="2">撤销申请<else/>撤销捐助</eq></span>
+    </p>
+</div>
+<div class="promptHtml ptHtml3">
+    <p class="promptHtmlText">确定要撤销当前的<eq name="servicetype" value="2">服务申请<else/>服务捐助</eq>吗？</p>
+</div>
+<div class="promptHtml applyservice">
+    <p class="promptHtmlText">确定<eq name="servicetype" value="2">申请<else/>捐助</eq>该服务吗？</p>
+</div>
+<script>
+    $(function(){
+       //撤销服务
+        $(".a_cxjz2").popWindow({
+            width: "400",
+            height: "170",
+            content: $(".ptHtml3").html(),
+            id: "boxservice",
+            callback: function (a, box) {
+            },
+            button: {
+                cancel: function () {
+                },
+                ok: function (t, box) {
+                    var id = "{$id}";
+                    var sid = "{$sid}";
+                    $.ajax({
+                        type: "POST",
+                        url: "{:SERVER_VISIT_URL}/T/Service/endOnMine",
+                        data: "id=" + id+"&sid="+sid,
+                        success: function (msg) {
+                            if(msg.status == -1){
+                                alert(msg.content);
+                            }else{
+                                box.hide();
+                                $("#mask1").hide();   
+                                var html = '<p class="tab_cont1_btns">';
+                                    html += '<span class="btns_sqfw" id="applyService" data-url="'+"{:SERVER_VISIT_URL}/T/Service/applyService"+'" data-sid="{$sid}" data-id="{$id}"><eq name="servicetype" value="2">申请服务<else/>捐服务</eq></span>';
+                                    html += '</p>';
+                                $(".service_apply").html(html);
+                            }
+                        }
+                    });
+                }
+            }
+        });
+        $("#boxservice").find("#winTitle").css("border-bottom", "none");
+        
+        //捐服务
+        $(".btns_sqfw").popWindow({
+            width: "400",
+            height: "180",
+            content: $(".applyservice").html(),
+            id: "applyservice",
+            callback: function (a, box) {
+                var islogin = '{$islogin}';
+                if(islogin != 1){
+                    box.hide();
+                    $("#mask1").hide();
+                    showbox();
+                }
+            },
+            button: {
+                cancel: function () {
+                },
+                ok: function (t, box) {
+                        var url = $("#applyService").attr('data-url');
+                        var id = $("#applyService").attr('data-id');
+                        var sid = $("#applyService").attr('data-sid');
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: "id=" + id+"&sid="+sid,
+                            success: function (msg) {
+                                if(msg.status==-1){
+                                    alert(msg.content);
+                                }else{
+                                    box.hide();
+                                    $("#mask1").hide();
+                                    var html =  '<p class="wzjz_tijiao2" style="display:block"><eq name="servicetype" value="2">服务申请<else/>服务捐助</eq>已提交，等待<eq name="servicetype" value="2">捐助<else/>求助</eq>人确认';
+                                        html += '<span class="a_cxjz2" id="endOnMine"  data-url="'+"{:SERVER_VISIT_URL}/T/Service/endOnMine"+'"  data-sid="{$sid}" data-id="{$id}"><eq name="servicetype" value="2">撤销申请<else/>撤销捐助</eq></span>';
+                                        html += '</p>';
+                                        $('.service_apply').html(html);
+                                }
+                            }
+                        });
+                }
+            }
+        });
+        var btns_bar = $("#winfooter");
+        btns_bar.css("padding", "15px 0px").find(".popOkBtn").text("确认");
+    })
+</script>

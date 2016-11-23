@@ -1,0 +1,79 @@
+<div class="zqgy_clm1_edit shw">
+    <form action="javascript:void(0)" id="edit_form3">
+        <p>
+            <label>认证状态：</label>
+            <span>{$vol['status']}</span>
+        </p>
+        <p>
+            <label>真实姓名：</label>
+            <input type="text" id="real_name" name="real_name" value="{$vol['real_name']}" aria-required="true">
+            <span class="msg-box n-right" for="real_name"></span>
+        </p>
+        <p>
+            <label>证件类型：</label>
+            <select name="idcard_type" id="idcard_type" aria-required="true">
+                <volist name="idcard" id="vo">
+                    <option value="{$key}">{$vo}</option>
+                </volist>
+            </select>
+            <script>
+                $('#idcard_type').val({$vol['idcard_type']});
+            </script>
+            <span class="msg-box n-right" for="idcard_code"></span>
+        </p>
+        <p>
+            <label>证件号码：</label>
+            <input type="text" id="idcard_code" name="idcard_code" value="{$vol['idcard_code']}" aria-required="true">
+            <span class="msg-box n-right" for="idcard_code"></span>
+        </p>
+        <div class="option_btns"><button class="subbtn">保存</button><span class="cancel_base">取消</span></div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    $("#edit_form3").validator({
+        stopOnError:false,
+        fields:{
+            'real_name':{rule:"nickname"},
+            'idcard_code':{rule:"required",msg:"证件号码错误"}
+        },rules:{
+            nickname:[/^[_a-zA-Z0-9\u4E00-\u9FA5]{2,10}$/,'真实姓名错误']
+        },
+        valid:function(form){
+            $(form).find('.subbtn').addClass('dis');
+            sub();
+        }
+    });
+    function sub(){
+        if(is_ajax){
+            return;
+        }
+        is_ajax=true;
+        var data={
+            real_name:$('#real_name').val(),
+            idcard_type:$('#idcard_type').val(),
+            idcard_code:$('#idcard_code').val()
+        };
+        $.ajax({
+            url:'/uc/Accountajax/edit_vol_do',
+            data:data,
+            type:'post',
+            dataType:'json',
+            success:function(d){
+                is_ajax=false;
+                var _form=$("#edit_form3");
+                _form.find('.subbtn').removeClass('dis');
+                if(d.status==-1){
+                    alert(d.msg);
+                }else{
+                    var _form_parent=_form.parent();
+                    var _h=_form_parent.prev();
+                    _h.find('a.ajax').removeClass('cancel').html('编辑');
+                    _form_parent.next().replaceWith(d.msg);
+                    _form_parent.remove();
+                }
+
+            }
+        });
+    }
+</script>

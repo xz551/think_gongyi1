@@ -1,0 +1,126 @@
+<div class="ifo_yzm_step2 shw">
+    <form action="javascript:void(0)" id="form5" class="nice-validator n-default" novalidate="novalidate">
+        <p>
+            <label>手机号码：</label>
+            <input type="text" id="phone" name="phone" placeholder="请输入手机号码" aria-required="true" aria-invalid="true" class="n-invalid" data-inputstatus="error">
+            <span class="msg-box n-right" for="yz_telphone">
+
+            </span>
+        </p>
+        <p class="yzcode">
+            <label>验证码：</label>
+            <input type="text" name="code" id="code" placeholder="请输入验证码" aria-required="true">
+            <i id="sendsmscode">获取短信验证码</i>
+            <span class="msg-box n-right" for="yz_tpcode"></span>
+        </p>
+        <input type="hidden" name="smscode" id="smscode" />
+        <button class="ifo_yzbtn2">确定</button>
+    </form>
+</div>
+<script>
+    var _sendcode=$('#sendsmscode');
+    $(function(){
+        var phone_verify=/^1[3-9]\d{9}$/;
+        _sendcode.click(function(){
+            if(is_ajax || _sendcode.hasClass('send')){
+                return;
+            }
+            var _phone=$('#phone').val();
+            if(!phone_verify.test(_phone)){
+                alert('手机错误');
+                return;
+            }
+            verify_phone();
+
+        });
+    });
+    /**
+     * 验证手机号
+     */
+    function verify_phone(){
+        is_ajax=true;
+        _sendcode.addClass('send').text('正在发送');
+        $.ajax({
+            url:'/m/sms/token',
+            data:{phone:$('#phone').val()},
+            dataType:'json',
+            success:function(d){
+                if(d.status==-1){
+                    is_ajax=false;
+                    _sendcode.removeClass('send').text('获取短信验证码');
+                    alert(d.msg);
+                }else{
+                    $('#smscode').val(d.smscode);
+                    //验证通过
+                    send_code();
+                }
+            }
+        });
+    }
+    /**
+     * 发送短信验证码
+     */
+    function send_code(){
+        $.ajax({
+            url:'/m/sms/sendsms',
+            data:{phone:$('#phone').val(),smscode:$('#smscode').val()},
+            dataType:'json',
+            type:'post',
+            success:function(d){
+                is_ajax=false;
+                if(d.status<0){
+                    alert(d.msg);
+                }else{
+                    _time();
+                }
+            }
+
+        });
+    }
+    var total=60;
+    function _time(){
+        _sendcode.text(total+'秒后重新发送');
+        --total;
+        if(total>0){
+            setTimeout(function(){
+                _time();
+            },1000);
+        }else{
+            total=60;
+            _sendcode.removeClass('send').text('获取短信验证码');
+        }
+    }
+    $("#form5").validator({
+        stopOnError:false,
+        fields:{
+            'phone':{rule:"手机号:required;mobile"},
+            'code':{rule:"验证码:required;"}
+        },
+        valid:function(form){
+            edit_phone_do();
+        }
+    });
+    function edit_phone_do(){
+        if(is_ajax){
+            return;
+        }
+        is_ajax=true;
+        $.ajax({
+            url:'/uc/accountajax/edit_phone_do',
+            data:{phone:$('#phone').val(),code:$('#code').val(),smscode:$('#smscode').val()},
+            dataType:'json',
+            type:'post',
+            success:function(d){
+                is_ajax=false;
+                if(d.status==-1){
+                    alert(d.msg);
+                }else{
+                    var _email=$('.ifo_yzphone');
+                    _email.prev().addClass('succ');
+                    _email.html(d.msg);
+                }
+            }
+        });
+    }
+
+</script>

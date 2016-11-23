@@ -1,0 +1,103 @@
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/help_manager.css">
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/popWindow.js"></script>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/tp/js/message.js"></script>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/concur/js/service.js"></script>
+<script type="text/javascript">
+$(function(){
+	/*分页*/ 
+	$(".wraper_paging ul li").hover(function(){
+		$(this).addClass("mouse_hover").siblings().removeClass("mouse_hover");
+	});  
+	$(".wraper_paging ul .curr").addClass("mouse_hover");
+});
+</script>
+{~W('Common/Message/privateLetter')}
+<div class="wraper_mtop_title" data-id="{$isService['id']}" data-type="{$isService['type']}">{$isService['title']}</div>
+<!-- wraper_main[ -->
+<div class="wraper_main">
+	<div class="wraper_menus_tab">
+		<if condition="$isService['type'] eq 0"> 
+	   		<!-- <a href="{:U('/T/Donate/moneyManager',array('id'=>$isService['id']))}">捐款管理</a> -->
+	        <notempty name="isService['is_supplies']"><a href="{:U('/T/Donate/suppliesManager',array('id'=>$isService['id']))}">物资捐助管理</a></notempty>
+	        <a href="javascript:void(0)" class="bottom_border">服务捐助管理</a>
+			<a href="__WEB_SITE__/T/Concurinfo/index/id/{$isService['id']}" class="back_group">回到求助详情页</a>
+		<else />
+			<a href="javascript:void(0)" class="bottom_border">服务申请管理</a>
+			<a href="__WEB_SITE__/T/Concurinfo/index/id/{$isService['id']}" class="back_group">回到资源详情页</a>
+		</if>
+	</div>
+		<div class="wraper_main_cont">
+			<p class="wpr_tc_info">
+				<label><empty name="service['type']">提供<else />需要</empty>服务：</label>
+				<span>{$service['summary']}</span>
+			</p>
+			<p class="wpr_tc_info">
+				<label>服务时间：</label>
+				<span>{$service['time']}</span>
+			</p>
+			<p class="wpr_tc_info">
+				<label>服务地点：</label>
+				<span>{$service['address']}</span>
+			</p>
+			<p class="pormpt_text1">
+				<if condition="$service['type'] eq 0">
+					已同意<span class="pass" data-pass="{$service['userPassCount']}">{$service['userPassCount']}</span>个服务捐助请求，已拒绝<span class="nPass" data-npass="{$service['userNpassCount']}">{$service['userNpassCount']}</span>个服务捐助请求，当前尚有<span class="sp_clo2" data-authstr="{$service['userAuthstrCount']}">{$service['userAuthstrCount']}</span>条未处理的服务捐助请求！
+				<else />
+					<span class="sp_clo1">一个捐服务项目只能接受一个服务申请请求！</span>当前尚有<span class="sp_clo2" data-authstr="{$service['userAuthstrCount']}">{$service['userAuthstrCount']}</span>条未处理的服务申请请求！	
+				</if>
+			</p>
+			<ul class="wpr_wzjzmd_list clearfix">
+				<volist name="users" id="vo">
+					<li>
+						<div class="wpr_wzjzmdl_top">
+							<a href="{:userUrl($vo['uid'])}" title="{$vo['nickname']}" class="wpr_mdtop_lt" target="_blank"><img src="{$vo['image']}"></a>
+							<div class="wpr_mdtop_rt">
+								<h3 class="wpr_jzmdlrt_title"><a href="{:userUrl($vo['uid'])}" class="helpren_name" title="{$vo['nickname']}" target="_blank">{$vo['nickname']|str_ellipsis_new=###,12}</a>
+									<eq name='vo.type' value='11'><img src="{:STATIC_SERVER_URL}/concur/images/icon_v.png" title="认证个人"><else /><img src="{:STATIC_SERVER_URL}/concur/images/icon_v1.png" title="认证组织"></eq>
+									<a href="javascript:void(0)" class="pemail_btn" data-toid="{$vo['uid']}" title="私信"></a>
+								</h3>
+								<p class="wpr_jzmdlrt_address">{$vo['userAddress']}</p>
+							</div>
+						</div>
+						<p class="wpr_tc_info"><label>联系人：</label><span>{$vo['real_name']}</span></p>
+						<p class="wpr_tc_info"><label>联系电话：</label><span>{$vo['phone']}</span></p>
+						<p class="wpr_tc_info"><label>Email：</label><span>{$vo['email']}</span></p>
+						<div class="wpr_btnandcont">
+						<if condition="$service['type'] eq 0">
+							<p class="hope_cont"> 希望提供服务</p>
+						<else />
+							<p class="hope_cont"> 希望申请服务</p>	
+						</if>	
+						<if condition="$vo['status'] eq 0">
+							<div class="p_btns active"><span class="sp_accept" data-name="{$vo['nickname']}" data-uid="{$vo['uid']}">接受</span><span class="sp_refuse" data-name="{$vo['nickname']}" data-uid="{$vo['uid']}">拒绝</span></div>
+						<elseif condition="$vo['status'] eq 1"/>
+							<div class="p_btns active">已接受</div>
+						<else />
+							<div class="p_btns active">已拒绝</div>
+						</if>
+						</div>
+					</li>
+				</volist>
+			</ul>
+		</div>
+		<notempty name="users">
+			<!-- 分页 -->
+			<div class="wraper_paging">{$page}</div>
+		</notempty>
+</div>
+<!--接受弹出层[-->
+ <div class="promptHtml ptHtml1">
+   <h3 class="qr_prompt">您确定<span class="sp_clo">接受</span><span class="receive"></span></h3>
+   <ul class="qrts_list">
+   		<li class="qrts_li1">1、点击“确定”意味着您已经与此捐助人就“服务内容、服务时间、服务地点”等问题达成一致！</li>
+   		<li class="qrts_li2"></li>
+   </ul>
+</div><!--]接受弹出-->
+ <div class="promptHtml ptHtml2">
+   <h3 class="qr_prompt">您确定<span class="sp_clo">拒绝</span><span class="refuse"></span></h3>
+   <ul class="qrts_list">
+   		<li class="qrts_li3">1、点击“确定”意味着您未与此捐助人就“服务内容、服务时间、服务地点”等问题达成一致！</li>
+   		<li>2、请输入拒绝缘由：</li>
+   		<li><textarea name="jjliyou" id="jjliyou"></textarea></li>
+   </ul>
+</div><!--]拒绝弹出-->

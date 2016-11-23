@@ -1,0 +1,27 @@
+{__NOLAYOUT__}
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/ajaxpage.js"></script>  
+<table id="tab">
+	<thead>
+		<th width="35%">项目名称</th>
+		<th width="30%">组织名称</th>
+		<th width="15%">所获时长(小时)</th>
+		<th width="20%">获取时间</th>
+	</thead>
+	<tbody>
+	<foreach name="timeInfo" item="val">
+		<tr>
+			<td><span><a href="{:YI_JUAN}/project/view/id/{$val['project_id']}.html" target="_blank" title="{$val['proname']}">{$val['proname']|str_ellipsis=30}</a></span></td>
+			<td><a href="{:userUrl($val['creator'])}" target="_blank" title="{$val['orgname']}">{$val['orgname']|str_ellipsis=24}</a></td>
+			<td>{$val['server_time']}<a href="javascript:void(0)"><!-- 申诉 --></a></td>
+			<td>{$val['allot_time']}</td>
+		</tr>
+	</foreach>
+	</tbody>
+</table>
+<div class="wraper_paging">{$page}</div>
+<script type="text/javascript">
+	$(function(){
+			/*表格的隔行变色*/
+		$("#tab tbody tr:even").addClass("odd");
+	});
+</script>

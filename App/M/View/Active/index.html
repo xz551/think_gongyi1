@@ -1,0 +1,172 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/zqgym/css/active.css?aaaa">
+<section class="zqgy_actdetail">
+		<i class="act_state{$info['status_id']}"></i>
+	<h3>
+		{$info['name']}
+		<img src="__STATIC_URL__/zqgym/images/{$info['type']=='1'?'xianshang':'xianxia'}.png">
+	</h3>
+	<p><label>发起人：</label><span>{$info['creator']}</span></p>
+	<p><label>类型标签：</label>
+		<span> 
+			<volist name="info['server_label']" id="vo">
+				<i>{$vo}</i>
+			</volist>
+		</span>
+	</p>
+	<span class="active_pic"><img src="{$info['image']}"></span>
+	<p class="active_time">{$info['start_time']|date='Y-m-d H:i',###}－{$info['end_time']|date='Y-m-d H:i',###}</p>
+	<p class="active_addr">{$info['province']}&nbsp;{$info['city']}&nbsp;{$info['address']}</p>
+	<div class="active_baomin">
+		<if condition="$join and $info['status_id'] eq 1">
+			<div class="bm_btn cancelbm">取消报名</div>
+		<elseif condition="$info['status_id'] eq 1"/>
+			<div class="bm_btn subbm">我要报名</div>
+		<else/>
+			<div class="bm_btn havebm">{$info['status_label']}</div>
+		</if>
+
+		<div><i id="join_count">{$info['join_count']}</i>
+			<span>已报名人数</span>
+		</div>
+	</div>
+	<div class="active_intrd">
+		<h3 class="public_title">活动详情</h3>
+		<div class="active_intrd_cont">
+			{$info['description']}
+		</div>
+	</div>
+	<div id="mask"></div>
+</section>
+<input type="hidden" id="active_id" value="{:I('id')}"/>
+<input type="hidden" id="need_contact" value="{$info['need_contact']}"/>
+<div class="zqgy_bmwindow">
+
+</div>
+<script>
+	var _bm_btn=$('.bm_btn');
+	$(function(){
+		_bm_btn.bind('click',function(){
+			if(_bm_btn.hasClass('havebm')){
+				return false;
+			}
+			if(_bm_btn.hasClass('subbm')){
+				_bm_btn.addClass('havebm');
+				_bm_btn.text('正在提交');
+				getPhoneName();
+			}else if(_bm_btn.hasClass('cancelbm')){
+				//取消 报名
+				cancel();
+			}
+		});
+
+	});
+	/**
+	 * 调取用户参与手机号和姓名
+	 */
+	function getPhoneName(){
+		var need_contact=$('#need_contact').val();
+		if(need_contact==0){
+			bm();
+			return;
+		}
+		_bm_btn.text('验证信息…');
+		$.ajax({
+			url:'/m/active/get_phone_name',
+			success:function(d){
+				if(d.indexOf('{"login"')==0){
+					//需要登录
+					window.location.href='/m/user/login?returnurl='+encodeURI(window.location.href);
+				}else{
+					$('.zqgy_bmwindow').html(d);
+					$(".zqgy_bmwindow,#mask").show();
+					bmWinPosition();
+				}
+			}
+		});
+	}
+	var is_cancel=false;
+	function cancel(){
+		if(is_cancel){
+			return;
+		}
+		is_cancel=true;
+		_bm_btn.addClass('havebm');
+		_bm_btn.text('正在取消');
+		$.ajax({
+			url:'/m/active/cancel_bm',
+			data:{id:$('#active_id').val()},
+			dataType:'json',
+			type:'post',
+			success:function(d){
+				is_cancel=false;
+				if(typeof d.login !='undefined'){
+					//需要登录
+					window.location.href='/m/user/login?returnurl='+encodeURI(window.location.href);
+				}else{
+					_bm_btn.removeClass('havebm');
+					var status= d.status;
+					if(status>0){
+						_bm_btn.toggleClass('cancelbm subbm').text('我要报名');
+						var _count=$('#join_count');
+						var c=parseInt(_count.text());
+						_count.text(--c);
+					}else{
+						alert(d.msg);
+					}
+				}
+			}
+		});
+	}
+	function hide(){
+		$(".zqgy_bmwindow,#mask").hide();
+	}
+	function bmWinPosition(){
+		var brwidth = $(".zqgy_main").width(),
+				brheight = $('body').scrollTop();
+		bmwindow = $(".zqgy_bmwindow"),
+				bmwidth = bmwindow.width(),
+				bmtop=brheight+20;
+		bmleft =(brwidth-bmwidth)/2;
+
+		bmwindow.css({top:bmtop+'px',left:bmleft+'px'});
+	}
+
+	var _is_sub=false;
+
+	/**
+	 * 报名
+	 */
+	function bm(_name,_phone){
+		_is_sub=true;
+		_bm_btn.removeClass('报名中…');
+		var data={'id':$('#active_id').val()};
+		if(typeof _name!='undefined'){
+			data['uname']=_name;
+			data['uphone']=_phone;
+		}
+		$.ajax({
+			url:'/m/active/join',
+			data:data,
+			dataType:'json',
+			type:'post',
+			success:function(d){
+				_is_sub=false;
+				if(typeof d.login!='undefined'){
+					window.location.href='/m/user/login?returnurl='+encodeURI(window.location.href);
+				}
+				var status= d.status;
+				if(status==-1){
+					alert(d.msg);
+					_bm_btn.removeClass('havebm').text('我要报名');
+				}else{
+					//参与成功
+					hide();
+					_bm_btn.toggleClass('havebm cancelbm subbm').text('取消报名');
+					var _count=$('#join_count');
+					var c=parseInt(_count.text());
+					_count.text(++c);
+				}
+			}
+		});
+	}
+</script>

@@ -1,0 +1,74 @@
+{__NOLAYOUT__}
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/ajaxpage.js"></script>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/popWindow.js"></script>
+<volist name="data" id="vo">  
+<!-- 一个小组 -->
+<div class="my_group_list" data-vip="{$isVip}">
+        <div class="my_gl_top">
+            <a href="{:U('t/group/selgroup',array('id'=>$vo['id']))}" ><img src="{$vo.image}" title="{$vo.name}"></a>
+            <div class="chat_cont_right">
+                <a href="{:U('t/group/selgroup',array('id'=>$vo['id']))}" title="{$vo.name}">{$vo.name}</a>
+                <p class="chat_cont_detail">
+                    {$vo.introduce}
+                </p>
+            </div>
+        </div>
+        <p class="group_cont_detail">
+            <a class="chat_num" href="{:U('t/group/selgroup',array('id'=>$vo['id']))}#subject">话题：{$vo.subNum}</a>
+            <a class="member_num" href="{:U('t/group/usersupervise',array('id'=>$vo['id']))}#user" >成员：{$vo.userNum}</a>
+            <a class="group_leader" href="{:userUrl($vo['uid'])}">组长：{$vo.creator|str_ellipsis=10}</a>
+            <eq name='vo.isGroup' value='0'>
+            <a href="javascript:void(0)" class="join_group_btn" data-gid="{$vo.id}">加入小组</a>
+            <else />
+            <span class="already_grmember">我是小组成员</span>
+            </eq>
+        </p>
+</div>
+</volist>
+<!-- 分页 -->
+<div class="wraper_paging">
+    {$page}
+</div>
+<script>
+    $('.join_group_btn').click(function () {
+        var login = {$islogin};
+        $(".promptHtmlText").text("只有认证用户可以加入小组");
+        if(login == 1){
+            var _this = $(this);
+            var isVip = $('.my_group_list').attr('data-vip');
+            if (isVip == 0) {
+                $(this).popWindow({
+                  width:"400",
+                  height:"170",
+                  content:$(".promptHtml").html(),
+                  closePic:"{:STATIC_SERVER_URL}/usercenter/group/images/close_icon.png",
+                  id:"box1",
+                              autoshow:true,
+                  callback:function(a,box){},
+                  button:{ok:function(t,box){
+                        box.hide();
+                        $("#mask1").hide();  
+                   }}
+              });           
+
+            } else {
+                var gid = _this.attr('data-gid');
+                $.ajax({
+                    type: "POST",
+                    url: "{:U('T/Group/addUserInGroup')}",
+                    data: "gid=" + gid,
+                    success: function (msg) {
+                        if (msg > 0) {
+                            _this.replaceWith('<span class="already_grmember">我是小组成员</span>');
+                        } else {
+                            alert("加入小组失败");
+                        }
+                    }
+                });
+            }
+        }else{
+            showbox();
+        }
+    });
+
+</script>

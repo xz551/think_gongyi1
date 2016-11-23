@@ -1,0 +1,86 @@
+<link href="__STATIC_URL__/usercenter/account/css/account_set.css" rel="stylesheet"/>
+<h3>账户设置 > 我的资料</h3>
+<div class="zqgy_asrt_cont">
+    <!-- 一个块[ -->
+    <div class="zqgy_asct_clm">
+        <h3 class="pub_title"><span>登录信息</span><i></i><a href="javascript:void(0);">编辑</a></h3>
+
+        <div class="zqgy_clm1_see shw">
+            <p><label>邮箱：</label><span>{$data['user']['email']}</span></p>
+            <p><label>手机号码：</label><span>{$data['user']['phone']}</span></p>
+        </div>
+    </div><!-- ]一个块 -->
+    <!-- 一个块[ -->
+    <div class="zqgy_asct_clm">
+        <h3 class="pub_title">
+            <span>基本信息</span><i></i>
+            <a href="javascript:void(0);" class="ajax" data-editurl="{:U('Accountajax/edit_base')}">编辑</a>
+        </h3>
+        <!-- 只看content[ -->
+        <div class="zqgy_clm1_see shw">
+            <p><label>昵称：</label><span>{$data['user']['nickname']}</span></p>
+            <p><label>民族：</label><span>{$data['user']['ethnic']}</span></p>
+            <p><label>性别：</label><span>{$data['user']['gender']}</span></p>
+            <p><label>常住地址：</label><span>{$data['user']['address']}</span></p>
+            <p><label>QQ：</label><span>{$data['user']['qq']}</span></p>
+        </div>
+    </div><!-- ]一个块 -->
+    <!-- 一个块[ -->
+    <div class="zqgy_asct_clm">
+        <h3 class="pub_title">
+            <span>实名认证信息</span><i></i>
+            <a href="javascript:void(0);" class="ajax" data-editurl="{:U('Accountajax/edit_vol')}">编辑</a>
+        </h3>
+        <!-- 只看content[ -->
+        <div class="zqgy_clm1_see shw">
+            <p><label>认证状态：</label><span>{$data['user']['status']}</span></p>
+            <p><label>真实姓名：</label><span>{$data['vol']['real_name']}</span></p>
+            <p><label>证件类型：</label><span>{$data['vol']['idcard_type']}</span></p>
+            <p><label>证件号码：</label><span>{$data['vol']['idcard_code']}</span></p>
+            <p><label>年龄：</label><span>{$data['vol']['age']}</span></p>
+        </div><!-- ]只看content -->
+    </div><!-- ]一个块 -->
+</div>
+<link rel="stylesheet" href="http://static.gy.com/yun/css/jquery.validator.css"/>
+<script type="text/javascript" src="__STATIC_URL__/yun/js/jquery.validator.js"></script>
+<script type="text/javascript" src="__STATIC_URL__/yun/js/zh_CN.js"></script>
+<script type="text/javascript">
+    var is_ajax=false;
+    $(function(){
+        $('.ajax').click(function(){
+            var that=$(this);
+            if(is_ajax || that.hasClass('cancel')){
+                return;
+            }
+            is_ajax=true;
+            that.html('<img src="http://static.gy.com/public/images/loading.gif"/>');
+            var url=that.data('editurl');
+            $.ajax({
+                url:url,
+                dataType:'json',
+                success:function(d){
+                    is_ajax=false;
+                    if(d.status==-1){
+                        alert(d.msg);
+                        that.html('编辑');
+                    }else{
+                        that.addClass('cancel').html('取消');
+                        that.parent().next().removeClass('shw');
+                        that.parent().after(d.msg);
+                    }
+
+                }
+            });
+        });
+        $('.cancel_base').live('click',function(){
+            $(this).parents('.zqgy_clm1_edit').prev().find('.cancel').click();
+        });
+        $('.cancel').live('click',function(){
+            var that=$(this);
+            var parent=that.parent();
+            parent.next().remove();
+            parent.next().addClass('shw');
+            that.removeClass('cancel').html('编辑');
+        });
+    });
+</script>

@@ -1,0 +1,18 @@
+<css:add href="{:STATIC_SERVER_URL}/usercenter/tp/css/picture_wall.css" />
+<js:add src="{:STATIC_SERVER_URL}/usercenter/tp/js/pictureWall.js"/>
+<div class="myhome_cmain_right" id="picture_might">
+	<div class="pw_title">我的图片墙<span>({$count})</span></div>
+	<neq name="count" value="0">
+		<div id='getAjax' data-uid="{$uid}">
+			<div class="pw_cont" id="picture">
+				<ul></ul>
+				<ul style="margin:0px 17.5px;"></ul>
+				<ul></ul>
+			</div>
+			<!-- 分页 -->
+			<div class="wraper_paging"></div>
+		</div>
+	<else />
+		<div class="prompt_states">暂无图片！</div>
+	</neq>
+</div><!-- 右边主体内容[ -->

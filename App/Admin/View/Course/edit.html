@@ -1,0 +1,137 @@
+<div class="alert alert-error">
+    {$video['id']?'编辑信息':'新增信息'}
+</div>
+<div class="alert alert-block">
+     系统自动提取信息功能目前支持：
+    <span class="label label-important tool" data-toggle="tooltip" data-placement="top" data-original-title="复制视频网址"  >优酷</span>
+    <span class="label label-important tool" data-toggle="tooltip" data-placement="top" data-original-title="复制视频网址"  >酷六</span>
+    <span class="label label-important tool" data-toggle="tooltip" data-placement="top" data-original-title="复制视频网址"  >土豆</span>
+    <span class="label label-important tool" data-toggle="tooltip" data-placement="top" data-original-title="复制视频网址"  >56</span>
+    <span class="badge badge-warning tool" data-toggle="tooltip" data-placement="top" data-original-title="复制视频下方分享链接地址"  >新浪视频</span>
+    <span class="label label-important tool" data-toggle="tooltip" data-placement="top" data-original-title="复制视频网址"  >乐视</span>
+    <span class="label label-important tool" data-toggle="tooltip" data-placement="top" data-original-title="复制视频网址"  >网易公开课</span>
+</div>
+<form class="form-horizontal" action="{:U('editdo')}" method="post">
+    <div class="control-group">
+        <label class="control-label" for="inputUrl">视频官方网址</label>
+        <div class="controls">
+            <input type="text" class="input-xxlarge" value="{$video['video_url']}" name="video_url" id="inputUrl" placeholder="视频官方网址">
+            <img id="loadimg" style="display: none" src="http://static.gy.com/public/images/loading.gif"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="inputname">视频标题</label>
+        <div class="controls">
+            <input type="text" name="video_name" class="input-xxlarge" value="{$video['video_name']}" id="inputname" placeholder="视频标题">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="inputTeacher">视频讲师</label>
+        <div class="controls">
+            <input type="text" name="video_teacher" class="input-xxlarge" value="{$video['video_teacher']}" id="inputTeacher" placeholder="视频讲师">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="inputSwf">视频地址</label>
+        <div class="controls">
+            <input type="text" name="video_swf" class="input-xxlarge" value="{$video['video_swf']}" id="inputSwf" placeholder="视频地址">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="inputsource">视频来源</label>
+        <div class="controls">
+            <input type="text" name="video_source" class="input-xxlarge" value="{$video['video_source']}" id="inputsource" placeholder="视频来源">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">视频类型</label>
+        <div class="controls">
+            <select id="selType" name="video_type_id">
+                <option value="">--请选择--</option>
+                <volist name="type" id="tvo">
+                    <option value="{$tvo['id']}_{$tvo['dict_name']}">{$tvo['dict_name']}</option>
+                </volist>
+            </select>
+        </div>
+        <script type="text/javascript">
+            $('#selType').val("{$video['video_type_id']}_{$video['video_type_desc']}");
+        </script>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="inputDesc">视频描述</label>
+        <div class="controls">
+            <textarea rows="5" id="inputDesc" class="input-xxlarge" placeholder="视频描述" name="video_desc">{$video['video_desc']}</textarea>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="inputImg">视频图片</label>
+        <div class="controls">
+            <img id="showimg" src="{$video['video_img']}" width="200px"/>
+            <input  value="{$video['video_img']}" type="hidden" name="video_img" id="inputImg" >
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <input name="id" type="hidden" value="{$video['id']}"/>
+            <a  class="btn btn-inverse" href="{:U('index')}"><i class=" icon-chevron-left icon-white"></i>返回</a>
+            <button type="submit" class="btn  btn-success">提交</button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript" src="http://static.gy.com/public/validator/jquery.validator.js"></script>
+<link rel="stylesheet"  href="http://static.gy.com/public/validator/jquery.validator.css"/>
+<script type="text/javascript" src="http://static.gy.com/public/validator/local/zh_CN.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+        $('#inputUrl').bind('blur',function(){
+            $('#loadimg').show();
+            var url=$(this).val();
+            $.ajax({
+                url:"{:U('videoinfo')}",
+                data:{url:url},
+                dataType:'json',
+                success:function(d){
+                    $('#loadimg').hide();
+                    if(d==false || d.title==null){
+                        alert('视频信息获取失败');
+                    }else{
+                        $('#inputname').val(unescape(d.title.replace(/\\u/gi, '%u')));
+                        //$('#inputTeacher').val();
+                        $('#inputSwf').val(d.swf);
+
+                        $('#inputsource').val(d.source);
+                        $('#inputDesc').val(d.desc);
+                        $('#inputImg').val(d.img);
+                        $('#showimg').hide().attr('src', d.img).show();
+                    }
+                }
+            });
+        });
+
+
+        $("form").validator({
+            stopOnError:false,
+            fields:{
+                "video_url":"required;Title",
+                'video_name':'required',
+                "video_teacher":"required;",
+                "video_swf":"required",
+                "video_source":"required;",
+                "video_type_id":"required;",
+                "video_desc":"required;",
+                "video_img":"required;"
+            },
+            rules: {
+
+            },
+            valid: function(d) {
+                d.submit();
+            },
+            invalid:function(){}
+
+        });
+        $('.tool').tooltip();
+
+    });
+</script>

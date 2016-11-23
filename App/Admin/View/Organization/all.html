@@ -1,0 +1,81 @@
+
+<div class="alert alert-success  ">
+    <form class="form-inline">
+        <input value="{:I('uid')}" type="text" name="uid" placeholder="组织编号"/>
+        <input value="{:I('org_name')}" type="text" name="org_name" placeholder="组织名称"/>
+        <select name="type" id="type">
+            <option value="">--组织类型--</option>
+            <option value="1">基金会</option>
+            <option value="2">非盈利机构(NGO/NPO)</option>
+            <option value="3">社团/协会</option>
+            <option value="4">企业</option>
+        </select>
+
+        <input value="{:I('user_email')}" type="text" name="user_email" placeholder="组织邮箱"/>
+        <input value="{:I('org_phone')}" type="text" name="org_phone" placeholder="联系人手机号"/>
+        <input value="{:I('contact')}" type="text" name="contact" placeholder="联系人姓名"/>
+
+
+        <input type="submit" value="搜索"/>
+
+    </form>
+</div>
+        <script type="text/javascript">
+            (function(){
+                $('#type').val({:I('type')});
+            })();
+        </script>
+<table class="table table-bordered table-hover table-condensed">
+    <tr>
+        <th style="width: 100px">组织ID</th>
+        <th style="width: 200px">组织名称</th>
+        <th style="width: 150px">组织类型</th>
+        <th style="width: 180px">组织邮箱</th>
+        <th style="width: 100px">联系人手机</th>
+        <th style="width: 100px">联系人姓名</th>
+        <th style="width: 120px">用户类型</th>
+        <th style="width: 60px">用户状态</th>
+        <th style="width: 60px">认证状态</th>
+        <th style="width: 100px">注册时间</th>
+    </tr>
+    <volist name='data' id='vo'>
+        <tr>
+             <td>
+                 {$vo->uid}
+             </td>
+            <td>
+                {$vo->org_name}
+            </td>
+            <td>
+                {$vo->type}
+            </td>
+            <td>
+                {$vo->email}
+            </td>
+            <td>
+                {$vo->phone}
+            </td>
+            <td>
+                {$vo->contact}
+            </td>
+            <td>
+                {$vo->user_type}
+            </td>
+            <td>
+                {$vo->user_status}
+            </td>
+            <td>
+                {$vo->org_status}
+            </td>
+            <td>
+                {$vo->user_create_date}
+            </td>
+        </tr>
+    </volist>
+</table>
+{$pageHtml}
+<style>
+    td{
+        word-wrap:break-word;word-break:break-all
+    }
+</style>

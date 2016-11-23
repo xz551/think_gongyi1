@@ -1,0 +1,25 @@
+{__NOLAYOUT__}	
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/ajaxpage.js"></script> 
+<!-- 右边主体内容[ -->
+<div class="myhome_cmain_right">
+	<!-- 我所在的公益组织[ -->
+	<div class="wraper_gongyi_ogm">
+		<h3 class="project_title"><eq name="isMine" value="1">我</eq>所在的公益组织<span>(全部{$group[0]['count']})</span><i></i></h3>
+		<foreach name="group" item="val">
+		<!-- 组织1 -->
+		<div class="ogm_details_info">
+			<a href="{:userUrl($val['uid'])}" target="_blank" class="h3_title"><img src="{$val['photo']}" title="{$val['org_name']}"></a>
+			<div class="group_introduc_text">
+				<h3><a href="{:userUrl($val['uid'])}" target="_blank" class="h3_title" title="{$val['org_name']}">{$val['org_name']}</a>
+					<neq name="isMine" value="2">
+						<a href="javascript:void(0)" class="h3_pemail pemail_btn" data-toid="{$val['uid']}"></a>
+					</neq>
+				</h3>
+				<p class="grop_address">{$val['provinceid']}&nbsp;{$val['cityid']}</p>
+				<div class="grop_details_intr">{$val['summary']}</div>
+			</div>
+		</div>
+		</foreach>
+		<div class="wraper_paging">{$page}</div>
+	</div><!-- 右边主体内容[ -->
+</div>

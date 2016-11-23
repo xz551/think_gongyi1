@@ -1,0 +1,19 @@
+<img onload="img_load(this)" src="http://fs.gy.com/user/4646db1f87732079219e3ce107949f36.jpg">
+        <script type="text/javascript">
+            function img_load(obj){
+                var obj=$(obj);
+                var w=parseInt(obj.width());
+                var h=parseInt(obj.height());
+ 
+                obj.data('data-w',w);
+                obj.data('data-h',h);
+                if(w>150 || h>70){
+ 
+                    if((w/h)>(150/70)){
+                        obj.width(150+'px');
+                    }else{
+                       obj.height(70+'px');
+                    }
+                }
+            }
+        </script>

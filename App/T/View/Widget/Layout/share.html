@@ -1,0 +1,40 @@
+<a href="javascript:;" id="activeShare" class=" globalLoginModel"   data-relationtype="1" data-relationid="1154" style="display: inline">
+    <i class="fix_icons share_icon"></i>
+    <span>分享</span>
+    <b class="share_num">
+        <div class="triger"></div>
+        <span class="load_ajax" id="shareCount" data-url="/ucenter/oauth/count/id/1154/type/1.html">{$sharenum}</span>
+    </b>
+</a>
+<script type="text/javascript">
+    /*
+     分享弹出窗
+     */
+    $("#activeShare").click(function () {
+        var url = "/T/ConcurAjax/shareSub";
+        var sid = "{$id}";
+        var name = "{$info['title']}";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: "sid="+sid+"&name="+name,
+            success: function (msg) {
+                $(".activeShare").popWindow({
+                    width: "548",
+                    height: "268",
+                    title: "分享到：",
+                    content: msg,
+                    autoshow: true,
+                    id: "box2",
+                    callback: function (a, box) {
+                        uid = a.data('uid');
+                        obj = a.parent().parent().parent();
+                    },
+                    button: {
+                    }
+                });
+            }
+        });
+
+    });
+</script>

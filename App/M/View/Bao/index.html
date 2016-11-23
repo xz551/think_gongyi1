@@ -1,0 +1,9 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/zqgym/css/home.css?6">
+<div class="zqgy_gybd">
+    <h3>{$article['title']}</h3>
+    <p><label>来源：</label><span>{$article['origin_from']|default='中青公益'}</span>
+        <i>{$article['update_date']|date='Y-m-d H:i:s',###}</i></p>
+    <div class="zqgy_gybd_cont">
+        {$article['content']}
+    </div>
+</div>

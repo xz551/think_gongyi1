@@ -1,0 +1,78 @@
+{__NOLAYOUT__}	
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/ajaxpage.js"></script>  
+<!-- 右边主体内容[ -->
+<div class="myhome_cmain_right">
+	<notempty name="pro">	
+		<foreach name="pro" item="vo">
+		<div class="wraper_about_pjt">
+			<figure><figcaption>发起人</figcaption><a href="{:userUrl($vo['creator'])}" target="_blank"><img src="{$vo['userPhoto']}" title="{$vo['nickname']}"></a></figure>
+			<div class="about_pjt_right">
+				<a href="{:YI_JUAN}/project/view/id/{$vo['id']}.html" target="_blank"><img src="{$vo['show_image']}" class="this_pjt_photo" title="{$vo['name']}"></a>
+				<div class="this_pjt_details">
+					<p class="this_pjt_title"><a href="{:YI_JUAN}/project/view/id/{$vo['id']}.html" target="_blank" title="{$vo['name']}">{$vo['name']}</a></p>
+					<p class="this_pjt_time">{$vo['create_date']}</p>
+					<div class="this_pjt_text">{$vo['summary']}</div>
+					<if condition="$vo['creator'] eq $vo['userId']">
+						<if condition="$vo['status'] eq 888">
+							<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/ps12.png" class="pjt_state">
+							<p class="all_btn"><a href="{:YI_JUAN}/verify/view/id/{$vo['id']}.html" class="bm_manager" target="_blank">报名管理</a></p>
+						<elseif condition="$vo['status'] eq 100"/>
+							<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/ps11.png" class="pjt_state">
+							<p class="all_btn"><a href="{:YI_JUAN}/verify/view/id/{$vo['id']}.html" class="bm_manager" target="_blank">报名管理</a></p>
+						<elseif condition="$vo['status'] eq -1"/>
+							<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/ps4.png" class="pjt_state">
+							<if condition="$vo['type'] eq 2">
+								<p class="all_btn">
+									<a href="{:YI_JUAN}/project/preview/id/{$vo['id']}/type/event/close/1.html" class="bm_manager" target="_blank">预览</a>
+									<a href="{:YI_JUAN}/project/createEventProject/id/{$vo['event']}/project/{$vo['id']}.html" class="bm_manager" target="_blank">修改项目信息</a>
+								</p>
+							<else />
+								<p class="all_btn"><a href="{:JIA_SERVER_URL}/Project/updateProject/id/{$vo['id']}.html" class="bm_manager" target="_blank">修改项目信息</a></p>	
+							</if>
+							
+						<elseif condition="$vo['status'] eq 404"/>
+							<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/ps13.png" class="pjt_state">
+							<if condition="$vo['type'] eq 2">
+								<p class="all_btn">
+									<a href="{:YI_JUAN}/project/preview/id/{$vo['id']}/type/event/close/1.html" class="a_yulan" target="_blank">预览</a>
+									<a href="{:YI_JUAN}/project/createEventProject/id/{$vo['event']}/project/{$vo['id']}.html" class="bm_manager" target="_blank">修改项目信息</a>
+								</p>
+							<else />
+								<p class="all_btn"><a href="{:JIA_SERVER_URL}/Project/updateProject/id/{$vo['id']}.html" class="bm_manager" target="_blank">修改项目信息</a></p>	
+							</if>
+						<elseif condition="$vo['status'] eq 403"/>
+							<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/ps16.png" class="pjt_state">
+							<if condition="$vo['type'] eq 2">
+								<p class="all_btn">
+									<a href="{:YI_JUAN}/project/preview/id/{$vo['id']}/type/event/close/1.html" class="a_yulan" target="_blank">预览</a>
+									<a href="{:YI_JUAN}/project/createEventProject/id/{$vo['event']}/project/{$vo['id']}.html" class="bm_manager" target="_blank">修改项目信息</a>
+								</p>
+							<else />
+								<p class="all_btn"><a href="{:JIA_SERVER_URL}/Project/updateProject/id/{$vo['id']}.html" class="bm_manager" target="_blank">修改项目信息</a></p>	
+							</if>
+						<elseif condition="$vo['status'] eq -2"/>
+							<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/ps17.png" class="pjt_state">
+						<elseif condition="$vo['status'] eq -3"/>
+							<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/ps18.png" class="pjt_state">
+						</if>
+					<else />
+						<if condition="$vo['status'] eq 888">
+							<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/ps12.png" class="pjt_state">
+						<elseif condition="$vo['status'] eq 100"/>
+							<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/ps11.png" class="pjt_state">
+						<elseif condition="$vo['status'] eq -2"/>
+							<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/ps17.png" class="pjt_state">
+						<elseif condition="$vo['status'] eq -3"/>
+							<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/ps18.png" class="pjt_state">
+						</if>		
+					</if>	
+				</div>
+			</div>
+		</div>
+		</foreach>
+	<div class="wraper_paging">{$page}</div>
+	<else />
+		<h3 class="project_title">相关项目<i></i></h3>
+		<div class="prompt_states">暂无数据！</div>
+	</notempty>
+</div><!-- 右边主体内容[ -->

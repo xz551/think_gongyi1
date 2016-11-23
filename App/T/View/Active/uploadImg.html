@@ -1,0 +1,162 @@
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/group/css/style.css">
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/group/css/page12.css?0">
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/popWindow.js"></script>
+<js:add src="__STATIC_URL__/yun/js/ajaxupload.js" />
+<script type="text/javascript">
+    $(function () {
+        /*用户菜单js*/
+        $(".top_users_wraper").hover(function () {
+            $(this).find('ul').show("200");
+        }, function () {
+            $(this).find('ul').hide();
+        });
+        /*导航栏*/
+        $(".li_items,.sub").hover(function () {
+            $(this).children('.sub').show(500);
+        }, function () {
+            $(this).children('.sub').hide();
+        });
+
+			$(".pic_descrip").live('focus',function(){
+				var _this = $(this);
+				if(_this.val()=="请填写照片描述..."){
+					_this.val("").addClass("select").next('span').hide();
+				}else{
+					_this.select().addClass("select").next('span').hide();
+				}
+			});
+			$(".e_msg").click(function(){
+				$(this).hide();	
+			});
+			$(".pic_descrip").live('blur',function(){
+				var _this = $(this);
+				_this.val()==""?_this.next('span').show():_this.removeClass("select").next('span').hide();
+			});
+			
+			$("#uploadForm").submit(function(){
+				var f = true;
+				var _this = $(".pic_descrip");
+				$(".pic_descrip").each(function(){
+					var _this = $(this);
+					if(_this.val()=="请填写照片描述..." || _this.val()==""){
+						_this.next('span').show();
+						f = false;
+					}else{
+						_this.removeClass("select").next('span').hide();
+					}
+				});
+				return f;
+			});
+        var uid = '';
+        var obj = null;
+        $(".close_btn").popWindow({
+            width: "400",
+            height: "170",
+            content: $(".promptHtml").html(),
+            closePic: "images/close_icon.png",
+            id: "box1",
+            callback: function (a, box) {
+                obj = a.parent();
+                uid = obj.data('imd');
+            },
+            button: {
+                cancel: function () {
+                },
+                ok: function (t, box) {        
+                    obj.find('.loading').show(); 
+                    box.hide();
+                    $("#mask1").hide();
+                            if(uid='undefined' || !uid){
+                            	obj.remove();	
+                            }else{
+	                    $.ajax({
+	                        type: "POST",
+	                        url: "{:U('T/Active/delActImg')}",
+	                        data: "id="+uid,
+	                        success: function(msg){
+	                            if(msg == 0){
+	                                alert("删除失败");                  
+	                            }else{
+	                                obj.hide(); 
+	                            }
+	                        }
+	                    });
+					}
+                }
+            }
+        });
+        $("#box1").find("#winTitle").css("border-bottom", "none");
+    });
+</script>
+<!-- wraper_main[ -->
+<div class="wraper_main">
+    <div class="wraper_menus_title">
+        <p>{$active.name}</p>
+        <a href="{:YIJUAN_VISIT_URL}/active/view/id/{$id}.html">回到活动详情页面</a>
+    </div>
+    <div class="wraper_download">
+        <div class="wpr_download_tips">
+            <span class="tips_titile">TIPS</span>
+            <p>请自觉上传与本活动主题相关的图片~</p>
+            <p>上传图片并花点儿时间填写图片信息，让更多小伙伴喜欢你的图片~~</p>
+        </div>
+        <div class="wpr_download_cont">          
+            <form action="{:u('T/Active/addActiveImg')}" method='post' id="uploadForm">
+                <volist name="info" id="vo">
+                <div class="show_download_pic" data-imd="{$vo.id}">
+                    <i class="close_btn"></i>
+                    <img src="{$vo.image}" class="img">
+                    <textarea name="{$vo.id}" class="pic_descrip">{$vo.content}</textarea>
+                    <span class="e_msg">请填写照片描述</span>
+                    <img src="{:STATIC_SERVER_URL}/yijuan/product/images/loader.gif" class="loading">
+                </div>
+                </volist>                
+                <div class="download_btn"><img id="upload-show-image" src="{:STATIC_SERVER_URL}/usercenter/group/images/download_btn.png"></div>
+                <input type="hidden" name="aid" value="{$active.id}">
+                <div class="saveBtn"><button type="submit">保存</button></div>               
+            </form>           
+        </div>
+
+    </div>
+</div><!-- wraper_main[ -->
+<!--弹出层1[-->
+<div class="promptHtml">
+    <p class="promptHtmlText">确定要删除图片吗？</p>
+</div> <!--]弹出层1-->
+<script>
+        $(document).ready(function () {
+            var button = $('#upload-show-image'), interval;
+            new AjaxUpload(button, {
+                name: 'img_file',
+                action: '{:U("T/Active/upload",array("id"=>$id))}',
+                onSubmit: function(file, ext) {
+                     if (!(ext && /^(jpg|JPG|png|PNG|jpeg|JPEG)$/.test(ext))) {
+                        alert("您上传的图片格式不对，请重新选择！");
+                        return false;
+                    }else{
+                			var str = '<div class="show_download_pic">';
+                            str += '<img src="{:STATIC_SERVER_URL}/yijuan/product/images/loader.gif" class="loading" style="top:100px">';
+                            str += '</div>'                
+                            $(".download_btn").before(str); 
+						    $(".download_btn").prev().find('.loading').show();
+                    }
+                },
+                onComplete: function (file, response) {                    
+                    var obj=eval("("+response+")");
+                    if(obj.status===0){
+                        alert(obj.info);
+                    }else{
+                        	var str = '<div class="show_download_pic"">';
+                            str += '<i class="close_btn"></i>';
+                            str += '<img src="'+obj.url+'" class="img">';
+                            str += '<textarea name="photo-'+obj.imgName+'" class="pic_descrip">请填写照片描述...</textarea>';
+                            str += '<span class="e_msg">请填写照片描述</span>';
+                            str += '<img src="{:STATIC_SERVER_URL}/yijuan/product/images/loader.gif" class="loading">';
+                            str += '</div>'                
+                        	$(".download_btn").prev().replaceWith(str);
+                    }
+                    
+                }
+            });
+        });
+</script>

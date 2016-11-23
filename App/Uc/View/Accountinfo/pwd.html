@@ -1,0 +1,89 @@
+<css:add href="__STATIC_URL__/usercenter/account/css/account_pwd.css"/>
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/yun/css/jquery.validator.css">
+<script type="text/javascript" src="__STATIC_URL__/yun/js/jquery.validator.js"></script>
+<script type="text/javascript" src="__STATIC_URL__/public/laydate/laydate.js"></script>
+<script type="text/javascript" src="__STATIC_URL__/public/js/zh_CN.js"></script>
+
+<h3>账户设置 > 账户密码</h3>
+<div class="zqgy_asrt_cont">
+    <!-- 修改密码[ -->
+    <div class="zqgy_setinfo">
+        <div class="zqgy_stinfo_lt {$issetpwd?'succ':''}">登录密码</div>
+        <div class="zqgy_stinfo_rt ifo_udpwd">
+            <div class="zqgy_acprt_step1 shw">
+                <h3>{$issetpwd?'已设置登录密码！':'尚未设置登录密码'}</h3>
+
+                <p>中青公益将邮箱、手机号码作为登录密码。</p>
+
+                <p>
+                    <span>邮箱：{$user['email']|default='(无)'}</span>
+                    <span>手机号码：{$user['phone']|default='(无)'}</span>
+                </p>
+                <button class="btn_step1" data-id="0">
+                    {$issetpwd?'修改密码':'设置密码'}
+                </button>
+            </div>
+        </div>
+        <!-- 邮箱验证[ -->
+        <div class="zqgy_setinfo">
+            <div class="zqgy_stinfo_lt {$user['email']?'succ':''}">邮箱验证</div>
+            <div class="zqgy_stinfo_rt ifo_yzemail">
+                <div class="ifo_yze_step1 shw">
+                    <h3>邮箱：{$user['email']|default='无'}</h3>
+
+                    <p>验证邮箱可用于账户登录和密码找回，接收项目通知、报名通知、项目推荐、志愿者推荐等消息通知！</p>
+                    <button class="ifo_yzebtn ajax" data-url="/uc/accountajax/edit_mail">{$user['email']?'更改邮箱':'设置邮箱'}</button>
+                </div>
+            </div>
+        </div>
+        <!-- 手机验证[ -->
+        <div class="zqgy_setinfo">
+            <div class="zqgy_stinfo_lt {$user['phone']?'succ':''}">手机验证</div>
+            <div class="zqgy_stinfo_rt ifo_yzphone">
+                <div class="ifo_yzm_step1 shw">
+                    <h3>手机号码：{$user['phone']|default='无'}</a></h3>
+
+                    <p>验证手机号码可用于账户登录和密码找回，接收报名、时长等消息通知！</p>
+                    <button class="ifo_yzmbtn ajax" data-url="/uc/accountajax/edit_phone">{$user['phone']?'更改手机':'验证手机'}</button>
+                </div>
+            </div>
+        </div>
+        <!-- ]手机验证 -->
+    </div>
+</div>
+<script type="text/javascript">
+    var is_ajax = false;
+    //动态高
+    function initH() {
+        var arr = [], e = $(window).width(), f = $(window).height(), g = $(".pop_window"), h = g.width(), i = g.height(), j = (e - h) / 2, k = (f - i) / 2;
+        g.css({top: k + 'px', left: j + 'px'});
+        $(".zqgy_stinfo_rt").each(function (i) {
+            arr[i] = $(this).outerHeight();
+        });
+        $(".zqgy_stinfo_lt").each(function (i) {
+            $(this).height(arr[i]).css("line-height", arr[i] + 'px');
+        });
+
+    }
+    $(function(){
+        $('.ajax').live("click",function(){
+            if(is_ajax){
+                return;
+            }
+            is_ajax=true;
+            var that=$(this);
+            var url=that.data('url');
+            $.ajax({
+                url:url,
+                success:function(d){
+                    is_ajax=false;
+                    var p= that.parent();
+                    p.removeClass('shw');
+                    p.after(d);
+
+                }
+            });
+        });
+    });
+    initH();
+</script>

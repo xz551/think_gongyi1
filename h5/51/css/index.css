@@ -1,0 +1,481 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+body{
+  font-family: "楷体", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+/*
+	===========================================第一页=============================================================
+*/
+.section1{
+	position: relative;
+	z-index:-2;
+	color: #fff;
+	background: url(../images/bg-1.jpg) no-repeat;
+}
+.section1:after{
+	display: block;
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	background: url(../images/shop_overlay.png);
+	z-index:-1;
+}
+/*
+	top
+*/
+.section1 .top{
+	position: relative;
+	width: 100%;
+	height: 80px;
+	vertical-align:middle;
+	background:none repeat scroll 0 0 rgba(0,0,0, 0.3);
+}
+.section1 .top img.zqlogo{
+	display: block;
+	position: absolute;
+	top: 18.5px;
+	left: 20px;
+}
+.section1 .top ul.nav{
+	width: 500px;
+	height: 100%;
+	line-height: 80px;
+	margin: 0px auto;
+	list-style: none;
+}
+.section1 .top ul.nav li{
+	float: left;
+	font-size: 18px;
+	padding: 0px 20px;
+}
+.section1 .top ul.otherLogo{
+	position: absolute;
+	width: 300px;
+	height:29px;
+	top:35px;
+	right: 0px;
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+.section1 .top ul.otherLogo li{
+	position: relative;
+	width: 29px;
+	height: 29px;
+	float: left;
+	margin-right: 10px;
+	cursor: pointer;
+}
+/*
+	slogan(标语)
+*/
+.tip_text1{
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	font-size: 16px;
+	padding:130px 0px 20px 0px;
+}
+.tip_text2{
+	width: 100px;
+	height: 1px;
+	margin:0px auto;
+	background: #fff;
+}
+.tip_text3{
+	width: 100%;
+	text-align: center;
+	font-size:50px;
+	padding:70px 0px 50px 0px;
+}
+.tip_text4{
+	width:400px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	margin:0px auto;
+	font-size: 16px;
+	border:1px solid #fff;
+	border-radius: 10px;
+}
+.tip_text6{
+	width:380px;
+	line-height: 25px;
+	margin:0px auto;
+	text-align:left;
+	margin-top: 30px;
+	font-size: 16px;
+}
+.next_icon{
+	bottom:100px;
+    height:34px;
+    left:48%;
+    margin-left: -7px;
+    position:fixed;
+    width:74px;
+    z-index: 150;
+}
+.next_icon img {
+    animation: 1.5s ease-in-out 0s normal none infinite running start;
+    background-position: 0 -82px;
+    height:34px;
+    left: 50%;
+    margin: -7px 0 0 -14px;
+    position: absolute;
+    top: 50%;
+    width:74px;
+}
+@keyframes start {
+0%, 30% {
+    opacity: 0;
+    transform: translate(0px, -10px);
+}
+60% {
+    opacity: 1;
+    transform: translate(0px, 0px);
+}
+100% {
+    opacity: 0;
+    transform: translate(0px, 8px);
+}
+}
+@keyframes start {
+0%, 30% {
+    opacity: 0;
+    transform: translate(0px, -10px);
+}
+60% {
+    opacity: 1;
+    transform: translate(0px, 0px);
+}
+100% {
+    opacity: 0;
+    transform: translate(0px, 8px);
+}
+}
+/*
+	===========================================第二页=============================================================
+*/
+.section2{
+	position: relative;
+	z-index:-2;
+	color: #fff;
+	background: url(../images/bg-2.jpg) no-repeat;
+}
+.section2:after{
+	display: block;
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	background: url(../images/vip_overlay.png);
+	z-index:-1;
+}
+.section2 .section2_left{
+	width:40%;
+	height: 100%;
+	float: left;
+	text-align: center;
+}
+.section2 .section2_left img{
+	margin-top: 300px;
+}
+.section2 .section2_right{
+	width:50%;
+	height:90%;
+	padding:5%;
+	float: left;
+	background:none repeat scroll 0 0 rgba(0,0,0, 0.3);
+}
+.section2_right_titile{
+	width: 100%;
+	height: 50px;
+}
+.section2_right_titile .sct_title1{
+	font-size: 30px;
+}
+.section2_right_titile .sct_line{
+	width:80%;
+	height:2px;
+	margin-top: 10px;
+	background:#00b7e4;
+}
+.section2_right .tip_text5{
+	margin-left:30px;
+	margin-top: 20px;
+	line-height:50px;
+	font-size:26px;
+}
+/*
+	===========================================第三页=============================================================
+*/
+.section3{
+	position: relative;
+	z-index:-2;
+	color: #fff;
+	background: url(../images/bg-2.jpg) no-repeat;
+}
+.section3:after{
+	display: block;
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	background: url(../images/vip_overlay.png);
+	z-index:-1;
+}
+.sec3_content{
+	width:600px;
+	height:300px;
+	padding:250px 100px;
+	margin: 50px 0px 50px 100px;
+	border: 1px solid transparent;
+	border-radius: 100%;
+	background:none repeat scroll 0 0 rgba(0,0,0, 0.3);
+}
+.sec3_content h3{
+	padding: 15px 0px;
+	font-size:30px;
+}
+.sec3_content p{
+	font-size: 16px;
+}
+.sec3_content div{
+	font-size: 16px;
+	line-height: 30px;
+}
+/*
+	===========================================第四页=============================================================
+*/
+.section4{
+	position: relative;
+	z-index:-2;
+	color: #fff;
+	background: url(../images/bg-2.jpg) no-repeat;
+}
+.section4:after{
+	display: block;
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	background: url(../images/vip_overlay.png);
+	z-index:-1;
+}
+.sec4_content{
+	width:50%;
+	height:250px;
+	margin-top: 300px;
+	padding: 50px 35% 50px 15%;
+	background:none repeat scroll 0 0 rgba(0,0,0, 0.3);
+}
+.sec4_content h3{
+	padding: 15px 0px;
+	font-size:30px;
+}
+.sec4_content p{
+	font-size: 16px;
+}
+.sec4_content div{
+	font-size: 16px;
+	line-height: 30px;
+}
+/*
+	===========================================第五页=============================================================
+*/
+.section5{
+	position: relative;
+	z-index:-2;
+	color: #fff;
+	background: url(../images/bg-2.jpg) no-repeat;
+}
+.section5:after{
+	display: block;
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	background: url(../images/vip_overlay.png);
+	z-index:-1;
+}
+.sec5_content{
+	width:35%;
+	height:80%;
+	padding:10% 5%; 
+	background:none repeat scroll 0 0 rgba(0,0,0, 0.3);
+}
+.sec5_con_title{
+	width: 100%;
+	height:50px;
+	position: relative;
+}
+.sec5_con_title h3{
+	font-size: 30px;
+}
+.sec5_con_title span{
+	display: block;
+	position: absolute;
+	width:80%;
+	height: 2px;
+	top:20px;
+	left:130px;
+	background:#fff;
+}
+.sec5_content dl{
+	margin-left: 30px;
+	margin-top:15px; 
+}
+.sec5_content dl dt{
+	font-size: 24px;
+}
+.sec5_content dl dd{
+	font-size:16px;
+	line-height:30px;
+}
+/*
+	===========================================第六页=============================================================
+*/
+.section6{
+	position: relative;
+	z-index:-2;
+	color: #fff;
+	background: url(../images/bg-2.jpg) no-repeat;
+}
+.section6:after{
+	display: block;
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	background: url(../images/vip_overlay.png);
+	z-index:-1;
+}
+.sec6_content{
+	width:35%;
+	height:90%;
+	padding:5% 5%; 
+	background:none repeat scroll 0 0 rgba(0,0,0, 0.3);
+}
+.sec6_con_title{
+	width: 100%;
+	height:50px;
+	position: relative;
+}
+.sec6_con_title h3{
+	font-size: 30px;
+}
+.sec6_con_title span{
+	display: block;
+	position: absolute;
+	width:80%;
+	height: 2px;
+	top:20px;
+	left:130px;
+	background:#fff;
+}
+.sec6_content p{
+	font-size: 16px;
+	text-indent:30px;
+	margin-bottom: 20px;
+}
+.sec6_content dl{
+	margin-top:10px; 
+}
+.sec6_content dl dt{
+	font-size: 20px;
+	padding: 10px 0px;
+}
+.sec6_content dl dd{
+	font-size:16px;
+	line-height:25px;
+	text-indent: 30px;
+}
+
+/*
+	===========================================第七页=============================================================
+*/
+.section7{
+	position: relative;
+	z-index:-2;
+	color: #fff;
+	background: url(../images/bg-2.jpg) no-repeat;
+}
+.section7:after{
+	display: block;
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	background: url(../images/vip_overlay.png);
+	z-index:-1;
+}
+.sec7_content{
+	width: 100%;
+	height:700px;
+	background:none repeat scroll 0 0 rgba(0,0,0, 0.3);
+}
+.sec7_wraper{
+	width:70%;
+	height:94%;
+	padding-top: 2%;
+	margin:0px auto;
+}
+.sec7_wraper .intrduce_text{
+	width:80%;
+	text-indent: 30px;
+	padding-left: 1%;
+}
+.sec7_wraper p.h3_title{
+	height:50px;
+	line-height:50px;
+	font-size: 24px;
+}
+.the_project{
+	width:90%;
+	height:120px;
+	padding-left:3%;
+}
+.the_pro_wraper{
+	width: 100%;	
+}
+.the_pro_left{
+	width: 70%;
+	height:60px;
+	float: left;
+}
+.the_pro_left p{
+	padding-top: 10px;
+}
+.the_pro_right{
+	width:30%;
+	height: 60px;
+	float: left;
+}
+.the_pro_right img{
+	height: 42px;
+	width: 250px;
+}

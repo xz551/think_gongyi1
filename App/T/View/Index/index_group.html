@@ -1,0 +1,21 @@
+<volist name='nowSubject' id='vo'>
+    <div class="wpr_group_list">
+        <a href="{:U('t/group/selgroup',array('id'=>$vo['id']))}"><img src="{$vo.image}" class="wpr_gl_left"></a>
+        <div class="wpr_gl_right">
+            <a href="{:U('t/group/selgroup',array('id'=>$vo['id']))}">{$vo.name}</a>
+            <p class="group_details">{$vo.introduce}</p>
+            <p><a href="{:userUrl($vo['creator'])}" class="group_member">{$vo.username}</a><span class="group_time">{$vo.mtime}</span></p>
+        </div>
+    </div>
+</volist>
+<script type="text/javascript">
+    $(function () {
+        $(".volunteer_content li:last-child").css("margin-right", "0px");
+        var group_len = $(".wpr_group_list").length;
+        for (var i = 1; i < group_len; i++) {
+            $(".wpr_group_list").eq(i).css("margin-right", "0px");
+            i++;
+        }
+
+    });
+</script>

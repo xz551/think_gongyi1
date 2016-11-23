@@ -1,0 +1,177 @@
+
+<script type="text/javascript">
+    $(function(){
+
+        //焦点图
+        new Swiper('.swiper-container', {
+			preventClicks : false,
+			lazyLoading : true,
+			autoplay : 5000,
+			autoplayDisableOnInteraction : false,
+			paginationClickable: '.swiper-pagination',
+			nextButton: '.swiper-button-next',
+			prevButton: '.swiper-button-prev',
+			loop: true
+		});
+        //去掉边距
+        removeMar($(".gy_col_pro li"),3);
+        removeMar($(".gy_col_xzu li"),1);
+        removeMar($(".gy_col_tjian a"),9);
+        removeMar($(".gy_col_zixun li"),1);
+        //切换效果
+        var timer = null;
+        $(".gy_hz_cont > div").hover(function(){
+            var a = $(this);
+            timer = setInterval(function(){a.addClass("def").siblings("div").removeClass("def");},100);
+        },function(){
+            clearInterval(timer);
+        });
+        //滚动最新加入
+        var a = $(".gy_nj_rt"),
+            b = a.find("ul"),
+            c = a.find("li"),
+            d = c.outerWidth(),
+            e = c.length;
+            b.css("width",e*d);
+        var play= function(){
+                b.animate({marginLeft:-b.find("li:first").outerWidth()},1000,"easeOutQuad",function(){b.css("margin-left","0px").find("li:first").appendTo(b);});
+            }
+        setInterval(function(){play();},5000);
+        //模拟placeholder
+        var placeholder = $(".gy_placeholder");
+        $(".gy_yjfk").focus(function(){placeholder.hide();});
+        $(".gy_yjfk").blur(function(){if($(this).val()==""){placeholder.show();}else{placeholder.hide();}});
+        $(".gy_placeholder").click(function(){$(this).hide();});
+        /*公益互助第一个作为默认的*/
+        $(".gy_hz_cont").each(function(){
+            $(this).children("div:first").addClass("def");
+        });
+        /*获取截止日期，设置百分比宽度*/
+        $("p.ifo_time").find("i").each(function(){
+            var a = $(this),b=a.attr("data-width");
+                if(b !== ""){a.css("width",b+"%");}
+        });
+        //返回顶部
+        $(".gy_backtop").click(function(){  
+            $('body,html').animate({scrollTop:0},300);  
+            return false;  
+        });
+        //封装组织实践冒泡的方法
+        function stopPropagation(e){
+            e=window.event || e;
+            if(document.all){
+                e.cancelBubble = true;
+            }else{
+                e.stopPropagation();
+            }
+        }
+       //封装组织实践冒泡的方法
+		   	function stopPropagation(e){
+		      e=window.event || e;
+		      if(document.all){
+		        e.cancelBubble = true;
+		      }else{
+		        e.stopPropagation();
+		      }
+		   	}
+            //显示子菜单
+            $(".gy_sidebar>div").not("div.gy_backtop").on("click",function(e){
+            	$(this).children("div").show().end().siblings("div").children("div").hide();
+            	stopPropagation(e);
+            });
+            $("i.gy_close").on("click",function(e){
+            	stopPropagation(e);
+            	$(this).parent("div").hide();
+            });
+            $(".gy_fmb2").on("click",function(e){
+            	stopPropagation(e);
+            	$(this).parents("div.gy_yjfk").hide();
+            });
+            $(document).click(function(){
+                var obj = event.srcElement ? event.srcElement : event.target;
+                if(obj.name=="img_file"){
+                    return;
+                }
+            	$(".gy_sidebar>div").children("div:visible").hide();
+            });
+            //取消上传的意见反馈图片
+            $(".gy_upload_img").find("i").on("live",function(){
+            	$(this).parent("span").remove();
+            });
+    });
+    function removeMar(m,n){for(var i=n;i<m.length;i++){m.eq(i).css("margin-right","0px");i+=n;}}
+</script>
+<!-- 侧边栏 -->
+{~W('Index/new_rightbar')}
+<!-- GY-Container[ -->
+<div class="gy_container">
+    <!-- 栏目1[ -->
+    <div class="gy_ctr_column1 clearfix">
+        <!-- gy_col1_lt[ -->
+        <div class="gy_col1_lt">
+            {~W('Index/new_slider')}
+        </div><!-- ]gy_col1_lt -->
+        <!-- gy_col1_rt[ -->
+        <div class="gy_col1_rt ajax_load" data-url="/t/index/ajax_userinfo">
+
+        </div><!-- ]gy_col1_rt -->
+    </div><!-- ]栏目1 -->
+    <!-- 栏目2[ -->
+    <div class="gy_ctr_column2">
+        
+    </div><!-- ]栏目2 -->
+    <!-- 栏目3[ -->
+    <div class="gy_ctr_column3 clearfix">
+        {~W('Index/new_information')}
+    </div><!-- ]栏目3 -->
+    <!-- 栏目4[ -->
+    <div class="gy_ctr_column4">
+        {~W('Index/new_recruit')}
+    </div><!-- ]栏目4 -->
+    <!-- 栏目4[ -->
+    <div class="gy_ctr_column4 gy_hdo">
+        {~W('Index/new_active')}
+    </div><!-- ]栏目4 -->
+    <!-- 栏目5[ -->
+    <div class="gy_ctr_column5 clearfix">
+       {~W('Index/new_group')}
+    </div><!-- ]栏目5 -->
+    <!-- 栏目6[ -->
+    <div class="gy_ctr_column6 clearfix">
+       {~W('Index/new_help')}
+    </div><!-- ]栏目6 -->
+    <!-- 栏目7[ -->
+    <div class="gy_ctr_column7 clearfix">
+       {~W('Index/new_recommend')}
+    </div><!-- ]栏目7 -->
+    <!-- 最新加入组织[ -->
+	<!--
+    <div class="gy_new_join clearfix">
+        {~W('Index/new_join')}
+    </div>
+	-->
+	<!-- ]最新加入组织 -->
+</div><!-- ]GY-Container -->
+<script type="text/javascript">
+
+    (function(){
+        $(".ajax_load").each(function(){
+            var that=$(this);
+            var url=that.data("url");
+            $.ajax({
+                url:url,
+                success:function(d){
+                    that.html(d);
+                }
+            });
+        });
+$(".lazy").lazyload ();
+    })();
+</script>
+
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/gongyi/css/new_main.css?3">
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/jquery.slides.edits.js"></script>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/jquery.validator.js"></script>
+<script type="text/javascript" src="__STATIC_URL__/public/js/ajaxupload.js"></script>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/zh_CN.js"></script>

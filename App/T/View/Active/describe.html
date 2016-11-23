@@ -1,0 +1,12 @@
+<a href="{:userUrl($user['uid'])}" class="wpr_cr_lt"><img src="{$user.photo}"></a>
+<div class="wpr_cr_rt" data-did='{$info.id}' data-durl="{:U('t/active/delImg')}" data-eurl="{:U('t/active/editImgInfo')}">
+	<span class="rtactiv_time">{:date('Y年m月d日',$info['create_date'])}</span>
+        <div class="rtactiv_wraper">
+		 <p class="rtactiv_cont">{$info['content']}</p>
+		 <eq name='ismine' value='1'><p class="rtactiv_option"><a href="javascript:void(0)" class="edt">编辑</a><a href="javascript:void(0);" class="del">删除</a></p></eq>
+	</div>
+	<div class="picForm">
+		  <textarea name="pic_desc" class="pci_desc"></textarea>
+		  <p class="formBtns"><button  class="saveBtn">保存</button><span class="cancel">取消</span></p>
+	</div>
+</div>

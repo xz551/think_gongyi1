@@ -1,0 +1,38 @@
+<css:add href="{:STATIC_SERVER_URL}/usercenter/group/css/page3.css" />
+<js:add src="{:STATIC_SERVER_URL}/usercenter/group/js/paging.js" />    
+<!-- wraper_main[ -->
+<div class="wraper_main">
+    <div class="wraper_menus_tab">
+        <a href="#" class="bottom_border">所在的公益小组</a>
+        <a href="{:U('t/group/startsub',array('uid'=>$uid))}">发起的公益话题</a>
+        <a href="{:U('t/group/partakesub',array('uid'=>$uid))}">参与的公益话题</a>
+        <eq name="isLogin" value="1">
+        <a  class="back_group" href="{:U('t/group/usergroup',array('id'=>$myuid))}" >返回到我的公益小组</a>
+        </eq>
+    </div>
+    <div class="wraper_group_list">
+        <p class="wpr_gl_title"><a href='{:U("t/group/livegroup",array("id"=>$uid))}'   <eq name='tag' value='0'>class="a_cur"</eq>   >全部</a>&nbsp;/&nbsp;
+            <a href='{:U("t/group/livegroup",array("found"=>1,"id"=>$uid))}' <eq name='tag' value='1'>class="a_cur"</eq>    ><eq name='ismine' value='1'>我</eq>创建的小组</a></p>
+        <div class="wpr_gl_cont">
+            <volist name="groupInfo" id="vo">
+            <!-- 一个小组 -->
+            <div class="wpr_gl_group">
+                    <a href="/t/group/selgroup/id/{$vo.id}.html" target="_blank"><img src="{$vo.image}" title="{$vo.name}"></a>
+                    <div class="wpr_right_detail">
+                            <a href="/t/group/selgroup/id/{$vo.id}.html" title="{$vo.name}" target="_blank">{$vo.name|str_ellipsis=13}</a>
+                            <p>{$vo.updatetime}</p>
+                    </div>
+            </div>
+
+            
+            </volist>
+           
+        </div>
+        <notempty name='groupInfo'>
+        <!-- 分页 -->
+        <div class="wraper_paging">
+            {$page}
+        </div>
+        </notempty>
+    </div>
+</div><!-- wraper_main[ -->

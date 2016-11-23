@@ -1,0 +1,27 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/gongyi/css/activelist.css">
+<script type="text/javascript" src="__STATIC_URL__/gongyi/js/filterpublic.js"></script>
+<div id="Container">
+    <div id="mask"></div>
+    <h3 class="top_nav">
+        <span class="top_nav_btn" data-id="0">筛选</span>
+        <div class="top_nav_cont">
+            {:W('Condition/index',array(1))}
+            <a href="javascript:void(0);" class="ok_btn">确认</a>
+        </div>
+    </h3>
+    <span class="top_title">招募</span>
+    <div id='getAjaxPage' data-url="{:U('pro/getProList')}" data-condition=""></div>
+</div>
+<script>
+    var static_url = "{:STATIC_SERVER_URL}";
+    var url = $("#getAjaxPage").attr('data-url');
+    var condition = $("#getAjaxPage").attr("data-condition");
+    $.ajax({
+        type: "POST",
+        url: url,
+        data:condition,
+        success: function(msg){
+            $("#getAjaxPage").html(msg);
+        }
+    });
+</script>

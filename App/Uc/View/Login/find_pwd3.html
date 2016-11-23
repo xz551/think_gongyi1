@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$title}</title>
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/css/base.css">
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/css/find_pwd.css">
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/public/css/jquery.validator.css">
+	<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/jquery.js"></script>
+	<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/jquery.validator.js"></script>
+	<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/zh_CN.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("input").focus(function(){$(this).parent().css("border-color","#2f9be7");});
+			$("input").blur(function(){$(this).parent().css("border-color","#e0e0e0");});
+			/*验证*/
+			$("#form_step3").validator({
+				stopOnError:false,
+				fields:{
+				    'password':{rule: "required;length[6~24]", msg: {required:'密码不能为空',length:"密码太短(最小值为6个字符串)"}},
+				    'repwd':{rule:"required;match(password)",msg:{required:"请再次输入密码",match:"确认密码跟密码不一致"}},
+				},
+				valid:function(form){form.submit();},
+				beforeSubmit:function(){$("input").eq(0).focus();}
+			});
+		});
+	</script>
+</head>
+<body>
+     {~W('Layout/header')}
+	<div class="zqgy_find_pwd">
+		{:W('Layout/findPasswordTop',array($tag))}
+		<div class="zqgy_fdpd_detail">
+			<form action="findPassword4" id="form_step3" method="post">
+				<input type="hidden" name="token" value="{$token}">
+				<p class="step3">
+					<label>新密码：</label>
+					<i><input type="password" name="password" placeholder="6 ~ 24"></i>
+					<span class="msg-box n-right" for="password"></span>
+				</p>
+				<p class="step3">
+					<label>确认密码：</label>
+					<i><input type="password" name="repwd" placeholder="请重复密码"></i>
+					<span class="msg-box n-right" for="repwd"></span>
+				</p>
+				<p class="fdp_btns step3"><button>下一步</button></p>
+			</form>
+		</div>
+	</div>
+	 {~W('Layout/footer')}
+</body>
+</html>

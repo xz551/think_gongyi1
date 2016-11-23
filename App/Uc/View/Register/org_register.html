@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$title}</title>
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/css/base.css">
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/css/login_regist.css">
+	<script src="{:STATIC_SERVER_URL}/public/js/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/public/css/jquery.validator.css">
+	<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/jquery.validator.js"></script>
+	<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/zh_CN.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			//记住我
+			$(".rm_chk").click(function(){
+				var a=$(this),b=a.attr("data-id");
+					b==0?a.attr('data-id',1).toggleClass("nochk"):a.attr('data-id',0).toggleClass("nochk");
+			});
+			$("input").focus(function(){$(this).parent().css("border-color","#ff7700");});
+			$("input").blur(function(){$(this).parent().css("border-color","#e0e0e0");});
+			/*验证*/
+            $("form").validator({
+                fields: {       
+                		nickname: {rule: "required;length[2~24];unlawful;remote[/Uc/Register/ckName, nickname, type]", msg:{required:'组织名称不能为空',unlawful:"仅支持中英文、数字、下划线或减号"}},
+                        email: {rule: "required;email;remote[/Uc/Register/ckEmail, email]", msg:{required:"邮箱不能为空"}},
+                        password: {rule: "required;length[6~24]", msg: {required:'密码不能为空',length:"密码太短(最小值为6个字符串)"}},
+                        repwd:{rule:"required;match(password)",msg:{required:"请再次输入密码",match:"确认密码跟密码不一致"}},
+                    },
+                valid:function(form){if(isOkTiaokuan()){form.submit();}},    
+  				beforeSubmit:function(){isOkTiaokuan();}   
+            });
+			$("#btn").click(function(){
+				var ip_yzcode=$("#ip_yzcode").val();
+            	if(ip_yzcode==''){
+            		 $(".error_msg").html("验证码不能为空").css("color","red");
+            		return;
+            	}
+       			 $.ajax({
+       				   url:"/Uc/Register/ckVerify",
+       				   data:{ip_yzcode:ip_yzcode},
+       				   type:"post",
+       				   dataType:"json",
+       				   success:function(d){
+       					  if(d.error){
+       						  $(".error_msg").html(d.error).css('color','red');
+       					  }else{
+       						  $("#ogn_form").attr('action','/Uc/Register/form_email_register');
+       						  $("#ogn_form").submit();  
+       						  $("#btn").text("注册中").addClass("dis");
+       						  $("#btn").attr("disabled",true);  
+       					  }
+       				   }
+       			});
+			});
+            function isOkTiaokuan(){
+				var a = $(".rm_chk"),b = a.attr('data-id'),c = a.next('span').find('i'),d = true;
+					if(b!=0){d = false;c.show();}else{d = true;c.hide();}
+					return d;
+			}
+           $("#yw0_button,#yw0").click(function(){
+        	   var num = Math.random()*50+1;
+        	   $("#yw0").attr("src","/M/Code/index/"+num);
+           });
+		});
+	</script>
+</head>
+<body>
+	<!-- zqgy-header[ -->
+	<div class="zqgy_header"><a href="{:SERVER_VISIT_URL}"></a>组织用户注册</div><!-- ]zqgy-header -->
+	<!-- zqgy-main[ -->
+	<div class="zqgy_main rgt_main">
+		<div class="zqgy_rgtcont rgt_ogn">
+			<!-- 左边图部分[ -->
+			<div class="zqgy_mct_lt"></div>
+			<!-- 右边部分[ -->
+			<div class="zqgy_mct_rt">
+				<h3><span>组织注册</span><a href="/Uc/Register/userRegister.html?returnurl={:I('returnurl')}" class="lg_swh">个人注册</a></h3>
+				<div class="zqgy_mrt_cont">
+					<form action="javascript:void(0)" class="shw" id="ogn_form" method="post">
+						<input type="hidden" name="returnurl" value="{:I('returnurl')}">
+						<input type="hidden" name="type" value="{$type}" />
+						<dl>
+							<dt>组织名称：<span class="msg-box n-right" for="nickname"></span></dt>
+							<dd><input type="text" name="nickname" placeholder="请输组织名称"></dd>
+							<dt>邮箱：<span class="msg-box n-right" for="email"></span></dt>
+							<dd><input type="text" name="email" placeholder="请输入邮箱"></dd>
+							<dt>密码：<span class="msg-box n-right" for="password"></span></dt>
+							<dd><input type="password" name="password" placeholder="6 - 24位"></dd>
+							<dt>确认密码：<span class="msg-box n-right" for="repwd"></span></dt>
+							<dd><input type="password" name="repwd" placeholder="确认密码"></dd>
+							<dt>验证码：<span class="error_msg"></span></dt>
+							<dd class="yz_code">
+								<span><input type="text" name="ip_yzcode" id="ip_yzcode" placeholder="请输入验证码"></span>
+								<i><img id="yw0" src="/M/Code/index" alt=""></i><a id="yw0_button" href="javascript:void(0)">看不清换一张</a>
+							</dd>
+						</dl>
+						<div class="rem_me"><i class="rm_chk" data-id="0"></i><span>我已阅读并同意<a href="{:U('Register/org_clause')}" target="_blank">相关服务条款</a><i>是否同意服务条款</i></span></div>
+						<div class="all_btns"><button id="btn">注册</button><span>已有账号,直接<a href="{:U('Login/index')}" class="col2">登录</a></span></div>
+					</form>
+				</div>
+			</div><!-- ]右边部分 -->
+		</div>
+	</div><!-- ]zqgy-main -->
+	<!-- zqgy-footer[ -->
+	<div class="zqgy_footer">Copyright © 2012 - 2016</div><!-- ]zqgy-footer -->
+</body>
+</html>

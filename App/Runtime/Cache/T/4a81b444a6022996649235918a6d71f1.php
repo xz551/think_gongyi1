@@ -1,0 +1,1 @@
+<?php if (!defined('THINK_PATH')) exit();?> <p class="tab_cont1_btns"><span class="btns_endkx">已结束</span></p>

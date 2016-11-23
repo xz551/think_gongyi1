@@ -1,0 +1,35 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/zqgym/css/login.css">
+<section class="zqgy_lgothers">
+    <!-- 请选择一种绑定方式[ -->
+    <h3 class="zqgy_otherways"><i></i><span>请选择一种绑定方式</span></h3><!-- ]请选择一种绑定方式 -->
+    <!-- 选择[ -->
+    <div class="zqgy_choice">
+        <div class="zqgy_chtips">
+            <h3>绑定中青公益账户，实现信息同步</h3>
+            <p>如果您已有中青公益帐号，建议绑定；若不绑定，下次将无法通过当前微信账号登录此已有帐号。</p>
+        </div>
+        <ul class="zqgy_chlist">
+            <li class="cur" data-url="{:U('Auth/login',I('get.'))}">绑定一个已有的中青公益账户</li>
+            <li data-url="{:U('Reg/regiset')}">绑定一个新账户</li>
+            <li data-url="{$url}">直接登录，稍后绑定</li>
+            <li data-url="{:U('User/login','login=1')}">重新登录</li>
+        </ul>
+        <span class="bind_btn" onclick="bind()">确定</span>
+    </div><!-- ]选择 -->
+</section>
+<script type="text/javascript">
+    $(function(){
+        //选择登录方式
+        $(".zqgy_chlist li").click(function(){
+            $(this).addClass('cur').siblings('li').removeClass("cur");
+        });
+    });
+    function bind(){
+        var cur=$('li.cur');
+        if(cur.length==0){
+            alert('请选择一种绑定方式');
+            return;
+        }
+        window.location.href=$('li.cur').data('url');
+    }
+</script>

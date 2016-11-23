@@ -1,0 +1,67 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/zqgym/css/home.css?g6">
+<div class="zqgy_proj_cont">
+    <!-- 我的活动 -->
+    <a class="h3_title activ">我的活动</a>
+    <!-- 项目列表[ -->
+    <div class="zqgy_cont_list">{~W('User/active',array($data))}</div>
+</div>
+<div class="zqgy_loading" style="display: none">
+    <img src="__STATIC_URL__/zqgym/images/loading.gif">
+</div>
+
+<input type="hidden" id="surl" value="/m/user/active"/>
+<script type="text/javascript">
+    window.p=1;
+    $(function(){
+        var _d_items=$('.zqgy_proj_items');
+        if(_d_items.length<20){
+            $('.zqgy_loading').remove();
+        }else{
+            $('.zqgy_loading').show();
+            $(window).bind('scroll',function(){
+                winscroll();
+            });
+        }
+    });
+
+    var ajax_next=false;
+    /**
+     * 下一页
+     */
+    function next(){
+        if(ajax_next){return false;}
+        ajax_next=true;
+        var url_param={};
+        url_param['p']=window.p;
+        $.ajax({
+            url:$('#surl').val(),
+            data:url_param,
+            type:'post',
+            success:function(d){
+                if(d==''){
+                    $('.zqgy_loading').remove();
+                    $(window).unbind('scroll');
+                }else{
+                    var new_item=$(d);
+                    if(new_item.length<20){
+                        $('.zqgy_loading').remove();
+                        $(window).unbind('scroll');
+                    }else{
+                        ajax_next=false;
+                    }
+                    $('.zqgy_cont_list').append(d);
+                    window.p++;
+                }
+            }
+        });
+    }
+    function winscroll(){
+        var $win=$(window);
+        var top=parseInt($win.scrollTop());
+        var winHeight=parseInt($win.height());
+        var  bodyHeight=parseInt($('body').height());
+        if( top+winHeight>bodyHeight-50  ){
+            next();
+        }
+    }
+</script>

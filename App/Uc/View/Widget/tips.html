@@ -1,0 +1,39 @@
+<!-- 弹出引导层 -->
+	<div class="top">
+		<div class="show_pic">
+        	<img src="{:STATIC_SERVER_URL}/usercenter/org/images/yindao_close.png" class="close_icon">
+			<a href="{$jiaUrl}" target="_blank"><span class="shiyong_btn">马上试用</span></a>
+		</div>
+	</div>
+	<script>
+	show_yd();
+	$("#mask").fadeIn("slow");
+	$(".top").show();
+	$(".shiyong_btn").click(function(){
+		$("#mask").fadeOut("slow");
+		$(".top").fadeOut("fast");
+	});
+	$(".close_icon").click(function(){
+		$("#mask").removeClass("mask").hide();
+		$(".show_pic").hide();
+		$('body').css("overflow-y","auto");
+	});
+	$(window).resize(function(){
+		 if ($(".show_pic").is(':visible')) {
+			 show_yd();
+		 }
+	});
+	function show_yd(){
+		//浏览器可视区域的宽度                       
+		var browserWidth = $(window).width();
+		//浏览器可视区域的高度
+		var browserHeight = $(window).height();
+		var posLeft = (browserWidth - 1190) / 2;
+		$(".show_pic").css({
+			top:5+ 'px',
+			right:posLeft+ 'px'
+		}).show(function(){
+			$('body').css("overflow","hidden");
+		});
+	}
+	</script>

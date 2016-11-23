@@ -1,0 +1,179 @@
+<!-- 投诉[ -->
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/yijuan/product/css/complain.css">
+
+<div id="modeldiv">
+    <div id="divcomplain">
+        <form id="yjfk_form">
+            <dl class="gy_smt_that">
+                <dt>投诉受理人</dt>
+                <dd>
+                    <label>
+                        <input checked="checked" type="radio" name="complain_id" class="uu" value="-1"><span>中青公益</span>
+                    </label>
+                </dd>
+            </dl>
+
+            <div class="gy_placeholder">请输入10-200字符之间的投诉内容</div>
+            <textarea name="gy_yjfk" id="complain_content" class="gy_yjfk gy_yjfkz"></textarea>
+            <p class="gy_error"><span class="msg-box n-right" for="gy_yjfk"></span></p>
+            <p class="gy_tips">图片支持jpg、jpeg和png格式，大小不超过1M</p>
+            <p class="gy_upload_input">
+                <input type="hidden" id="a0" class="a0" value="">
+                <input type="hidden" id="a1" class="a1" value="">
+                <input type="hidden" id="a2" class="a2" value="">
+                <input type="hidden" id="a3" class="a3" value="">
+                <input type="hidden" id="a4" class="a4" value="">
+            </p>
+            <div class="gy_upload">
+                <div class="gy_upload_img">
+                </div>
+                <a id="gy_upload_btn" class="gy_upload_btn"  style="position: relative;"></a>
+            </div>
+            <div class="gy_fmbtns">
+                <span id="submit" class="gy_fmb1" style="cursor: pointer;">提交</span>
+                <img src='{:STATIC_SERVER_URL}/public/images/loading.gif' id='cawait' style="margin-top:5px;display: none;"/>
+                <span class="gy_fmb2" onclick="$('#winClose').click()">取消</span>
+            </div>
+        </form>
+    </div>
+</div>
+<input type="hidden" id="complain_user_id" value="{$uid}"/>
+<input type="hidden" id="complain_user_name" value="{$uname}"/>
+<input type="hidden" id="complain_project_id" value="{$pid}">
+<input type="hidden" id="complain_cuser_id" value="{$cuserid}">
+<input type="hidden" id="complain_cuser_name" value="{$cusername}">
+<input type="hidden" id="complain_type" value="{$type}">
+<script type="text/javascript">
+
+    var _complain = $("#modeldiv");
+    var _is_ajax=false;
+    var _box;
+    var orgname;
+    $(document).ajaxComplete(function(event,request, settings){
+        var url=settings.url;
+        if(url.indexOf('ucenter/user/projectcreator/')!=-1){
+            orgname=$("a.name_img").text();
+            $("span.comp").text(orgname);
+        }
+    });
+
+    function subComplain(){
+        if(_is_ajax){
+            return;
+        }
+        var _content=$.trim(_box.find("#complain_content").val());
+        if(_content=="") {
+            alert('请输入10-200字符之间的投诉内容');
+            return false;
+        }
+        var _type=$('#complain_type').val();
+        var data ={
+            "user_id":$('#complain_user_id').val(),
+            'user_name':$('#complain_user_name').val(),
+            'complain_type':_type,
+            'cuser_id':_box.find("input[name=complain_id]:checked").val(),
+            'cuser_name':$("#complain_cuser_name").val(),
+            'project_id':$("#complain_project_id").val(),
+            'content':_content,
+            'pic':_box.find('#a0').val(),
+            'pic2':_box.find('#a1').val(),
+            'pic3':_box.find('#a2').val(),
+            'pic4':_box.find('#a3').val(),
+            'pic5':_box.find('#a4').val(),
+            "organization":orgname
+        };
+        if(_type==2){
+            data.cuser_id=$('#complain_cuser_id').val();
+        }
+
+        _box.find("#submit").html("正在提交您的投诉");
+        _box.find("#cawait").show();
+        _box.find(".gy_fmb2").hide();
+        _is_ajax=true;
+        $.ajax({
+            type: "POST",
+            url: "/T/Complain/sub",
+            data:data,
+            success: function(msg){
+                _box.find("#cawait").hide();
+
+                _box.find(".gy_fmb2").show();
+                _is_ajax=false;
+                if(msg==1){
+                    _box.find("#submit").text("提交");
+                    alert("提交成功！投诉受理人将会尽快进行处理，请注意查收站内消息通知！");
+                    $('#winClose').click();
+                    //重置表单
+                    _box.find('#a0').val('');
+                    _box.find('#a1').val('');
+                    _box.find('#a2').val('');
+                    _box.find('#a3').val('');
+                    _box.find('#a4').val('');
+                    _box.find("#divcomplain .gy_upload_img").html('');
+                    _box.find("#complain_content").val("");
+                }else{
+                    _box.find("#submit").text("重新提交");
+                    alert("提交出错了 ，再试试吧 ！");
+                }
+            }
+        });
+    }
+  
+        $(".complain").popWindow({
+            title: "投诉",
+            width: 500,
+            height: 410,
+            content: _complain.html(),
+            autoshow: true,
+            callback: function (a,box) {
+                if(_box){
+                    return;
+                }
+                _box=box;
+                box.find("#submit").on("click", subComplain);
+                var btnImg = box.find("#gy_upload_btn");
+
+                new AjaxUpload(box.find('.gy_upload_btn'), {
+                    name: 'img_file',
+                    action: '/Image/upload?type=project&size[0]=100&size[1]=100&maxfilesize=',
+                    onSubmit: function (file, ext) {
+                        var len =box.find("#divcomplain .gy_upload_img").find('img').length;
+                        if (len > 4) {
+                            alert('投诉的图片最多只能上传5张 ！');
+                            return false;
+                        }
+                        if (!ext || !/^(jpg|png|jpeg)$/.test(ext)) {
+                            alert('提示：您上传的是非图片类型！');
+                            return false;
+                        }
+
+                        box.find('#divcomplain .gy_upload_img').append('<span><img data-type="await" title="双击删除" ondblclick="removeImg(this)" src="'+static_url+'/public/images/loading.gif"/></span>');
+                        box.find("#gy_upload_btn").hide();
+                    },
+                    onComplete: function (file, response) {
+                        response = $.parseJSON(response);
+                        if (!response.status) {
+                            alert(response.message);
+                        }
+                        var allImg = box.find(".gy_upload .gy_upload_img").find('img');//.length;
+
+                        box.find('.gy_upload_input .a' + (allImg.length-1)).val(response.extra);
+                        var lastImg=allImg.last();
+                        if(lastImg.data("type")=="await"){
+                            lastImg.hide().attr('src', response.message).show();
+                        }
+                        if(allImg.length<5){
+                            box.find("#gy_upload_btn").show();
+                        }
+                    }
+                });
+            }
+        });
+  
+    function removeImg(t){
+        $(t).parent().remove();
+        var len =_box.find("#divcomplain .gy_upload_img").find('img').length;
+        _box.find('.gy_upload_input .a' + len).val("");
+        _box.find("#gy_upload_btn").show();
+    }
+</script>

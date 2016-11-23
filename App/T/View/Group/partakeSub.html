@@ -1,0 +1,36 @@
+<css:add href="{:STATIC_SERVER_URL}/usercenter/group/css/page5.css" />
+<js:add src="{:STATIC_SERVER_URL}/usercenter/group/js/paging.js" />
+<!-- wraper_main[ -->
+<div class="wraper_main">
+    <div class="wraper_menus_tab">
+        <a href="{:U('t/group/livegroup',array('id'=>$uid))}">所在的公益小组</a>
+        <a href="{:U('t/group/startsub',array('uid'=>$uid))}">发起的公益话题</a>
+        <a href="#" class="bottom_border">参与的公益话题</span>
+        <eq name="isLogin" value="1">
+        <a href="{:U('t/group/usergroup',array('id'=>$myuid))}"  class="back_group">返回到我的公益小组</a>
+        </eq>
+    </div>
+    <div class="wraper_group_list">
+        <div class="wpr_gl_cont">
+            <volist name='subInfo' id='vo'>
+            <!-- 一个话题 -->
+            <div class="wpr_gl_group">
+                    <a href="{:U('t/subject/subinfo',array('id'=>$vo['id']))}" target='_blank'><img src="{$vo.image}" title="{$vo.title}"></a>
+                    <div class="wpr_right_detail">
+                            <a href="{:U('t/subject/subinfo',array('id'=>$vo['id']))}" target='_blank' title="{$vo.title}">{$vo.title|str_ellipsis=13}</a>
+                            <p class="wpr_rd_text">
+                                     {$vo.content|str_ellipsis=41}
+                            </p>
+                            <p>{$vo.updatetime}</p>
+                    </div>
+            </div>    
+            </volist>
+        </div>
+        <notemtpy name='subInfo'>
+        <!-- 分页 -->
+        <div class="wraper_paging">
+            {$page}
+        </div>
+        </notempty>
+    </div>
+</div><!-- wraper_main[ -->

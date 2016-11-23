@@ -1,0 +1,318 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>申请实名认证</title>
+        <link rel="stylesheet" type="text/css" href="__STATIC_URL__/usercenter/account/css/base.css">
+        <link rel="stylesheet" type="text/css" href="__STATIC_URL__/usercenter/account/css/sqsm_renzheng.css">
+        <script type="text/javascript" src="__STATIC_URL__/public/js/jquery-1.7.2.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="__STATIC_URL__/yun/css/jquery.validator.css">
+        <script type="text/javascript" src="__STATIC_URL__/yun/js/jquery.validator.js"></script>
+        <script type="text/javascript" src="__STATIC_URL__/public/js/zh_CN.js"></script>
+        <script type="text/javascript" src="__STATIC_URL__/yun/js/ajaxupload.js"></script>
+        <script type="text/javascript">
+            /*验证非法字符*/
+            function ExpReg(v) {
+                var reg = /^[^~!@#\<\>\$\%\^&\*\(\)\+]{1,}$/;
+                var f = false;
+                if (reg.test(v)) {
+                    f = true;
+                }
+                return f;
+            }
+            $(function () {
+                $(".myhome_users_wraper").hover(function () {
+                    $(this).find('ul').show("200");
+                }, function () {
+                    $(this).find('ul').hide();
+                });
+                //添加选中效果模拟input框
+                $(".gz_linyu i").click(function () {
+                    $(this).toggleClass("chk");
+                    var a = $("i.chk"), b = $("input[name='ly_label']");
+                    fillVal(a, b, 1);
+                    $("input[name='ly_label']").isValid(function(v){});
+                });
+                //自定义添加标签
+                $(".tjn_label a").click(function () {
+                    var a = $(this), b = a.prev('input').val(), c = $(".add_label"), arr = new Array();
+                    if (b != "") {
+                        //验证用户是否输入非法字符
+                        if (!ExpReg(b)) {
+                            alert("标签不能含有非法字符");
+                            return;
+                        }
+                        arr = b.split(" ");
+                        for (var i = 0; i < arr.length; i++) {
+                            if (arr[i] != "") {
+                                c.append("<span>" + arr[i] + "<i></i></span>");
+                                a.prev('input').val("");
+                            }
+                        }
+                    }
+                    fillVal($(".add_label span"), $("input[name='jn_label']"), 0);
+                    $("input[name='jn_label']").isValid(function(v){});
+                });
+                //添加推荐标签
+                $(".tjn_label i").click(function () {
+                    var a = $(this).parent(),
+                            b = a.text();
+                    if (!a.hasClass("dis")) {
+                        if (b != "") {
+                            $(".add_label").append("<span>" + b + "<i></i></span>");
+                        }
+                    }
+                    a.addClass("dis");
+                    fillVal($(".add_label span"), $("input[name='jn_label']"), 0);
+                    $("input[name='jn_label']").isValid(function(v){});
+                });
+                //移除标签
+                $(".add_label i").live("click", function () {
+                    var a = $(this),
+                            b = a.parent(),
+                            c = b.text();
+                    $(".tjn_label span").each(function () {
+                        if ($(this).text() == c) {
+                            $(this).removeClass("dis");
+                        }
+                    });
+                    b.remove();
+                    fillVal($(".add_label span"), $("input[name='jn_label']"));
+                    $("input[name='jn_label']").isValid(function(v){});
+                });
+                
+                $("input[name='smrz_tk']").click(function(){
+                    $("input[name='smrz_tk']").isValid(function(v){});
+                });
+
+                //往input里面填充值
+                function fillVal(a, b, c) {
+                    var sel = a, inp = b, str = "";
+                    if (sel.length != 0) {
+                        sel.each(function () {
+                            if (c) {
+                                str += $(this).attr('data-id') + ",";
+                            } else {
+                                str += $(this).text() + ",";
+                            }
+                        });
+                        inp.val(str).prevAll("dt").children("span").hide();
+                        return true;
+                    } else {
+                        inp.val("").prevAll("dt").children("span").show();
+                        return false;
+                    }
+                }
+
+                //每次验证都执行
+                $("#form").on("validation", function (e, current) {
+                    var name = current.element.name;	//获取验证元素的name
+                    var id = current.element.id;		//获取验证元素的id
+                    if (current.isValid && name == 'smrz_addr') {	//如果验证通过，并且name为hp_cont[]
+
+                    }
+                })
+
+                $('#s_province,#s_city,#s_area').change(function () {
+                    if ($("#s_area").val() && $("#s_province").val() && $("#s_city").val()) {
+                        $("input[name='smrz_tk']").val(1);
+                    } else {
+                        $("input[name='smrz_tk']").val(0);
+                    }
+                });
+
+
+                /*验证*/
+                $("#form").validator({
+                    stopOnError: false,
+                    fields: {
+                        'smrz_name': {rule: "真实姓名:required"},
+                        'smrz_phone': {rule: "手机号码:required;mobile"},
+                        'smrz_yzcode': {rule: "验证码:required;length[4]"},
+                        'smrz_addr': {rule: "常住地址:required;"},
+                        'ly_label': {rule: "required", msg: "请选择领域标签"},
+                        'jn_label': {rule: "required", msg: "请选择技能标签"},
+                        'smrz_zjnum': {rule: "证件号码:required;"},
+                        'smrz_tk': {rule: "checked", msg: "您还未接受用户条款"}
+                    },
+                    valid: function (form) {
+                        form.submit();
+                    }
+                });
+
+                var button = $('#upload-show-image'), interval;
+                new AjaxUpload(button, {
+                    name: 'img_file',
+                    action: '{:U("t/Img/upload/type/idcard")}',
+                    onSubmit: function (file, ext) {
+                        if (!(ext && /^(jpg|JPG|png|PNG|jpeg|JPEG)$/.test(ext))) {
+                            alert("您上传的图片格式不对，请重新选择！");
+                            return false;
+                        }
+                    },
+                    onComplete: function (file, response) {
+                        var obj = eval("(" + response + ")");
+                        if (obj.status === 0) {
+                            alert(obj.info);
+                        }
+                        $('#image-preview').attr('src', obj.url);
+                        $("input[name='show_image']").val(obj.imgName);
+                    }
+                });
+
+                //发送手机验证码短信
+                function sms(phone, smscode) {
+                    $.ajax({
+                        url: "/M/Sms/sendsms",
+                        data: {phone: phone, smscode: smscode},
+                        type: "post",
+                        dataType: "json",
+                        success: function (msg) {
+                            if (msg.status == 1) {
+                                alert("发送成功");
+                            } else {
+                                alert(msg.msg);
+                            }
+                        }
+                    });
+                }
+                
+                //点击获取短信的操作
+                $(".sp_btn").live('click', function () {
+                    var phone = $("input[name='smrz_phone']").val();
+                    $.ajax({
+                        url: "/M/Sms/token",
+                        data: {phone: phone},
+                        type: "post",
+                        dataType: "json",
+                        success: function (d) {
+                            //手机号未注册，可以注册
+                            if (d.status == 1) {
+                                $("#smscode").attr('value', d.smscode);
+                                var smscode = $("#smscode").attr('value');
+                                //发送手机验证码短信
+                                sms(phone, smscode);
+                            } else {
+                               
+                               
+                                alert("手机号已经被认证");
+                            }
+                        }
+                    });
+                })
+
+
+            });
+        </script>
+    </head>
+    <body>
+        {~W('Layout/header')}
+        <div class="zqgy_sqsmrz">
+            <div class="zqgy_smrz_title"></div>
+            <div class="zqgy_smrz_tips">
+                我们不会随意公开或向第三方透露您的个人信息和联系方式，只是为了让更多的公益组织与您取得联系、核实您的真实身份并邀请 您参与更多的公益服务。
+            </div>
+            <form action="{:U('Certified/handle')}" method="post" id="form">
+                <dl>
+                    <dt><label><i>*</i>真实姓名：</label><span class="msg-box n-right" for="smrz_name"></span></dt>
+                    <dd>
+                        <input type="text" name="smrz_name" value="{$vol['real_name']}" placeholder="真实姓名">
+                        <span class="sp_tips">请严格与证件上的姓名保持一致，通过认证后不可更改！</span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt class="smrz_gender">
+                    <label><i>*</i>性别：</label>
+                    <label><input type="radio" <if condition="$user['gender'] eq 1">checked="checked"</if> value="1" name="ipt_gender">男</label>
+                    <label><input type="radio" <if condition="$user['gender'] eq 2">checked="checked"</if> value="2" name="ipt_gender">女</label>
+                    </dt>
+                </dl>
+                <dl>
+                    <dt><label><i>*</i>手机号码：</label><span class="msg-box n-right" for="smrz_phone"></span><span class="msg-box n-right" for="smrz_yzcode"></span></dt>
+                    <dd class="yz_phone">
+                        <input type="text" name="smrz_phone" class="ipn1" value='{$vol["phone"]}'  placeholder="手机号">
+                        <input type="text" name="smrz_yzcode" class="ipn2" placeholder="验证码">
+                        <input type="hidden" id='smscode' name="smscode" value="">
+                        <i class="sp_btn">获取短信</i>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><label><i>*</i>常住地址：</label><span class="msg-box n-right" for="smrz_addr"></span></dt>
+                    <dd class="cz_addre">
+                        {:W('Layout/area',array($user['provinceid'],$user['cityid'],$user['countyid']))}
+                        <input type="text" name="smrz_addr" value='{$user["address"]}' placeholder="常住地址">
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><label><i>*</i>关注领域：</label><span class="msg-box n-right" for="ly_label"></span></dt>
+                    <dd class="gz_linyu">
+                    <volist name="field" id="vo">
+                        <i data-id="{$key}" <in name="key" value="$interestlist">class="chk"</in>  >{$vo}</i>
+                    </volist>  
+                    </dd>
+                    <input type="hidden" name="ly_label" value="{$interestlist}">
+                </dl>
+                <dl class="dl_jineng">
+                    <dt><label><i>*</i>技能标签：</label><span class="msg-box" for="jn_label"></span></dt>
+                    <dd class="add_label">
+                    <volist name="list" id="v">
+                        <span>{$v}<i></i></span>
+                    </volist>              
+                    </dd>
+                    <dd class="tjn_label">
+                        <span>医疗救助<i></i></span>
+                        <span>体育竞技<i></i></span>
+                        <span>驾驶运输<i></i></span>
+                        <span>法律服务<i></i></span>
+                        <span>信息技术<i></i></span>
+                        <span>经验管理<i></i></span>
+                        <span>公共关系<i></i></span>
+                        <span>教育培训<i></i></span>
+                        <span>电器维修<i></i></span>
+                        <span>安全保卫<i></i></span>
+                        <span>财会金融<i></i></span>
+                        <span>客户接待<i></i></span>
+                        <span>新闻写作<i></i></span>
+                        <span>设计创意<i></i></span>
+                        <span>物业养护<i></i></span>
+                        <span>摄像摄影<i></i></span>
+                        <span>音乐<i></i></span>
+                        <input type="text" name="other_label" placeholder="没有合适的标签！可以在这里自定义哦~">
+                        <a href="javascript:void(0);">添加标签</a>
+                    </dd>
+                    <input type="hidden"  name="jn_label" value='<volist name="list" id="v">{$v},</volist>  '>
+                </dl>
+                <dl>
+                    <dt><label><i>*</i>证件类型：</label></dt>
+                    <dd>
+                        <select name="add_zhen" id="add_zhen">
+                            <option value="1" selected="selected">二代身份证</option>
+                            <option value="2">港澳台身份证</option>
+                            <option value="3">护照</option>
+                        </select>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><label><i>*</i>证件号码：</label><span class="msg-box n-right" for="smrz_zjnum"></span></dt>
+                    <dd><input type="text" name="smrz_zjnum"  value="{$vol['idcard_code']}"  placeholder="证件号码"></dd>
+                </dl>
+                <dl>
+                    <dt>
+                    <label><i>*</i>证件正面图片：</label>
+                    <a href="javascript:void(0);" id="upload-show-image">上传图片</a>
+                    请上传证件的清晰正面图片（带有身份信息的一面），支持jpg、jpeg和png格式，大小不超过1M
+                    </dt>
+                    <input type="hidden" name="show_image" value="{$vol['idcard_file_name']}" >
+                    <dd class="upload_pic">
+                        <span><img src="<empty name='vol.idcard_file_name'>__STATIC_URL__/usercenter/account/images/icon_exp.png<else />{$vol['imgurl']}</empty>" id="image-preview"></span>
+                    </dd>
+                    <dd class="pt_tiaok">
+                        <input type="checkbox" name="smrz_tk">
+                        <i>同意平台<a href="">认证用户条款</a></i>
+                        <span class="msg-box n-right" for="smrz_tk"></span>
+                    </dd>
+                    <dd class="sub_btn"><button>提交</button></dd>
+                </dl>
+            </form>
+        </div>
+    </body>
+</html>

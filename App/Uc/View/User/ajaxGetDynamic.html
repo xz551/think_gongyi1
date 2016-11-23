@@ -1,0 +1,120 @@
+{__NOLAYOUT__}
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/ajaxpage.js"></script>  
+<!-- 动态[ -->
+<div class="wraper_dynamic">
+    <h3 class="project_title">动态<i></i></h3>
+    <!-- 一条动态[ -->
+    <if condition="count($userDynamic) eq 0">
+        <div class="prompt_states">暂无动态！</div>
+        <else />
+
+        <volist name="userDynamic" id="vo">
+            <eq name="vo.type" value="Primaries">
+
+            <div class="dynamic_list">
+                <a href="{:userUrl($vo['uid'])}"><img src="{$vo.userPhoto}" class="user_photos" title="{$vo.nickname}"></a>
+                <div class="dynamic_list_right">
+                    <p class="user_name_info"><a href="{:userUrl($vo['uid'])}" title="{$vo.nickname}">{$vo.nickname}</a>
+                    <eq name="vo.isorg" value="1">
+                    	<img src="{:STATIC_SERVER_URL}/usercenter/org/images/icon_v.png" title="认证组织">
+                    <else />
+                    	<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_v.png" title="认证个人">
+                    </eq>{$vo.actionName}</p>
+                    <div class="dynamic_activit_details">
+                        <a href="{$vo.url}"><img src="{$vo.image}" class="activ_left_photo" title="{$vo.title}"></a>
+                        <div class="this_project_details">
+                            <span class="blue_strip"></span>
+                            <a href="{$vo.url}" title="{$vo.title}">{$vo.title}</a>
+                            <p class="allphoto_list">
+                                <volist name="vo.user" id="v" offset="0" length='10'>
+                                    <a href="{:userUrl($key)}" target='_blank'><img src="{$v.image}" title="{$v.nickname}"></a>
+                                </volist>
+                            </p>
+                            <p class="content_time">{$vo.time}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <else />
+            <eq name="vo.type" value="SuccessRaise">
+            <div class="dynamic_list">
+                <a href="{:userUrl($vo['uid'])}"><img src="{$vo.userPhoto}" class="user_photos" title="{$vo.nickname}"></a>
+                <div class="dynamic_list_right">
+                    <p class="user_name_info"><a href="{:userUrl($vo['uid'])}" title="{$vo.nickname}">{$vo.nickname}</a>
+                    <eq name="vo.isorg" value="1">
+                    	<img src="{:STATIC_SERVER_URL}/usercenter/org/images/icon_v.png" title="认证组织">
+                    <else />
+                    	<img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_v.png" title="认证个人">
+                    </eq>{$vo.actionName}</p>
+                    <div class="dynamic_activit_details">
+                        <a href="{$vo.url}"><img src="{$vo.image}" class="activ_left_photo" title="{$vo.title}"></a>
+                        <div class="this_project_details">
+                            <span class="blue_strip"></span>
+                            <a href="{$vo.url}" title="{$vo.title}">{$vo.title}</a>
+                            <p class="allphoto_list">
+                                认捐方：
+                                <volist name="vo.user" id="v" offset="0" length='10'>
+                                <a href="{:userUrl($key)}" target='_blank'><img src="{$v.image}" title="{$v.name}"></a>
+                                </volist>
+                            </p>
+                            <p>{$vo.time}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <else />          
+            
+            <in name="vo.type" value="ActiveCreate,ActiveJoin">
+            
+            <div class="dynamic_list">
+                <a href="{:userUrl($vo['uid'])}"><img src="{$vo.userPhoto}" class="user_photos" title="{$vo.nickname}"></a>
+                <div class="dynamic_list_right">
+                    <p class="user_name_info"><a href="{:userUrl($vo['uid'])}" title="{$vo.nickname}">{$vo.nickname}</a>
+                        <eq name="vo.isorg" value="1"><img src="{:STATIC_SERVER_URL}/usercenter/org/images/icon_v.png" title="认证组织"><else /><img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_v.png" title="认证个人"></eq>{$vo.actionName}
+                    </p>
+                    <div class="dynamic_activit_details">
+                        <a href="{$vo.url}"><img src="{$vo.image}" class="activ_left_photo" title="{$vo.title}"></a>
+                        <div class="this_project_details">
+                            <span class="blue_strip"></span>
+                            <a href="{$vo.url}" title="{$vo.title}">{$vo.title}</a>
+                            <p class="content_time">{$vo.time}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <else />
+            <div class="dynamic_list">
+                <a href="{:userUrl($vo['uid'])}"><img src="{$vo.userPhoto}" class="user_photos" title="{$vo.nickname}"></a>
+                <div class="dynamic_list_right">
+                    <p class="user_name_info"><a href="{:userUrl($vo['uid'])}" title="{$vo.nickname}">{$vo.nickname}</a>
+                        <eq name="vo.isorg" value="1"><img src="{:STATIC_SERVER_URL}/usercenter/org/images/icon_v.png" title="认证组织"><else /><img src="{:STATIC_SERVER_URL}/usercenter/tp/images/icon_v.png" title="认证个人"></eq>{$vo.actionName}
+                    </p>
+                    <div class="dynamic_activit_details">
+                        <a href="{$vo.url}"><img src="{$vo.image}" class="activ_left_photo" title="{$vo.title}"></a>
+                        <div class="this_project_details">
+                            <span class="blue_strip"></span>
+                            <a href="{$vo.url}" title="{$vo.title}">{$vo.title}</a>
+                            <p class="content_text">
+                            {$vo.introduce}
+                            </p>
+                            <p class="content_time">{$vo.time}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </in>
+            
+            
+            </eq>   
+            </eq>
+        </volist>
+
+
+
+</div>
+
+<div class="wraper_paging">{$page}</div>
+</if>
+</div><!-- ]动态 -->

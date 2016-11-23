@@ -1,0 +1,23 @@
+ <!-- 一个项目[ -->
+<volist name="data" id="vo">
+    <a href="/m/project/index/id/{$vo['id']}" class="zqgy_proj_items">
+        <div class="zqgy_pilt"><img src="{$vo['show_image']}"></div>
+        <div class="zqgy_pirt">
+            <h3>{$vo['name']}
+                <if condition="$vo['status'] eq 101">
+                    <img src="__STATIC_URL__/zqgym/images/icon_wrx.png">
+                    <elseif condition="$vo['status'] eq 201"/>
+                    <img src="__STATIC_URL__/zqgym/images/icon_rux.png">
+                    <else/>
+                    <img src="__STATIC_URL__/zqgym/images/icon_baom.png">
+                </if>
+            </h3>
+            <p class="bm_time"><label>报名时间:</label>
+                <span>{$vo['create_date']|date='Y/m/d',###}</span>
+            </p>
+            <p class="bm_gwei"><label>报名岗位:</label>
+                <span>{$vo['job_name']}</span>
+            </p>
+        </div>
+    </a>
+</volist>

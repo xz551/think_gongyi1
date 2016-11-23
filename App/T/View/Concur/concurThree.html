@@ -1,0 +1,67 @@
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/public.css">
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/common.css">
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/help_header.css">
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/help_step3.css">
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/yun/js/editor/kindeditor.js"></script>
+<script type="text/javascript">
+    $(function () {
+        /*用户菜单js*/
+        $(".top_users_wraper").hover(function () {
+            $(this).find('ul').show("200");
+        }, function () {
+            $(this).find('ul').hide();
+        });
+        /*导航栏*/
+        $(".li_items,.sub").hover(function () {
+            $(this).children('.sub').show(500);
+        }, function () {
+            $(this).children('.sub').hide();
+        });
+    });
+</script>
+
+<div class="wraper_main">
+    <div class="wpr_main_top"><eq name="type" value="1">我有资源<else />发起求助</eq></div>
+    <div class="wpr_main_bottom">
+        <ul class="wpr_setps">
+            <li class="li_step1">填写{$tag}基本信息</li>
+            <li class="li_step2">选择{$tag}类型</li>
+            <li class="li_step3">填写{$tag}描述</li>
+        </ul>
+        <form id="form2" action="{:U('t/concur/concurThreeStorage',array('id'=>$id,'type'=>$type))}" method="post">
+            <dl>
+                <dt><span class="span_col">*</span>{$tag}描述：<span class="error_msg summary_error">{$tag}描述不能为空</span></dt>
+                <empty name='type'><dd>逻辑完整，清晰合理，可行性强，优势突处的求助项目捐助成功率更高。<a href="javascript:void(0);">点击查看求助范例</a></dd></empty>
+            </dl>
+            {~W('Edit/textarea',array('data'=>array('name'=>'summary','value'=>$summary,'cols'=>80,'rows'=>'15','id'=>'editor')))}
+            <dl class="tioakuan">
+                <dt><input type="checkbox" id="chk_tiaokuan" name="chk" checked="checked">同意平台<a href="javascript:void(0);">求助与捐助条款</a><span class="error_msg agree_error">是否同意条款</span></dt>
+                <dd>注意：通过审核后不可修改，请在审核完成前反复检查，确保无误再行提交，以免因为需要重新提交影响了上线时间。</dd> 
+               
+            </dl>
+            <input type="hidden" name="id" value="{$id}">
+            <p class="btns"><a href="{:U('t/concur/concurTwo',array('id'=>$id))}" class="btn_prev">上一步</a><button class="btn_next">提交</button></p>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#form2").submit(function(){
+            editor.sync();
+            if($("#editor").val()){
+                $(".error_msg").hide();
+                if($("#chk_tiaokuan").attr('checked') == 'checked'){
+                    $(".agree_error").hidden();
+                    return true;
+                }else{
+                    $(".agree_error").show();
+                    return false;
+                }    
+            }else{
+                $(".summary_error").show();
+                return false;           
+            }
+        });
+    });
+   
+</script>

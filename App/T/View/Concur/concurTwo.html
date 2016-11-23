@@ -1,0 +1,210 @@
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/public.css">
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/common.css">
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/help_header.css">
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/help_step2.css">
+<style>
+        #form2 .n-invalid {border: 1px solid #f00;}
+</style>
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/public/css/jquery.validator.css">
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/jquery.validator.js"></script>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/laydate/laydate.js"></script>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/zh_CN.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".choice_help_type input:checkbox").change(function () {
+            var _this = $(this);
+            var _id = _this.data('id');
+            var temp = $("#" + _id);
+            if (_this.prop('checked')) {
+                temp.show();
+            } else {
+                temp.hide();
+            }
+        });
+        var i = {$suppliessum};
+        if(i==0){
+            i = 2;
+        }else{
+            i = i+1;
+	}
+        //添加一个物资项
+        $(".hp_add").live("click", function () {
+            if(i>=10){
+                alert("每次最多提交十个物资项");
+                return;
+            }
+            var str = [];
+            str.push("<p>");
+            str.push("<input type='text' id='hp_num" + i + "' data-target='#hp_cont" + i + "' data-rule='required;range[1~]' data-msg-range='请输入正整数' data-msg-required='请填写所需物资数量' placeholder='数量' name='hp_num[]'>");
+            str.push("<span class='sp_x'>X</span>");
+            str.push("<input type='text' id='hp_cont" + i + "'  data-rule='required;unlawful' data-msg-required='请填写所需物资内容' placeholder='物资内容' name='hp_cont[]'>");
+            str.push("<i class='btn_del' title='删除'></i>");
+            str.push("</p>");
+            $(".dd_needwuzi").append(str.join(''));
+            i++;
+        });
+        //删除当前物资项
+        $(".btn_del").live("click", function () {
+            i--;
+            $(this).parent().remove();
+        });
+        //模拟placeholder
+        $("#service_disc").live("focus", function () {
+            $(this).next('i').remove();
+        });
+        $(".dd_servdesc > i").live("click", function () {
+            $(this).remove();
+            $("#service_disc").focus();
+        });
+        //开始时间的失去焦点
+        $("#act_btime").blur(function () {
+            var _this = $(this), emsg = _this.parent().prev().find('span');
+            blurchktime(_this, "开始时间不能为空", emsg);
+        });
+        //结束时间失去焦点
+        $("#act_etime").blur(function () {
+            var _this = $(this), emsg = _this.parent().prev().find('span');
+            blurchktime(_this, "结束时间不能为空", emsg);
+        });
+    });
+</script>
+<div class="wraper_main">
+    <div class="wpr_main_top">发起求助</div>
+    <div class="wpr_main_bottom">
+        <ul class="wpr_setps">
+            <li class="li_step1">填写求助基本信息</li>
+            <li class="li_step2">选择求助类型</li>
+            <li class="li_step3">填写求助描述</li>
+        </ul>
+        <form action="{:U('t/concur/concurTwoStorage',array('id'=>$id))}" method="post" id="form2">
+            <dl class="choice_help_type">
+                <dt><i class="i_col">*</i>请选择求助类型：<span class="msg-box n-right" for="need_chk[]"></span></dt>
+                <dd>
+                    
+                    <label><input type="checkbox" value="2" data-id="wuzi" <gt name='cinfo.is_supplies' value='0'>checked="checked"</gt> name="need_chk[]">求物资</label>
+                    <label><input type="checkbox" value="3" data-id="fuwu" <gt name='cinfo.is_service' value='0'>checked="checked"</gt> name="need_chk[]">求服务</label>
+                </dd> 
+            </dl>
+            
+            <!-- 求物资[ -->
+            <div class="help_type2 div_hp_content" id='wuzi' style='display:none;'>        
+                <dl class="uc_input">
+                    <dt><i class="i_col">*</i>所需物资：</dt>
+                    <dd class="dd_needwuzi">
+                        <empty name='supplies'>
+                        <p>
+                            <input type="text" data-rule="required;integer;range[1~]" id="hp_num1" data-msg-range='请输入正整数' name="hp_num[]"  data-target="#hp_cont1"  placeholder="数量">
+                            <span class="sp_x">X</span>
+                            <input type="text" data-rule="required;unlawful" id="hp_cont1" name="hp_cont[]" placeholder="物资内容">
+                        </p>
+                        <else />
+                            <volist name='supplies' id='vo' key="k">
+                            <p>
+                                <input type="text" data-rule="required;integer;range[1~]" id="hp_num{$k}" data-msg-range='请输入正整数' value='{$vo.num}'  name="hp_num[]"  data-target="#hp_cont{$k}"  placeholder="数量">
+                                <span class="sp_x">X</span>
+                                <input type="text" data-rule="required;unlawful" id="hp_cont{$k}"  value='{$vo.name}' name="hp_cont[]" placeholder="物资内容">
+                                <gt name='k' value='1'><i class='btn_del'></i></gt>
+                            </p>
+                            </volist>
+                        </empty>
+                    </dd>
+                    <dd class="btn_add_items">
+                        <p class="hp_add">再添加一个物资项</p>
+                        <p class="hp_prompt">求助虽好，可不要贪心哦~单个项目中合理明确的求助目标便于认捐</p>
+                    </dd>
+                </dl>
+                <dl class="uc_input">
+                    <dt><i class="i_col">*</i>收件地址：</dt>
+                    <dd id="rec_address">
+                        <eq name='id' value='0'>{~W('Concur/area')}<else />{:W('Concur/area',array($suparea['provinceid'],$suparea['cityid'],$suparea['countyid']))}</eq>
+                                <input type="text" name="hp_detaddr" placeholder="详细地址" value='{$suparea.address}' class="hp_detil_address">
+                                <span class="msg-box n-right" for="hp_detaddr" id='all_address'></span>
+                    </dd>
+                </dl>
+                <dl class="uc_input">
+                    <dt><i class="i_col">*</i>收件人姓名：</dt>
+                    <dd><input type="text" name="hp_rec_name" value='{$suparea.name}' placeholder="收件人姓名"><span class="msg-box n-right" for="hp_rec_name"></span></dd>
+                </dl>
+                <dl class="uc_input">
+                    <dt><i class="i_col">*</i>联系电话：</dt>
+                    <dd><input type="text" name="hp_rec_phone" value='{$suparea.phone}' placeholder="联系电话"><span class="msg-box n-right" for="hp_rec_phone"></span></dd>
+                </dl>
+                <dl class="uc_input">
+                    <dt><i class="i_col">*</i>邮编：</dt>
+                    <dd><input type="text" name="hp_rec_address" value='{$suparea.code}' placeholder="邮编"><span class="msg-box n-right" for="hp_rec_address"></span></dd>
+                </dl>
+            </div><!-- ]求物资 -->
+            <!-- 求服务[ -->
+            <div class="help_type3 div_hp_content" id='fuwu' style='display:none;'>	
+                <dl class="uc_input">
+                    <dt class="dt_service"><i class="i_col">*</i>所需服务概述：</dt>
+                    <dd class="dd_servdesc"><textarea name="service_disc" id="service_disc">{$service.summary}</textarea>
+                        <empty name='service'><i>请简单描述所需服务内容，10~140个字符<br/>如：我需要针对残疾人维权的法律咨询与解答服务，上门或网络服务均可</i></empty>
+                    </dd>
+                </dl>
+                <dl class="uc_input">
+                    <dt class="dt_service"><i class="i_col">*</i>所需服务时间：</dt>
+                    <dd><eq name='id' value='0'>{:W('Concur/time',array('','',1,1))}<else />{:W('Concur/time',array($service['start_time'],$service['end_time'],1,1))}</eq><span class="error_msg">此项不能为空！</span></dd>
+                </dl>
+            </div><!-- ]求服务 -->
+            <input type='hidden' name='id' value='{$id}'>
+            <p class="btns"><a href="{:U('t/concur/concurone',array('id'=>$id))}" class="btn_prev">上一步</a><button class="btn_next">下一步</button></p>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    
+    $("#form2").on("validation", function(e, current){	
+        var name = current.element.name;
+        var id = current.element.id;
+        if(current.isValid && name=='hp_cont[]'){	
+            //判断数量是否正确
+            var id = id.replace('cont','num');			
+            if(!$("#"+id).isValid()){
+                    current.msg = "请输入整数";
+                    current.isValid = false;
+                    current.type = "error";
+            }
+        }			
+    })	
+    /*验证*/
+    $("#form2").validator({
+        ignore: ':hidden',
+        stopOnError: true,
+        fields: {
+            hp_money: {rule: "required;integer[+];", msg:{required:"求助金额不能为空",integer:"求助金额请输入正整数"}},
+            hp_rec_name: {rule: "required;length[2~20];unlawful", msg:{required:"收件人姓名不能为空"}},
+            hp_rec_phone: {rule: "required;phone", msg:{required:"手机或电话不能为空"}},
+            hp_rec_address: {rule: "required;postcode", msg: "邮编错误"},
+            service_disc: {rule: "required;contentunlawful;length[10~140]", msg:{required:"服务概述不能为空"}},
+            act_btime: {rule: "required", msg: "请选择所需服务时间"},
+            act_etime: {rule: "required", msg: "请选择所需服务时间", target: "#act_btime"},
+            'need_chk[]': {rule: "checked", msg: "请选择求助类型"},
+            'hp_detaddr':{rule: "required;unlawful", msg:{required:"地址不能为空"}},
+            's_province':{rule: "required", msg: "省份不能为空",target: "#all_address"},
+            's_city':{rule: "required", msg: "城市不能为空",target: "#all_address"},
+            's_area':{rule: "required", msg: "区县不能为空",target: "#all_address"},
+        },
+        valid: function(form){
+            form.submit();
+        },
+        invalid:function(form, errors){
+            
+        }
+    });
+    
+    $(function(){
+        
+        $(".choice_help_type input:checked").each(function(){
+            var _this = $(this);
+            $("#"+_this.attr('data-id')).show();
+        });
+        
+        
+        
+        
+    })
+    
+    
+    
+</script>

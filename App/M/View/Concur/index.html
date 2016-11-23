@@ -1,0 +1,112 @@
+
+	
+	<link rel="stylesheet" type="text/css" href="__STATIC_URL__/zqgym/css/active.css?000">
+
+	<script type="text/javascript" src="__STATIC_URL__/zqgym/js/touch.js"></script>
+
+	<script type="text/javascript">
+		$(function(){
+			//展开或者收起筛选项
+			$(".sear_btn").click(function(){
+				var a = $(this),b = a.children('i');
+				$("#mask").slideToggle(300);
+				b.toggleClass('arrow');
+				a.next('div').slideToggle(500);
+			});
+			//给当前的添加选中效果
+			$(".sear_subnav span").click(function(){
+				$(this).not(".all_city").addClass("cur").siblings('span').removeClass("cur");
+			});
+			//全部省份展开所有的省市
+			$(".all_city").click(function(){
+				$(this).hide().siblings('span.ct_hd').show();
+			});
+			$(".ok_btn").click(function(){
+				$("#mask,.sear_subnav").slideUp();
+                                //获取类别
+                                var label =  $(".dl_categroy  .cur").attr('data-label');
+                                //获取地域
+                                var area = $(".dl_city  .cur").attr('data-id');
+                                //获取状态
+                                var status = $(".dl_state  .cur").attr('data-status');
+                                var searchname = $("input[name='actname']").val();
+                                label = label?label:0;
+                                area = area?area:0;
+                                status = status?status:0;
+                                window.location.href = "/m/concur/index.html?label="+label+"&province="+area+"&status="+status+"&type={$type}"+"&searchname="+searchname;
+			});
+			$(".zqgy_tabs").find("span").click(function(){
+				$(this).addClass("cur").siblings("span").removeClass("cur");
+				$(".zqgy_help_list,.zqgy_dona_list").toggleClass("cur");
+                                var type = $(this).attr('data-type');
+                                window.location.href = "/m/concur/index.html?type="+type;
+			});
+		});
+	</script>
+
+<div id="Container">
+	<!-- 中青公益住内容[ -->
+	<div class="zqgy_main">
+	<!-- 中青公益[ -->
+	<section class="zqgy_top">
+		<div class="zqgy_tabs">
+			<span class="zqgy_tabs_help <eq name='type' value='0'>cur</eq>" data-type="0">求助</span>
+			<span class="zqgy_tabs_dona  <eq name='type' value='1'>cur</eq>" data-type="1">捐助</span>
+		</div>
+	</section>
+	<!-- 求助 -->
+	<section class="zqgy_active zqgy_help_list cur">
+		<!-- 搜索区[ -->
+		<div class="zqgy_search">
+			<form action="/m/concur/index.html"><input type="search" name="actname" placeholder="可根据求助名称搜索"></form>
+			<div class="sear_btn">筛选<i></i></div>
+			<div class="sear_subnav">
+				<dl class="dl_categroy">
+					<dt>类别标签</dt>
+					<dd>
+                                                <volist name="list" id="vo">
+						<span data-label="{$vo.id}">{$vo.name}</span>
+                                                </volist>
+					</dd>
+				</dl>
+				<dl class="dl_city">
+					<dt>地域</dt>
+					<dd>
+						<span class="cur">全部</span>                                               
+                                                <volist name="area" id="vo">                                                                                         
+                                                    <lt name="vo.id" value="6">
+                                                        <span data-id="{$vo.id}">{$vo.class_name}</span>
+                                                        <else />
+                                                        <span class="ct_hd" data-id="{$vo.id}">{$vo.class_name}</span>
+                                                    </lt>                       
+                                                </volist>
+                                                <span class="all_city">全部省份<i></i></span>                                              
+					</dd>
+				</dl>
+				<dl class="dl_state">
+					<dt>项目状态</dt>
+					<dd>
+						<span class="cur" data-status="1">全部</span>
+                                                <span class="bm_state" data-status="2">进行中</span>
+                                                <span class="bm_state" data-status="3">已完成</span>
+					</dd>
+				</dl>
+				<p><span class="ok_btn">确定</span></p>
+			</div>
+		</div><!-- ]搜索区 -->
+		<div class="zqgy_main_cont">
+			<div id="mask"></div>
+                        <volist name='listinfo' id='vo'>
+                            <a href="/T/Concurinfo/index/id/{$vo.id}" class="act_itemts">
+                                    <div class="act_lt"><img src="{$vo.image}"></div>
+                                    <div class="act_detail">
+                                            <h3>{$vo.title}<span class="<eq name='vo.status' value='100'>act_status ing<else />act_status end</eq>"></span></h3>
+                                            <p><label>发起人:</label><span>{$vo.username}</span></p>
+                                            <p class="act_help_type"><label>求助类型:</label>{$vo.typename}<i class="type1"></i><i class="type2"></i><i class="type3"></i></p>
+                                    </div>
+                            </a>
+                        </volist>
+		</div>
+	</section>
+	</div>
+</div>

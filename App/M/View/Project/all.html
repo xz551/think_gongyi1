@@ -1,0 +1,40 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/zqgym/css/active.css?0a">
+<section class="zqgy_active">
+    <!-- 搜索区[ -->
+    <div class="zqgy_search">
+        <form><input type="search" value="{:I('actname')}" name="actname" placeholder="可根据项目名称搜索"></form>
+        <div class="sear_btn">筛选<i></i></div>
+        <div class="sear_subnav">
+            <dl class="dl_categroy">
+                <dt>类别标签</dt>
+                <dd class="search" data-type="label">
+                    {~W('Layout/tag')}
+                </dd>
+            </dl>
+            <dl class="dl_city">
+                <dt>地域</dt>
+                <dd class="search" data-type="area">
+                    {~W('Layout/province')}
+                </dd>
+            </dl>
+            <dl class="dl_state">
+                <dt>项目状态</dt>
+                <dd class="search" data-type="status">
+                    <span data-val="0" class="cur">全部</span>
+                    <span data-val="1" class="bm_state">报名进行中</span>
+                    <span data-val="2" class="bm_state">报名已结束</span>
+                </dd>
+            </dl>
+            <p><span class="ok_btn" >确定</span></p>
+        </div>
+    </div>
+    <div class="zqgy_main_cont">
+        <div id="mask"></div>
+        {~W('Project/item',array($data))}
+        <div class="zqgy_loading" style="display: none">
+            <img src="__STATIC_URL__/zqgym/images/loading.gif">
+        </div>
+    </div>
+</section>
+<input type="hidden" id="surl" value="/m/project/all"/>
+<script type="text/javascript" src="__STATIC_URL__/zqgym/js/search.js"></script>

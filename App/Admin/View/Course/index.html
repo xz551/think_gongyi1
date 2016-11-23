@@ -1,0 +1,80 @@
+
+<div class="alert alert-success  ">
+    <a class="btn btn-primary " href="{:U('edit')}" style="float: left;margin-right: 50px"><i class="icon-facetime-video icon-white"></i>发布视频</a>
+    <form class="form-inline" action="{:U('index')}">
+        <input value="{:I('video_name')}" type="text" name="video_name" placeholder="视频名称"/><input type="submit" value="搜索"/>
+
+    </form>
+</div>
+<table class="table table-bordered table-hover table-condensed">
+    <tr>
+        <th style="width: 200px">视频名称</th>
+         
+        <th style="width: 80px">讲师</th>
+        <th style="width: 180px">视频地址</th>
+        <th style="width: 180px">官方网址</th>
+        <th style="width: 110px">视频来源</th>
+        <th style="width: 60px">视频分类</th>
+        <th style="width: 180px">视频图片</th>
+        <th style="width: 60px">视频状态</th>
+        <th style="width: 60px">浏览次数</th>
+        <th style="width: 50px">操作</th>
+
+    </tr>
+    <volist name='video' id='vo'>
+        <tr id="tr_{$vo['id']}">
+            <td><a href="__YI_JUAN_SITE__/t/Openv/index/id/{$vo['id']}.html" target="_blank">{$vo['video_name']}</a></td>
+            <td>{$vo['video_teacher']}</td>
+            <td>{$vo['video_swf']}</td>
+            <td>{$vo['video_url']}
+            </td>
+            <td>{$vo['video_source']}</td>
+            <td>{$vo['video_type_desc']}</td>
+            <td>
+                <a href="javascript:void(0)" class="tool" data-html="true" data-toggle="tooltip" data-placement="top" title="" data-original-title="<img src='{$vo['video_img']}'/>">
+                    {$vo['video_img']}
+                </a>
+            </td>
+            <td>{$vo['status']==1?'正常':'关闭'}</td>
+            <td>{$vo['view']}</td>
+            <td>
+                <a target="_blank" class="  icon-eye-open tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="查看"  href="__YI_JUAN_SITE__/t/Openv/index/id/{$vo['id']}.html"></a>
+                <a class=" icon-edit tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="编辑"  href="{:U('edit','id='.$vo['id'])}"></a>
+                <a data-id="{$vo['id']}" class="icon-remove tool" data-toggle="tooltip" data-placement="top" title="" data-original-title="删除" href="javascript:void(0)"></a>
+            </td>
+        </tr>
+    </volist>
+</table>
+<select id="pageSize" style="float: left;width: 70px;">
+    <option value="10">10</option>
+    <option value="20">20</option>
+</select>
+{$page}
+        <style>
+            td{
+                word-wrap:break-word;word-break:break-all
+            }
+        </style>
+        <script type="text/javascript">
+$(function(){
+    $('#pageSize').val({$pageSize});
+    $('#pageSize').change(function(){
+        var pageUrl="{$pageurl}";
+
+        window.location=pageUrl.replace('_pageSize_',$(this).val());
+    });
+    $('.tool').tooltip();
+    $('.icon-remove').click(function(){
+        if(window.confirm('您确定要删除？')){
+            var id=$(this).data('id');
+            $.ajax({
+                url:"{:U('r')}",
+                data:{id:id},
+                success:function(){
+                    $('#tr_'+id).slideUp();
+                }
+            });
+        }
+    });
+});
+        </script>

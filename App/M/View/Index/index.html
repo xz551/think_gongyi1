@@ -1,0 +1,63 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/zqgym/css/home.css?w6">
+
+<section class="zqgy_logo">
+    <p><img src="__STATIC_URL__/zqgym/images/logo.png"></p>
+    <p><img src="__STATIC_URL__/zqgym/images/tips1.png"></p>
+    <p><img src="__STATIC_URL__/zqgym/images/tips2.png"></p>
+</section>
+
+<div class="zqgy_proj_cont">
+
+    <a class="h3_title ind" href="/m/project/all">招募项目<span ><img src="__STATIC_URL__/zqgym/images/icon_arrow.png"></span></a>
+
+    <div class="zqgy_cont_list">
+        <volist name="project" id="vo">
+
+            <a href="/m/project/index/id/{$vo['id']}" class="zqgy_proj_items">
+                <div class="zqgy_pilt"><img src="{$vo['show_img']}"></div>
+                <div class="zqgy_pirt">
+                    <h3>{$vo['name']}</h3>
+                    <p class="bm_time"><label>报名时间:</label>
+                        <span>{$vo['begin_time']|date='Y/m/d',###}-{$vo['end_time']|date='Y/m/d',###}</span></p>
+                    <p class="bm_gwei">
+                        <label>报名岗位:</label>
+							<span>
+                                <volist name="vo['job']" id="job">
+                                    <i>{$job['name']}{$job['need_count']}名</i>
+                                </volist>
+							</span>
+                    </p>
+                </div>
+            </a>
+
+        </volist>
+
+    </div>
+
+
+    <a class="h3_title ind" href="{:U('Active/all')}">公益活动<span><img src="__STATIC_URL__/zqgym/images/icon_arrow.png"></span></a>
+
+    <div class="zqgy_cont_list">
+        <volist name="active" id="vo">
+            <a href="/m/active/index/id/{$vo['id']}" class="zqgy_proj_items">
+                <div class="zqgy_pilt"><img src="{$vo['image']}"></div>
+                <div class="zqgy_pirt">
+                    <h3>{$vo['name']}</h3>
+                    <p class="bm_time"><label>报名时间:</label><span>{$vo['start_time']|date='Y/m/d',###}-{$vo['end_time']|date='Y/m/d',###}</span></p>
+                </div>
+            </a>
+        </volist>
+
+    </div>
+
+    <!-- 公益报道 -->
+    <a class="h3_title ind" href="/m/bao/all">公益报道<span><img src="__STATIC_URL__/zqgym/images/icon_arrow.png"></span></a>
+    <div class="zqgy_bdlist">
+        <volist name="article" id="vo">
+            <a href="/m/bao/index/id/{$vo['id']}" class="bd_items">
+                <span>{$vo['title']}</span>
+                <p><span>来源：{$vo['origin_from']|default='中青公益'}</span><span>{$vo['update_date']|date='Y-m-d H:i:s'}</span></p>
+            </a>
+        </volist>
+    </div>
+</div><!-- ]项目内容 -->

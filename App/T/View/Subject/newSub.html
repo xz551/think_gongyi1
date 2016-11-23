@@ -1,0 +1,23 @@
+{__NOLAYOUT__}
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/ajaxpage.js"></script>
+<volist name='sub' id='vo'>
+    <!-- 一个话题 -->
+    <div class="my_group_list">
+        <a href="{:userUrl($vo['user']['uid'])}"  ><img src="{$vo['user'].photo}" alt="{$vo['user'].nickname}" title="{$vo['user'].nickname}"></a>
+        <div class="chat_cont_right">
+            <a href="{:userUrl($vo['user']['uid'])}" class="user_name"  title="{$vo['user'].nickname}">{$vo['user'].nickname}</a>
+            <a href="{:U('t/subject/subinfo',array('id'=>$vo['id']))}"  class="chat_title" title="{$vo.title}">{$vo.title}</a>
+            <p class="chat_cont_detail">
+                {$vo.content}
+            </p>
+            <p class="replay_and_time"><span class="repaly_time">{$vo.time}</span><a href="{:U('/t/subject/subinfo',array('id'=>$vo['id']))}#discuss" class="replay_num">{$vo.num}</a></p>
+        </div>
+    </div>
+</volist>
+
+<notempty name="sub">
+ 
+<p class="friend_tips" <neq name="userType" value="0">style='display:none;'</neq> >只有小组成员才可以参与话题讨论&nbsp;<a href="javascript:void(0)" class="insub">+加入小组</a></p>
+<!-- 分页 -->
+<div class="wraper_paging">{$page}</div>
+</notempty>

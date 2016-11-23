@@ -1,0 +1,101 @@
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/help_list.css?1">
+<script type="text/javascript">
+	$(function(){
+		/*去掉奇数所对应的下边的对象的右边距*/
+		var res_list = $(".tuijian_list > li");
+		for(var i=1;i<res_list.length;i++){
+			res_list.eq(i).css("margin-right","0px");
+			i++;
+		}
+		$(".hp_pjt_right > dl").hover(function(){
+			$(this).find('.wraper_detail_info').show();
+		},function(){
+			$(this).find('.wraper_detail_info').hide();
+		});
+		/*分页*/ 
+		$(".wraper_paging ul li").hover(function(){
+			$(this).addClass("mouse_hover").siblings().removeClass("mouse_hover");
+		});  
+		$(".wraper_paging ul .curr").addClass("mouse_hover");
+		var type=$(".type").attr("data-class");
+		var status=$(".status").attr("data-class");
+		var label=$(".label").attr("data-class");
+		var pro=$(".pro").attr("data-class");
+		$(".status_"+status).addClass("sp_cur");
+		$(".type_"+type).addClass("sp_cur");
+		$(".label_"+label).addClass("sp_cur");
+		$(".pro_"+pro).addClass("sp_cur");
+	
+	});
+</script>
+<div class="wraper_main clearfix">
+		<div id='mask' style="display: none;"></div>
+		<!-- 左边部分[ -->
+		<div class="slidebar_left">
+			{~W('Donate/left_top')}
+			<!-- 左—CENTER[ -->
+			<!-- <div class="slider_lf_center">
+				<h3>推荐资源</h3>
+				<ul class="tuijian_list clearfix">
+					<li>
+						<a href="#" class="tjlist_top">
+							<img src="images/qq8.jpg">
+							<span class="tjlist_top_choice"><i class="icon_money"></i><i class="icon_gift"></i><i class="icon_heart"></i></span>
+						</a>
+						<a href="#" class="thlist_bottom">
+							求助求助求助求助求助求助求助求助求助求助求助求助
+						</a>
+					</li>
+				</ul>
+			</div> --><!-- ]左—CENTER -->
+		</div><!-- ]左边部分 -->
+		<!-- 右边部分[ -->
+		<div class="wpr_main_right">
+			{~W('Donate/main_top')}
+			<if condition="$concurInfo">
+				<volist name="concurInfo" id="vo">
+				<!-- 一个项目[ -->
+				<div class="help_project">
+					<a href="__WEB_SITE__/T/Concurinfo/index/id/{$vo['id']}" class="hp_pjt_left" target="_blank" title="{$vo.title}"><img src="{$vo.image}"></a>
+					<div class="hp_pjt_right">
+						<h3><a href="__WEB_SITE__/T/Concurinfo/index/id/{$vo['id']}" target="_blank" title="{$vo.title}">{$vo.title}</a></h3>
+						<span class="form_people">求助发起人：<a href="{:userUrl($vo['creator'])}" target="_blank" title="{$vo.nickname}">{$vo.nickname}</a></span>
+						<if condition="$vo['money']">
+							<dl>
+								<dt class="icon_money"></dt>
+								<dd>
+									<p class="progress_bar"><span class="this_progress"></span></p>
+									<p class="progress_detail"><span class="pd_lt">已捐助：<i>760.00</i>元</span><span class="pd_rt">目标：{$vo.money}</span></p>
+								</dd>
+							</dl>
+						</if>
+						<if condition="$vo['supplies']">
+							<dl>
+								<dt class="icon_gift"></dt>
+								<dd><p class="progress_det_cont" title="需要{$vo['supplies'][0]['res']}等物">需要{$vo['supplies'][0]['res']}等物</p></dd>
+								<!-- 隐藏的详细信息 -->
+								<div class="wraper_detail_info">
+									<i class="icon_arrow_up"></i>
+									<div class="hover_detail">
+										<volist name="vo['supplies']" id="v">
+											<p><label>{$v.name|str_ellipsis=###,6}：</label><span class="sp_progress"><i style="width:{$v['percent']};"></i></span><span class="sp_number">{$v.yNum}/{$v.num}</span></p>
+										</volist>
+									</div>
+								</div>
+							</dl>
+						</if>
+						<if condition="$vo['is_service']">
+							<dl>
+								<dt class="icon_serivce"></dt><dd><p class="progress_det_cont">需要服务</p></dd>
+							</dl>
+						</if>
+					</div>
+				</div><!-- ]一个项目 -->
+				</volist>
+			<!-- 分页 -->
+				<div class="wraper_paging">{$page}</div>
+			<else />
+				<div class="none_msg">该条件下暂无相关求助项目</div>	
+			</if>
+		</div><!-- ]右边部分 -->
+</div>

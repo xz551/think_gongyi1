@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="target-densitydpi=device-dpi, width=640px, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+	<meta name="msapplication-tap-highlight" content="no"/>
+	<meta name="format-detection" content="telephone=no" />
+	<title>"禁烟令"到！——别在“烟”雾缭绕</title>
+	<link rel="stylesheet" type="text/css" href="css/page.css?0">
+	<link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css?0">
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js?0"></script>
+	<script type="text/javascript" src="js/jquery.fullPage.min.js?0"></script>
+	<script type="text/javascript" src="js/jquery.easing.1.3.js?0"></script>
+    <script type="text/javascript" src="js/music.js?0"></script>
+	<script type="text/javascript"> 
+		$(function(){
+			<!--loading JS-->
+			var imgs=['images/arrow.png','images/bg1.jpg','images/bg2.jpg','images/bg3.jpg','images/music.gif','images/music.png','images/p1_img1.png','images/p1_img2.png','images/p1_img3.png','images/p1_img4.png','images/p2_img1.png','images/p2_img2.png','images/p2_img3.png','images/p2_img4.png','images/p3_img1.png','images/p3_text1.png','images/p3_text2.png','images/p3_text3.png','images/p3_text4.png','images/p4_img1.png','images/p4_shoushi1.png','images/p4_shoushi2.png','images/p4_shoushi3.png','images/p4_text1.png','images/p4_text2.png','images/p5_img1.png','images/p5_img2.png','images/p5_img3.png','images/p5_img4.png','images/p5_img5.png','images/p5_img6.png','images/p5_img7.png','images/p5_img8.png','images/p5_img9.png','images/p5_img10.png','images/p5_img11.png','images/p5_img12.png','images/p6_img1.png','images/p6_img2.png','images/p6_img3.png','images/p6_img4.png','images/zqlogo.png'];
+			var max_num=0;
+			var i_num=0;
+			var load_num=0;
+			function show_load(){
+				if(i_num<max_num){
+					i_num++;
+				} 
+				$('#show_load').text(i_num+'%');			
+				if(i_num!=100){
+					setTimeout(show_load,10);
+				}else{
+					$('#loading').after($('#contentpage').html());				
+					$('#show_load,#loading').remove();
+					$('#Container').show();
+					_fullpage();
+				}
+			}
+			function loadImg(){ 
+				for(var i=0;i<imgs.length;i++){
+					var obj_img=new Image();
+					obj_img.onload=function(){ 
+						load_num++; 
+						max_num=parseInt((load_num/imgs.length)*100);
+					}
+					obj_img.src=imgs[i];			
+				}
+				show_load();
+			}
+			 loadImg();
+		});
+		<!--fullpage animation JS-->
+		function _fullpage(){
+			$('#Container').fullpage({
+				navigation: false,
+				continuousVertical:false,
+				afterRender:function(){
+					$('.section1').find('.p1_img1').delay(2100).animate({top: '30%'}, 1500, 'easeOutBounce');
+					$('.section1').find('.p1_img2').delay(700).animate({left: '15%'}, 1500, 'easeOutCirc');
+					$('.section1').find('.p1_img3').delay(1400).animate({left: '40%'}, 1500, 'easeOutCirc');
+					$('.section1').find('.zqlogo').delay(2100).animate({right: '2%'}, 1500, 'easeOutCirc');	
+				},
+				afterLoad: function(anchorLink, index){
+					if(index == 1){
+						$('.section1').find('.p1_img1').delay(2100).animate({top: '30%'}, 1500, 'easeOutBounce');
+						$('.section1').find('.p1_img2').delay(700).animate({left: '15%'}, 1500, 'easeOutCirc');
+						$('.section1').find('.p1_img3').delay(1400).animate({left: '40%'}, 1500, 'easeOutCirc');
+						$('.section1').find('.zqlogo').delay(2100).animate({right: '2%'}, 1500, 'easeOutCirc');	
+					}
+					if(index == 2){
+						$('.section2').find('.p2_img1').delay(700).fadeIn(1000);
+						$('.section2').find('.p2_img2').delay(1400).slideDown(1000);
+						$('.section2').find('.p2_img3').delay(2100).slideDown(1000);
+						$('.section2').find('.p2_img4').delay(2800).slideDown(1000);
+						$('.section2').find('.zqlogo').delay(1500).animate({right: '2%'}, 1500, 'easeOutCirc');	
+						
+					}
+					if(index == 3){
+						$('.section3').find('.p3_img1').delay(1000).animate({right: '26%'}, 1500, 'easeOutExpo');
+						$('.section3').find('.p3_text1').delay(700).animate({right: '26%'}, 1500, 'easeOutCirc');
+						$('.section3').find('.p3_text2').delay(1400).animate({right: '17%'}, 1500, 'easeOutCirc');
+						$('.section3').find('.p3_text3').delay(2100).animate({left: '5%'}, 1500, 'easeOutCirc');
+						$('.section3').find('.p3_text4').delay(2100).animate({left: '17%'}, 1500, 'easeOutCirc');
+						$('.section3').find('.zqlogo').delay(1500).animate({right: '2%'}, 1500, 'easeOutCirc');	
+					}
+					if(index == 4){
+						$('.section4').find('.p4_img1').delay(700).fadeIn(1000);
+					    $('.section4').find('.fp-controlArrow').delay(2500).fadeIn(1000);
+						$('.section4').find('.p4_img2').delay(1200).animate({top: '20%'}, 1500, 'easeOutCirc');
+                        $('.section4').find('.slide_wraper').delay(1500).animate({top: '40%'}, 1500, 'easeOutCirc');
+						$('.section4').find('.p4_img6').delay(1500).animate({top: '80%'}, 1500, 'easeOutCirc');
+						$('.section4').find('.zqlogo').delay(1500).animate({right: '2%'}, 1500, 'easeOutCirc');	
+					}
+					if(index == 5){
+						$('.section5').find('.p5_img1').delay(700).fadeIn(1000);
+						$('.section5').find('.fp-controlArrow').delay(2500).fadeIn(1000);
+						$('.section5').find('.p5_img2').delay(1500).animate({left: '5%'}, 1500, 'easeOutCirc');	
+						$('.section5').find('.slide_wraper1').delay(1500).fadeIn(1000);
+						$('.section5').find('.zqlogo').delay(1500).animate({right: '2%'}, 1500, 'easeOutCirc');	
+					}
+					if(index == 6){
+						$('.section6').find('.p6_img1').delay(700).fadeIn(1000);
+						$('.section6').find('.p6_img2,.p6_img3').delay(1500).animate({left: '5%'}, 1500, 'easeOutCirc');	
+						$('.section6').find('.zqlogo').delay(1500).animate({right: '2%'}, 1500, 'easeOutCirc');	
+					}
+					
+				},
+				onLeave: function(index, direction){
+					if(index == '1'){
+						$('.section1').find('.p1_img1').animate({top: '-100%'}, 1500, 'easeOutBounce');
+						$('.section1').find('.p1_img2').animate({left: '-100%'}, 1500, 'easeOutCirc');
+						$('.section1').find('.p1_img3').animate({left: '-50%'}, 1500, 'easeOutCirc');
+						$('.section1').find('.zqlogo').animate({right: '-20%'}, 1500, 'easeOutCirc');	
+					}
+					if(index == '2'){
+						$('.section2').find('.p2_img1').fadeOut(1000);
+						$('.section2').find('.p2_img2').hide(1000);
+						$('.section2').find('.p2_img3').hide(1000);
+						$('.section2').find('.p2_img4').hide(1000);
+						$('.section2').find('.zqlogo').animate({right: '-20%'}, 1500, 'easeOutCirc');	
+					}
+					if(index == '3'){
+						$('.section3').find('.p3_img1').animate({right: '-126%'}, 10, 'easeOutExpo');
+						$('.section3').find('.p3_text1').animate({right: '-126%'}, 10, 'easeOutCirc');
+						$('.section3').find('.p3_text2').animate({right: '-117%'}, 10, 'easeOutCirc');
+						$('.section3').find('.p3_text3').animate({left: '-115%'}, 10, 'easeOutCirc');
+						$('.section3').find('.p3_text4').animate({left: '-117%'}, 10, 'easeOutCirc');
+						$('.section3').find('.zqlogo').animate({right: '-112%'}, 10, 'easeOutCirc');	
+					}
+					if(index == 4){
+						$('.section4').find('.p4_img1').fadeOut(1000);
+						$('.section4').find('.fp-controlArrow').fadeOut(1000);
+						$('.section4').find('.p4_img2').animate({top: '-10000px'}, 1500, 'easeOutCirc');
+						$('.section4').find('.slide_wraper').animate({top: '-150%'},10, 'easeOutCirc');
+						$('.section4').find('.p4_img6').animate({top: '-10000px'}, 1500, 'easeOutCirc');
+						$('.section4').find('.zqlogo').delay(1500).animate({right: '-112%'}, 1500, 'easeOutCirc');		
+					}
+					if(index == 5){						
+						$('.section5').find('.p5_img1').fadeOut(1000);
+						$('.section5').find('.fp-controlArrow').fadeOut(1000);
+						$('.section5').find('.p5_img2').animate({left: '-115%'}, 1500, 'easeOutCirc');	
+						$('.section5').find('.slide_wraper1').fadeOut(1000);
+						$('.section5').find('.zqlogo').animate({right: '-112%'}, 1500, 'easeOutCirc');	
+					}
+					if(index == 6){
+						$('.section6').find('.p6_img1').fadeOut(1000);
+						$('.section6').find('.p6_img2,.p6_img3').animate({left: '-115%'}, 1500, 'easeOutCirc');	
+						$('.section6').find('.zqlogo').animate({right: '-112%'}, 1500, 'easeOutCirc');		
+					}
+				}
+			});
+		}
+	</script>
+</head>
+<body> 
+
+
+<div id="loading">
+    <div style="width:100%;position:fixed;bottom:300px; text-align:center;text-indent:20px;z-index:99;color:#fff;" id="show_load">0%</div>
+</div>
+<script type="text/temp" id="contentpage">
+<div id="Container">
+    <!-- page1 -->
+    <div class="section section1">
+ 		<img src="images/p1_img1.png" class="p1_img1">
+        <img src="images/p1_img2.png" class="p1_img2">
+        <img src="images/p1_img3.png" class="p1_img3">
+        <img src="images/zqlogo.png" class="zqlogo">
+    </div>
+    <!-- page2 -->
+    <div class="section section2">
+		<img src="images/p2_img1.png" class="p2_img1">
+        <img src="images/p2_img2.png" class="p2_img2">
+        <img src="images/p2_img3.png" class="p2_img3">
+        <img src="images/p2_img4.png" class="p2_img4">
+        <img src="images/zqlogo.png" class="zqlogo">
+    </div>
+    <!-- page3 -->
+    <div class="section section3">
+		<img src="images/p3_img1.png" class="p3_img1">
+        <img src="images/p3_text1.png" class="p3_text1">
+        <img src="images/p3_text2.png" class="p3_text2">
+        <img src="images/p3_text3.png" class="p3_text3">
+        <img src="images/p3_text4.png" class="p3_text4">
+        <img src="images/zqlogo.png" class="zqlogo">
+    </div>
+    <div class="section section4">
+    	<img src="images/p4_img1.png" class="p4_img1">
+        <img src="images/p4_text1.png" class="p4_img2">
+   	 	<div class="slide_wraper">
+			<div class="slide"><img style="position:relative;margin:0px auto" src="images/p4_shoushi1.png" class="slide_img"></div>
+            <div class="slide"><img style="position:relative;margin:0px auto" src="images/p4_shoushi2.png" class="slide_img"></div>
+            <div class="slide"><img style="position:relative;margin:0px auto" src="images/p4_shoushi3.png" class="slide_img"></div>
+         </div>
+         <img src="images/p4_text2.png" class="p4_img6">
+        <img src="images/zqlogo.png" class="zqlogo">
+	</div>
+    <!-- page5 -->
+    <div class="section section5">
+		<img src="images/p5_img1.png" class="p5_img1">
+        <img src="images/p5_img2.png" class="p5_img2">
+      	<div class="slide_wraper1">
+		   <div class="slide"><img style="position:relative;margin:0px auto" src="images/p5_img3.png" class="slide_img"></div>
+           <div class="slide"><img style="position:relative;margin:0px auto" src="images/p5_img4.png" class="slide_img"></div>
+           <div class="slide"><img style="position:relative;margin:0px auto" src="images/p5_img5.png" class="slide_img"></div>
+           <div class="slide"><img style="position:relative;margin:0px auto" src="images/p5_img6.png" class="slide_img"></div>
+           <div class="slide"><img style="position:relative;margin:0px auto" src="images/p5_img7.png" class="slide_img"></div>
+           <div class="slide"><img style="position:relative;margin:0px auto" src="images/p5_img8.png" class="slide_img"></div>
+           <div class="slide"><img style="position:relative;margin:0px auto" src="images/p5_img9.png" class="slide_img"></div>
+           <div class="slide"><img style="position:relative;margin:0px auto" src="images/p5_img10.png" class="slide_img"></div>
+           <div class="slide"><img style="position:relative;margin:0px auto" src="images/p5_img11.png" class="slide_img"></div>
+           <div class="slide"><img style="position:relative;margin:0px auto" src="images/p5_img12.png" class="slide_img"></div>
+        </div>
+        <img src="images/zqlogo.png" class="zqlogo">
+    </div>
+    <!-- page6 -->
+    <div class="section section6">
+		<img src="images/p6_img1.png" class="p6_img1">
+        <img src="images/p6_img2.png" class="p6_img2">
+        <img src="images/p6_img3.png" class="p6_img3">
+        <img src="images/p6_img4.png" class="p6_img4">
+        <img src="images/zqlogo.png" class="zqlogo">
+    </div>
+</div>
+</script>
+<div  id="wraper_arrow"><img src="images/arrow.png" id="arrow"></div>
+<div>
+	<div class="music"><img src="images/music.gif"></div><!-- 音乐 -->
+</div>
+
+<script type="text/javascript">
+$(function(){
+	  //-----------------
+	  var DEFAULT_WIDTH = 640, // 页面的默认宽度
+	  ua = navigator.userAgent.toLowerCase(), // 根据 user agent 的信息获取浏览器信息
+		  deviceWidth = window.screen.width, // 设备的宽度
+		  devicePixelRatio = window.devicePixelRatio || 1, // 物理像素和设备独立像素的比例，默认为1
+		  targetDensitydpi;
+	  // Android4.0以下手机不支持viewport的width，需要设置target-densitydpi
+	  if (ua.indexOf("android") !== -1 && parseFloat(ua.slice(ua.indexOf("android")+8)) < 4) {
+		  targetDensitydpi = DEFAULT_WIDTH / deviceWidth * devicePixelRatio * 160;
+		  $('meta[name="viewport"]').attr('content', 'target-densitydpi=' + targetDensitydpi + ', width=device-width, user-scalable=no');
+	  } 
+});
+</script>
+</body>
+</html>

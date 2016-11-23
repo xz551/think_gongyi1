@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$title}</title>
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/css/base.css">
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/tp/css/login_regist.css">
+	<script src="{:STATIC_SERVER_URL}/public/js/jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/public/css/jquery.validator.css">
+	<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/jquery.validator.js"></script>
+	<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/zh_CN.js"></script>
+	<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/tp/js/userRegister.js"></script>
+</head>
+<body>
+	<!-- zqgy-header[ -->
+	<div class="zqgy_header"><a href="{:SERVER_VISIT_URL}"></a>个人用户注册</div><!-- ]zqgy-header -->
+	<!-- zqgy-main[ -->
+	<div class="zqgy_main">
+		<div class="zqgy_rgtcont rgt_psl">
+			<!-- 左边图部分[ -->
+			<div class="zqgy_mct_lt"></div>
+			<!-- 右边部分[ -->
+			<div class="zqgy_mct_rt">
+				<h3><span>个人注册</span><a href="/Uc/Register/orgRegister.html?returnurl={:I('returnurl')}" class="lg_swh">组织注册</a></h3>
+				<div class="zqgy_mrt_cont">
+					<form action="javascript:void(0)" class="shw" id="psl_form" method="post">
+						<input type="hidden" name="returnurl" value="{:I('returnurl')}">
+						<input type="hidden" name="type" value="{$type}" />
+						<input name="smscode" id="smscode" type="hidden" value=""/>
+						<div class="zqgy_sjreg">
+							<h5>手机号码：<span class="msg-box n-right" for="phone"></span></h5>
+							<p class="tel_num"><i>+86</i><span><input type="text" name="phone" id="phone" placeholder="请输入您的手机号码,可用于登录和密码找回"></span></p>
+							<h5>使用<i class="reg_swh">邮箱注册</i><span class="error_msg" style="color:#c33;"></span></h5>
+							<p class="yzm_num"><span>
+								<input type="text" name="ip_ckcode" id="ip_ckcode" placeholder="请输入验证码">
+							</span><i id="getCode">获取短信验证码</i></p>
+						</div>
+						<div class="zqgy_yxreg reg_hide">
+							<h5>邮箱：<span class="msg-box n-right" for="email"></span></h5>
+							<p><input type="text" name="email" placeholder="请输入邮箱"></p>
+							<h5>使用<i class="reg_swh">手机注册</i></h5>
+						</div>
+						<dl>
+							<dt>昵称：<span class="msg-box n-right" for="nickname"></span></dt>
+							<dd><input type="text" name="nickname" placeholder="请输入昵称"></dd>
+							<dt>密码：<span class="msg-box n-right" for="password"></span></dt>
+							<dd><input type="password" name="password" placeholder="6 - 24位"></dd>
+							<dt>确认密码：<span class="msg-box n-right" for="repwd"></span></dt>
+							<dd><input type="password" name="repwd" placeholder="确认密码"></dd>
+						</dl>
+						<dl class="yz_code reg_hide">
+							<dt>验证码：<span class="error_msg"></span></dt>
+							<dd>
+								<span><input type="text" name="ip_yzcode" id="ip_yzcode" placeholder="请输入验证码"></span>
+								<i><img id="yw0" src="/M/Code/index" alt=""></i><a id="yw0_button" href="javascript:void(0)">看不清换一张</a>
+							</dd>
+						</dl>
+						<div class="rem_me"><i class="rm_chk" data-id="0"></i><span>我已阅读并同意<a href="{:U('Register/user_clause')}" target="_blank">相关服务条款</a><i>是否同意服务条款</i></span></div>
+						<div class="all_btns"><button id="btn">注册</button><span>已有账号,直接<a href="{:U('Login/index')}" class="col2">登录</a></span></div>
+					</form>
+				</div>
+			</div><!-- ]右边部分 -->
+		</div>
+	</div><!-- ]zqgy-main -->
+	<!-- zqgy-footer[ -->
+	<div class="zqgy_footer">Copyright © 2012 - 2016 </div><!-- ]zqgy-footer -->
+</body>
+</html>

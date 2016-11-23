@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>{$title}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <taglib name='Js,css' />
+    <css:r />
+    <script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/jquery.js"></script>
+    <link href="__STATIC_URL__/usercenter/account/css/base.css" rel="stylesheet"/>
+    <script type="text/javascript">
+        var closeUrl="{:STATIC_SERVER_URL}/usercenter/tp/images/close_icon.png";
+        var static_url="{:STATIC_SERVER_URL}";
+        var server_url="{:SERVER_VISIT_URL}";
+        $(function(){
+            $(".myhome_users_wraper").hover(function(){
+                $(this).find('ul').show("200");
+            },function(){
+                $(this).find('ul').hide();
+            });
+        });
+    </script>
+</head>
+<body>
+{~W('Layout/header')}
+<div class="zqgy_accountset">
+    {~W('Layout/left_account')}
+    <div class="zqgy_aset_rt">
+        {__CONTENT__}
+    </div>
+</div>
+<js:r />
+<js:rw />
+</body>
+</html>

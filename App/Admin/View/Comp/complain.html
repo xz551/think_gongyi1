@@ -1,0 +1,58 @@
+
+<div class="alert alert-success  ">
+    <form class="form-inline">
+        <input value="{:I('uid')}" type="text" name="uid" placeholder="投诉人id"/>
+        <input value="{:I('org_name')}" type="text" name="org_name" placeholder="投诉人名称"/>
+        <input value="{:I('user_email')}" type="text" name="user_email" placeholder="投诉对象id"/>
+        <input value="{:I('org_phone')}" type="text" name="org_phone" placeholder="投诉对象名称"/>
+        <!--<select name="type" id="type">-->
+            <!--<option value="">&#45;&#45;投诉类型&#45;&#45;</option>-->
+            <!--<option value="1">项目投诉</option>-->
+            <!--<option value="2">用户投诉</option>-->
+            <!--<option value="3">互助投诉</option>-->
+            <!--<option value="4">活动投诉</option>-->
+        <!--</select>-->
+        <!--<select name="type" id="type">-->
+            <!--<option value="">&#45;&#45;状态&#45;&#45;</option>-->
+            <!--<option value="1">待处理</option>-->
+            <!--<option value="2">已处理</option>-->
+        <!--</select>-->
+        <input type="submit" value="搜索"/>
+    </form>
+</div>
+        <script type="text/javascript">
+            (function(){
+                $('#type').val({:I('type')});
+            })();
+        </script>
+<table class="table table-bordered table-hover table-condensed">
+    <tr>
+         <th width="5%">序号</th>
+        <th width="7%">投诉类型</th>
+        <th width="8%">投诉人</th>
+        <th width="10%">投诉对象</th>
+        <th width="15%">投诉内容</th>
+        <th width="9%">投诉时间</th>
+        <th width="9%">处理方</th>
+    </tr>
+    <volist name='data' id='vo'>
+        <tr>
+            <td width="5%">{$vo['id']}</td>
+            <td width="6%">{$vo['type_name']}</td>
+            <td width="8%">{$vo['user_name']}</td>
+
+            <td width="10%">
+               {$vo['cuser_name']}
+            </td>
+            <td width="15%">{$vo['content']}</td>
+            <td width="9%">{$vo['create_time']|date='Y-m-d H:i:s',###}</td>
+            <td width="9%">{$vo['cuser']}</td>
+        </tr>
+    </volist>
+</table>
+{$pageHtml}
+<style>
+    td{
+        word-wrap:break-word;word-break:break-all
+    }
+</style>

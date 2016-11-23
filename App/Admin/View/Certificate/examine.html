@@ -1,0 +1,101 @@
+<div class="alert alert-error">
+  您要给以下<span class="label" id='parent_num'>{$ren|count}</span>人颁发 <span class="label label-important">{$zs['name']}</span>.请您确认
+</div>
+<form action="{:U('Certificate/bind')}" method="post">
+    <input type="hidden" value="{$zs['id']}" name='zhengshu'/>
+<table class="table table-bordered table-hover table-condensed">
+    <tr >
+        <th rowspan="3" width='100px'>
+            头像
+        </th>
+        <th style="width: 100px">
+            编号
+        </th>
+        <th style="width: 100px">
+            姓名
+        </th>
+        <th style="width: 200px">
+            邮箱
+        </th>
+        <th style="width: 50px">
+            性别
+        </th>
+        <th style="width: 200px">
+            身份证号
+        </th>
+        <th>
+            账户类型
+        </th>
+        <th>
+            操作
+        </th>
+    </tr>
+    <tr >
+        <th colspan="7">
+            省份
+        </th>
+    </tr>
+    <tr >
+        <th colspan="7">
+            手机号
+        </th>
+    </tr>
+    <volist name="ren" id="vo">
+         <tr class="tr_{$vo['uid']}">
+            <td rowspan="3">
+                <input type="hidden" name="uid[]" class='input_uid' value="{$vo['uid']}"/>
+                <img style="width: 100px" src="{$vo['photo']}" />
+            </td>
+             <td>
+                 {$vo['uid']}
+             </td>
+            <td>
+                {$vo['real_name']}
+            </td>
+             <td>
+                 {$vo['email']}
+             </td>
+            <td>
+                {$vo['gender']}
+            </td>
+            <td>
+                {$vo['idcard_code']}
+            </td>
+             <td>
+                 {$vo['type']}
+             </td>
+            <td>
+                <a href='javascript:void(0)' onclick="remove_tr({$vo['uid']})">移除</a>
+            </td>
+        </tr>
+        <tr class="tr_{$vo['uid']}">
+            <td colspan="7">
+                {$vo['province']}
+            </td>
+
+        </tr>
+         <tr class="tr_{$vo['uid']}">
+            <td colspan="7">
+                {$vo['phone']}
+            </td>
+        </tr>
+    </volist>
+    <tr>
+        <td>
+            
+        </td>
+        <td colspan="7">
+            <a  class="btn" onclick="history.back()">返回修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary">我已经确认</button>
+        </td>
+    </tr>
+</table>
+    </form>
+<script type="text/javascript">
+    function remove_tr(uid){
+         $(".tr_"+uid).hide(300,function(){
+             $(this).remove(); 
+            $('#parent_num').text($('.input_uid').length);
+         });
+    }
+</script>

@@ -1,0 +1,14 @@
+<volist name="data" id="vo">
+    <a href="/m/project/index/id/{$vo['id']}" class="act_itemts i{$vo['hot']}" data-id="{$vo['id']}">
+        <div class="act_lt"><img src="{$vo['show_img']}"></div>
+        <div class="act_detail">
+            <h3>{$vo['name']}
+                <eq name="vo['hot']" value="1">
+                <img src="__STATIC_URL__/zqgym/images/icon_tuijian.png">
+                </eq>
+            </h3>
+            <p><label>发起人:</label><span>{$vo['creator']}</span></p>
+            {$vo['status']==100?'<span class="sta_jxz">报名进行中</span>':'<span class="sta_yjs">报名已结束</span>'}
+        </div>
+    </a>
+</volist>

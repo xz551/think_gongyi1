@@ -1,0 +1,16 @@
+<div>ID：{$info['id']}&nbsp;&nbsp;&nbsp;<a href="__WEB_SITE__/T/Concurinfo/index/id/{$info['id']}" class="text-info" target="_blank">{$info['title']}</span></div>
+<div id="getAjaxPage" data-url="/Admin/Concur/ajaxlove"></div>
+<script type="text/javascript">
+	$(function(){
+		var url = $("#getAjaxPage").attr('data-url');
+		var id="{$id}";
+		$.ajax({
+			url:url,
+			data:{id:id},
+			success:function(d){
+				$("#getAjaxPage").html(d);
+				$(".wraper_paging a:contains(1):first").addClass('selected');
+			}
+		});
+	});
+</script>

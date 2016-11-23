@@ -1,0 +1,175 @@
+<css:add href="__STATIC_URL__/yun/css/jquery.Jcrop.min.css" />
+<css:add href="__STATIC_URL__/yun/js/uploadify-v3.1/uploadify.css" />
+<css:add href="__STATIC_URL__/usercenter/account/css/photo_set.css" />
+<js:add src="__STATIC_URL__/yun/js/uploadify-v3.1/jquery.uploadify-3.1.min.js"/>
+<js:add src="__STATIC_URL__/yun/js/jquery.Jcrop.min.js"/>
+<js:add src="__STATIC_URL__/yun/js/ajaxupload.js"/>
+<js:add src="__STATIC_URL__/yun/js/ThinkBox/jquery.ThinkBox.js"/>
+<css:add  href="__STATIC_URL__/yun/js/ThinkBox/css/ThinkBox.css" />
+<style type="text/css">
+    .preview {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
+        background: #fff;
+    }
+    .upload-area {
+        position: relative;
+        float: left;
+        margin-right: 30px;
+        width: 200px;
+        height: 200px;
+        background-color: #F5F5F5;
+        border: 2px solid #E1E1E1;
+    }
+    .update-pic .crop {
+        float: left;
+        margin-bottom: 20px;
+        margin-top: 10px;
+        overflow: hidden;
+    }
+</style>
+<h3>账户设置 > 头像设置</h3>
+<div class="zqgy_asrt_cont">
+    <form action="{:U('Accountinfo/photo_do')}" method="post" class="update-pic cf">
+        <p>
+            <label>头像：</label>
+            <a href="javascript:void(0)" id="upload-show-image">上传图片</a>支持jpg、jpeg和png格式，大小不超过1M
+        </p>
+        <div class="upload_photo">
+            <a href="javascript:void(0)" class="upload-area">
+                <div class="preview hidden" id="preview-hidden">
+                    <img id="cropbox"  src="{$photo_url}" onerror="this.src='__STATIC_URL__/usercenter/account/images/upload.png'" >
+                </div>
+            </a>
+            <span class="crop" style="display: none;">
+                <img  id="crop-preview-100" class="crop-preview-100" src="">
+                实时预览
+            </span>
+        </div>
+        <input type="hidden" id="x" name="x"/>
+        <input type="hidden" id="y" name="y"/>
+        <input type="hidden" id="w" name="w"/>
+        <input type="hidden" id="h" name="h"/>
+        <input type="hidden" id='imgName' name='imgName' value="{$photo}"/>
+        <button>保存</button>
+    </form>
+</div>
+<script>
+    $(function () {
+        var button = $('#upload-show-image'), interval;
+        if($('#imgName').val()==''){
+            button.text('上传图片');
+        }else{
+            button.text('重新上传');
+        }
+
+        new AjaxUpload(button, {
+            name: 'img_file',
+            action: '/t/img/upload/type/usertemp.html',
+            onSubmit: function (file, ext) {
+
+            },
+            onComplete: function (file, response) {
+                response=eval("("+response+")");
+                var _imgSrc=response.url;
+                button.text('重新上传');
+                $('#imgName').val(response.imgName);
+                var preview = $('.upload-area').children('#preview-hidden');
+                preview.html('<img  id="cropbox" src="'+_imgSrc+'"/>');
+                $('#cropbox,#crop-preview-100').hide().attr('src',_imgSrc).show();
+                $('.crop').show();
+                var img = new Image();
+                img.src = _imgSrc + '?random=' + Math.random();
+                //根据图片大小在画布里居中
+                img.onload = function () {
+                    var img_height = 0;
+                    var img_width = 0;
+                    var real_height = img.height;
+                    var real_width = img.width;
+                    if (real_height > real_width && real_height > 200) {
+                        var persent = real_height / 200;
+                        real_height = 200;
+                        real_width = real_width / persent;
+                    } else if (real_width > real_height && real_width > 200) {
+                        var persent = real_width / 200;
+                        real_width = 200;
+                        real_height = real_height / persent;
+                    }
+                    if (real_height < 200) {
+                        img_height = (200 - real_height) / 2;
+                    }
+                    if (real_width < 200) {
+                        img_width = (200 - real_width) / 2;
+                    }
+                    preview.css({width: (200 - img_width) + 'px', height: (200 - img_height) + 'px'});
+                    preview.css({paddingTop: img_height + 'px', paddingLeft: img_width + 'px'});
+                    _Jcrop();
+                }
+
+
+            }
+        });
+                //裁剪插件
+
+        //提交裁剪好的图片
+        $('.save-pic').click(function () {
+            if ($('#preview-hidden').html() == '') {
+                $.ThinkBox.error('请先上传图片！');
+            } else {
+                //由于GD库裁剪gif图片很慢，所以长时间显示弹出框
+                $.ThinkBox.success('图片处理中，请稍候……', {'delayClose': 30000});
+                $('#pic').submit();
+            }
+        });
+        //重新上传,清空裁剪参数
+        var i = 0;
+        $('.reupload-img').click(function () {
+            $('#preview-hidden').find('*').remove();
+            $('#preview-hidden').hide().addClass('hidden').css({'padding-top': 0, 'padding-left': 0});
+        });
+
+
+
+    });
+    function _Jcrop(){
+        $('#cropbox').Jcrop({
+            bgColor: '#333',   //选区背景色
+            bgFade: true,      //选区背景渐显
+            fadeTime: 1000,    //背景渐显时间
+            allowSelect: false, //是否可以选区，
+            allowResize: true, //是否可以调整选区大小
+            aspectRatio: 1,     //约束比例
+            minSize: [100, 100],//可选最小大小
+            boxWidth: 200,		//画布宽度
+            boxHeight: 200,	//画布高度
+            onChange: showPreview,//改变时重置预览图
+            onSelect: showPreview,//选择时重置预览图
+            setSelect: [0, 0, 100, 100],//初始化时位置
+            onSelect: function (c) {	//选择时动态赋值，该值是最终传给程序的参数！
+                $('#x').val(c.x);//需裁剪的左上角X轴坐标
+                $('#y').val(c.y);//需裁剪的左上角Y轴坐标
+                $('#w').val(c.w);//需裁剪的宽度
+                $('#h').val(c.h);//需裁剪的高度
+            }
+        });
+    }
+    //预览图
+    function showPreview(coords) {
+        var img_width = $('#cropbox').width();
+        var img_height = $('#cropbox').height();
+        //根据包裹的容器宽高,设置被除数
+        var rx = 150 / coords.w;
+        var ry = 150 / coords.h;
+        $('#crop-preview-100').css({
+            width: Math.round(rx * img_width) + 'px',
+            height: Math.round(ry * img_height) + 'px',
+            marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+            marginTop: '-' + Math.round(ry * coords.y) + 'px'
+        });
+    }
+</script>

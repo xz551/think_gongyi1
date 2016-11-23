@@ -1,0 +1,47 @@
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/help_manager.css">
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/popWindow.js"></script>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/concur/js/message.js"></script>
+{~W('Common/Message/privateLetter')}
+<div class="wraper_mtop_title">{$moneyInfo['title']}</div>
+<!-- wraper_main[ -->
+<div class="wraper_main">
+	<div class="wraper_menus_tab">    
+   		<!-- <a href="javascript:void(0)" class="bottom_border">捐款管理</a> -->
+   		<if condition="$moneyInfo['is_supplies'] eq 1">
+        	<a href="{:U('/T/Donate/suppliesManager',array('id'=>$moneyInfo['id']))}">物资捐助管理</a>
+        <else />
+        	<a href="javascript:void(0)">物资捐助管理</a>
+        </if>
+        <if condition="$moneyInfo['is_service'] eq 1">
+        	<a href="{:U('/T/Donate/serviceManager',array('id'=>$moneyInfo['id']))}">服务捐助管理</a>
+        <else />	
+        	<a href="javascript:void(0)">服务捐助管理</a>
+        </if>
+		<a href="#" class="back_group">回到求助详情页</a>
+	</div>
+	<ul class="wraper_show_jindu">
+		<li>
+			<p class="progress_bar"><span class="this_progress"></span></p>
+			<p class="progress_detail"><span class="pd_lt">已捐助：<i>7600.00</i>元</span><span class="pd_rt">目标：20000.00</span></p>
+		</li>
+		<li class="li_ywc_num">已完成：<span>34%</span></li>
+	</ul>
+	<!-- 一个捐助名单[ -->
+	<div class="wraper_jzmd_list">
+		<a href="#" class="wpr_jzmdl_lt"><img src="images/qq6.jpg"></a>
+		<div class="wpr_jzmdl_rt">
+			<h3 class="wpr_jzmdlrt_title"><a href="#" class="helpren_name">美丽中国</a>
+				<eq name='vo.type' value='11'><img src="{:STATIC_SERVER_URL}/concur/images/icon_v.png" title="认证个人"><else /><img src="{:STATIC_SERVER_URL}/concur/images/icon_v1.png" title="认证组织"></eq>
+				<a href="javascript:void(0)" class="pemail" data-toid="{$vo['uid']}"></a>
+				<span>2015-05-01 21:00:00</span>
+			</h3>
+			<p class="wpr_jzmdlrt_address">北京市 东城</p>
+			<p class="p_detail_info"><span>真实姓名：李亮</span><span>联系电话：13209787678</span><span>捐助金额：<i>200.00</i>元</span><span>流水号：809080908090</span></p>
+			<p class="p_detail_info">寄语：涓滴之劳、益暖人心</p>
+		</div>
+	</div><!-- ]一个捐助名单 -->
+	<!-- 分页 -->
+	<div class="wraper_paging">
+		<a href="#" class="mouse_hover">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">></a><a href="#">>></a>
+	</div>
+</div>

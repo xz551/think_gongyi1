@@ -1,0 +1,2858 @@
+[ 2016-11-22T16:41:22+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.013000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.013000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0130s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T16:41:25+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.004000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.004000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.004000s ]
+
+[ 2016-11-22T16:41:25+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.005000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0180s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.0020s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:41:28+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:41:55+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:41:55+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.005000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.005000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0240s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:41:58+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.005000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.005000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2016-11-22T16:41:58+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.004000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0310s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.0040s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T16:43:18+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0180s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T16:43:20+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:43:23+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.005000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.005000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003001s ]
+
+[ 2016-11-22T16:43:23+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.010001s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.010001s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0180s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.0030s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:43:32+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:43:34+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.006001s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.006001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.004000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.004000s ]
+
+[ 2016-11-22T16:43:34+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.004000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.005000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0200s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T16:43:34+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002001s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002001s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0250s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.0020s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:43:38+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:43:40+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.004000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+
+[ 2016-11-22T16:43:41+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.004000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0280s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.3740s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:43:41+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.006000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.007000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0200s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:43:46+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.007001s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.007001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:43:46+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.005000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.006000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0330s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:43:46+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.005000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.005000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0350s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.3930s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T16:43:49+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002001s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.006000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.006000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.005000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005000s ]
+
+[ 2016-11-22T16:45:11+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0300s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T16:45:13+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2016-11-22T16:45:13+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003001s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003001s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0230s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.0020s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:45:17+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003001s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T16:45:57+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:45:57+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003001s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003001s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0190s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T16:45:58+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0130s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.3410s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2016-11-22T16:46:00+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003001s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2016-11-22T16:46:21+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0410s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:46:23+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.017001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.017001s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:46:23+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.004001s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.004001s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0300s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.0030s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:46:26+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.004000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.004000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:46:31+08:00 ] 127.0.0.1 /Admin/Concur/concurcheck
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T16:46:44+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:46:44+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.005000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.005001s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.005001s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0270s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2016-11-22T16:46:47+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.004000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.004000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:46:47+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0180s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.0020s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:51:07+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.007000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.007000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0310s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T16:51:10+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:51:10+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0170s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.0870s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:51:12+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.005000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.005000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:51:15+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0330s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T16:51:18+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:51:20+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.004000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.004000s ]
+
+[ 2016-11-22T16:51:20+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0190s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.0650s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:51:25+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0260s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.6680s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T16:51:25+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0110s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T16:51:27+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003001s ]
+
+[ 2016-11-22T16:51:30+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.004000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.004000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:51:53+08:00 ] 127.0.0.1 /admin/user/userlist
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_user` [ RunTime:0.0110s ]
+SQL:  select count(0) as c from  tb_user as u  LEFT JOIN tb_volunteer as v on u.uid=v.uid  LEFT JOIN ( select uid,group_concat(server_tag_id) as tag from tb_user_category_server_tag_list GROUP BY uid ) as cstl  on u.uid=cstl.uid where  1=1   [ RunTime:2.7772s ]
+SQL: SELECT u.uid,u.nickname,v.real_name,u.gender,u.email,u.qq,u.phone,v.idcard_code,u.type,u.`status`, v.`status` as  volunteer_status, u.create_date,cstl.tag  from tb_user as u  LEFT JOIN tb_volunteer as v on u.uid=v.uid  LEFT JOIN ( select uid,group_concat(server_tag_id) as tag from tb_user_category_server_tag_list GROUP BY uid ) as cstl  on u.uid=cstl.uid where    1=1   order by u.uid desc limit 0,25 [ RunTime:0.3810s ]
+NOTIC: [8] Trying to get property of non-object D:\HuaYun\HuaYun\1.0\think_gongyi\App\Admin\Controller\UserController.class.php 第 36 行.
+SQL: SHOW COLUMNS FROM `tb_province_city` [ RunTime:0.0130s ]
+SQL: SHOW COLUMNS FROM `tb_province_city` [ RunTime:0.0130s ]
+SQL: SELECT `id`,`class_parent_id`,`class_name`,`class_type` FROM `tb_province_city`  [ RunTime:0.0110s ]
+NOTIC: [8] Use of undefined constant USER_CONTER - assumed 'USER_CONTER' D:\HuaYun\HuaYun\1.0\ThinkPHP\Common\functions.php 第 596 行.
+SQL: SHOW COLUMNS FROM `tb_category_server` [ RunTime:0.0130s ]
+SQL: SELECT * FROM `tb_category_server` ORDER BY `order`  [ RunTime:0.0260s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:-3.380194s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.020001s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Undefined variable: city D:\HuaYun\HuaYun\1.0\think_gongyi\App\Runtime\Cache\Admin\1253a3fcf9b9a4a0c94f08fd1a517d1b.php 第 112 行.
+NOTIC: [8] Undefined variable: county D:\HuaYun\HuaYun\1.0\think_gongyi\App\Runtime\Cache\Admin\1253a3fcf9b9a4a0c94f08fd1a517d1b.php 第 118 行.
+NOTIC: [2] join(): Invalid arguments passed D:\HuaYun\HuaYun\1.0\think_gongyi\App\Runtime\Cache\Admin\1253a3fcf9b9a4a0c94f08fd1a517d1b.php 第 136 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+
+[ 2016-11-22T16:52:37+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0300s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.3890s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T16:52:40+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.004000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.005000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.004001s ]
+
+[ 2016-11-22T16:52:40+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0130s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T16:52:43+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T16:53:17+08:00 ] 127.0.0.1 /admin/user/volunteerverifylist
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+ERR: 非法操作:volunteerverifylist
+
+[ 2016-11-22T17:44:25+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T17:44:25+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0110s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T17:44:28+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T17:44:28+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0120s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.0910s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-11-22T17:44:29+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0160s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.3000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T17:44:31+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T17:44:31+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.006001s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.006001s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0120s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T17:44:34+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T17:59:45+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.026001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.026001s ]
+
+[ 2016-11-22T17:59:45+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0150s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T17:59:48+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T17:59:48+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0120s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.2800s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:01:12+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:01:13+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.004001s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.004001s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0140s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.3620s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:01:15+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.004001s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.004001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:01:15+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0150s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:01:18+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003001s ]
+
+[ 2016-11-22T18:01:21+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:01:21+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0170s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:01:21+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0110s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.3410s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:01:25+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:01:27+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:01:27+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0130s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:01:28+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0130s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.3100s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-11-22T18:01:30+08:00 ] 127.0.0.1 /Admin/Organization/all
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Trying to get property of non-object D:\HuaYun\HuaYun\1.0\think_gongyi\App\Admin\Controller\OrganizationController.class.php 第 37 行.
+NOTIC: [8] Trying to get property of non-object D:\HuaYun\HuaYun\1.0\think_gongyi\App\Admin\Controller\OrganizationController.class.php 第 38 行.
+NOTIC: [8] Trying to get property of non-object D:\HuaYun\HuaYun\1.0\think_gongyi\App\Admin\Controller\OrganizationController.class.php 第 39 行.
+NOTIC: [8] Trying to get property of non-object D:\HuaYun\HuaYun\1.0\think_gongyi\App\Admin\Controller\OrganizationController.class.php 第 39 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:-2.578147s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.009001s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:02:29+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:02:30+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.006001s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.007001s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0120s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.2820s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:02:32+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+
+[ 2016-11-22T18:02:32+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003001s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.004001s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0140s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:07:31+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:07:33+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:07:34+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.004000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0150s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+
+[ 2016-11-22T18:07:34+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0110s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.4760s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:08:55+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001001s ]
+
+[ 2016-11-22T18:08:55+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0130s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:08:58+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:08:58+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0150s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.2740s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:10:04+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0250s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:10:07+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:10:09+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+
+[ 2016-11-22T18:10:09+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002001s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.004001s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.004001s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0190s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.0030s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:10:13+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:10:13+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.004000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0170s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:10:13+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0220s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.5300s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:10:17+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:10:24+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.006001s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.006001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2016-11-22T18:10:24+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0110s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:10:26+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:10:27+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0170s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.3130s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:13:23+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+
+[ 2016-11-22T18:13:23+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.004000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0150s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:13:26+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.004000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:13:26+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0130s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.3100s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:17:58+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0180s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:17:58+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0180s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.3050s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+
+[ 2016-11-22T18:18:02+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:18:04+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.018001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.018001s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.006001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.006001s ]
+
+[ 2016-11-22T18:20:34+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0270s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.0060s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+
+[ 2016-11-22T18:20:36+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:20:36+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0110s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:20:39+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.005000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:21:46+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:21:49+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:21:49+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0140s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.3090s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:21:49+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0110s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:22:55+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.005000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0160s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.2770s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:22:58+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003001s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:22:58+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0140s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:23:01+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:23:39+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:23:40+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0140s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.3050s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:23:40+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.004000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0130s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-11-22T18:23:42+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2016-11-22T18:25:35+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0210s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.3710s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+
+[ 2016-11-22T18:25:35+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.004000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0150s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:25:38+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2016-11-22T18:25:41+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.008001s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.008001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002001s ]
+
+[ 2016-11-22T18:25:42+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0200s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.004000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.004000s ]
+
+[ 2016-11-22T18:25:44+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:25:45+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0120s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.2700s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:25:47+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:26:59+08:00 ] 127.0.0.1 /Admin/Organization/all
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Trying to get property of non-object D:\HuaYun\HuaYun\1.0\think_gongyi\App\Admin\Controller\OrganizationController.class.php 第 37 行.
+NOTIC: [8] Trying to get property of non-object D:\HuaYun\HuaYun\1.0\think_gongyi\App\Admin\Controller\OrganizationController.class.php 第 38 行.
+NOTIC: [8] Trying to get property of non-object D:\HuaYun\HuaYun\1.0\think_gongyi\App\Admin\Controller\OrganizationController.class.php 第 39 行.
+NOTIC: [8] Trying to get property of non-object D:\HuaYun\HuaYun\1.0\think_gongyi\App\Admin\Controller\OrganizationController.class.php 第 39 行.
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:-2.523144s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.010001s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.010001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.011001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.010001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2016-11-22T18:27:01+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0290s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:27:03+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-11-22T18:27:06+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-11-22T18:27:06+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.005001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005001s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0110s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.1660s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:27:12+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:27:12+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.004001s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.004001s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0170s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:27:14+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002001s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:27:15+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0120s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.0440s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:27:21+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.023001s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.029002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:27:21+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0110s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:27:23+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-11-22T18:27:23+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0140s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.0680s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:27:24+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0200s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:27:26+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:27:29+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-11-22T18:27:29+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0120s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.2920s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:27:30+08:00 ] 127.0.0.1 /Admin/Certificate/carlist
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tb_certificate` [ RunTime:0.0110s ]
+SQL: SELECT * FROM `tb_certificate`  [ RunTime:0.0310s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.083005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.007000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:27:31+08:00 ] 127.0.0.1 /Admin/Certificate/Issued
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tb_certificate` [ RunTime:0.0120s ]
+SQL: SHOW COLUMNS FROM `tb_certificate` [ RunTime:0.0130s ]
+SQL: SELECT * FROM `tb_certificate`  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.098006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.016001s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:27:33+08:00 ] 127.0.0.1 /Admin/Certificate/carlist
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tb_certificate` [ RunTime:0.0120s ]
+SQL: SELECT * FROM `tb_certificate`  [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.001000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.031001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.007001s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-22T18:27:35+08:00 ] 127.0.0.1 /Admin/Certificate/caruser/zs/1/zsname/%E4%B8%AD%E9%9D%92%E5%85%AC%E7%9B%8A%E2%80%9C%E7%AD%91%E6%A2%A6%E7%AB%A5%E5%A3%B0%E2%80%9D%E5%85%AC%E7%9B%8A%E8%AE%A1%E5%88%92%E6%9C%8D%E5%8A%A1%E8%AF%81%E4%B9%A6.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tb_cartificate_user` [ RunTime:0.0140s ]
+SQL: SELECT * FROM `tb_cartificate_user` WHERE ( cartificate_id=1 )  [ RunTime:0.0040s ]
+SQL: SHOW COLUMNS FROM `tb_volunteer` [ RunTime:0.0110s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=60494 [ RunTime:0.0440s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=56739 [ RunTime:0.0250s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=59491 [ RunTime:0.0050s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=56751 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=60566 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=59009 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=59064 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58235 [ RunTime:0.0020s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57700 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57689 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57692 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57693 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58078 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58141 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58230 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=59010 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=59011 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=59019 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=60562 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=56688 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58521 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58562 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57917 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57948 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=56537 [ RunTime:0.0310s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57707 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57723 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57306 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57844 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57850 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57858 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58092 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57876 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=56766 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57660 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57198 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57015 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57006 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57338 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57672 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57555 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=60564 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=60574 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=56724 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=56779 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57970 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58089 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57330 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57475 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57746 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57028 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57068 [ RunTime:0.0020s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57069 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57418 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=60568 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57007 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57033 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57142 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57157 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57171 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57173 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57205 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57276 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=59061 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=56754 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57160 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57161 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57166 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57167 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57188 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57980 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57986 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57989 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57991 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57995 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58155 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58160 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58162 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58165 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58168 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58169 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58177 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58191 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58195 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58681 [ RunTime:0.0020s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58722 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58873 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58902 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58953 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57564 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57756 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58188 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58359 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58928 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58149 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58163 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57017 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57027 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57055 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57056 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57057 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57058 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57059 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57062 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57063 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57064 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57065 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57071 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57085 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57102 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57158 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57164 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=56563 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=60567 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=60573 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57011 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=48623 [ RunTime:0.0380s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57025 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57041 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57156 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57233 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57652 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57846 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57849 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57851 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57854 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57856 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57859 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57860 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57877 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57944 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58189 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57086 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57098 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58156 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58170 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58443 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57012 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57420 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57744 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58713 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=60591 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=60592 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=60636 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57286 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57289 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57349 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=60638 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57715 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57732 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57303 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57285 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58603 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=60639 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=60642 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57287 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57347 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58204 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=59040 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=59042 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=60647 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57706 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57621 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58407 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58589 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=60570 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=60671 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58221 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=58744 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=60679 [ RunTime:0.0010s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57869 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57782 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57003 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=57247 [ RunTime:0.0000s ]
+SQL: SELECT real_name,u.uid,v.phone,u.photo,provinceid,cityid,v.idcard_code,u.email,u.gender,u.type FROM tb_volunteer as  v LEFT JOIN tb_user as u on v.uid=u.uid  WHERE u.uid=60618 [ RunTime:0.0000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.408023s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.007001s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Undefined offset: 0 D:\HuaYun\HuaYun\1.0\think_gongyi\App\Runtime\Cache\Admin\408311827772d028be1f90e3becc6ada.php 第 107 行.
+NOTIC: [8] Undefined offset: 0 D:\HuaYun\HuaYun\1.0\think_gongyi\App\Runtime\Cache\Admin\408311827772d028be1f90e3becc6ada.php 第 110 行.
+NOTIC: [8] Undefined offset: 0 D:\HuaYun\HuaYun\1.0\think_gongyi\App\Runtime\Cache\Admin\408311827772d028be1f90e3becc6ada.php 第 113 行.
+NOTIC: [8] Undefined offset: 0 D:\HuaYun\HuaYun\1.0\think_gongyi\App\Runtime\Cache\Admin\408311827772d028be1f90e3becc6ada.php 第 116 行.
+NOTIC: [8] Undefined offset: 0 D:\HuaYun\HuaYun\1.0\think_gongyi\App\Runtime\Cache\Admin\408311827772d028be1f90e3becc6ada.php 第 119 行.
+NOTIC: [8] Undefined offset: 0 D:\HuaYun\HuaYun\1.0\think_gongyi\App\Runtime\Cache\Admin\408311827772d028be1f90e3becc6ada.php 第 122 行.
+NOTIC: [8] Undefined offset: 0 D:\HuaYun\HuaYun\1.0\think_gongyi\App\Runtime\Cache\Admin\408311827772d028be1f90e3becc6ada.php 第 125 行.
+NOTIC: [8] Undefined offset: 0 D:\HuaYun\HuaYun\1.0\think_gongyi\App\Runtime\Cache\Admin\408311827772d028be1f90e3becc6ada.php 第 131 行.
+NOTIC: [8] Undefined offset: 0 D:\HuaYun\HuaYun\1.0\think_gongyi\App\Runtime\Cache\Admin\408311827772d028be1f90e3becc6ada.php 第 137 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:-0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.005000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005000s ]
+
+[ 2016-11-22T18:27:46+08:00 ] 127.0.0.1 /Admin/Concur/concurcheck
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tb_concur` [ RunTime:0.0140s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_concur` WHERE `status` = 403 LIMIT 1   [ RunTime:0.0380s ]
+SQL: SELECT * FROM `tb_concur` WHERE `status` = 403 ORDER BY create_date desc LIMIT 0,8   [ RunTime:0.0220s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.000000s ]
+INFO: [ action_begin ] --END-- [ RunTime:-0.149008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:-0.009001s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:27:55+08:00 ] 127.0.0.1 /admin/Volunteer/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-11-22T18:27:55+08:00 ] 127.0.0.1 /admin/Active/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.001000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tb_active` [ RunTime:0.0120s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_active` WHERE `status` = 0 LIMIT 1   [ RunTime:0.0000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:27:58+08:00 ] 127.0.0.1 /admin/Organization/wait_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.002000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-22T18:27:58+08:00 ] 127.0.0.1 /admin/Project/verify_count
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ action_begin ] --START--
+INFO: Run Admin\Behaviors\UserBehavior [ RunTime:0.003000s ]
+INFO: [ action_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SHOW COLUMNS FROM `tb_project` [ RunTime:0.0120s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `tb_project` WHERE `status` = 403 LIMIT 1   [ RunTime:0.3070s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+

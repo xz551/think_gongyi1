@@ -1,0 +1,335 @@
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/group/css/style.css">
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/usercenter/group/css/page13.css?1">
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/html5.js"></script>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/popWindow.js"></script>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/group/js/slider.js"></script>
+<script type="text/javascript">
+    $(function () {
+        /*对textarea 和 input 的输入实时监听事件代码*/
+        $.event.special.valuechange = {
+            teardown: function (namespaces) {
+                $(this).unbind('.valuechange');
+            },
+            handler: function (e) {
+                $.event.special.valuechange.triggerChanged($(this));
+            },
+            add: function (obj) {
+                $(this).on('keyup.valuechange cut.valuechange paste.valuechange input.valuechange', obj.selector, $.event.special.valuechange.handler)
+            },
+            triggerChanged: function (element) {
+                var current = element[0].contentEditable === 'true' ? element.html() : element.val()
+                        , previous = typeof element.data('previous') === 'undefined' ? element[0].defaultValue : element.data('previous')
+                if (current !== previous) {
+                    element.trigger('valuechange', [element.data('previous')])
+                    element.data('previous', current)
+                }
+            }
+        }
+        /*用户菜单js*/
+        $(".top_users_wraper").hover(function () {
+            $(this).find('ul').show("200");
+        }, function () {
+            $(this).find('ul').hide();
+        });
+        /*导航栏*/
+        $(".li_items,.sub").hover(function () {
+            $(this).children('.sub').show(500);
+        }, function () {
+            $(this).children('.sub').hide();
+        });
+
+        $(".pic_descrip").focus(function () {
+            $(this).val("").addClass("select");
+        });
+        $(".pic_descrip").blur(function () {
+            $(this).val("请填写照片描述...").removeClass("select");
+        });
+        var uid = '';
+        var obj = null;
+        $(".close_btn").popWindow({
+            width: "400",
+            height: "170",
+            content: $(".promptHtml").html(),
+            closePic: "images/close_icon.png",
+            id: "box1",
+            callback: function (a, box) {
+                obj = a.parent();
+                uid = obj.data('imd');
+            },
+            button: {
+                cancel: function () {
+                },
+                ok: function (t, box) {
+                    var did = uid;
+                    var url = $(".wpr_cr_rt").attr('data-durl');
+                    var newdid = $("."+did).next().attr('data-id');
+                    newdid=newdid?newdid:0;
+                    $.ajax({
+                       type: "POST",
+                       url: url,
+                       data: "id="+did,
+                       success: function(msg){
+                           if(msg==1){
+                                var url = "{:SERVER_VISIT_URL}/t/active/photo/aid/{$aid}/id/"+newdid+".html";
+                                window.location.href=url;
+                            }else{
+                                alert("删除失败");
+                            }
+                       }
+                    });
+                }
+            }
+        });
+        $("#box1").find("#winTitle").css("border-bottom", "none");
+        
+        $(".edit_box").focus(function(){
+            var islogin = "{$islogin}";
+            if(islogin != 1){
+                showbox();
+            }
+        });
+
+
+        /*我来说两句的交互*/
+        $(".okBtn1").click(function () {
+            var inputV = $(".edit_box").val().substr(0, 140);
+            var aid = $('.wraper_taolunqu').attr('data-aid');
+            var did = $('.wraper_taolunqu').attr('data-did');
+            //ajax提交input的值,并且刷新讨论页面
+            getPage(did, aid, inputV, 0,1);
+            promptInfo();
+        });
+        /*回复那里的交互*/
+        $(".okBtn2").live("click", function () {
+            var inputV = $(this).prev().val();
+            var aid = $('.wraper_taolunqu').data('aid');
+            var did = $('.wraper_taolunqu').data('did');
+            var userid = $(this).data('uid');
+            getPage(did, aid, inputV, userid,1);
+        });
+
+        /*点击回复按钮*/
+        $(".a_reply").live("click", function () {
+            var islogin = "{$islogin}";
+            if(islogin != 1){
+                showbox();
+            }else{
+                $(this).next('form').toggle("50");
+            }
+        });
+        $(".edit_box").text("我来说两句...").css({
+            color: '#999',
+            fontSize: '14px',
+            fontFamily: '微软雅黑'
+        }).focus(function () {
+            $(this).text("").css("color", "#555555");
+        });
+        /*textarea实时监听事件*/
+        $('.edit_box').on('valuechange', function (e, previous) {
+            var _this = $('.edit_box');
+            var _result = 140 - _this.val().length;
+            _result > 0 ? $(".font_length").text(_result) : $(".font_length").text(0);
+
+        })
+
+        //点击删除弹出的确认提示
+        var uid = uid || {};
+        $(".del").popWindow({
+            width: "400",
+            height: "170",
+            content: $(".promptHtml").html(),
+            closePic: "images/close_icon.png",
+            id: "box1",
+            callback: function (a, box) {
+                uid = a.parents('.wpr_cr_rt').attr('data-did');
+            },
+            button: {
+                cancel: function () {
+                },
+                ok: function (t, box) {
+                    var did = uid;
+                    var url = $('.wpr_cr_rt').attr('data-durl');
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: "id="+did,
+                        success: function(msg){
+                            if(msg==0){
+                                alert("删除失败");
+                            }else{
+                                box.hide();
+                                $("#mask1").hide();
+                            }
+                        }
+                     });
+                    
+        
+                    
+                }
+            }
+        });
+        $("#box1").find("#winTitle").css("border-bottom", "none");
+        //点击编辑
+        $(".edt").live('click', function () {
+            var obj1 = $(".rtactiv_wraper"), obj2 = $(".picForm");
+            var cont = obj1.find('.rtactiv_cont').text();
+            obj1.hide();
+            obj2.show().find('.pci_desc').val(cont);
+        });
+        //点击取消
+        $(".cancel").live('click', function () {
+            var obj1 = $(".rtactiv_wraper"), obj2 = $(".picForm");
+            obj1.show();
+            obj2.hide();
+        });
+        
+        //点击保存
+        $(".saveBtn").live('click',function(){
+            var did = $('.wpr_cr_rt').attr('data-did');
+            var url = $(".wpr_cr_rt").attr('data-eurl');
+            var content = $(".pci_desc").val();
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: "id="+did+"&content="+content,
+                success: function(msg){
+                    if(msg==0){
+                        alert("图片说明不能为空!");
+                    }else if(msg == -1){
+                        alert("图片不存在!");
+                    }else{
+                        getImgInfo(did);
+                    }
+                }
+             });
+        })
+
+        getPage(did, 0, 0, 0, 0);
+        getImgInfo(did);
+        promptInfo();
+
+    });
+    /*回复框的提示输入信息*/
+    function promptInfo() {
+        $(".edit_box1").text("回复:我来说两句").css({
+            color: '#999',
+            fontSize: '14px',
+            fontFamily: '微软雅黑'
+        }).focus(function () {
+            $(this).text("").css("color", "#555555");
+        });
+    }
+
+    /**
+     * 获取讨论区页面
+     */
+    function getPage(did, aid, content, userid,tag) {
+        var url = $(".wrp_discuss_list").data('url');
+        var data = "reply_to=" + did + "&relation_id=" + aid + "&content=" + content + "&reply_user_id=" + userid+'&tag='+tag;
+        $("#getAjaxPage").attr('data-condition',data)
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            success: function (msg) {
+                if(msg==0){
+                    alert("评论内容为2-140字符");
+                }else if(msg==-1){
+                    alert("评论失败");
+                }else if(msg=='您操作太频繁了'){
+                   alert(msg);
+                }else{
+                    $(".wrp_discuss_list").html(msg);
+                }
+            }
+        });
+    }
+
+
+    /**
+     * 获取图片的介绍及发图者的信息
+     */
+    function getImgInfo(did) {
+        var url = $(".wpr_cc_rt").data('url');
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: "did=" + did,
+            success: function (msg) {
+                $(".wpr_cc_rt").html(msg);
+            }
+        });
+    } 
+    var did = "{$did}";
+</script>
+
+    <!-- wraper_main[ -->
+    <div class="wraper_main">
+        <div class="wraper_menus_title">
+            <p>{$act.name}</p>
+            <a href="{:YIJUAN_VISIT_URL}/active/view/id/{$aid}.html">回到活动详情页面</a>
+        </div>
+        <notempty name="list">
+        <div class="wraper_center_cont">
+            <div class="wpr_cc_lf">
+                <!--焦点[-->
+                <div class="wpr_slider">
+                    <div class="show_num"><span class="sp1">1</span>/<span class="sp2"></span></div>
+                    <span class="big_btn_prev"></span>
+                    <span class="big_btn_next"></span>
+                    <span class="sm_btn_prev"></span>
+                    <span class="sm_btn_next"></span>
+                    <!--大图轮播图[-->
+                    <div class="wpr_bigpicture">
+                        <ul>
+                            <volist name="list" id="vo">
+                            <li class="cur" data-id='{$vo.id}'>
+                                <a href="javascript:void(0)"><img src="{$vo.image}"></a>
+                            </li>
+                            </volist>                           
+                        </ul>
+                    </div> <!--]大图轮播图-->
+                    <!--小图轮播图[-->
+                    <div class="wpr_smpicture">
+                        <ul>
+                             <volist name="list" id="vo">
+                            <li class='{$vo.id}' data-id='{$vo.id}'>
+                                <img src="{$vo.simage}">
+                            </li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div> <!--]焦点-->
+                <!--讨论区[-->
+                <div class="wraper_taolunqu" data-aid='{$aid}' data-did='{$did}'>
+                    <div class="wpr_taolun_top"><b>讨论区</b></div>
+                    <div class="wpr_comment">
+                        <img src="{$user.photo}" class="wpr_mlbt_left">
+                        <div class="wpr_mlbt_right">
+                            <form action="">
+                                <div class="wrp_textarea">
+                                    <textarea name="edit_box" class="edit_box" maxlength="140" ></textarea>
+                                </div>
+                                <p class="ok_btn">最多可输入<strong class="font_length">140</strong>个字符<span class="okBtn1">确定</span></p>								
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- 列表显示讨论的内容 -->
+                    <div class="wrp_discuss_list" id='getAjaxPage' data-condition="" data-url="{:U('T/Active/discuss')}"></div>
+
+                </div>
+            </div>
+            <div class="wpr_cc_rt" data-url="{:U('T/Active/describe')}">
+                <img  src="{:STATIC_SERVER_URL}/yijuan/product/images/loader.gif">
+            </div>
+        </div>
+         <else />
+         <div class="prompt_info">暂无相关图片</div>
+        </notempty>
+    </div><!-- wraper_main[ -->
+    <!--弹出层1[-->
+    <div class="promptHtml">
+        <p class="promptHtmlText">确定要删除图片吗？</p>
+    </div> <!--]弹出层1-->
+    {~W('Common/Login/showLogin')}

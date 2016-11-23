@@ -1,0 +1,35 @@
+<div id="slides">  
+    <volist name="data" id="vo">
+<if condition="$vo['url']">
+        <a href="{$vo['url']}" target="_blank">
+            <img width="760" height='400' src="{$vo['image']}"/>
+            <span class="this_textinfo1">{$vo['title']}</span>
+        </a>
+</if>
+    </volist>
+</div>
+<script>
+    $(function() {
+    /************焦点图****************/
+    $("#slides").slidesjs({
+        width: 760,
+        height: 400,
+        play: {
+            active: false,
+            auto: true,
+            interval: 4000,
+            swap: true
+        }
+    }); 
+	/*********************控制志愿者的ul下的最后一个li******************************/
+    $(".volunteer_content li:last-child").css("marginRight", "0px");
+	/*********************控制项目征集的第二个ul******************************/
+    $(".project_search ul:last-child").css("float", "right");
+	/*********************控制项目征集的img******************************/
+    $(".project_search li:first-child").children('a').children('img').css({
+        marginTop: "4px",
+        marginLeft: "4px"
+    });
+
+    });
+</script>

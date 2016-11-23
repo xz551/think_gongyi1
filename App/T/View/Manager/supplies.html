@@ -1,0 +1,271 @@
+<link rel="stylesheet" type="text/css" href="{:STATIC_SERVER_URL}/concur/css/help_manager.css">
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/public/js/popWindow.js"></script>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/usercenter/tp/js/message.js"></script>
+<script type="text/javascript" src="{:STATIC_SERVER_URL}/concur/js/supplies.js"></script>
+<script type="text/javascript">
+	$(function(){
+		/*分页*/ 
+		$(".wraper_paging ul li").hover(function(){
+			$(this).addClass("mouse_hover").siblings().removeClass("mouse_hover");
+		});  
+		$(".wraper_paging ul .curr").addClass("mouse_hover");
+		//查看全部
+		$(".see_all").click(function(){
+			var a = $(this),
+				b = a.attr('data-sid'),
+				c = a.parents(".wpr_btnandcont"),
+				d = a.parents('div.wpr_btnandcont').find("span.wl_all_info");
+			if(b==0){
+				slideUp2(d,c);
+				slideDown1(a,c);
+				
+			}else{
+				slideUp1(a);
+			}
+		});
+		//显示全部物流
+		$(".wl_all_info").live('click',function(){
+			var e = $(this),
+				f = e.attr('data-id'),
+				g = e.parents(".wpr_btnandcont"),
+				h = e.parents('div.wpr_btnandcont').find("span.see_all");
+			if(f == 0){
+				slideUp1(h);
+				slideDown2(e,g);
+			}else{
+				slideUp2(e,g);
+			}
+			
+		});
+		//查看全部的展开和收起方法
+		function slideUp1(a){
+			a.attr('data-sid','0').text('全部').removeClass('see_all1').parent().css("height","40px");
+			a.parents(".wpr_btnandcont").css("border-bottom","none");
+		}
+		function slideDown1(a,c){
+			a.attr('data-sid','1').text('收起').addClass('see_all1').parent().css("height","auto");
+			commCss(c);
+		}
+		//查看物流的展开和收起方法
+		function slideUp2(e,g){
+			e.css("bottom","5px").attr('data-id','0').text('全部').removeClass('wl_all_info1').parent().css({height:'140px',left:'0px'});
+			if(g.height()>400){g.css("border-bottom","1px solid #e0e0e0");}else{g.css("border-bottom","none");}
+		}
+		function slideDown2(e,g){
+			e.css("bottom","15px").attr('data-id','1').text('收起').addClass('wl_all_info1').parent().css({height:'auto'});
+			commCss(g);
+		}
+		//动态改变样式
+		function commCss(o){
+			o.css({left:'-1px',border:'1px solid #e0e0e0',borderTop:'none',zIndex:'500'});
+		}
+		$(".wl_info_list li:nth-child(2)").addClass("wlinfo_cur");
+		$(".wuliu_info_list li:nth-child(2)").addClass("wuliu_info_cur");
+	});
+</script>
+{~W('Common/Message/privateLetter')}
+<div class="wraper_mtop_title" data-id="{$getConcur['id']}" data-type="{$getConcur['type']}">{$getConcur['title']}</div>
+<!-- wraper_main[ -->
+<div class="wraper_main">
+	<div class="wraper_menus_tab"> 
+		<if condition="$supplies[0]['type'] eq 0">
+   			<!-- <a href="{:U('/T/Donate/moneyManager',array('id'=>$getConcur['id']))}">捐款管理</a> -->
+            <a href="javascript:void(0)" class="bottom_border">物资捐助管理</a>
+            <notempty name="supplies[0]['is_service']"><a href="{:U('/T/Donate/serviceManager',array('id'=>$getConcur['id']))}">服务捐助管理</a></notempty>
+			<a href="{:U('/T/Concurinfo/index',array('id'=>$getConcur['id']))}" class="back_group">回到求助详情页</a>
+		<else />
+			<a href="javascript:void(0)" class="bottom_border">物资申请管理</a>
+			<a href="{:U('/T/Concurinfo/index',array('id'=>$getConcur['id']))}" class="back_group">回到资源详情页</a>
+		</if>
+	</div>
+		<div class="wraper_main_cont">
+		<if condition="$supplies[0]['type'] eq 0">  
+			<p class="wpr_tc_info">
+				<label>还需要物资：</label>
+				<span>{$supplies[0]['need']|default="无"}</span> 
+			</p>
+			<p class="wpr_tc_info">
+				<label>已筹得物资：</label>
+				<span>{$supplies[0]['obtain']|default="无"}</span>
+			</p>
+			<p class="pormpt_text1">已同意<span class="pass" data-pass="{$supplies[0]['userPassCount']}">{$supplies[0]['userPassCount']}</span>个物资捐助请求，已拒绝
+				<span class="nPass" data-npass="{$supplies[0]['userNpassCount']}">{$supplies[0]['userNpassCount']}</span>个物资捐助请求，当前尚有
+				<span class="sp_clo2" data-authstr="{$supplies[0]['userAuthstrCount']}">{$supplies[0]['userAuthstrCount']}</span>条未处理的物资捐助请求！
+			</p>
+		<else />
+			<p class="wpr_tc_info">
+				<label>还可提供：</label>
+				<span>{$supplies[0]['need']|default="无"}</span>
+			</p>
+			<p class="wpr_tc_info">
+				<label>已捐出：</label>
+				<span>{$supplies[0]['obtain']|default="无"}</span>
+			</p>
+			<p class="pormpt_text1">已同意<span class="pass" data-pass="{$supplies[0]['userPassCount']}">{$supplies[0]['userPassCount']}</span>个物资申请请求，已拒绝
+				<span class="nPass" data-npass="{$supplies[0]['userNpassCount']}">{$supplies[0]['userNpassCount']}</span>个物资申请请求，当前尚有
+				<span class="sp_clo2" data-authstr="{$supplies[0]['userAuthstrCount']}">{$supplies[0]['userAuthstrCount']}</span>条未处理的物资申请请求！
+			</p>
+		</if>	
+			
+			<ul class="wpr_wzjzmd_list clearfix" <eq name="supplies[0]['type']" value="1">id="wpr_wzqqmd_list"</eq>>
+				<volist name="users" id="vo">
+				<li>
+					<div class="wpr_wzjzmdl_top">
+						<a href="{:userUrl($vo['uid'])}" title="{$vo['nickname']}" class="wpr_mdtop_lt" target="_blank"><img src="{$vo['image']}"></a>
+						<div class="wpr_mdtop_rt">
+							<h3 class="wpr_jzmdlrt_title"><a href="{:userUrl($vo['uid'])}" class="helpren_name" title="{$vo['nickname']}" target="_blank">{$vo['nickname']|str_ellipsis_new=###,12}</a>
+							<eq name='vo.type' value='11'><img src="{:STATIC_SERVER_URL}/concur/images/icon_v.png" title="认证个人">
+							<else /><img src="{:STATIC_SERVER_URL}/concur/images/icon_v1.png" title="认证组织"></eq>
+							<a href="javascript:void(0)" class="pemail_btn" data-toid="{$vo['uid']}" title="私信"></a></h3>
+							<p class="wpr_jzmdlrt_address">{$vo['address']}</p>
+						</div>
+					</div>
+					<p class="wpr_tc_info"><label>联系人：</label><span>{$vo['real_name']}</span></p>
+					<p class="wpr_tc_info"><label>联系电话：</label><span>{$vo['phone']}</span></p>
+					<p class="wpr_tc_info"><label>Email：</label><span>{$vo['email']}</span></p>
+					<if condition="$supplies[0]['type'] eq 0">
+						<div class="wpr_btnandcont">
+							<p class="hope_cont">希望捐助{$vo['supplies']}
+								<if condition="$vo['count'] gt 44">
+									<span  data-sid="0" class="see_all">全部</span>
+								</if>
+							</p>
+							<if condition="$vo['status'] eq 0">
+								<div class="p_btns active">
+									<span class="sp_accept" data-supplies="{$vo['supplies']}" data-name="{$vo['nickname']}" data-uid="{$vo['uid']}">接受</span>
+									<span class="sp_refuse" data-supplies="{$vo['supplies']}" data-name="{$vo['nickname']}" data-uid="{$vo['uid']}">拒绝</span>
+								</div>
+							<elseif condition="$vo['status'] eq 1"/>
+								<div class="p_btns active">
+									<i>已接受</i>
+									<div class="see_wuliu_info">
+									查看物流信息
+									<ul class="wuliu_info_list">
+										<notempty name="vo['logistics']">
+											<li>{$vo['expTextName']} 运单编号：<span class="sp_wlbh">{$vo['logistics_number']}</span></li>
+											{$vo['logistics']->data}
+										<else />
+											<li>暂无物流信息</li>
+										</notempty>
+									</ul>
+									</div>
+								</div>
+							<else />
+								<div class="p_btns active"><i>已拒绝</i></div>
+							</if>
+							<div class="p_btns">
+								<i>已接受</i>
+								<div class="see_wuliu_info">
+									查看物流信息
+									<ul class="wuliu_info_list">
+										<notempty name="vo['logistics']">
+											<li>{$vo['expTextName']} 运单编号：<span class="sp_wlbh">{$vo['logistics_number']}</span></li>
+											{$vo['logistics']->data}
+											<span class="wl_all_info" data-id="0">全部</span>
+										<else />
+											<li>暂无物流信息</li>
+										</notempty>
+									</ul>
+								</div>
+							</div>
+						</div>
+					<else />
+					<if condition="$vo['status'] eq 0">
+						<div class="sp_state_yjs">已接受</div>
+						<div class="sp_state_yjj">已拒绝</div>
+					<elseif condition="$vo['status'] eq 1"/>
+						<div class="sp_state_yjs active">已接受</div>
+					<else />
+						<div class="sp_state_yjj active">已拒绝</div>		
+					</if>	
+						<div class="wpr_btnandcont">
+							<p class="hope_cont">希望申请{$vo['supplies']}
+								<if condition="$vo['count'] gt 44">
+									<span  data-sid="0" class="see_all">全部</span>
+								</if>
+							</p>
+							<span class="sp_yjdz">邮寄地址</span>
+							<p class="p_yjdetail recaddr"><label>收件地址：</label><span>{$vo['mailAddress']}</span></p>
+							<p class="p_yjdetail"><label>收件人：</label><span>{$vo['mailName']}</span></p>
+							<p class="p_yjdetail"><label>联系电话：</label><span>{$vo['mailPhone']}</span></p>
+							<p class="p_yjdetail"><label>邮政编码：</label><span>{$vo['code']}</span></p>
+							<if condition="$vo['status'] eq 0">
+								<div class="p_btns active">
+									<span class="sp_accept" data-supplies="{$vo['supplies']}" data-name="{$vo['nickname']}" data-uid="{$vo['uid']}">接受</span>
+									<span class="sp_refuse" data-supplies="{$vo['supplies']}" data-name="{$vo['nickname']}" data-uid="{$vo['uid']}">拒绝</span>
+								</div>
+							<elseif condition="$vo['status'] eq 1"/>
+								<!-- 填写物流信息 -->
+								<empty name="vo['logistics_number']">
+									<div class="wraper_choice_wuliu">
+										<p>
+											<label>请选择物流方式：</label>
+											<select name="wuliu_list" id="ways_wuliu">
+												<volist name="ems" id="v" >
+													<option value="{$key}" >{$v}</option>
+												</volist>
+											</select>
+										</p>
+										<p>
+											<label>请输入运单编号：</label>
+											<input type="text" name="ydcode" class="ydcode">
+										</p>
+										<p class="tab_cont1_btns"><label></label><span class="sp_tjwlinfo" data-uid="{$vo['uid']}">提交物流信息</span></p>
+									</div>
+									<ul class="wl_info_list dis_wlil"></ul>
+								<else />
+									<ul class="wl_info_list">
+										<li>{$vo['expTextName']} 运单编号：<span class="sp_wlbh">{$vo['logistics_number']}</span></li>
+										{$vo['logistics']->data}
+										<span class="wl_all_info" data-id="0">全部</span>
+									</ul>
+								</empty>
+							</if>
+							<!-- 填写物流信息 -->
+							<div class="wraper_choice_wuliu dis_wl">
+								<p>
+									<label>请选择物流方式：</label>
+									<select name="wuliu_list" id="ways_wuliu">
+										<volist name="ems" id="v" >
+											<option value="{$key}" >{$v}</option>
+										</volist>
+									</select>
+								</p>
+								<p>
+									<label>请输入运单编号：</label>
+										<input type="text" name="ydcode" class="ydcode">
+									</p>
+								<p class="tab_cont1_btns"><label></label><span class="sp_tjwlinfo" data-uid="{$vo['uid']}">提交物流信息</span></p>
+							</div>
+							<ul class="wl_info_list dis_wlil"></ul>
+						</div>
+					</if>
+				</li>
+				</volist>
+			</ul>
+		</div>
+		<notempty name="users">
+			<!-- 分页 -->
+			<div class="wraper_paging">{$page}</div>
+		</notempty>
+</div>
+<!--接受弹出层[-->
+ <div class="promptHtml ptHtml1">
+   <h3 class="qr_prompt">您确定<span class="sp_clo">接受</span><span class="receive"></span></h3>
+   <p class="jz_cont"></p>
+   <ul class="qrts_list">
+   		<li class="qrts_list1">1、点击“确定”意味着您已经与此捐助人就“物资内容、物资数量、物流方式、邮寄地址、运费结算”等问题达成一致！</li>
+   		<li class="qrts_list2">2、接受捐助后，请督促捐助人及时完善物流信息，以保障您的权益。</li>
+   		<li class="qrts_list3">3、确定接受捐助后，不可修改，请谨慎操作！</li>
+   </ul>
+</div><!--]接受弹出-->
+<!--拒绝弹出层[-->
+ <div class="promptHtml ptHtml2">
+   <h3 class="qr_prompt">您确定<span class="sp_clo">拒绝</span><span class="refuse"></span></h3>
+   <p class="jz_cont"></p>
+   <ul class="qrts_list">
+   		<li class="qrts_list4">1、点击“确定”意味着您未与此捐助人就“物资内容、物资数量、物流方式、邮寄地址、运费结算”等问题达成一致！</li>
+   		<li>2、请输入拒绝缘由：</li>
+   		<li><textarea name="jjliyou" id="jjliyou"></textarea></li>
+   </ul>
+</div><!--]拒绝弹出-->

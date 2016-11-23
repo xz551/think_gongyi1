@@ -1,0 +1,109 @@
+<link rel="stylesheet" type="text/css" href="__STATIC_URL__/gongyi/css/video.css" /> 
+<script type="text/javascript">
+	$(function() {
+    /***********判断屏幕分辨率**********************/
+    if (window.screen.width == 1024) {
+        $(".header").css("width", "1300px");
+    }
+    if (window.screen.width == 1024) {
+        $(".main").css("width", "1300px");
+    }
+    if (window.screen.width == 1024) {
+        $(".footer").css("width", "1300px");
+    }
+    /*********** 下拉框**********************/
+    $(".li_items,.sub").hover(function() {
+        $(this).children('.sub').show(500);
+    },
+    function() {
+        $(this).children('.sub').hide();
+    });
+    $(".choice a").click(function(){
+        $(this).addClass("select").siblings().removeClass("select");
+        var id=$(this).data("id");
+    	$.ajax({
+    		url:"/t/Video/getVideo.html",
+    		data:{id:id},
+    		dataType:"json",
+    		success:function(d){
+    			if(d['video'] && d['video'].length>0){
+    				var p=[];
+    				for(var i=0;i<d['video'].length;i++){
+    					var u=d['video'][i];
+    					  /* var u1=JSON.stringify(u);
+							alert(u1); */ 
+    					p.push("<li>");
+    					p.push("<a href='/t/Openv/index/id/"+u.id+".html' target='_blank'><span class='icon_videobtn'></span><img src="+u.video_img+" alt=''/></a>");
+    					p.push("<a href='/t/Openv/index/id/"+u.id+".html' class='video_name' target='_blank'>"+u.video_name+"</a>");
+    					p.push(" <span>讲师："+u.video_teacher+"</span>");
+    					p.push("</li>");
+    				}
+    				$("#videos").html(p.join(''));
+    				$(".page_num").html(d['page']);
+    				pageUrl();
+    				var _li = $(".video_list ul li").length;
+    			    for(var i=3;i<_li;i++){
+    			      $(".video_list ul li:eq("+i+")").css("margin-right","0px");
+    			      i+=3;
+    			    }
+    			}else{
+    				$("#videos").html("没有相关视频可以观看！！！！");
+    				$(".page_num").html(" ");
+    			}
+    		}
+    	});
+    });
+    function pageUrl(){
+    	$('.page_num   a').each(function(){
+    		var _href=$(this).attr('href');
+    		var newHref=_href.replace('/getVideo/','/index/');
+    		$(this).attr('href',newHref);
+    	});
+    }
+    $(".page_num li").click(function(){
+        if($(this).hasClass("p_first")){
+            $(this).hide().next().addClass("curr").siblings().removeClass("curr");
+            $(".p_last").show();
+        }else if($(this).hasClass("p_last")){
+            $(this).hide().prev().addClass("curr").siblings().removeClass("curr");
+             $(".p_first").show();
+        }else{
+          $(this).addClass("curr").siblings().removeClass("curr");
+        } 
+      });
+  //给每个中间的li添加样式
+	var _li = $(".video_list ul li").length;
+    for(var i=3;i<_li;i++){
+      $(".video_list ul li:eq("+i+")").css("margin-right","0px");
+      i+=3;
+    }
+});
+</script> 
+<div class="main">
+      <div class="choice">
+        <span>分&nbsp;&nbsp;类:</span>
+        <foreach name="Type" item="vo" key="k">
+	        	<if condition="$vo.id eq $id ">
+	        		 <a href="#" data-id="{$vo.id}" class="select">{$vo.dict_name}</a>
+	        	<else />
+	        		<a href="#" data-id="{$vo.id}">{$vo.dict_name}</a>
+	        	</if>
+        </foreach>	
+      </div>
+      <div class="video_list">
+        <ul id="videos">
+        	 <foreach name="allVideo" item="vo">
+        		<li>
+		            <a href="/t/Openv/index/id/{$vo.id}.html" target="_blank"> <span class="icon_videobtn"></span><img src="{$vo.video_img}" alt=""/></a>
+		            <a href="/t/Openv/index/id/{$vo.id}.html" class="video_name" target="_blank">{$vo.video_name}</a>
+		            <span>讲师：{$vo.video_teacher}</span>
+	           </li>
+        	</foreach> 
+          
+        </ul>
+      </div>
+      
+  </div>
+<div class="page_num">
+			{$page}
+</div>
